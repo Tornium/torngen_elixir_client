@@ -56,6 +56,26 @@ jobs:
 
       - run: mix format
 
+      - name: Diff generated code and master
+        id: diff
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/main)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Exit if not different
+        if: steps.diff.outputs.changed != 'true'
+        run: |
+          echo "No changed files"
+          gh run cancel ${{ github.run_id }}
+          gh run watch ${{ github.run_id }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - run: mix compile
       
       - id: get_version
