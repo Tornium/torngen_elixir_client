@@ -28,7 +28,7 @@ jobs:
         id: check_merge
         run: |
           echo "${{ steps.commit_msg.outputs.msg }}"
-          if echo "${{ steps.commit_msg.outputs.msg }}" | grep -q 'from torngen/auto'; then
+          if echo "${{ steps.commit_msg.outputs.msg }}" | grep -q 'torngen/auto'; then
             echo "continue=true" >> $GITHUB_OUTPUT
           else
             echo "continue=false" >> $GITHUB_OUTPUT
