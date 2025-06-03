@@ -8,6 +8,8 @@ on:
 jobs:
   tag:
     runs-on: ubuntu-22.04
+    permissions:
+      actions: write
     steps:
       - name: Check out this repository
         uses: actions/checkout@v4
