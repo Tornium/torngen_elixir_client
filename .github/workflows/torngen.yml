@@ -83,10 +83,6 @@ jobs:
 
       - name: Prepare branch for PR
         run: |
-          # Ensure on master first (or your base branch)
-          git checkout master
-          git pull origin master
-
           # Check local branch
           if git show-ref --quiet refs/heads/torngen/auto; then
             git checkout torngen/auto
@@ -94,12 +90,9 @@ jobs:
             git checkout -b torngen/auto
           fi
 
-          # Push branch if it doesn't exist remotely
-          if git ls-remote --heads origin torngen/auto | grep torngen/auto; then
-            echo "Branch torngen/auto already exists remotely."
-          else
-            git push -u origin torngen/auto
-          fi
+          git add .
+          git commit -m "[torngen] Generated v${{ steps.get_version.outputs.version }}"
+          git push -u origin torngen/auto
 
       - name: Create Pull Request
         run: |
