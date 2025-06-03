@@ -5,10 +5,6 @@ on:
     - cron: "* * * * 1-5"
   workflow_dispatch:
 
-permissions:
-  pull-requests: write
-  contents: write
-
 env:
   MIX_ENV: prod
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -16,6 +12,10 @@ env:
 jobs:
   generate:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
     strategy:
       fail-fast: false
       matrix:
