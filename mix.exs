@@ -24,8 +24,7 @@ defmodule TorngenElixirClient.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.34", only: :dev, runtime: false},
-      # {:torngen, github: "Tornium/torngen", tag: "v0.1.0", only: :dev, runtime: false}
-      {:torngen, path: "../torngen/", only: :dev, runtime: false}
+      {:torngen, github: "Tornium/torngen"}
     ]
   end
 
@@ -45,7 +44,7 @@ defmodule TorngenElixirClient.MixProject do
 
       _ ->
         version =
-          case System.cmd("git", ~w[describe --dirty=+dirty]) do
+          case System.cmd("git", ~w[describe --tags --dirty=+dirty]) do
             {version, 0} ->
               String.trim(version)
 
