@@ -1,0 +1,43 @@
+name: Tag merged PRs containing generated code with the version of the code
+
+on:
+  push:
+    branches:
+      master
+
+jobs:
+  tag:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+
+      - name: Get last commit message
+        id: commit_msg
+        run: |
+          message=$(git log -1 --pretty=%B)
+          echo "msg=$message" >> $GITHUB_OUTPUT
+
+      - name: Check if commit was from torngen/auto
+        id: check_merge
+        run: |
+          echo "${{ steps.commit_msg.outputs.msg }}"
+          if echo "${{ steps.commit_msg.outputs.msg }}" | grep -q 'from torngen/auto'; then
+            echo "continue=true" >> $GITHUB_OUTPUT
+          else
+            echo "continue=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Exit if not from torngen/auto
+        if: steps.check_merge.outputs.continue != 'true'
+        run: echo "Merge not from torngen/auto, skipping tag." && exit 0
+
+      - name: Read version from lib/VERSION
+        id: read_version
+        run: |
+          echo "version=$(cat lib/VERSION)" >> $GITHUB_OUTPUT
+
+      - name: Create tag
+        run: |
+          git tag -a "v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"
