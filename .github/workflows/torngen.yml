@@ -59,6 +59,7 @@ jobs:
       - name: Diff generated code and master
         id: diff
         run: |
+          git add .
           CHANGED_FILES=$(git diff --name-only origin/master)
 
           if [ -z "$CHANGED_FILES" ]; then
@@ -90,7 +91,6 @@ jobs:
             git checkout -b torngen/auto
           fi
 
-          git add .
           git commit -m "[torngen] Generated v${{ steps.get_version.outputs.version }}"
           git push -u origin torngen/auto
 
