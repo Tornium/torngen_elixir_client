@@ -64,6 +64,7 @@ jobs:
       - name: Diff generated code and master
         id: diff
         run: |
+          git fetch
           git add .
           CHANGED_FILES=$(git diff --name-only origin/master)
 
