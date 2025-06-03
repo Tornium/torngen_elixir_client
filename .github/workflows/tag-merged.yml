@@ -15,8 +15,7 @@ jobs:
       - name: Get last commit message
         id: commit_msg
         run: |
-          message=$(git log -1 --pretty=%B)
-          echo "msg=$message" >> $GITHUB_OUTPUT
+          echo "msg=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
 
       - name: Check if commit was from torngen/auto
         id: check_merge
