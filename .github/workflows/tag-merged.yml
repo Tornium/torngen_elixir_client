@@ -33,7 +33,10 @@ jobs:
 
       - name: Exit if not from torngen/auto
         if: steps.check_merge.outputs.continue != 'true'
-        run: echo "Merge not from torngen/auto, skipping tag." && exit 0
+        run: |
+          echo "Merge not from torngen/auto, skipping tag."
+          gh run cancel ${{ github.run_id }}
+          gh run watch ${{ github.run_id }}
 
       - name: Read version from lib/VERSION
         id: read_version
