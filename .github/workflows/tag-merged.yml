@@ -49,6 +49,11 @@ jobs:
           echo "version=$(cat lib/VERSION)" >> $GITHUB_OUTPUT
 
       - name: Create tag
-        run: gh repo create-tag "v${{ steps.version.outputs.version }}"
+        run: |
+          git config user.email "webmaster@deek.sh"
+          git config user.name "dssecret"
+
+          git tag "v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
