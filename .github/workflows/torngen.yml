@@ -98,7 +98,7 @@ jobs:
           fi
 
           git commit -m "[torngen] Generated v${{ steps.get_version.outputs.version }}"
-          git push -u origin torngen/auto
+          git push -u origin --force torngen/auto
 
       - name: Create Pull Request
         run: |
