@@ -9,6 +9,7 @@ jobs:
   tag:
     runs-on: ubuntu-22.04
     permissions:
+      contents: write
       actions: write
     steps:
       - name: Check out this repository
@@ -48,8 +49,6 @@ jobs:
           echo "version=$(cat lib/VERSION)" >> $GITHUB_OUTPUT
 
       - name: Create tag
-        run: |
-          git tag -a "v${{ steps.version.outputs.version }}"
-          git push origin "v${{ steps.version.outputs.version }}"
+        run: gh repo create-tag "v${{ steps.version.outputs.version }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
