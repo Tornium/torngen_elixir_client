@@ -58,8 +58,8 @@ jobs:
       
       - name: Configure git identity
         run: |
-          git config user.email "automated@deek.sh"
-          git config user.name "Tornium Github Bot"
+          git config user.email "webmaster@deek.sh"
+          git config user.name "dssecret"
 
       - name: Diff generated code and master
         id: diff
