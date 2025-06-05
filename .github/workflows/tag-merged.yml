@@ -53,7 +53,7 @@ jobs:
           git config user.email "webmaster@deek.sh"
           git config user.name "dssecret"
 
-          git tag "v${{ steps.version.outputs.version }}"
-          git push origin "v${{ steps.version.outputs.version }}"
+          git tag "v${{ steps.read_version.outputs.version }}"
+          git push origin "v${{ steps.read_version.outputs.version }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
