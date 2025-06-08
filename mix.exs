@@ -24,7 +24,7 @@ defmodule TorngenElixirClient.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.34", only: :dev, runtime: false},
-      {:torngen, github: "Tornium/torngen"}
+      {:torngen, github: "Tornium/torngen", runtime: false}
     ]
   end
 
