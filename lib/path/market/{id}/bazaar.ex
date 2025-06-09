@@ -1,6 +1,6 @@
 defmodule Torngen.Client.Path.Market.Id.Bazaar do
   @moduledoc """
-  Get item specialized bazaars.
+  Get item specialized bazaar directory.
 
   Requires public access key. <br>
 
