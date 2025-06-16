@@ -13,7 +13,7 @@ defmodule Torngen.Client.Schema.RacingRaceDetailsResponse do
 
   @type t :: %__MODULE__{
           race: [
-            %{:results => [Torngen.Client.Schema.RacerDetails.t()]}
+            %{:results => [Torngen.Client.Schema.RacerDetails.t()], :is_official => boolean()}
             | Torngen.Client.Schema.Race.t()
           ]
         }
@@ -27,7 +27,11 @@ defmodule Torngen.Client.Schema.RacingRaceDetailsResponse do
         |> Torngen.Client.Schema.parse(
           {:all_of,
            [
-             {:object, %{"results" => {:array, Torngen.Client.Schema.RacerDetails}}},
+             {:object,
+              %{
+                "is_official" => {:static, :boolean},
+                "results" => {:array, Torngen.Client.Schema.RacerDetails}
+              }},
              Torngen.Client.Schema.Race
            ]}
         )
@@ -50,7 +54,11 @@ defmodule Torngen.Client.Schema.RacingRaceDetailsResponse do
       value,
       {:all_of,
        [
-         {:object, %{"results" => {:array, Torngen.Client.Schema.RacerDetails}}},
+         {:object,
+          %{
+            "is_official" => {:static, :boolean},
+            "results" => {:array, Torngen.Client.Schema.RacerDetails}
+          }},
          Torngen.Client.Schema.Race
        ]}
     )
