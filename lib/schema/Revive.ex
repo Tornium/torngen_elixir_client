@@ -29,6 +29,7 @@ defmodule Torngen.Client.Schema.Revive do
           },
           success_chance: integer() | float(),
           reviver: %{
+            :skill => nil | integer() | float(),
             :name => String.t(),
             :id => Torngen.Client.Schema.UserId.t(),
             :faction => nil | %{:name => String.t(), :id => Torngen.Client.Schema.FactionId.t()}
@@ -76,7 +77,8 @@ defmodule Torngen.Client.Schema.Revive do
                   object: %{"id" => Torngen.Client.Schema.FactionId, "name" => {:static, :string}}
                 ]},
              "id" => Torngen.Client.Schema.UserId,
-             "name" => {:static, :string}
+             "name" => {:static, :string},
+             "skill" => {:one_of, [static: :null, static: :number]}
            }}
         ),
       result: data |> Map.get("result") |> Torngen.Client.Schema.parse({:static, :string}),
@@ -136,7 +138,8 @@ defmodule Torngen.Client.Schema.Revive do
               object: %{"id" => Torngen.Client.Schema.FactionId, "name" => {:static, :string}}
             ]},
          "id" => Torngen.Client.Schema.UserId,
-         "name" => {:static, :string}
+         "name" => {:static, :string},
+         "skill" => {:one_of, [static: :null, static: :number]}
        }}
     )
   end
