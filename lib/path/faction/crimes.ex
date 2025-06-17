@@ -2,7 +2,11 @@ defmodule Torngen.Client.Path.Faction.Crimes do
   @moduledoc """
   Get your faction's organized crimes.
 
-  Requires minimal access key with faction API access permissions. <br> It's possible to get older entries either by timestamp range (from, to) or with offset.
+  Requires minimal access key with faction API access permissions. <br> It's possible to get older entries either by timestamp range (from, to) or with offset.<br> Crimes are ordered depending on the category chosen:
+  * For categories 'all' & 'available', the ordering field is 'created_at'.
+  * For categories 'successful', 'failed' & 'completed', the ordering field is 'executed_at'.
+  * For categories 'recruiting' & 'expired', the ordering field is 'expired_at'.
+  * For category 'planning', the ordering field is 'ready_at'.
 
   ## Parmeters
   - cat: Category of organized crimes returned
@@ -35,7 +39,7 @@ defmodule Torngen.Client.Path.Faction.Crimes do
 
   @impl true
   defparameter :cat, value do
-    # Category of organized crimes returned. Category 'available' includes both 'recruiting' & 'planning', and category 'completed' includes both 'successful' & 'failure' Default category is 'all'
+    # Category of organized crimes returned. Category 'available' includes both 'recruiting' & 'planning', and category 'completed' includes both 'successful' & 'failure' Default category is 'all'.
     {:query, :cat, value}
   end
 

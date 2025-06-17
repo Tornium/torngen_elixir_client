@@ -30,6 +30,7 @@ defmodule Torngen.Client.Schema.FactionStatEnum do
     "gymtrains",
     "gymstrength",
     "gymspeed",
+    "gymenergy",
     "gymdefense",
     "gymdexterity",
     "candyused",

@@ -35,6 +35,7 @@ defmodule Torngen.Client.Path.User do
   - RevivesFullResponse
   - RevivesResponse
   - UserFactionBalanceResponse
+  - UserPropertiesResponse
   - UserJobRanksResponse
   - UserBountiesResponse
   - UserEducationResponse
@@ -71,6 +72,7 @@ defmodule Torngen.Client.Path.User do
     RevivesFullResponse,
     RevivesResponse,
     UserFactionBalanceResponse,
+    UserPropertiesResponse,
     UserJobRanksResponse,
     UserBountiesResponse,
     UserEducationResponse,

@@ -1,15 +1,11 @@
-defmodule Torngen.Client.Path.Market do
+defmodule Torngen.Client.Path.User.Id.Properties do
   @moduledoc """
-  Get any Market selection.
+  Get specific user's properties.
 
-  Requires public access key. <br>Choose one or more selections (comma separated).
+  Requires public access key. <br>Extended responses are available when requesting the data with Limited or higher access keys for yourself or your spouse.
 
   ## Parmeters
-  - selections: Selection names
-  - id: selection id
-  - cat: Category of specialized bazaars returned
-  - bonus: Used to filter weapons with a specific bonus
-  - sort: Direction to sort rows in
+  - id: User id
   - offset: N/A
   - limit: N/A
   - timestamp: Timestamp to bypass cache
@@ -17,31 +13,15 @@ defmodule Torngen.Client.Path.Market do
   - key: API key (Public)
 
   ## Response Module(s)
-  - TimestampResponse
-  - MarketLookupResponse
-  - MarketItemMarketResponse
-  - MarketPropertiesResponse
-  - MarketRentalsResponse
-  - MarketItemMarketResponse
-  - BazaarResponseSpecialized
-  - BazaarResponse
+  - UserPropertiesResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "market"
-  @response_modules [
-    TimestampResponse,
-    MarketLookupResponse,
-    MarketItemMarketResponse,
-    MarketPropertiesResponse,
-    MarketRentalsResponse,
-    MarketItemMarketResponse,
-    BazaarResponseSpecialized,
-    BazaarResponse
-  ]
+  @path "user/{id}/properties"
+  @response_modules [UserPropertiesResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -52,33 +32,9 @@ defmodule Torngen.Client.Path.Market do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
-  defparameter :selections, value do
-    # Selection names
-    {:query, :selections, value}
-  end
-
-  @impl true
   defparameter :id, value do
-    # selection id
-    {:query, :id, value}
-  end
-
-  @impl true
-  defparameter :cat, value do
-    # Category of specialized bazaars returned
-    {:query, :cat, value}
-  end
-
-  @impl true
-  defparameter :bonus, value do
-    # Used to filter weapons with a specific bonus
-    {:query, :bonus, value}
-  end
-
-  @impl true
-  defparameter :sort, value do
-    # Direction to sort rows in
-    {:query, :sort, value}
+    # User id
+    {:path, :id, value}
   end
 
   @impl true
