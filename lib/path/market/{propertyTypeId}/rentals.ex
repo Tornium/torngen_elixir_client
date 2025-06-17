@@ -1,47 +1,28 @@
-defmodule Torngen.Client.Path.Market do
+defmodule Torngen.Client.Path.Market.PropertyTypeId.Rentals do
   @moduledoc """
-  Get any Market selection.
+  Get properties rental listings.
 
-  Requires public access key. <br>Choose one or more selections (comma separated).
+  Requires public access key. <br>
 
   ## Parmeters
-  - selections: Selection names
-  - id: selection id
-  - cat: Category of specialized bazaars returned
-  - bonus: Used to filter weapons with a specific bonus
-  - sort: Direction to sort rows in
+  - propertyTypeId: Property type id
   - offset: N/A
   - limit: N/A
+  - sort: Sorted by the greatest timestamps
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - TimestampResponse
-  - MarketLookupResponse
-  - MarketItemMarketResponse
-  - MarketPropertiesResponse
   - MarketRentalsResponse
-  - MarketItemMarketResponse
-  - BazaarResponseSpecialized
-  - BazaarResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "market"
-  @response_modules [
-    TimestampResponse,
-    MarketLookupResponse,
-    MarketItemMarketResponse,
-    MarketPropertiesResponse,
-    MarketRentalsResponse,
-    MarketItemMarketResponse,
-    BazaarResponseSpecialized,
-    BazaarResponse
-  ]
+  @path "market/{propertyTypeId}/rentals"
+  @response_modules [MarketRentalsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -52,33 +33,9 @@ defmodule Torngen.Client.Path.Market do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
-  defparameter :selections, value do
-    # Selection names
-    {:query, :selections, value}
-  end
-
-  @impl true
-  defparameter :id, value do
-    # selection id
-    {:query, :id, value}
-  end
-
-  @impl true
-  defparameter :cat, value do
-    # Category of specialized bazaars returned
-    {:query, :cat, value}
-  end
-
-  @impl true
-  defparameter :bonus, value do
-    # Used to filter weapons with a specific bonus
-    {:query, :bonus, value}
-  end
-
-  @impl true
-  defparameter :sort, value do
-    # Direction to sort rows in
-    {:query, :sort, value}
+  defparameter :propertyTypeId, value do
+    # Property type id
+    {:path, :propertyTypeId, value}
   end
 
   @impl true
@@ -91,6 +48,12 @@ defmodule Torngen.Client.Path.Market do
   defparameter :limit, value do
     # N/A
     {:query, :limit, value}
+  end
+
+  @impl true
+  defparameter :sort, value do
+    # Sorted by the greatest timestamps
+    {:query, :sort, value}
   end
 
   @impl true
