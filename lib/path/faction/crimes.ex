@@ -10,6 +10,7 @@ defmodule Torngen.Client.Path.Faction.Crimes do
 
   ## Parmeters
   - cat: Category of organized crimes returned
+  - filters: It's possible to set this parameter to specify a field used for the sort, from & to query parameters
   - offset: N/A
   - from: Timestamp that sets the lower limit for the data returned
   - to: Timestamp that sets the upper limit for the data returned
@@ -41,6 +42,12 @@ defmodule Torngen.Client.Path.Faction.Crimes do
   defparameter :cat, value do
     # Category of organized crimes returned. Category 'available' includes both 'recruiting' & 'planning', and category 'completed' includes both 'successful' & 'failure' Default category is 'all'.
     {:query, :cat, value}
+  end
+
+  @impl true
+  defparameter :filters, value do
+    # It's possible to set this parameter to specify a field used for the sort, from & to query parameters. If not specified, the field will default to the category sorting as described above.
+    {:query, :filters, value}
   end
 
   @impl true
