@@ -12,6 +12,7 @@ defmodule Torngen.Client.Path.Faction do
   - to: Timestamp that sets the upper limit for the data returned
   - cat: Selection category
   - stat: Stat category
+  - filters: N/A
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - sort: Sorted by the greatest timestamps
   - offset: N/A
@@ -144,6 +145,12 @@ defmodule Torngen.Client.Path.Faction do
   defparameter :stat, value do
     # Stat category
     {:query, :stat, value}
+  end
+
+  @impl true
+  defparameter :filters, value do
+    # N/A
+    {:query, :filters, value}
   end
 
   @impl true
