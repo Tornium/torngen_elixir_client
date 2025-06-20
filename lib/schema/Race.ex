@@ -13,6 +13,7 @@ defmodule Torngen.Client.Schema.Race do
     :requirements,
     :participants,
     :laps,
+    :is_official,
     :id,
     :creator_id
   ]
@@ -25,6 +26,7 @@ defmodule Torngen.Client.Schema.Race do
     :requirements,
     :participants,
     :laps,
+    :is_official,
     :id,
     :creator_id
   ]
@@ -49,6 +51,7 @@ defmodule Torngen.Client.Schema.Race do
           },
           participants: %{:minimum => integer(), :maximum => integer(), :current => integer()},
           laps: integer(),
+          is_official: boolean(),
           id: Torngen.Client.Schema.RaceId.t(),
           creator_id: Torngen.Client.Schema.UserId.t()
         }
@@ -103,6 +106,8 @@ defmodule Torngen.Client.Schema.Race do
            }}
         ),
       laps: data |> Map.get("laps") |> Torngen.Client.Schema.parse({:static, :integer}),
+      is_official:
+        data |> Map.get("is_official") |> Torngen.Client.Schema.parse({:static, :boolean}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceId),
       creator_id:
         data |> Map.get("creator_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId)
@@ -174,6 +179,10 @@ defmodule Torngen.Client.Schema.Race do
 
   defp validate_key?(:laps, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:is_official, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :boolean})
   end
 
   defp validate_key?(:id, value) do

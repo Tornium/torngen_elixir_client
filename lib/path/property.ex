@@ -1,26 +1,28 @@
-defmodule Torngen.Client.Path.Racing.TrackId.Records do
+defmodule Torngen.Client.Path.Property do
   @moduledoc """
-  Get track records.
+  Get any property selection.
 
-  Requires public access key. <br>Returns a list of 5 best lap records for the chosen track and car class.
+  Requires public access key. <br>Choose one or more selections (comma separated).
 
   ## Parmeters
-  - trackId: Track id
-  - cat: Car class
+  - selections: Selection names
+  - id: Property id
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - RacingTrackRecordsResponse
+  - TimestampResponse
+  - PropertyLookupResponse
+  - UserPropertyResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "racing/{trackId}/records"
-  @response_modules [RacingTrackRecordsResponse]
+  @path "property"
+  @response_modules [TimestampResponse, PropertyLookupResponse, UserPropertyResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -31,15 +33,15 @@ defmodule Torngen.Client.Path.Racing.TrackId.Records do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
-  defparameter :trackId, value do
-    # Track id
-    {:path, :trackId, value}
+  defparameter :selections, value do
+    # Selection names
+    {:query, :selections, value}
   end
 
   @impl true
-  defparameter :cat, value do
-    # Car class
-    {:query, :cat, value}
+  defparameter :id, value do
+    # Property id
+    {:path, :id, value}
   end
 
   @impl true
