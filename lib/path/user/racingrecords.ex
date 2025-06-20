@@ -1,26 +1,24 @@
-defmodule Torngen.Client.Path.Racing.TrackId.Records do
+defmodule Torngen.Client.Path.User.Racingrecords do
   @moduledoc """
-  Get track records.
+  Get your current racing records.
 
-  Requires public access key. <br>Returns a list of 5 best lap records for the chosen track and car class.
+  Requires minimal access key. <br>
 
   ## Parmeters
-  - trackId: Track id
-  - cat: Car class
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Public)
+  - key: API key (Minimal)
 
   ## Response Module(s)
-  - RacingTrackRecordsResponse
+  - UserRacingRecordsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "racing/{trackId}/records"
-  @response_modules [RacingTrackRecordsResponse]
+  @path "user/racingrecords"
+  @response_modules [UserRacingRecordsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -29,18 +27,6 @@ defmodule Torngen.Client.Path.Racing.TrackId.Records do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :trackId, value do
-    # Track id
-    {:path, :trackId, value}
-  end
-
-  @impl true
-  defparameter :cat, value do
-    # Car class
-    {:query, :cat, value}
-  end
 
   @impl true
   defparameter :timestamp, value do
@@ -56,7 +42,7 @@ defmodule Torngen.Client.Path.Racing.TrackId.Records do
 
   @impl true
   defparameter :key, value do
-    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

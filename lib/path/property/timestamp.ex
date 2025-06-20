@@ -1,26 +1,24 @@
-defmodule Torngen.Client.Path.Racing.TrackId.Records do
+defmodule Torngen.Client.Path.Property.Timestamp do
   @moduledoc """
-  Get track records.
+  Get current server time.
 
-  Requires public access key. <br>Returns a list of 5 best lap records for the chosen track and car class.
+  Requires public access key. <br>
 
   ## Parmeters
-  - trackId: Track id
-  - cat: Car class
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - RacingTrackRecordsResponse
+  - TimestampResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "racing/{trackId}/records"
-  @response_modules [RacingTrackRecordsResponse]
+  @path "property/timestamp"
+  @response_modules [TimestampResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -29,18 +27,6 @@ defmodule Torngen.Client.Path.Racing.TrackId.Records do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :trackId, value do
-    # Track id
-    {:path, :trackId, value}
-  end
-
-  @impl true
-  defparameter :cat, value do
-    # Car class
-    {:query, :cat, value}
-  end
 
   @impl true
   defparameter :timestamp, value do
