@@ -41,7 +41,7 @@ defmodule Torngen.Client.Path.Property do
   @impl true
   defparameter :id, value do
     # Property id
-    {:path, :id, value}
+    {:query, :id, value}
   end
 
   @impl true

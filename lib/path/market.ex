@@ -19,7 +19,6 @@ defmodule Torngen.Client.Path.Market do
   ## Response Module(s)
   - TimestampResponse
   - MarketLookupResponse
-  - MarketItemMarketResponse
   - MarketPropertiesResponse
   - MarketRentalsResponse
   - MarketItemMarketResponse
@@ -35,7 +34,6 @@ defmodule Torngen.Client.Path.Market do
   @response_modules [
     TimestampResponse,
     MarketLookupResponse,
-    MarketItemMarketResponse,
     MarketPropertiesResponse,
     MarketRentalsResponse,
     MarketItemMarketResponse,

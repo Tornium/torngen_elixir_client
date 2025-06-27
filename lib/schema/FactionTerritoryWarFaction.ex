@@ -17,7 +17,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFaction do
 
   @type t :: %__MODULE__{
           score: integer(),
-          players_on_wall: [term()],
+          players_on_wall: [Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers.t()],
           name: String.t(),
           id: Torngen.Client.Schema.FactionId.t(),
           chain: integer()
@@ -28,7 +28,11 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFaction do
     %__MODULE__{
       score: data |> Map.get("score") |> Torngen.Client.Schema.parse({:static, :integer}),
       players_on_wall:
-        data |> Map.get("players_on_wall") |> Torngen.Client.Schema.parse({:array, :any}),
+        data
+        |> Map.get("players_on_wall")
+        |> Torngen.Client.Schema.parse(
+          {:array, Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers}
+        ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
       chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -51,7 +55,10 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFaction do
   end
 
   defp validate_key?(:players_on_wall, value) do
-    Torngen.Client.Schema.validate?(value, {:array, :any})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers}
+    )
   end
 
   defp validate_key?(:name, value) do
