@@ -36,7 +36,7 @@ defmodule Torngen.Client.Schema.TornHof do
   ]
 
   @type t :: %__MODULE__{
-          value: term(),
+          value: integer() | float() | String.t() | integer(),
           username: String.t(),
           signed_up: integer(),
           rank_number: integer(),
@@ -53,7 +53,12 @@ defmodule Torngen.Client.Schema.TornHof do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      value: data |> Map.get("value") |> Torngen.Client.Schema.parse(:any),
+      value:
+        data
+        |> Map.get("value")
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :number, static: :string, static: :integer]}
+        ),
       username: data |> Map.get("username") |> Torngen.Client.Schema.parse({:static, :string}),
       signed_up: data |> Map.get("signed_up") |> Torngen.Client.Schema.parse({:static, :integer}),
       rank_number:
@@ -86,7 +91,10 @@ defmodule Torngen.Client.Schema.TornHof do
   end
 
   defp validate_key?(:value, value) do
-    Torngen.Client.Schema.validate?(value, :any)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:one_of, [static: :number, static: :string, static: :integer]}
+    )
   end
 
   defp validate_key?(:username, value) do
