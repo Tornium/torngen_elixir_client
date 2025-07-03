@@ -18,18 +18,20 @@ defmodule Torngen.Client.Schema.FactionApplication do
   @type t :: %__MODULE__{
           valid_until: integer(),
           user: %{
-            :stats => %{
-              :strength => integer(),
-              :speed => integer(),
-              :dexterity => integer(),
-              :defense => integer()
-            },
+            :stats =>
+              nil
+              | %{
+                  :strength => integer(),
+                  :speed => integer(),
+                  :dexterity => integer(),
+                  :defense => integer()
+                },
             :name => String.t(),
             :level => integer(),
             :id => Torngen.Client.Schema.UserId.t()
           },
           status: Torngen.Client.Schema.FactionApplicationStatusEnum.t(),
-          message: String.t(),
+          message: nil | String.t(),
           id: integer()
         }
 
@@ -48,20 +50,26 @@ defmodule Torngen.Client.Schema.FactionApplication do
              "level" => {:static, :integer},
              "name" => {:static, :string},
              "stats" =>
-               {:object,
-                %{
-                  "defense" => {:static, :integer},
-                  "dexterity" => {:static, :integer},
-                  "speed" => {:static, :integer},
-                  "strength" => {:static, :integer}
-                }}
+               {:one_of,
+                [
+                  static: :null,
+                  object: %{
+                    "defense" => {:static, :integer},
+                    "dexterity" => {:static, :integer},
+                    "speed" => {:static, :integer},
+                    "strength" => {:static, :integer}
+                  }
+                ]}
            }}
         ),
       status:
         data
         |> Map.get("status")
         |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionApplicationStatusEnum),
-      message: data |> Map.get("message") |> Torngen.Client.Schema.parse({:static, :string}),
+      message:
+        data
+        |> Map.get("message")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -90,13 +98,16 @@ defmodule Torngen.Client.Schema.FactionApplication do
          "level" => {:static, :integer},
          "name" => {:static, :string},
          "stats" =>
-           {:object,
-            %{
-              "defense" => {:static, :integer},
-              "dexterity" => {:static, :integer},
-              "speed" => {:static, :integer},
-              "strength" => {:static, :integer}
-            }}
+           {:one_of,
+            [
+              static: :null,
+              object: %{
+                "defense" => {:static, :integer},
+                "dexterity" => {:static, :integer},
+                "speed" => {:static, :integer},
+                "strength" => {:static, :integer}
+              }
+            ]}
        }}
     )
   end
@@ -106,7 +117,7 @@ defmodule Torngen.Client.Schema.FactionApplication do
   end
 
   defp validate_key?(:message, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :string]})
   end
 
   defp validate_key?(:id, value) do

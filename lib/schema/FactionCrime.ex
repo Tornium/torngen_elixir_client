@@ -42,7 +42,7 @@ defmodule Torngen.Client.Schema.FactionCrime do
           ready_at: nil | integer(),
           previous_crime_id: nil | Torngen.Client.Schema.FactionCrimeId.t(),
           planning_at: nil | integer(),
-          name: String.t(),
+          name: Torngen.Client.Schema.OrganizedCrimeName.t(),
           id: Torngen.Client.Schema.FactionCrimeId.t(),
           expired_at: integer(),
           executed_at: nil | integer(),
@@ -81,7 +81,10 @@ defmodule Torngen.Client.Schema.FactionCrime do
         data
         |> Map.get("planning_at")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
-      name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
+      name:
+        data
+        |> Map.get("name")
+        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.OrganizedCrimeName),
       id:
         data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionCrimeId),
       expired_at:
@@ -139,7 +142,7 @@ defmodule Torngen.Client.Schema.FactionCrime do
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.OrganizedCrimeName)
   end
 
   defp validate_key?(:id, value) do
