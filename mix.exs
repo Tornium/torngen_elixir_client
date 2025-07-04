@@ -23,8 +23,8 @@ defmodule TorngenElixirClient.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.34", only: :dev, runtime: false, optional: true},
-      {:torngen, github: "Tornium/torngen", runtime: false, optional: true}
+      {:torngen, "~> 0.1.1", runtime: false},
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false, optional: true}
     ]
   end
 
