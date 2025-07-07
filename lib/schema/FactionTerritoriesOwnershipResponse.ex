@@ -5,22 +5,22 @@ defmodule Torngen.Client.Schema.FactionTerritoriesOwnershipResponse do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:territoryownership]
+  @keys [:territoryOwnership]
 
   defstruct [
-    :territoryownership
+    :territoryOwnership
   ]
 
   @type t :: %__MODULE__{
-          territoryownership: [Torngen.Client.Schema.FactionTerritoryOwnership.t()]
+          territoryOwnership: [Torngen.Client.Schema.FactionTerritoryOwnership.t()]
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      territoryownership:
+      territoryOwnership:
         data
-        |> Map.get("territoryownership")
+        |> Map.get("territoryOwnership")
         |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritoryOwnership})
     }
   end
@@ -36,7 +36,7 @@ defmodule Torngen.Client.Schema.FactionTerritoriesOwnershipResponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:territoryownership, value) do
+  defp validate_key?(:territoryOwnership, value) do
     Torngen.Client.Schema.validate?(
       value,
       {:array, Torngen.Client.Schema.FactionTerritoryOwnership}
