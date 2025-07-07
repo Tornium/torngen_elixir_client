@@ -12,7 +12,10 @@ defmodule Torngen.Client.Schema.RacingRaceDetailsResponse do
   ]
 
   @type t :: %__MODULE__{
-          race: Torngen.Client.Schema.RacingRaceDetails.t()
+          race: [
+            %{:results => [Torngen.Client.Schema.RacerDetails.t()], :is_official => boolean()}
+            | Torngen.Client.Schema.Race.t()
+          ]
         }
 
   @impl true
@@ -21,7 +24,17 @@ defmodule Torngen.Client.Schema.RacingRaceDetailsResponse do
       race:
         data
         |> Map.get("race")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RacingRaceDetails)
+        |> Torngen.Client.Schema.parse(
+          {:all_of,
+           [
+             {:object,
+              %{
+                "is_official" => {:static, :boolean},
+                "results" => {:array, Torngen.Client.Schema.RacerDetails}
+              }},
+             Torngen.Client.Schema.Race
+           ]}
+        )
     }
   end
 
@@ -37,7 +50,18 @@ defmodule Torngen.Client.Schema.RacingRaceDetailsResponse do
   end
 
   defp validate_key?(:race, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RacingRaceDetails)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:all_of,
+       [
+         {:object,
+          %{
+            "is_official" => {:static, :boolean},
+            "results" => {:array, Torngen.Client.Schema.RacerDetails}
+          }},
+         Torngen.Client.Schema.Race
+       ]}
+    )
   end
 
   @spec keys() :: list(atom())

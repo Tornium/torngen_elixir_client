@@ -13,13 +13,12 @@ defmodule Torngen.Client.Schema.UserPropertiesResponse do
   ]
 
   @type t :: %__MODULE__{
-          properties: [
+          properties:
             Torngen.Client.Schema.UserPropertyDetailsExtendedForSale.t()
             | Torngen.Client.Schema.UserPropertyDetailsExtendedForRent.t()
             | Torngen.Client.Schema.UserPropertyDetailsExtendedRented.t()
             | Torngen.Client.Schema.UserPropertyDetailsExtended.t()
-            | Torngen.Client.Schema.UserPropertyBasicDetails.t()
-          ],
+            | Torngen.Client.Schema.UserPropertyBasicDetails.t(),
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
@@ -30,15 +29,14 @@ defmodule Torngen.Client.Schema.UserPropertiesResponse do
         data
         |> Map.get("properties")
         |> Torngen.Client.Schema.parse(
-          {:array,
-           {:one_of,
-            [
-              Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
-              Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
-              Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
-              Torngen.Client.Schema.UserPropertyDetailsExtended,
-              Torngen.Client.Schema.UserPropertyBasicDetails
-            ]}}
+          {:one_of,
+           [
+             Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
+             Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
+             Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
+             Torngen.Client.Schema.UserPropertyDetailsExtended,
+             Torngen.Client.Schema.UserPropertyBasicDetails
+           ]}
         ),
       _metadata:
         data
@@ -61,15 +59,14 @@ defmodule Torngen.Client.Schema.UserPropertiesResponse do
   defp validate_key?(:properties, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array,
-       {:one_of,
-        [
-          Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
-          Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
-          Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
-          Torngen.Client.Schema.UserPropertyDetailsExtended,
-          Torngen.Client.Schema.UserPropertyBasicDetails
-        ]}}
+      {:one_of,
+       [
+         Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
+         Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
+         Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
+         Torngen.Client.Schema.UserPropertyDetailsExtended,
+         Torngen.Client.Schema.UserPropertyBasicDetails
+       ]}
     )
   end
 
