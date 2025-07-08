@@ -22,7 +22,7 @@ defmodule Torngen.Client.Path.Torn do
   - TimestampResponse
   - TornLookupResponse
   - TornItemModsResponse
-  - TornTerritoriesNoLinksReponse
+  - TornTerritoriesNoLinksResponse
   - TornTerritoriesResponse
   - AttackLogResponse
   - TornFactionTreeResponse
@@ -49,7 +49,7 @@ defmodule Torngen.Client.Path.Torn do
     TimestampResponse,
     TornLookupResponse,
     TornItemModsResponse,
-    TornTerritoriesNoLinksReponse,
+    TornTerritoriesNoLinksResponse,
     TornTerritoriesResponse,
     AttackLogResponse,
     TornFactionTreeResponse,

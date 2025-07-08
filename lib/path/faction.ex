@@ -24,12 +24,12 @@ defmodule Torngen.Client.Path.Faction do
   - TimestampResponse
   - FactionLookupResponse
   - FactionRankedWarResponse
-  - FactionRacketsReponse
+  - FactionRacketsResponse
   - FactionContributorsResponse
   - FactionTerritoryWarsResponse
   - FactionStatsResponse
   - FactionUpgradesResponse
-  - FactionTerritoriesReponse
+  - FactionTerritoriesResponse
   - FactionTerritoryWarReportResponse
   - FactionRankedWarReportResponse
   - FactionWarfareResponse
@@ -65,12 +65,12 @@ defmodule Torngen.Client.Path.Faction do
     TimestampResponse,
     FactionLookupResponse,
     FactionRankedWarResponse,
-    FactionRacketsReponse,
+    FactionRacketsResponse,
     FactionContributorsResponse,
     FactionTerritoryWarsResponse,
     FactionStatsResponse,
     FactionUpgradesResponse,
-    FactionTerritoriesReponse,
+    FactionTerritoriesResponse,
     FactionTerritoryWarReportResponse,
     FactionRankedWarReportResponse,
     FactionWarfareResponse,

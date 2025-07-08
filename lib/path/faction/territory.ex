@@ -10,7 +10,7 @@ defmodule Torngen.Client.Path.Faction.Territory do
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionTerritoriesReponse
+  - FactionTerritoriesResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
@@ -18,7 +18,7 @@ defmodule Torngen.Client.Path.Faction.Territory do
   @behaviour Torngen.Client.Path
 
   @path "faction/territory"
-  @response_modules [FactionTerritoriesReponse]
+  @response_modules [FactionTerritoriesResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
