@@ -1,27 +1,27 @@
-defmodule Torngen.Client.Schema.FactionTerritoriesReponse do
+defmodule Torngen.Client.Schema.FactionRacketsResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:territory]
+  @keys [:rackets]
 
   defstruct [
-    :territory
+    :rackets
   ]
 
   @type t :: %__MODULE__{
-          territory: [Torngen.Client.Schema.FactionTerritory.t()]
+          rackets: [Torngen.Client.Schema.TornRacket.t()]
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      territory:
+      rackets:
         data
-        |> Map.get("territory")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritory})
+        |> Map.get("rackets")
+        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornRacket})
     }
   end
 
@@ -36,8 +36,8 @@ defmodule Torngen.Client.Schema.FactionTerritoriesReponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:territory, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionTerritory})
+  defp validate_key?(:rackets, value) do
+    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornRacket})
   end
 
   @spec keys() :: list(atom())

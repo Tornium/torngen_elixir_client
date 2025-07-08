@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.TornTerritoriesNoLinksReponse do
+defmodule Torngen.Client.Schema.FactionTerritoriesResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.TornTerritoriesNoLinksReponse do
   ]
 
   @type t :: %__MODULE__{
-          territory: [Torngen.Client.Schema.TornTerritory.t()]
+          territory: [Torngen.Client.Schema.FactionTerritory.t()]
         }
 
   @impl true
@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornTerritoriesNoLinksReponse do
       territory:
         data
         |> Map.get("territory")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornTerritory})
+        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritory})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornTerritoriesNoLinksReponse do
   end
 
   defp validate_key?(:territory, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornTerritory})
+    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionTerritory})
   end
 
   @spec keys() :: list(atom())
