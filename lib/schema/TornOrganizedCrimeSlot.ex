@@ -16,7 +16,7 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
   @type t :: %__MODULE__{
           required_item: nil | Torngen.Client.Schema.TornOrganizedCrimeRequiredItem.t(),
           name: String.t(),
-          id: String.t()
+          id: Torngen.Client.Schema.TornOrganizedCrimePositionId.t()
         }
 
   @impl true
@@ -29,7 +29,10 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
           {:one_of, [{:static, :null}, Torngen.Client.Schema.TornOrganizedCrimeRequiredItem]}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :string})
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornOrganizedCrimePositionId)
     }
   end
 
@@ -56,7 +59,7 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornOrganizedCrimePositionId)
   end
 
   @spec keys() :: list(atom())

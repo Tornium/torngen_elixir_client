@@ -13,6 +13,11 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
 
   @type t :: %__MODULE__{
           info: %{
+            :user => %{
+              :id => Torngen.Client.Schema.UserId.t(),
+              :faction_id => nil | Torngen.Client.Schema.FactionId.t(),
+              :company_id => nil | Torngen.Client.Schema.CompanyId.t()
+            },
             :selections => %{
               :user => [Torngen.Client.Schema.UserSelectionName.t()],
               :torn => [Torngen.Client.Schema.TornSelectionName.t()],
@@ -66,6 +71,13 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
                   "racing" => {:array, Torngen.Client.Schema.RacingSelectionName},
                   "torn" => {:array, Torngen.Client.Schema.TornSelectionName},
                   "user" => {:array, Torngen.Client.Schema.UserSelectionName}
+                }},
+             "user" =>
+               {:object,
+                %{
+                  "company_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]},
+                  "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
+                  "id" => Torngen.Client.Schema.UserId
                 }}
            }}
         )
@@ -110,6 +122,13 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
               "racing" => {:array, Torngen.Client.Schema.RacingSelectionName},
               "torn" => {:array, Torngen.Client.Schema.TornSelectionName},
               "user" => {:array, Torngen.Client.Schema.UserSelectionName}
+            }},
+         "user" =>
+           {:object,
+            %{
+              "company_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]},
+              "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
+              "id" => Torngen.Client.Schema.UserId
             }}
        }}
     )
