@@ -5,10 +5,19 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:user, :position, :item_requirement, :checkpoint_pass_rate]
+  @keys [
+    :user,
+    :position_number,
+    :position_id,
+    :position,
+    :item_requirement,
+    :checkpoint_pass_rate
+  ]
 
   defstruct [
     :user,
+    :position_number,
+    :position_id,
     :position,
     :item_requirement,
     :checkpoint_pass_rate
@@ -16,6 +25,8 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
 
   @type t :: %__MODULE__{
           user: nil | Torngen.Client.Schema.FactionCrimeUser.t(),
+          position_number: integer(),
+          position_id: Torngen.Client.Schema.TornOrganizedCrimePositionId.t(),
           position: String.t(),
           item_requirement:
             nil
@@ -36,6 +47,12 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
         |> Torngen.Client.Schema.parse(
           {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUser]}
         ),
+      position_number:
+        data |> Map.get("position_number") |> Torngen.Client.Schema.parse({:static, :integer}),
+      position_id:
+        data
+        |> Map.get("position_id")
+        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornOrganizedCrimePositionId),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :string}),
       item_requirement:
         data
@@ -74,6 +91,14 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
       value,
       {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUser]}
     )
+  end
+
+  defp validate_key?(:position_number, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:position_id, value) do
+    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornOrganizedCrimePositionId)
   end
 
   defp validate_key?(:position, value) do
