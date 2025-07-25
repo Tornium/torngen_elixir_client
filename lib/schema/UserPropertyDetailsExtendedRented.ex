@@ -10,6 +10,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedRented do
             %{
               :used_by => [Torngen.Client.Schema.BasicUser.t()],
               :status => String.t(),
+              :rented_by => Torngen.Client.Schema.BasicUser.t(),
               :rental_period_remaining => integer(),
               :rental_period => integer(),
               :cost_per_day => integer(),
@@ -31,6 +32,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedRented do
              "cost_per_day" => {:static, :integer},
              "rental_period" => {:static, :integer},
              "rental_period_remaining" => {:static, :integer},
+             "rented_by" => Torngen.Client.Schema.BasicUser,
              "status" => {:enum, :string, ["rented"]},
              "used_by" => {:array, Torngen.Client.Schema.BasicUser}
            }}
