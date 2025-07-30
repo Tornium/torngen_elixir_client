@@ -11,7 +11,7 @@ defmodule Torngen.Client.Path.Property.Id.Property do
   - key: API key (Public)
 
   ## Response Module(s)
-  - UserPropertyResponse
+  - PropertyPropertyResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
@@ -19,7 +19,7 @@ defmodule Torngen.Client.Path.Property.Id.Property do
   @behaviour Torngen.Client.Path
 
   @path "property/{id}/property"
-  @response_modules [UserPropertyResponse]
+  @response_modules [PropertyPropertyResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
