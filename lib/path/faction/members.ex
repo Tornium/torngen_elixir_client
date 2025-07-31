@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Members do
   @moduledoc """
   Get a list of your faction's members.
 
-  Requires public access key. <br> The 'revive_setting' value will be populated (not Unknown) if you have faction permissions (with custom, limited or full access keys), otherwise it will be set as 'Unknown'.
+  Requires public access key. The 'revive_setting' value will be populated (not Unknown) if you have faction permissions (with custom, limited or full access keys), otherwise it will be set as 'Unknown'.
 
   ## Parmeters
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').

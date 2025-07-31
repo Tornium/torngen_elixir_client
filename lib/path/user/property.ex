@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Property do
   @moduledoc """
   Get your current property.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

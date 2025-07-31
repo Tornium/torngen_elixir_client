@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing do
   @moduledoc """
   Get any Racing selection.
 
-  Requires public access key. <br>Choose one or more selections (comma separated).
+  Requires public access key. Choose one or more selections (comma separated).
 
   ## Parmeters
   - selections: Selection names

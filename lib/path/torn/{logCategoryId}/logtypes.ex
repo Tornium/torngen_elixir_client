@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.LogCategoryId.Logtypes do
   @moduledoc """
   Get available log ids for a specific log category.
 
-  Requires public key. <br>
+  Requires public key.
 
   ## Parmeters
   - logCategoryId: Log category id

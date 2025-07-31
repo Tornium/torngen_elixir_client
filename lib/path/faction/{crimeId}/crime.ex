@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.CrimeId.Crime do
   @moduledoc """
   Get a specific organized crime.
 
-  Requires minimal access key with faction API access permissions. <br>
+  Requires minimal access key with faction API access permissions.
 
   ## Parmeters
   - crimeId: Crime id

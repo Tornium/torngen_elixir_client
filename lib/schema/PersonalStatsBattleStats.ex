@@ -30,11 +30,11 @@ defmodule Torngen.Client.Schema.PersonalStatsBattleStats do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "defense" => {:static, :integer},
-             "dexterity" => {:static, :integer},
-             "speed" => {:static, :integer},
-             "strength" => {:static, :integer},
-             "total" => {:static, :integer}
+             total: {:static, :integer},
+             speed: {:static, :integer},
+             strength: {:static, :integer},
+             dexterity: {:static, :integer},
+             defense: {:static, :integer}
            }}
         )
     }
@@ -56,11 +56,11 @@ defmodule Torngen.Client.Schema.PersonalStatsBattleStats do
       value,
       {:object,
        %{
-         "defense" => {:static, :integer},
-         "dexterity" => {:static, :integer},
-         "speed" => {:static, :integer},
-         "strength" => {:static, :integer},
-         "total" => {:static, :integer}
+         total: {:static, :integer},
+         speed: {:static, :integer},
+         strength: {:static, :integer},
+         dexterity: {:static, :integer},
+         defense: {:static, :integer}
        }}
     )
   end

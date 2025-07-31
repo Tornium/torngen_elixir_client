@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetails do
       values: [
         data
         |> Torngen.Client.Schema.parse(
-          {:object, %{"used_by" => {:array, Torngen.Client.Schema.BasicUser}}}
+          {:object, %{used_by: {:array, Torngen.Client.Schema.BasicUser}}}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)
       ]

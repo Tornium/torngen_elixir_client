@@ -22,7 +22,7 @@ defmodule Torngen.Client.Schema.PersonalStatsTravelPopular do
         data
         |> Map.get("travel")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"time_spent" => {:static, :integer}, "total" => {:static, :integer}}}
+          {:object, %{total: {:static, :integer}, time_spent: {:static, :integer}}}
         )
     }
   end
@@ -41,7 +41,7 @@ defmodule Torngen.Client.Schema.PersonalStatsTravelPopular do
   defp validate_key?(:travel, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"time_spent" => {:static, :integer}, "total" => {:static, :integer}}}
+      {:object, %{total: {:static, :integer}, time_spent: {:static, :integer}}}
     )
   end
 

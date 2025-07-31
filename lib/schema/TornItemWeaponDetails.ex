@@ -55,11 +55,11 @@ defmodule Torngen.Client.Schema.TornItemWeaponDetails do
            [
              static: :null,
              object: %{
-               "id" => Torngen.Client.Schema.AmmoId,
-               "magazine_rounds" => {:static, :integer},
-               "name" => {:static, :string},
-               "rate_of_fire" =>
-                 {:object, %{"maximum" => {:static, :integer}, "minimum" => {:static, :integer}}}
+               id: Torngen.Client.Schema.AmmoId,
+               name: {:static, :string},
+               rate_of_fire:
+                 {:object, %{maximum: {:static, :integer}, minimum: {:static, :integer}}},
+               magazine_rounds: {:static, :integer}
              }
            ]}
         )
@@ -100,11 +100,10 @@ defmodule Torngen.Client.Schema.TornItemWeaponDetails do
        [
          static: :null,
          object: %{
-           "id" => Torngen.Client.Schema.AmmoId,
-           "magazine_rounds" => {:static, :integer},
-           "name" => {:static, :string},
-           "rate_of_fire" =>
-             {:object, %{"maximum" => {:static, :integer}, "minimum" => {:static, :integer}}}
+           id: Torngen.Client.Schema.AmmoId,
+           name: {:static, :string},
+           rate_of_fire: {:object, %{maximum: {:static, :integer}, minimum: {:static, :integer}}},
+           magazine_rounds: {:static, :integer}
          }
        ]}
     )

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.ChainId.Chainreport do
   @moduledoc """
   Get a chain report.
 
-  Requires public access key. <br> Chain reports for ongoing chains are available only for your own faction.
+  Requires public access key. Chain reports for ongoing chains are available only for your own faction.
 
   ## Parmeters
   - chainId: Chain id

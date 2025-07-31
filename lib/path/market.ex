@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market do
   @moduledoc """
   Get any Market selection.
 
-  Requires public access key. <br>Choose one or more selections (comma separated).
+  Requires public access key. Choose one or more selections (comma separated).
 
   ## Parmeters
   - selections: Selection names

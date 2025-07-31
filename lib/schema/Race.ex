@@ -74,10 +74,10 @@ defmodule Torngen.Client.Schema.Race do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "end" => {:one_of, [static: :null, static: :integer]},
-             "join_from" => {:static, :integer},
-             "join_until" => {:static, :integer},
-             "start" => {:static, :integer}
+             start: {:static, :integer},
+             end: {:one_of, [static: :null, static: :integer]},
+             join_until: {:static, :integer},
+             join_from: {:static, :integer}
            }}
         ),
       requirements:
@@ -86,12 +86,12 @@ defmodule Torngen.Client.Schema.Race do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "car_class" => {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
-             "car_item_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]},
-             "driver_class" => {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
-             "join_fee" => {:static, :integer},
-             "requires_password" => {:static, :boolean},
-             "requires_stock_car" => {:static, :boolean}
+             requires_stock_car: {:static, :boolean},
+             requires_password: {:static, :boolean},
+             join_fee: {:static, :integer},
+             driver_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
+             car_item_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]},
+             car_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]}
            }}
         ),
       participants:
@@ -100,9 +100,9 @@ defmodule Torngen.Client.Schema.Race do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "current" => {:static, :integer},
-             "maximum" => {:static, :integer},
-             "minimum" => {:static, :integer}
+             maximum: {:static, :integer},
+             current: {:static, :integer},
+             minimum: {:static, :integer}
            }}
         ),
       laps: data |> Map.get("laps") |> Torngen.Client.Schema.parse({:static, :integer}),
@@ -142,10 +142,10 @@ defmodule Torngen.Client.Schema.Race do
       value,
       {:object,
        %{
-         "end" => {:one_of, [static: :null, static: :integer]},
-         "join_from" => {:static, :integer},
-         "join_until" => {:static, :integer},
-         "start" => {:static, :integer}
+         start: {:static, :integer},
+         end: {:one_of, [static: :null, static: :integer]},
+         join_until: {:static, :integer},
+         join_from: {:static, :integer}
        }}
     )
   end
@@ -155,12 +155,12 @@ defmodule Torngen.Client.Schema.Race do
       value,
       {:object,
        %{
-         "car_class" => {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
-         "car_item_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]},
-         "driver_class" => {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
-         "join_fee" => {:static, :integer},
-         "requires_password" => {:static, :boolean},
-         "requires_stock_car" => {:static, :boolean}
+         requires_stock_car: {:static, :boolean},
+         requires_password: {:static, :boolean},
+         join_fee: {:static, :integer},
+         driver_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
+         car_item_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]},
+         car_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]}
        }}
     )
   end
@@ -169,11 +169,7 @@ defmodule Torngen.Client.Schema.Race do
     Torngen.Client.Schema.validate?(
       value,
       {:object,
-       %{
-         "current" => {:static, :integer},
-         "maximum" => {:static, :integer},
-         "minimum" => {:static, :integer}
-       }}
+       %{maximum: {:static, :integer}, current: {:static, :integer}, minimum: {:static, :integer}}}
     )
   end
 

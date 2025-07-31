@@ -27,9 +27,8 @@ defmodule Torngen.Client.Schema.PersonalStatsHospitalPopular do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "medical_items_used" => {:static, :integer},
-             "reviving" =>
-               {:object, %{"revives" => {:static, :integer}, "skill" => {:static, :integer}}}
+             reviving: {:object, %{skill: {:static, :integer}, revives: {:static, :integer}}},
+             medical_items_used: {:static, :integer}
            }}
         )
     }
@@ -51,9 +50,8 @@ defmodule Torngen.Client.Schema.PersonalStatsHospitalPopular do
       value,
       {:object,
        %{
-         "medical_items_used" => {:static, :integer},
-         "reviving" =>
-           {:object, %{"revives" => {:static, :integer}, "skill" => {:static, :integer}}}
+         reviving: {:object, %{skill: {:static, :integer}, revives: {:static, :integer}}},
+         medical_items_used: {:static, :integer}
        }}
     )
   end

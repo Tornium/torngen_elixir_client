@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.RaidWarId.Raidreport do
   @moduledoc """
   Get raid war details.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - raidWarId: Raid war id

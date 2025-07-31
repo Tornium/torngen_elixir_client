@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Balance do
   @moduledoc """
   Get your faction's & member's balance details.
 
-  Requires limited access key with faction API access permissions. <br>
+  Requires limited access key with faction API access permissions.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

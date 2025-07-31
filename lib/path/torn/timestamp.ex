@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Timestamp do
   @moduledoc """
   Get current server time.
 
-  Requires public key. <br>
+  Requires public key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

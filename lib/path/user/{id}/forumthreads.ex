@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Id.Forumthreads do
   @moduledoc """
   Get threads for a specific player.
 
-  Requires public access key. <br>Returns 100 threads per page for a specific player. When requesting data for the key owner, a field 'new_posts' is also available, indicating the amount of unread posts. Minimum API key is required for that.
+  Requires public access key. Returns 100 threads per page for a specific player. When requesting data for the key owner, a field 'new_posts' is also available, indicating the amount of unread posts. Minimum API key is required for that.
 
   ## Parmeters
   - id: User id

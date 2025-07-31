@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Ids.Items do
   @moduledoc """
   Get information about items.
 
-  Requires public key.<br>Details are always populated when available.
+  Requires public key. Details are always populated when available.
 
   ## Parmeters
   - ids: Item id or a list of item ids (comma separated)

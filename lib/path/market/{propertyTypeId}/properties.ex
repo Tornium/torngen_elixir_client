@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market.PropertyTypeId.Properties do
   @moduledoc """
   Get properties market listings.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - propertyTypeId: Property type id

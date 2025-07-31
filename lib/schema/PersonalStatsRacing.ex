@@ -28,10 +28,9 @@ defmodule Torngen.Client.Schema.PersonalStatsRacing do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "points" => {:static, :integer},
-             "races" =>
-               {:object, %{"entered" => {:static, :integer}, "won" => {:static, :integer}}},
-             "skill" => {:static, :integer}
+             points: {:static, :integer},
+             skill: {:static, :integer},
+             races: {:object, %{won: {:static, :integer}, entered: {:static, :integer}}}
            }}
         )
     }
@@ -53,9 +52,9 @@ defmodule Torngen.Client.Schema.PersonalStatsRacing do
       value,
       {:object,
        %{
-         "points" => {:static, :integer},
-         "races" => {:object, %{"entered" => {:static, :integer}, "won" => {:static, :integer}}},
-         "skill" => {:static, :integer}
+         points: {:static, :integer},
+         skill: {:static, :integer},
+         races: {:object, %{won: {:static, :integer}, entered: {:static, :integer}}}
        }}
     )
   end

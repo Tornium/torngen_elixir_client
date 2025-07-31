@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Attacklog do
   @moduledoc """
   Get attack log details.
 
-  Requires public key. <br>
+  Requires public key.
 
   ## Parmeters
   - log: Code of the attack log

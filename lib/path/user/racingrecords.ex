@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Racingrecords do
   @moduledoc """
   Get your current racing records.
 
-  Requires minimal access key. <br>
+  Requires minimal access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

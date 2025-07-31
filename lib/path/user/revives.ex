@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Revives do
   @moduledoc """
   Get your detailed revives.
 
-  Requires limited access key. <br>
+  Requires limited access key.
 
   ## Parmeters
   - limit: N/A

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Id.Property do
   @moduledoc """
   Get specific user's property.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - id: User id

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Raids do
   @moduledoc """
   Get a faction's raids history.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - id: Faction id

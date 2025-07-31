@@ -20,8 +20,8 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "status" => {:enum, :string, ["none", "in_use"]},
-             "used_by" => {:array, Torngen.Client.Schema.BasicUser}
+             status: {:enum, :string, ["none", "in_use"]},
+             used_by: {:array, Torngen.Client.Schema.BasicUser}
            }}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)

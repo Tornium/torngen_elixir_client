@@ -38,22 +38,22 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "bank" =>
+             bank:
                {:object,
                 %{
-                  "current" => {:static, :integer},
-                  "profit" => {:static, :integer},
-                  "time_remaining" => {:static, :integer},
-                  "total" => {:static, :integer}
+                  total: {:static, :integer},
+                  current: {:static, :integer},
+                  profit: {:static, :integer},
+                  time_remaining: {:static, :integer}
                 }},
-             "stocks" =>
+             stocks:
                {:object,
                 %{
-                  "fees" => {:static, :integer},
-                  "losses" => {:static, :integer},
-                  "net_profits" => {:static, :integer},
-                  "payouts" => {:static, :integer},
-                  "profits" => {:static, :integer}
+                  fees: {:static, :integer},
+                  profits: {:static, :integer},
+                  payouts: {:static, :integer},
+                  net_profits: {:static, :integer},
+                  losses: {:static, :integer}
                 }}
            }}
         )
@@ -76,22 +76,22 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
       value,
       {:object,
        %{
-         "bank" =>
+         bank:
            {:object,
             %{
-              "current" => {:static, :integer},
-              "profit" => {:static, :integer},
-              "time_remaining" => {:static, :integer},
-              "total" => {:static, :integer}
+              total: {:static, :integer},
+              current: {:static, :integer},
+              profit: {:static, :integer},
+              time_remaining: {:static, :integer}
             }},
-         "stocks" =>
+         stocks:
            {:object,
             %{
-              "fees" => {:static, :integer},
-              "losses" => {:static, :integer},
-              "net_profits" => {:static, :integer},
-              "payouts" => {:static, :integer},
-              "profits" => {:static, :integer}
+              fees: {:static, :integer},
+              profits: {:static, :integer},
+              payouts: {:static, :integer},
+              net_profits: {:static, :integer},
+              losses: {:static, :integer}
             }}
        }}
     )

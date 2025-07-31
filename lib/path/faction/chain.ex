@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Chain do
   @moduledoc """
   Get your faction's current chain.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

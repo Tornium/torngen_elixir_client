@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Races do
   @moduledoc """
   Get user races.
 
-  Requires minimal access key. <br>Returns a list of user races, ordered by race start timestamp.
+  Requires minimal access key. Returns a list of user races, ordered by race start timestamp.
 
   ## Parmeters
   - limit: N/A

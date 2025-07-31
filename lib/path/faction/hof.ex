@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Hof do
   @moduledoc """
   Get your faction's hall of fame rankings..
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

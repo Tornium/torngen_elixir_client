@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Wars do
   @moduledoc """
   Get your faction's wars & pacts details.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

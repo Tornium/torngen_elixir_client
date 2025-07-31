@@ -32,9 +32,9 @@ defmodule Torngen.Client.Schema.TornEducationRewards do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "endurance" => {:one_of, [static: :null, static: :integer]},
-             "intelligence" => {:one_of, [static: :null, static: :integer]},
-             "manual_labor" => {:one_of, [static: :null, static: :integer]}
+             intelligence: {:one_of, [static: :null, static: :integer]},
+             endurance: {:one_of, [static: :null, static: :integer]},
+             manual_labor: {:one_of, [static: :null, static: :integer]}
            }}
         ),
       honor:
@@ -64,9 +64,9 @@ defmodule Torngen.Client.Schema.TornEducationRewards do
       value,
       {:object,
        %{
-         "endurance" => {:one_of, [static: :null, static: :integer]},
-         "intelligence" => {:one_of, [static: :null, static: :integer]},
-         "manual_labor" => {:one_of, [static: :null, static: :integer]}
+         intelligence: {:one_of, [static: :null, static: :integer]},
+         endurance: {:one_of, [static: :null, static: :integer]},
+         manual_labor: {:one_of, [static: :null, static: :integer]}
        }}
     )
   end

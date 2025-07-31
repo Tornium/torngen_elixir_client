@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Chains do
   @moduledoc """
   Get a list of your faction's completed chains.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - limit: N/A

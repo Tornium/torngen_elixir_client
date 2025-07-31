@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Id.Hof do
   @moduledoc """
   Get hall of fame rankings for a specific player.
 
-  Requires public access key. <br>The battle_stats selection will be populated only when requesting selection with Limited, Full or Custom key and for yourself.
+  Requires public access key. The battle_stats selection will be populated only when requesting selection with Limited, Full or Custom key and for yourself.
 
   ## Parmeters
   - id: User id

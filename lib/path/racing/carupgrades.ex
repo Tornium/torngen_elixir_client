@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing.Carupgrades do
   @moduledoc """
   Get all possible car upgrades.
 
-  Requires public access key. <br>Returns the details about all possible car upgrades.
+  Requires public access key. Returns the details about all possible car upgrades.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

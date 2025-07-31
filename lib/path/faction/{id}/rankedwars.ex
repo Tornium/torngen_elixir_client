@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Rankedwars do
   @moduledoc """
   Get a faction's ranked wars history.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - id: Faction id

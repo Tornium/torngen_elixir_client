@@ -28,10 +28,9 @@ defmodule Torngen.Client.Schema.PersonalStatsMissions do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "contracts" =>
-               {:object, %{"duke" => {:static, :integer}, "total" => {:static, :integer}}},
-             "credits" => {:static, :integer},
-             "missions" => {:static, :integer}
+             missions: {:static, :integer},
+             credits: {:static, :integer},
+             contracts: {:object, %{total: {:static, :integer}, duke: {:static, :integer}}}
            }}
         )
     }
@@ -53,10 +52,9 @@ defmodule Torngen.Client.Schema.PersonalStatsMissions do
       value,
       {:object,
        %{
-         "contracts" =>
-           {:object, %{"duke" => {:static, :integer}, "total" => {:static, :integer}}},
-         "credits" => {:static, :integer},
-         "missions" => {:static, :integer}
+         missions: {:static, :integer},
+         credits: {:static, :integer},
+         contracts: {:object, %{total: {:static, :integer}, duke: {:static, :integer}}}
        }}
     )
   end

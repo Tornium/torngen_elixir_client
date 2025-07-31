@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Hof do
   @moduledoc """
   Get a faction's hall of fame rankings..
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - id: Faction id

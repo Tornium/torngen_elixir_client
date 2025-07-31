@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Lookup do
   @moduledoc """
   Get all available user selections.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

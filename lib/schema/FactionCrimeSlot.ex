@@ -62,9 +62,9 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
            [
              static: :null,
              object: %{
-               "id" => Torngen.Client.Schema.ItemId,
-               "is_available" => {:static, :boolean},
-               "is_reusable" => {:static, :boolean}
+               id: Torngen.Client.Schema.ItemId,
+               is_reusable: {:static, :boolean},
+               is_available: {:static, :boolean}
              }
            ]}
         ),
@@ -112,9 +112,9 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
        [
          static: :null,
          object: %{
-           "id" => Torngen.Client.Schema.ItemId,
-           "is_available" => {:static, :boolean},
-           "is_reusable" => {:static, :boolean}
+           id: Torngen.Client.Schema.ItemId,
+           is_reusable: {:static, :boolean},
+           is_available: {:static, :boolean}
          }
        ]}
     )

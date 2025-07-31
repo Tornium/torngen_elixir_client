@@ -74,72 +74,69 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "ammunition" =>
+             unarmored_wins: {:static, :integer},
+             networth:
                {:object,
                 %{
-                  "hollow_point" => {:static, :integer},
-                  "incendiary" => {:static, :integer},
-                  "piercing" => {:static, :integer},
-                  "special" => {:static, :integer},
-                  "total" => {:static, :integer},
-                  "tracer" => {:static, :integer}
+                  money_mugged: {:static, :integer},
+                  largest_mug: {:static, :integer},
+                  items_looted: {:static, :integer}
                 }},
-             "attacks" =>
+             killstreak: {:object, %{current: {:static, :integer}, best: {:static, :integer}}},
+             hits:
                {:object,
                 %{
-                  "assist" => {:static, :integer},
-                  "lost" => {:static, :integer},
-                  "stalemate" => {:static, :integer},
-                  "stealth" => {:static, :integer},
-                  "won" => {:static, :integer}
+                  success: {:static, :integer},
+                  critical: {:static, :integer},
+                  one_hit_kills: {:static, :integer},
+                  miss: {:static, :integer}
                 }},
-             "damage" =>
-               {:object, %{"best" => {:static, :integer}, "total" => {:static, :integer}}},
-             "defends" =>
+             highest_level_beaten: {:static, :integer},
+             faction:
                {:object,
                 %{
-                  "lost" => {:static, :integer},
-                  "stalemate" => {:static, :integer},
-                  "total" => {:static, :integer},
-                  "won" => {:static, :integer}
-                }},
-             "elo" => {:static, :integer},
-             "escapes" =>
-               {:object, %{"foes" => {:static, :integer}, "player" => {:static, :integer}}},
-             "faction" =>
-               {:object,
-                %{
-                  "raid_hits" => {:static, :integer},
-                  "ranked_war_hits" => {:static, :integer},
-                  "respect" => {:static, :integer},
-                  "retaliations" => {:static, :integer},
-                  "territory" =>
+                  territory:
                     {:object,
                      %{
-                       "wall_clears" => {:static, :integer},
-                       "wall_joins" => {:static, :integer},
-                       "wall_time" => {:static, :integer}
-                     }}
+                       wall_time: {:static, :integer},
+                       wall_joins: {:static, :integer},
+                       wall_clears: {:static, :integer}
+                     }},
+                  retaliations: {:static, :integer},
+                  respect: {:static, :integer},
+                  ranked_war_hits: {:static, :integer},
+                  raid_hits: {:static, :integer}
                 }},
-             "highest_level_beaten" => {:static, :integer},
-             "hits" =>
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
+             elo: {:static, :integer},
+             defends:
                {:object,
                 %{
-                  "critical" => {:static, :integer},
-                  "miss" => {:static, :integer},
-                  "one_hit_kills" => {:static, :integer},
-                  "success" => {:static, :integer}
+                  total: {:static, :integer},
+                  won: {:static, :integer},
+                  stalemate: {:static, :integer},
+                  lost: {:static, :integer}
                 }},
-             "killstreak" =>
-               {:object, %{"best" => {:static, :integer}, "current" => {:static, :integer}}},
-             "networth" =>
+             damage: {:object, %{total: {:static, :integer}, best: {:static, :integer}}},
+             attacks:
                {:object,
                 %{
-                  "items_looted" => {:static, :integer},
-                  "largest_mug" => {:static, :integer},
-                  "money_mugged" => {:static, :integer}
+                  won: {:static, :integer},
+                  stalemate: {:static, :integer},
+                  lost: {:static, :integer},
+                  stealth: {:static, :integer},
+                  assist: {:static, :integer}
                 }},
-             "unarmored_wins" => {:static, :integer}
+             ammunition:
+               {:object,
+                %{
+                  total: {:static, :integer},
+                  tracer: {:static, :integer},
+                  special: {:static, :integer},
+                  piercing: {:static, :integer},
+                  incendiary: {:static, :integer},
+                  hollow_point: {:static, :integer}
+                }}
            }}
         )
     }
@@ -161,71 +158,69 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
       value,
       {:object,
        %{
-         "ammunition" =>
+         unarmored_wins: {:static, :integer},
+         networth:
            {:object,
             %{
-              "hollow_point" => {:static, :integer},
-              "incendiary" => {:static, :integer},
-              "piercing" => {:static, :integer},
-              "special" => {:static, :integer},
-              "total" => {:static, :integer},
-              "tracer" => {:static, :integer}
+              money_mugged: {:static, :integer},
+              largest_mug: {:static, :integer},
+              items_looted: {:static, :integer}
             }},
-         "attacks" =>
+         killstreak: {:object, %{current: {:static, :integer}, best: {:static, :integer}}},
+         hits:
            {:object,
             %{
-              "assist" => {:static, :integer},
-              "lost" => {:static, :integer},
-              "stalemate" => {:static, :integer},
-              "stealth" => {:static, :integer},
-              "won" => {:static, :integer}
+              success: {:static, :integer},
+              critical: {:static, :integer},
+              one_hit_kills: {:static, :integer},
+              miss: {:static, :integer}
             }},
-         "damage" => {:object, %{"best" => {:static, :integer}, "total" => {:static, :integer}}},
-         "defends" =>
+         highest_level_beaten: {:static, :integer},
+         faction:
            {:object,
             %{
-              "lost" => {:static, :integer},
-              "stalemate" => {:static, :integer},
-              "total" => {:static, :integer},
-              "won" => {:static, :integer}
-            }},
-         "elo" => {:static, :integer},
-         "escapes" =>
-           {:object, %{"foes" => {:static, :integer}, "player" => {:static, :integer}}},
-         "faction" =>
-           {:object,
-            %{
-              "raid_hits" => {:static, :integer},
-              "ranked_war_hits" => {:static, :integer},
-              "respect" => {:static, :integer},
-              "retaliations" => {:static, :integer},
-              "territory" =>
+              territory:
                 {:object,
                  %{
-                   "wall_clears" => {:static, :integer},
-                   "wall_joins" => {:static, :integer},
-                   "wall_time" => {:static, :integer}
-                 }}
+                   wall_time: {:static, :integer},
+                   wall_joins: {:static, :integer},
+                   wall_clears: {:static, :integer}
+                 }},
+              retaliations: {:static, :integer},
+              respect: {:static, :integer},
+              ranked_war_hits: {:static, :integer},
+              raid_hits: {:static, :integer}
             }},
-         "highest_level_beaten" => {:static, :integer},
-         "hits" =>
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
+         elo: {:static, :integer},
+         defends:
            {:object,
             %{
-              "critical" => {:static, :integer},
-              "miss" => {:static, :integer},
-              "one_hit_kills" => {:static, :integer},
-              "success" => {:static, :integer}
+              total: {:static, :integer},
+              won: {:static, :integer},
+              stalemate: {:static, :integer},
+              lost: {:static, :integer}
             }},
-         "killstreak" =>
-           {:object, %{"best" => {:static, :integer}, "current" => {:static, :integer}}},
-         "networth" =>
+         damage: {:object, %{total: {:static, :integer}, best: {:static, :integer}}},
+         attacks:
            {:object,
             %{
-              "items_looted" => {:static, :integer},
-              "largest_mug" => {:static, :integer},
-              "money_mugged" => {:static, :integer}
+              won: {:static, :integer},
+              stalemate: {:static, :integer},
+              lost: {:static, :integer},
+              stealth: {:static, :integer},
+              assist: {:static, :integer}
             }},
-         "unarmored_wins" => {:static, :integer}
+         ammunition:
+           {:object,
+            %{
+              total: {:static, :integer},
+              tracer: {:static, :integer},
+              special: {:static, :integer},
+              piercing: {:static, :integer},
+              incendiary: {:static, :integer},
+              hollow_point: {:static, :integer}
+            }}
        }}
     )
   end

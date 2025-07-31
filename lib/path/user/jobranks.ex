@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Jobranks do
   @moduledoc """
   Get your starter job positions.
 
-  Requires minimal access key. <br>
+  Requires minimal access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

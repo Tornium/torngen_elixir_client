@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Property do
   @moduledoc """
   Get any property selection.
 
-  Requires public access key. <br>Choose one or more selections (comma separated).
+  Requires public access key. Choose one or more selections (comma separated).
 
   ## Parmeters
   - selections: Selection names

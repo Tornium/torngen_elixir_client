@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.RankedWarId.Rankedwarreport do
   @moduledoc """
   Get ranked war details.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - rankedWarId: Ranked war id

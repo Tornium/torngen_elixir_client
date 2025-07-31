@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Forumfeed do
   @moduledoc """
   Get updates on your threads and posts.
 
-  Requires minimal access key. <br>This selection returns data visible in 'Feed' section on forum page. Feed is sorted by timestamp descending. Only a maximum of 100 rows are returned.
+  Requires minimal access key. This selection returns data visible in 'Feed' section on forum page. Feed is sorted by timestamp descending. Only a maximum of 100 rows are returned.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

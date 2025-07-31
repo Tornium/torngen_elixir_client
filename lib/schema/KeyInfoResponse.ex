@@ -49,35 +49,35 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "access" =>
+             access:
                {:object,
                 %{
-                  "company" => {:static, :boolean},
-                  "company_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]},
-                  "faction" => {:static, :boolean},
-                  "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-                  "level" => {:static, :integer},
-                  "type" => Torngen.Client.Schema.ApiKeyAccessTypeEnum
+                  type: Torngen.Client.Schema.ApiKeyAccessTypeEnum,
+                  level: {:static, :integer},
+                  faction: {:static, :boolean},
+                  company: {:static, :boolean},
+                  faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
+                  company_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]}
                 }},
-             "selections" =>
+             user:
                {:object,
                 %{
-                  "company" => {:array, {:static, :string}},
-                  "faction" => {:array, Torngen.Client.Schema.FactionSelectionName},
-                  "forum" => {:array, Torngen.Client.Schema.ForumSelectionName},
-                  "key" => {:array, Torngen.Client.Schema.KeySelectionName},
-                  "market" => {:array, Torngen.Client.Schema.MarketSelectionName},
-                  "property" => {:array, {:static, :string}},
-                  "racing" => {:array, Torngen.Client.Schema.RacingSelectionName},
-                  "torn" => {:array, Torngen.Client.Schema.TornSelectionName},
-                  "user" => {:array, Torngen.Client.Schema.UserSelectionName}
+                  id: Torngen.Client.Schema.UserId,
+                  faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
+                  company_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]}
                 }},
-             "user" =>
+             selections:
                {:object,
                 %{
-                  "company_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]},
-                  "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-                  "id" => Torngen.Client.Schema.UserId
+                  user: {:array, Torngen.Client.Schema.UserSelectionName},
+                  property: {:array, {:static, :string}},
+                  key: {:array, Torngen.Client.Schema.KeySelectionName},
+                  faction: {:array, Torngen.Client.Schema.FactionSelectionName},
+                  company: {:array, {:static, :string}},
+                  market: {:array, Torngen.Client.Schema.MarketSelectionName},
+                  torn: {:array, Torngen.Client.Schema.TornSelectionName},
+                  racing: {:array, Torngen.Client.Schema.RacingSelectionName},
+                  forum: {:array, Torngen.Client.Schema.ForumSelectionName}
                 }}
            }}
         )
@@ -100,35 +100,35 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
       value,
       {:object,
        %{
-         "access" =>
+         access:
            {:object,
             %{
-              "company" => {:static, :boolean},
-              "company_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]},
-              "faction" => {:static, :boolean},
-              "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-              "level" => {:static, :integer},
-              "type" => Torngen.Client.Schema.ApiKeyAccessTypeEnum
+              type: Torngen.Client.Schema.ApiKeyAccessTypeEnum,
+              level: {:static, :integer},
+              faction: {:static, :boolean},
+              company: {:static, :boolean},
+              faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
+              company_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]}
             }},
-         "selections" =>
+         user:
            {:object,
             %{
-              "company" => {:array, {:static, :string}},
-              "faction" => {:array, Torngen.Client.Schema.FactionSelectionName},
-              "forum" => {:array, Torngen.Client.Schema.ForumSelectionName},
-              "key" => {:array, Torngen.Client.Schema.KeySelectionName},
-              "market" => {:array, Torngen.Client.Schema.MarketSelectionName},
-              "property" => {:array, {:static, :string}},
-              "racing" => {:array, Torngen.Client.Schema.RacingSelectionName},
-              "torn" => {:array, Torngen.Client.Schema.TornSelectionName},
-              "user" => {:array, Torngen.Client.Schema.UserSelectionName}
+              id: Torngen.Client.Schema.UserId,
+              faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
+              company_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]}
             }},
-         "user" =>
+         selections:
            {:object,
             %{
-              "company_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]},
-              "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-              "id" => Torngen.Client.Schema.UserId
+              user: {:array, Torngen.Client.Schema.UserSelectionName},
+              property: {:array, {:static, :string}},
+              key: {:array, Torngen.Client.Schema.KeySelectionName},
+              faction: {:array, Torngen.Client.Schema.FactionSelectionName},
+              company: {:array, {:static, :string}},
+              market: {:array, Torngen.Client.Schema.MarketSelectionName},
+              torn: {:array, Torngen.Client.Schema.TornSelectionName},
+              racing: {:array, Torngen.Client.Schema.RacingSelectionName},
+              forum: {:array, Torngen.Client.Schema.ForumSelectionName}
             }}
        }}
     )

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Factionhof do
   @moduledoc """
   Get faction hall of fame positions for a specific category.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - limit: N/A

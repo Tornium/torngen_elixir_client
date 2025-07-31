@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing.TrackId.Records do
   @moduledoc """
   Get track records.
 
-  Requires public access key. <br>Returns a list of 5 best lap records for the chosen track and car class.
+  Requires public access key. Returns a list of 5 best lap records for the chosen track and car class.
 
   ## Parmeters
   - trackId: Track id

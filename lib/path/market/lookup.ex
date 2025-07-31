@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market.Lookup do
   @moduledoc """
   Get all available market selections.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

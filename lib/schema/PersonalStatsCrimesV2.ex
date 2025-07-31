@@ -53,18 +53,18 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "bootlegging" => {:static, :integer},
-             "burglary" => {:static, :integer},
-             "card_skimming" => {:static, :integer},
-             "cracking" => {:static, :integer},
-             "disposal" => {:static, :integer},
-             "forgery" => {:static, :integer},
-             "graffiti" => {:static, :integer},
-             "hustling" => {:static, :integer},
-             "pickpocketing" => {:static, :integer},
-             "scamming" => {:static, :integer},
-             "search_for_cash" => {:static, :integer},
-             "shoplifting" => {:static, :integer}
+             shoplifting: {:static, :integer},
+             search_for_cash: {:static, :integer},
+             scamming: {:static, :integer},
+             pickpocketing: {:static, :integer},
+             hustling: {:static, :integer},
+             graffiti: {:static, :integer},
+             forgery: {:static, :integer},
+             disposal: {:static, :integer},
+             cracking: {:static, :integer},
+             card_skimming: {:static, :integer},
+             burglary: {:static, :integer},
+             bootlegging: {:static, :integer}
            }}
         ),
       offenses:
@@ -73,16 +73,16 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "counterfeiting" => {:static, :integer},
-             "cybercrime" => {:static, :integer},
-             "extortion" => {:static, :integer},
-             "fraud" => {:static, :integer},
-             "illegal_production" => {:static, :integer},
-             "illicit_services" => {:static, :integer},
-             "organized_crimes" => {:static, :integer},
-             "theft" => {:static, :integer},
-             "total" => {:static, :integer},
-             "vandalism" => {:static, :integer}
+             total: {:static, :integer},
+             vandalism: {:static, :integer},
+             theft: {:static, :integer},
+             organized_crimes: {:static, :integer},
+             illicit_services: {:static, :integer},
+             illegal_production: {:static, :integer},
+             fraud: {:static, :integer},
+             extortion: {:static, :integer},
+             cybercrime: {:static, :integer},
+             counterfeiting: {:static, :integer}
            }}
         )
     }
@@ -108,18 +108,18 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
       value,
       {:object,
        %{
-         "bootlegging" => {:static, :integer},
-         "burglary" => {:static, :integer},
-         "card_skimming" => {:static, :integer},
-         "cracking" => {:static, :integer},
-         "disposal" => {:static, :integer},
-         "forgery" => {:static, :integer},
-         "graffiti" => {:static, :integer},
-         "hustling" => {:static, :integer},
-         "pickpocketing" => {:static, :integer},
-         "scamming" => {:static, :integer},
-         "search_for_cash" => {:static, :integer},
-         "shoplifting" => {:static, :integer}
+         shoplifting: {:static, :integer},
+         search_for_cash: {:static, :integer},
+         scamming: {:static, :integer},
+         pickpocketing: {:static, :integer},
+         hustling: {:static, :integer},
+         graffiti: {:static, :integer},
+         forgery: {:static, :integer},
+         disposal: {:static, :integer},
+         cracking: {:static, :integer},
+         card_skimming: {:static, :integer},
+         burglary: {:static, :integer},
+         bootlegging: {:static, :integer}
        }}
     )
   end
@@ -129,16 +129,16 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
       value,
       {:object,
        %{
-         "counterfeiting" => {:static, :integer},
-         "cybercrime" => {:static, :integer},
-         "extortion" => {:static, :integer},
-         "fraud" => {:static, :integer},
-         "illegal_production" => {:static, :integer},
-         "illicit_services" => {:static, :integer},
-         "organized_crimes" => {:static, :integer},
-         "theft" => {:static, :integer},
-         "total" => {:static, :integer},
-         "vandalism" => {:static, :integer}
+         total: {:static, :integer},
+         vandalism: {:static, :integer},
+         theft: {:static, :integer},
+         organized_crimes: {:static, :integer},
+         illicit_services: {:static, :integer},
+         illegal_production: {:static, :integer},
+         fraud: {:static, :integer},
+         extortion: {:static, :integer},
+         cybercrime: {:static, :integer},
+         counterfeiting: {:static, :integer}
        }}
     )
   end

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Calendar do
   @moduledoc """
   Get your competition's event start time.
 
-  Requires minimal access key. <br>Only available to yourself.
+  Requires minimal access key. Only available to yourself.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

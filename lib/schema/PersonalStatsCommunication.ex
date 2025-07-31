@@ -34,17 +34,17 @@ defmodule Torngen.Client.Schema.PersonalStatsCommunication do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "classified_ads" => {:static, :integer},
-             "mails_sent" =>
+             personals: {:static, :integer},
+             mails_sent:
                {:object,
                 %{
-                  "colleagues" => {:static, :integer},
-                  "faction" => {:static, :integer},
-                  "friends" => {:static, :integer},
-                  "spouse" => {:static, :integer},
-                  "total" => {:static, :integer}
+                  total: {:static, :integer},
+                  faction: {:static, :integer},
+                  spouse: {:static, :integer},
+                  friends: {:static, :integer},
+                  colleagues: {:static, :integer}
                 }},
-             "personals" => {:static, :integer}
+             classified_ads: {:static, :integer}
            }}
         )
     }
@@ -66,17 +66,17 @@ defmodule Torngen.Client.Schema.PersonalStatsCommunication do
       value,
       {:object,
        %{
-         "classified_ads" => {:static, :integer},
-         "mails_sent" =>
+         personals: {:static, :integer},
+         mails_sent:
            {:object,
             %{
-              "colleagues" => {:static, :integer},
-              "faction" => {:static, :integer},
-              "friends" => {:static, :integer},
-              "spouse" => {:static, :integer},
-              "total" => {:static, :integer}
+              total: {:static, :integer},
+              faction: {:static, :integer},
+              spouse: {:static, :integer},
+              friends: {:static, :integer},
+              colleagues: {:static, :integer}
             }},
-         "personals" => {:static, :integer}
+         classified_ads: {:static, :integer}
        }}
     )
   end

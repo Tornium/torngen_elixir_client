@@ -13,7 +13,7 @@ defmodule Torngen.Client.Schema.BazaarWeeklyIncome do
   def parse(%{} = data) do
     %__MODULE__{
       values: [
-        data |> Torngen.Client.Schema.parse({:object, %{"weekly_income" => {:static, :integer}}}),
+        data |> Torngen.Client.Schema.parse({:object, %{weekly_income: {:static, :integer}}}),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.Bazaar)
       ]
     }

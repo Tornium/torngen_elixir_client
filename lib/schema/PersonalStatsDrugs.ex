@@ -38,20 +38,20 @@ defmodule Torngen.Client.Schema.PersonalStatsDrugs do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "cannabis" => {:static, :integer},
-             "ecstasy" => {:static, :integer},
-             "ketamine" => {:static, :integer},
-             "lsd" => {:static, :integer},
-             "opium" => {:static, :integer},
-             "overdoses" => {:static, :integer},
-             "pcp" => {:static, :integer},
-             "rehabilitations" =>
-               {:object, %{"amount" => {:static, :integer}, "fees" => {:static, :integer}}},
-             "shrooms" => {:static, :integer},
-             "speed" => {:static, :integer},
-             "total" => {:static, :integer},
-             "vicodin" => {:static, :integer},
-             "xanax" => {:static, :integer}
+             total: {:static, :integer},
+             speed: {:static, :integer},
+             xanax: {:static, :integer},
+             vicodin: {:static, :integer},
+             shrooms: {:static, :integer},
+             rehabilitations:
+               {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}},
+             pcp: {:static, :integer},
+             overdoses: {:static, :integer},
+             opium: {:static, :integer},
+             lsd: {:static, :integer},
+             ketamine: {:static, :integer},
+             ecstasy: {:static, :integer},
+             cannabis: {:static, :integer}
            }}
         )
     }
@@ -73,20 +73,19 @@ defmodule Torngen.Client.Schema.PersonalStatsDrugs do
       value,
       {:object,
        %{
-         "cannabis" => {:static, :integer},
-         "ecstasy" => {:static, :integer},
-         "ketamine" => {:static, :integer},
-         "lsd" => {:static, :integer},
-         "opium" => {:static, :integer},
-         "overdoses" => {:static, :integer},
-         "pcp" => {:static, :integer},
-         "rehabilitations" =>
-           {:object, %{"amount" => {:static, :integer}, "fees" => {:static, :integer}}},
-         "shrooms" => {:static, :integer},
-         "speed" => {:static, :integer},
-         "total" => {:static, :integer},
-         "vicodin" => {:static, :integer},
-         "xanax" => {:static, :integer}
+         total: {:static, :integer},
+         speed: {:static, :integer},
+         xanax: {:static, :integer},
+         vicodin: {:static, :integer},
+         shrooms: {:static, :integer},
+         rehabilitations: {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}},
+         pcp: {:static, :integer},
+         overdoses: {:static, :integer},
+         opium: {:static, :integer},
+         lsd: {:static, :integer},
+         ketamine: {:static, :integer},
+         ecstasy: {:static, :integer},
+         cannabis: {:static, :integer}
        }}
     )
   end

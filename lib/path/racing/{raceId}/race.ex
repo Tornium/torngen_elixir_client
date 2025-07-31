@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing.RaceId.Race do
   @moduledoc """
   Get specific race details.
 
-  Requires public access key. <br>Returns the details of a race.
+  Requires public access key. Returns the details of a race.
 
   ## Parmeters
   - raceId: Race id

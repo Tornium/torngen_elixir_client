@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Chain do
   @moduledoc """
   Get a faction's current chain.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - id: Faction id

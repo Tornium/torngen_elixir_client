@@ -2,13 +2,7 @@ defmodule Torngen.Client.Path.User.Personalstats do
   @moduledoc """
   Get your personal stats.
 
-  Requires public access key. <br>
-  * UserPersonalStatsFull is returned only when this selection is requested with Limited, Full or Custom key access key.
-  * UserPersonalStatsFullPublic is returned when the requested category is 'all'.
-  * UserPersonalStatsPopular is returned when the requested category is 'popular'. Please try to use UserPersonalStatsPopular over UserPersonalStatsFullPublic wherever possible in order to reduce the server load.
-  * Otherwise, UserPersonalStatsCategory is returned for the matched category.
-  * It's possible to request specific stats via 'stat' parameter. In this case the response will vary depending on the stats requested. Private stats are still available only to the key owner (with Limited or higher key).
-  * Additionally, historical stats can also be fetched via 'stat' query parameter, but 'timestamp' parameter must be provided as well. It's only possible to pass up to 10 historical stats at once (the rest is trimmed). When requesting historical stats the response will be of type UserPersonalStatsHistoric.
+  Requires public access key. * UserPersonalStatsFull is returned only when this selection is requested with Limited, Full or Custom key access key. * UserPersonalStatsFullPublic is returned when the requested category is 'all'. * UserPersonalStatsPopular is returned when the requested category is 'popular'. Please try to use UserPersonalStatsPopular over UserPersonalStatsFullPublic wherever possible in order to reduce the server load. * Otherwise, UserPersonalStatsCategory is returned for the matched category. * It's possible to request specific stats via 'stat' parameter. In this case the response will vary depending on the stats requested. Private stats are still available only to the key owner (with Limited or higher key). * Additionally, historical stats can also be fetched via 'stat' query parameter, but 'timestamp' parameter must be provided as well. It's only possible to pass up to 10 historical stats at once (the rest is trimmed). When requesting historical stats the response will be of type UserPersonalStatsHistoric.
 
   ## Parmeters
   - cat: Stats category
@@ -18,11 +12,7 @@ defmodule Torngen.Client.Path.User.Personalstats do
   - key: API key (Public)
 
   ## Response Module(s)
-  - UserPersonalStatsHistoric
-  - UserPersonalStatsCategory
-  - UserPersonalStatsPopular
-  - UserPersonalStatsFullPublic
-  - UserPersonalStatsFull
+  - UserPersonalStatsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
@@ -30,13 +20,7 @@ defmodule Torngen.Client.Path.User.Personalstats do
   @behaviour Torngen.Client.Path
 
   @path "user/personalstats"
-  @response_modules [
-    UserPersonalStatsHistoric,
-    UserPersonalStatsCategory,
-    UserPersonalStatsPopular,
-    UserPersonalStatsFullPublic,
-    UserPersonalStatsFull
-  ]
+  @response_modules [UserPersonalStatsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 

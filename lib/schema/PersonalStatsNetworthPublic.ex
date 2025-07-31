@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthPublic do
       networth:
         data
         |> Map.get("networth")
-        |> Torngen.Client.Schema.parse({:object, %{"total" => {:static, :integer}}})
+        |> Torngen.Client.Schema.parse({:object, %{total: {:static, :integer}}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthPublic do
   end
 
   defp validate_key?(:networth, value) do
-    Torngen.Client.Schema.validate?(value, {:object, %{"total" => {:static, :integer}}})
+    Torngen.Client.Schema.validate?(value, {:object, %{total: {:static, :integer}}})
   end
 
   @spec keys() :: list(atom())

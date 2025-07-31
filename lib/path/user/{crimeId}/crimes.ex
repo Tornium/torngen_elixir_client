@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.CrimeId.Crimes do
   @moduledoc """
   Get your crime statistics.
 
-  Requires minimal access key. <br>Return the details and statistics about for a specific crime.
+  Requires minimal access key. Return the details and statistics about for a specific crime.
 
   ## Parmeters
   - crimeId: Crime id

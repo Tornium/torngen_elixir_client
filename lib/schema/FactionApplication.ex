@@ -46,18 +46,18 @@ defmodule Torngen.Client.Schema.FactionApplication do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "id" => Torngen.Client.Schema.UserId,
-             "level" => {:static, :integer},
-             "name" => {:static, :string},
-             "stats" =>
+             id: Torngen.Client.Schema.UserId,
+             name: {:static, :string},
+             level: {:static, :integer},
+             stats:
                {:one_of,
                 [
                   static: :null,
                   object: %{
-                    "defense" => {:static, :integer},
-                    "dexterity" => {:static, :integer},
-                    "speed" => {:static, :integer},
-                    "strength" => {:static, :integer}
+                    speed: {:static, :integer},
+                    strength: {:static, :integer},
+                    dexterity: {:static, :integer},
+                    defense: {:static, :integer}
                   }
                 ]}
            }}
@@ -94,18 +94,18 @@ defmodule Torngen.Client.Schema.FactionApplication do
       value,
       {:object,
        %{
-         "id" => Torngen.Client.Schema.UserId,
-         "level" => {:static, :integer},
-         "name" => {:static, :string},
-         "stats" =>
+         id: Torngen.Client.Schema.UserId,
+         name: {:static, :string},
+         level: {:static, :integer},
+         stats:
            {:one_of,
             [
               static: :null,
               object: %{
-                "defense" => {:static, :integer},
-                "dexterity" => {:static, :integer},
-                "speed" => {:static, :integer},
-                "strength" => {:static, :integer}
+                speed: {:static, :integer},
+                strength: {:static, :integer},
+                dexterity: {:static, :integer},
+                defense: {:static, :integer}
               }
             ]}
        }}

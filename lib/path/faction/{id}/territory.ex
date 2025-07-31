@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Territory do
   @moduledoc """
   Get a list of a faction's territories.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - id: Faction id

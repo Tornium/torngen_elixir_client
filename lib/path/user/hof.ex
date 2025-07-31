@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Hof do
   @moduledoc """
   Get your hall of fame rankings.
 
-  Requires public access key. <br>When requesting selection with Limited, Full or Custom key, battle_stats selection will be populated.
+  Requires public access key. When requesting selection with Limited, Full or Custom key, battle_stats selection will be populated.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

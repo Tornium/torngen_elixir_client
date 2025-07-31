@@ -28,11 +28,9 @@ defmodule Torngen.Client.Schema.PersonalStatsJail do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "bails" =>
-               {:object, %{"amount" => {:static, :integer}, "fees" => {:static, :integer}}},
-             "busts" =>
-               {:object, %{"fails" => {:static, :integer}, "success" => {:static, :integer}}},
-             "times_jailed" => {:static, :integer}
+             times_jailed: {:static, :integer},
+             busts: {:object, %{success: {:static, :integer}, fails: {:static, :integer}}},
+             bails: {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}}
            }}
         )
     }
@@ -54,10 +52,9 @@ defmodule Torngen.Client.Schema.PersonalStatsJail do
       value,
       {:object,
        %{
-         "bails" => {:object, %{"amount" => {:static, :integer}, "fees" => {:static, :integer}}},
-         "busts" =>
-           {:object, %{"fails" => {:static, :integer}, "success" => {:static, :integer}}},
-         "times_jailed" => {:static, :integer}
+         times_jailed: {:static, :integer},
+         busts: {:object, %{success: {:static, :integer}, fails: {:static, :integer}}},
+         bails: {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}}
        }}
     )
   end

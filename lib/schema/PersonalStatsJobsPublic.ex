@@ -22,8 +22,7 @@ defmodule Torngen.Client.Schema.PersonalStatsJobsPublic do
         data
         |> Map.get("jobs")
         |> Torngen.Client.Schema.parse(
-          {:object,
-           %{"job_points_used" => {:static, :integer}, "trains_received" => {:static, :integer}}}
+          {:object, %{trains_received: {:static, :integer}, job_points_used: {:static, :integer}}}
         )
     }
   end
@@ -42,8 +41,7 @@ defmodule Torngen.Client.Schema.PersonalStatsJobsPublic do
   defp validate_key?(:jobs, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object,
-       %{"job_points_used" => {:static, :integer}, "trains_received" => {:static, :integer}}}
+      {:object, %{trains_received: {:static, :integer}, job_points_used: {:static, :integer}}}
     )
   end
 

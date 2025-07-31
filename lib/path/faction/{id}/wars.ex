@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Wars do
   @moduledoc """
   Get a faction's wars & pacts details.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - id: Faction id

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Contributors do
   @moduledoc """
   Get your faction's challenge contributors.
 
-  Requires limiteed access key with faction API access permissions. <br>
+  Requires limiteed access key with faction API access permissions.
 
   ## Parmeters
   - stat: Get contributors for this field.

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Id.Bounties do
   @moduledoc """
   Get bounties placed on a specific user.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - id: User id

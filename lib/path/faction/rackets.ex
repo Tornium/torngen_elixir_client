@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Rackets do
   @moduledoc """
   Get a list of current rackets.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

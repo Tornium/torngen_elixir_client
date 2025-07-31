@@ -24,9 +24,9 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedForSale do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "cost" => {:static, :integer},
-             "status" => {:enum, :string, ["for_sale"]},
-             "used_by" => {:array, Torngen.Client.Schema.BasicUser}
+             status: {:enum, :string, ["for_sale"]},
+             cost: {:static, :integer},
+             used_by: {:array, Torngen.Client.Schema.BasicUser}
            }}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)

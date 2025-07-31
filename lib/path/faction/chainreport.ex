@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Chainreport do
   @moduledoc """
   Get your faction's latest chain report.
 
-  Requires public access key. <br> This includes currently ongoing chains.
+  Requires public access key. This includes currently ongoing chains.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

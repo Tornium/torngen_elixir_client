@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Logtypes do
   @moduledoc """
   Get all available log ids.
 
-  Requires public key. <br>
+  Requires public key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

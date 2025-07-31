@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Factiontree do
   @moduledoc """
   Get full faction tree.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

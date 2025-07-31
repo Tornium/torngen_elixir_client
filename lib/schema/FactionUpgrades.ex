@@ -34,7 +34,7 @@ defmodule Torngen.Client.Schema.FactionUpgrades do
         data
         |> Map.get("core")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"upgrades" => {:array, Torngen.Client.Schema.FactionUpgradeDetails}}}
+          {:object, %{upgrades: {:array, Torngen.Client.Schema.FactionUpgradeDetails}}}
         )
     }
   end
@@ -61,7 +61,7 @@ defmodule Torngen.Client.Schema.FactionUpgrades do
   defp validate_key?(:core, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"upgrades" => {:array, Torngen.Client.Schema.FactionUpgradeDetails}}}
+      {:object, %{upgrades: {:array, Torngen.Client.Schema.FactionUpgradeDetails}}}
     )
   end
 

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Revives do
   @moduledoc """
   Get your faction's detailed revives.
 
-  Requires limited access key with faction API access permissions. <br>
+  Requires limited access key with faction API access permissions.
 
   ## Parmeters
   - limit: N/A

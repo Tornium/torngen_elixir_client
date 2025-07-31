@@ -36,19 +36,19 @@ defmodule Torngen.Client.Schema.PersonalStatsItemsPopular do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "found" => {:object, %{"dump" => {:static, :integer}}},
-             "used" =>
+             used:
                {:object,
                 %{
-                  "alcohol" => {:static, :integer},
-                  "books" => {:static, :integer},
-                  "boosters" => {:static, :integer},
-                  "candy" => {:static, :integer},
-                  "consumables" => {:static, :integer},
-                  "easter_eggs" => {:static, :integer},
-                  "energy_drinks" => {:static, :integer},
-                  "stat_enhancers" => {:static, :integer}
-                }}
+                  stat_enhancers: {:static, :integer},
+                  energy_drinks: {:static, :integer},
+                  easter_eggs: {:static, :integer},
+                  consumables: {:static, :integer},
+                  candy: {:static, :integer},
+                  boosters: {:static, :integer},
+                  books: {:static, :integer},
+                  alcohol: {:static, :integer}
+                }},
+             found: {:object, %{dump: {:static, :integer}}}
            }}
         )
     }
@@ -70,19 +70,19 @@ defmodule Torngen.Client.Schema.PersonalStatsItemsPopular do
       value,
       {:object,
        %{
-         "found" => {:object, %{"dump" => {:static, :integer}}},
-         "used" =>
+         used:
            {:object,
             %{
-              "alcohol" => {:static, :integer},
-              "books" => {:static, :integer},
-              "boosters" => {:static, :integer},
-              "candy" => {:static, :integer},
-              "consumables" => {:static, :integer},
-              "easter_eggs" => {:static, :integer},
-              "energy_drinks" => {:static, :integer},
-              "stat_enhancers" => {:static, :integer}
-            }}
+              stat_enhancers: {:static, :integer},
+              energy_drinks: {:static, :integer},
+              easter_eggs: {:static, :integer},
+              consumables: {:static, :integer},
+              candy: {:static, :integer},
+              boosters: {:static, :integer},
+              books: {:static, :integer},
+              alcohol: {:static, :integer}
+            }},
+         found: {:object, %{dump: {:static, :integer}}}
        }}
     )
   end

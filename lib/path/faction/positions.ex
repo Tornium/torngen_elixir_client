@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Positions do
   @moduledoc """
   Get your faction's positions details.
 
-  Requires minimal access key with faction API access permissions. <br>
+  Requires minimal access key with faction API access permissions.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

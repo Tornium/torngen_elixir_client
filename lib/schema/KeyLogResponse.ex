@@ -34,12 +34,12 @@ defmodule Torngen.Client.Schema.KeyLogResponse do
           {:array,
            {:object,
             %{
-              "comment" => {:one_of, [static: :null, static: :string]},
-              "id" => {:one_of, [static: :null, static: :string, static: :integer]},
-              "ip" => {:static, :string},
-              "selections" => {:static, :string},
-              "timestamp" => {:static, :integer},
-              "type" => {:static, :string}
+              id: {:one_of, [static: :null, static: :string, static: :integer]},
+              timestamp: {:static, :integer},
+              type: {:static, :string},
+              ip: {:static, :string},
+              comment: {:one_of, [static: :null, static: :string]},
+              selections: {:static, :string}
             }}}
         )
     }
@@ -62,12 +62,12 @@ defmodule Torngen.Client.Schema.KeyLogResponse do
       {:array,
        {:object,
         %{
-          "comment" => {:one_of, [static: :null, static: :string]},
-          "id" => {:one_of, [static: :null, static: :string, static: :integer]},
-          "ip" => {:static, :string},
-          "selections" => {:static, :string},
-          "timestamp" => {:static, :integer},
-          "type" => {:static, :string}
+          id: {:one_of, [static: :null, static: :string, static: :integer]},
+          timestamp: {:static, :integer},
+          type: {:static, :string},
+          ip: {:static, :string},
+          comment: {:one_of, [static: :null, static: :string]},
+          selections: {:static, :string}
         }}}
     )
   end

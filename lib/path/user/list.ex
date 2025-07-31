@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.List do
   @moduledoc """
   Get your friends, enemies or targets list.
 
-  Requires limited access key. <br>
+  Requires limited access key.
 
   ## Parmeters
   - cat: Select list type

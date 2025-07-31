@@ -37,18 +37,18 @@ defmodule Torngen.Client.Schema.PersonalStatsFinishingHits do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "clubbing" => {:static, :integer},
-             "hand_to_hand" => {:static, :integer},
-             "heavy_artillery" => {:static, :integer},
-             "machine_guns" => {:static, :integer},
-             "mechanical" => {:static, :integer},
-             "piercing" => {:static, :integer},
-             "pistols" => {:static, :integer},
-             "rifles" => {:static, :integer},
-             "shotguns" => {:static, :integer},
-             "slashing" => {:static, :integer},
-             "sub_machine_guns" => {:static, :integer},
-             "temporary" => {:static, :integer}
+             temporary: {:static, :integer},
+             piercing: {:static, :integer},
+             sub_machine_guns: {:static, :integer},
+             slashing: {:static, :integer},
+             shotguns: {:static, :integer},
+             rifles: {:static, :integer},
+             pistols: {:static, :integer},
+             mechanical: {:static, :integer},
+             machine_guns: {:static, :integer},
+             heavy_artillery: {:static, :integer},
+             hand_to_hand: {:static, :integer},
+             clubbing: {:static, :integer}
            }}
         )
     }
@@ -70,18 +70,18 @@ defmodule Torngen.Client.Schema.PersonalStatsFinishingHits do
       value,
       {:object,
        %{
-         "clubbing" => {:static, :integer},
-         "hand_to_hand" => {:static, :integer},
-         "heavy_artillery" => {:static, :integer},
-         "machine_guns" => {:static, :integer},
-         "mechanical" => {:static, :integer},
-         "piercing" => {:static, :integer},
-         "pistols" => {:static, :integer},
-         "rifles" => {:static, :integer},
-         "shotguns" => {:static, :integer},
-         "slashing" => {:static, :integer},
-         "sub_machine_guns" => {:static, :integer},
-         "temporary" => {:static, :integer}
+         temporary: {:static, :integer},
+         piercing: {:static, :integer},
+         sub_machine_guns: {:static, :integer},
+         slashing: {:static, :integer},
+         shotguns: {:static, :integer},
+         rifles: {:static, :integer},
+         pistols: {:static, :integer},
+         mechanical: {:static, :integer},
+         machine_guns: {:static, :integer},
+         heavy_artillery: {:static, :integer},
+         hand_to_hand: {:static, :integer},
+         clubbing: {:static, :integer}
        }}
     )
   end

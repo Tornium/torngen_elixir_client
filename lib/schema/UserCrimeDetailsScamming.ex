@@ -42,15 +42,15 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsScamming do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "concern" => {:static, :integer},
-             "hesitation" => {:static, :integer},
-             "high_reward" => {:static, :integer},
-             "low_reward" => {:static, :integer},
-             "medium_reward" => {:static, :integer},
-             "neutral" => {:static, :integer},
-             "red" => {:static, :integer},
-             "sensitivity" => {:static, :integer},
-             "temptation" => {:static, :integer}
+             red: {:static, :integer},
+             neutral: {:static, :integer},
+             temptation: {:static, :integer},
+             sensitivity: {:static, :integer},
+             medium_reward: {:static, :integer},
+             low_reward: {:static, :integer},
+             high_reward: {:static, :integer},
+             hesitation: {:static, :integer},
+             concern: {:static, :integer}
            }}
         ),
       payouts:
@@ -58,11 +58,7 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsScamming do
         |> Map.get("payouts")
         |> Torngen.Client.Schema.parse(
           {:object,
-           %{
-             "high" => {:static, :integer},
-             "low" => {:static, :integer},
-             "medium" => {:static, :integer}
-           }}
+           %{high: {:static, :integer}, low: {:static, :integer}, medium: {:static, :integer}}}
         ),
       most_responses:
         data |> Map.get("most_responses") |> Torngen.Client.Schema.parse({:static, :integer}),
@@ -70,13 +66,13 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsScamming do
         data
         |> Map.get("emails")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"phisher" => {:static, :integer}, "scraper" => {:static, :integer}}}
+          {:object, %{scraper: {:static, :integer}, phisher: {:static, :integer}}}
         ),
       concerns:
         data
         |> Map.get("concerns")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"attempts" => {:static, :integer}, "resolved" => {:static, :integer}}}
+          {:object, %{resolved: {:static, :integer}, attempts: {:static, :integer}}}
         )
     }
   end
@@ -97,15 +93,15 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsScamming do
       value,
       {:object,
        %{
-         "concern" => {:static, :integer},
-         "hesitation" => {:static, :integer},
-         "high_reward" => {:static, :integer},
-         "low_reward" => {:static, :integer},
-         "medium_reward" => {:static, :integer},
-         "neutral" => {:static, :integer},
-         "red" => {:static, :integer},
-         "sensitivity" => {:static, :integer},
-         "temptation" => {:static, :integer}
+         red: {:static, :integer},
+         neutral: {:static, :integer},
+         temptation: {:static, :integer},
+         sensitivity: {:static, :integer},
+         medium_reward: {:static, :integer},
+         low_reward: {:static, :integer},
+         high_reward: {:static, :integer},
+         hesitation: {:static, :integer},
+         concern: {:static, :integer}
        }}
     )
   end
@@ -114,11 +110,7 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsScamming do
     Torngen.Client.Schema.validate?(
       value,
       {:object,
-       %{
-         "high" => {:static, :integer},
-         "low" => {:static, :integer},
-         "medium" => {:static, :integer}
-       }}
+       %{high: {:static, :integer}, low: {:static, :integer}, medium: {:static, :integer}}}
     )
   end
 
@@ -129,14 +121,14 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsScamming do
   defp validate_key?(:emails, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"phisher" => {:static, :integer}, "scraper" => {:static, :integer}}}
+      {:object, %{scraper: {:static, :integer}, phisher: {:static, :integer}}}
     )
   end
 
   defp validate_key?(:concerns, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"attempts" => {:static, :integer}, "resolved" => {:static, :integer}}}
+      {:object, %{resolved: {:static, :integer}, attempts: {:static, :integer}}}
     )
   end
 

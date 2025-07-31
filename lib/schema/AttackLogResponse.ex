@@ -29,8 +29,8 @@ defmodule Torngen.Client.Schema.AttackLogResponse do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "log" => {:array, Torngen.Client.Schema.AttackLog},
-             "summary" => {:array, Torngen.Client.Schema.AttackLogSummary}
+             log: {:array, Torngen.Client.Schema.AttackLog},
+             summary: {:array, Torngen.Client.Schema.AttackLogSummary}
            }}
         ),
       _metadata:
@@ -56,8 +56,8 @@ defmodule Torngen.Client.Schema.AttackLogResponse do
       value,
       {:object,
        %{
-         "log" => {:array, Torngen.Client.Schema.AttackLog},
-         "summary" => {:array, Torngen.Client.Schema.AttackLogSummary}
+         log: {:array, Torngen.Client.Schema.AttackLog},
+         summary: {:array, Torngen.Client.Schema.AttackLogSummary}
        }}
     )
   end

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Basic do
   @moduledoc """
   Get a faction's basic details.
 
-  Requires public access key. <br> The 'is_enlisted' value will be populated if you're requesting data for your faction and have faction permissions (with custom, limited or full access keys), otherwise it will be set as null.
+  Requires public access key. The 'is_enlisted' value will be populated if you're requesting data for your faction and have faction permissions (with custom, limited or full access keys), otherwise it will be set as null.
 
   ## Parmeters
   - id: Faction id

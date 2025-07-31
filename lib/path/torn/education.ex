@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Education do
   @moduledoc """
   Get education information.
 
-  Requires public access key.<br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

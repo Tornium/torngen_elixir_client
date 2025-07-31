@@ -20,8 +20,8 @@ defmodule Torngen.Client.Schema.RacingRaceDetails do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "is_official" => {:static, :boolean},
-             "results" => {:array, Torngen.Client.Schema.RacerDetails}
+             results: {:array, Torngen.Client.Schema.RacerDetails},
+             is_official: {:static, :boolean}
            }}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.Race)

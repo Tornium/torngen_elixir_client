@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Items do
   @moduledoc """
   Get information about items.
 
-  Requires public key.<br>Default category is 'All'.<br>Details are not populated when requesting the category 'All'.
+  Requires public key. Default category is 'All'. Details are not populated when requesting the category 'All'.
 
   ## Parmeters
   - cat: Item category type

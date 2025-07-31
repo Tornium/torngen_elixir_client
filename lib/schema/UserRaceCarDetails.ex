@@ -29,14 +29,14 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "id" => Torngen.Client.Schema.RaceCarId,
-             "is_removed" => {:static, :boolean},
-             "name" => {:one_of, [static: :null, static: :string]},
-             "parts" => {:array, Torngen.Client.Schema.RaceCarUpgradeId},
-             "points_spent" => {:static, :integer},
-             "races_entered" => {:static, :integer},
-             "races_won" => {:static, :integer},
-             "worth" => {:static, :integer}
+             id: Torngen.Client.Schema.RaceCarId,
+             name: {:one_of, [static: :null, static: :string]},
+             parts: {:array, Torngen.Client.Schema.RaceCarUpgradeId},
+             worth: {:static, :integer},
+             races_won: {:static, :integer},
+             races_entered: {:static, :integer},
+             points_spent: {:static, :integer},
+             is_removed: {:static, :boolean}
            }}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceCar)

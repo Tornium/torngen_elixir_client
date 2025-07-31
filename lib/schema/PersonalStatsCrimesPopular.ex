@@ -22,7 +22,7 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesPopular do
         data
         |> Map.get("crimes")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"total" => {:static, :integer}, "version" => {:static, :string}}}
+          {:object, %{total: {:static, :integer}, version: {:static, :string}}}
         )
     }
   end
@@ -41,7 +41,7 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesPopular do
   defp validate_key?(:crimes, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"total" => {:static, :integer}, "version" => {:static, :string}}}
+      {:object, %{total: {:static, :integer}, version: {:static, :string}}}
     )
   end
 

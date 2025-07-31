@@ -1,8 +1,8 @@
 defmodule Torngen.Client.Path.Faction.Lookup do
   @moduledoc """
-  .
+  N/A.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

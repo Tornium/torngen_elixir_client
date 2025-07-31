@@ -15,7 +15,7 @@ defmodule Torngen.Client.Schema.ForumThreadUserExtended do
       values: [
         data
         |> Torngen.Client.Schema.parse(
-          {:object, %{"new_posts" => {:one_of, [static: :null, static: :integer]}}}
+          {:object, %{new_posts: {:one_of, [static: :null, static: :integer]}}}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadBase)
       ]

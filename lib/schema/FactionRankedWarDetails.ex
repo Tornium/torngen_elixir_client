@@ -51,10 +51,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
           {:array,
            {:object,
             %{
-              "chain" => {:static, :integer},
-              "id" => Torngen.Client.Schema.FactionId,
-              "name" => {:static, :string},
-              "score" => {:static, :integer}
+              id: Torngen.Client.Schema.FactionId,
+              name: {:static, :string},
+              score: {:static, :integer},
+              chain: {:static, :integer}
             }}}
         ),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -97,10 +97,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
       {:array,
        {:object,
         %{
-          "chain" => {:static, :integer},
-          "id" => Torngen.Client.Schema.FactionId,
-          "name" => {:static, :string},
-          "score" => {:static, :integer}
+          id: Torngen.Client.Schema.FactionId,
+          name: {:static, :string},
+          score: {:static, :integer},
+          chain: {:static, :integer}
         }}}
     )
   end

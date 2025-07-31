@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.BazaarAdvancedItemSales do
     %__MODULE__{
       values: [
         data
-        |> Torngen.Client.Schema.parse({:object, %{"advanced_item_sales" => {:static, :integer}}}),
+        |> Torngen.Client.Schema.parse({:object, %{advanced_item_sales: {:static, :integer}}}),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.Bazaar)
       ]
     }

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Forum.ThreadId.Posts do
   @moduledoc """
   Get specific forum thread posts.
 
-  Requires public access key. <br>Returns 20 posts per page for a specific thread.
+  Requires public access key. Returns 20 posts per page for a specific thread.
 
   ## Parmeters
   - offset: N/A

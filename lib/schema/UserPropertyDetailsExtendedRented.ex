@@ -28,13 +28,13 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedRented do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "cost" => {:static, :integer},
-             "cost_per_day" => {:static, :integer},
-             "rental_period" => {:static, :integer},
-             "rental_period_remaining" => {:static, :integer},
-             "rented_by" => Torngen.Client.Schema.BasicUser,
-             "status" => {:enum, :string, ["rented"]},
-             "used_by" => {:array, Torngen.Client.Schema.BasicUser}
+             status: {:enum, :string, ["rented"]},
+             rental_period: {:static, :integer},
+             cost_per_day: {:static, :integer},
+             cost: {:static, :integer},
+             used_by: {:array, Torngen.Client.Schema.BasicUser},
+             rented_by: Torngen.Client.Schema.BasicUser,
+             rental_period_remaining: {:static, :integer}
            }}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)

@@ -73,15 +73,12 @@ defmodule Torngen.Client.Schema.TornItem do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "buy_price" => {:one_of, [static: :null, static: :integer]},
-             "market_price" => {:static, :integer},
-             "sell_price" => {:one_of, [static: :null, static: :integer]},
-             "vendor" =>
+             market_price: {:static, :integer},
+             vendor:
                {:one_of,
-                [
-                  static: :null,
-                  object: %{"country" => {:static, :string}, "name" => {:static, :string}}
-                ]}
+                [static: :null, object: %{name: {:static, :string}, country: {:static, :string}}]},
+             sell_price: {:one_of, [static: :null, static: :integer]},
+             buy_price: {:one_of, [static: :null, static: :integer]}
            }}
         ),
       type:
@@ -144,15 +141,12 @@ defmodule Torngen.Client.Schema.TornItem do
       value,
       {:object,
        %{
-         "buy_price" => {:one_of, [static: :null, static: :integer]},
-         "market_price" => {:static, :integer},
-         "sell_price" => {:one_of, [static: :null, static: :integer]},
-         "vendor" =>
+         market_price: {:static, :integer},
+         vendor:
            {:one_of,
-            [
-              static: :null,
-              object: %{"country" => {:static, :string}, "name" => {:static, :string}}
-            ]}
+            [static: :null, object: %{name: {:static, :string}, country: {:static, :string}}]},
+         sell_price: {:one_of, [static: :null, static: :integer]},
+         buy_price: {:one_of, [static: :null, static: :integer]}
        }}
     )
   end

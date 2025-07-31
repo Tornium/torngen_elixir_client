@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Crimes do
   @moduledoc """
   Get crimes information.
 
-  Requires public access key. <br> Return the details about released crimes.
+  Requires public access key. Return the details about released crimes.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

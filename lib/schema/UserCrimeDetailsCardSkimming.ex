@@ -37,10 +37,10 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsCardSkimming do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "active" => {:static, :integer},
-             "lost" => {:static, :integer},
-             "most_lucrative" => {:static, :integer},
-             "oldest_recovered" => {:static, :integer}
+             active: {:static, :integer},
+             lost: {:static, :integer},
+             oldest_recovered: {:static, :integer},
+             most_lucrative: {:static, :integer}
            }}
         ),
       card_details:
@@ -49,13 +49,11 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsCardSkimming do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "areas" =>
-               {:array,
-                {:object, %{"amount" => {:static, :integer}, "id" => {:static, :integer}}}},
-             "lost" => {:static, :integer},
-             "recoverable" => {:static, :integer},
-             "recovered" => {:static, :integer},
-             "sold" => {:static, :integer}
+             lost: {:static, :integer},
+             sold: {:static, :integer},
+             recovered: {:static, :integer},
+             recoverable: {:static, :integer},
+             areas: {:array, {:object, %{id: {:static, :integer}, amount: {:static, :integer}}}}
            }}
         )
     }
@@ -77,10 +75,10 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsCardSkimming do
       value,
       {:object,
        %{
-         "active" => {:static, :integer},
-         "lost" => {:static, :integer},
-         "most_lucrative" => {:static, :integer},
-         "oldest_recovered" => {:static, :integer}
+         active: {:static, :integer},
+         lost: {:static, :integer},
+         oldest_recovered: {:static, :integer},
+         most_lucrative: {:static, :integer}
        }}
     )
   end
@@ -90,12 +88,11 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsCardSkimming do
       value,
       {:object,
        %{
-         "areas" =>
-           {:array, {:object, %{"amount" => {:static, :integer}, "id" => {:static, :integer}}}},
-         "lost" => {:static, :integer},
-         "recoverable" => {:static, :integer},
-         "recovered" => {:static, :integer},
-         "sold" => {:static, :integer}
+         lost: {:static, :integer},
+         sold: {:static, :integer},
+         recovered: {:static, :integer},
+         recoverable: {:static, :integer},
+         areas: {:array, {:object, %{id: {:static, :integer}, amount: {:static, :integer}}}}
        }}
     )
   end

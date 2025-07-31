@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing.Tracks do
   @moduledoc """
   Get race tracks and descriptions.
 
-  Requires public access key. <br>Returns the details about racing tracks.
+  Requires public access key. Returns the details about racing tracks.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

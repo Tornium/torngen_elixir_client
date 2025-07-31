@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Upgrades do
   @moduledoc """
   Get your faction's upgrades.
 
-  Requires minimal access key with faction API access permissions. <br>
+  Requires minimal access key with faction API access permissions.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

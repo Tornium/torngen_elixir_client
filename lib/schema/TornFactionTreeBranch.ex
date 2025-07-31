@@ -43,20 +43,20 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
           {:array,
            {:object,
             %{
-              "ability" => {:static, :string},
-              "challenge" =>
+              name: {:static, :string},
+              level: {:static, :integer},
+              cost: {:static, :integer},
+              challenge:
                 {:one_of,
                  [
                    static: :null,
                    object: %{
-                     "amount_required" => {:static, :integer},
-                     "description" => {:static, :string},
-                     "stat" => Torngen.Client.Schema.FactionStatEnum
+                     description: {:static, :string},
+                     stat: Torngen.Client.Schema.FactionStatEnum,
+                     amount_required: {:static, :integer}
                    }
                  ]},
-              "cost" => {:static, :integer},
-              "level" => {:static, :integer},
-              "name" => {:static, :string}
+              ability: {:static, :string}
             }}}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
@@ -84,20 +84,20 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
       {:array,
        {:object,
         %{
-          "ability" => {:static, :string},
-          "challenge" =>
+          name: {:static, :string},
+          level: {:static, :integer},
+          cost: {:static, :integer},
+          challenge:
             {:one_of,
              [
                static: :null,
                object: %{
-                 "amount_required" => {:static, :integer},
-                 "description" => {:static, :string},
-                 "stat" => Torngen.Client.Schema.FactionStatEnum
+                 description: {:static, :string},
+                 stat: Torngen.Client.Schema.FactionStatEnum,
+                 amount_required: {:static, :integer}
                }
              ]},
-          "cost" => {:static, :integer},
-          "level" => {:static, :integer},
-          "name" => {:static, :string}
+          ability: {:static, :string}
         }}}
     )
   end

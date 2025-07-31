@@ -36,7 +36,7 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
         data
         |> Map.get("upkeep")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"property" => {:static, :integer}, "staff" => {:static, :integer}}}
+          {:object, %{property: {:static, :integer}, staff: {:static, :integer}}}
         ),
       staff:
         data
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
         |> Torngen.Client.Schema.parse(
           {:array,
            {:object,
-            %{"amount" => {:static, :integer}, "type" => Torngen.Client.Schema.PropertyStaffEnum}}}
+            %{type: Torngen.Client.Schema.PropertyStaffEnum, amount: {:static, :integer}}}}
         ),
       property:
         data
@@ -77,7 +77,7 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
   defp validate_key?(:upkeep, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"property" => {:static, :integer}, "staff" => {:static, :integer}}}
+      {:object, %{property: {:static, :integer}, staff: {:static, :integer}}}
     )
   end
 
@@ -85,8 +85,7 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
     Torngen.Client.Schema.validate?(
       value,
       {:array,
-       {:object,
-        %{"amount" => {:static, :integer}, "type" => Torngen.Client.Schema.PropertyStaffEnum}}}
+       {:object, %{type: Torngen.Client.Schema.PropertyStaffEnum, amount: {:static, :integer}}}}
     )
   end
 

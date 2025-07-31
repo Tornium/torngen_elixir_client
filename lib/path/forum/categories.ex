@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Forum.Categories do
   @moduledoc """
   Get publicly available forum categories.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

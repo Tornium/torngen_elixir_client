@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User do
   @moduledoc """
   Get any User selection.
 
-  Key access level depends on the required selections. <br>Choose one or more selections (comma separated).
+  Key access level depends on the required selections. Choose one or more selections (comma separated).
 
   ## Parmeters
   - selections: Selection names
@@ -25,11 +25,7 @@ defmodule Torngen.Client.Path.User do
   - FactionAttacksFullResponse
   - FactionAttacksResponse
   - UserOrganizedCrimeResponse
-  - UserPersonalStatsHistoric
-  - UserPersonalStatsCategory
-  - UserPersonalStatsPopular
-  - UserPersonalStatsFullPublic
-  - UserPersonalStatsFull
+  - UserPersonalStatsResponse
   - UserListResponse
   - UserItemMarketResponse
   - RevivesFullResponse
@@ -63,11 +59,7 @@ defmodule Torngen.Client.Path.User do
     FactionAttacksFullResponse,
     FactionAttacksResponse,
     UserOrganizedCrimeResponse,
-    UserPersonalStatsHistoric,
-    UserPersonalStatsCategory,
-    UserPersonalStatsPopular,
-    UserPersonalStatsFullPublic,
-    UserPersonalStatsFull,
+    UserPersonalStatsResponse,
     UserListResponse,
     UserItemMarketResponse,
     RevivesFullResponse,

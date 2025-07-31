@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.CrimeId.Subcrimes do
   @moduledoc """
   Get Subcrimes information.
 
-  Requires public access key. <br> Return the details about possible actions for a specific crime.
+  Requires public access key. Return the details about possible actions for a specific crime.
 
   ## Parmeters
   - crimeId: Crime id

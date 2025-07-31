@@ -39,11 +39,11 @@ defmodule Torngen.Client.Schema.MarketPropertyDetails do
           {:array,
            {:object,
             %{
-              "cost" => {:static, :integer},
-              "happy" => {:static, :integer},
-              "market_price" => {:static, :integer},
-              "modifications" => {:array, Torngen.Client.Schema.PropertyModificationEnum},
-              "upkeep" => {:static, :integer}
+              upkeep: {:static, :integer},
+              modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+              market_price: {:static, :integer},
+              happy: {:static, :integer},
+              cost: {:static, :integer}
             }}}
         )
     }
@@ -70,11 +70,11 @@ defmodule Torngen.Client.Schema.MarketPropertyDetails do
       {:array,
        {:object,
         %{
-          "cost" => {:static, :integer},
-          "happy" => {:static, :integer},
-          "market_price" => {:static, :integer},
-          "modifications" => {:array, Torngen.Client.Schema.PropertyModificationEnum},
-          "upkeep" => {:static, :integer}
+          upkeep: {:static, :integer},
+          modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+          market_price: {:static, :integer},
+          happy: {:static, :integer},
+          cost: {:static, :integer}
         }}}
     )
   end

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Members do
   @moduledoc """
   Get a list of a faction's members.
 
-  Requires public access key. <br> The 'revive_setting' value will be populated (not Unknown) if you're requesting data for your own faction and have faction permissions (with custom, limited or full access keys), otherwise it will be set as 'Unknown'.
+  Requires public access key. The 'revive_setting' value will be populated (not Unknown) if you're requesting data for your own faction and have faction permissions (with custom, limited or full access keys), otherwise it will be set as 'Unknown'.
 
   ## Parmeters
   - id: Faction id

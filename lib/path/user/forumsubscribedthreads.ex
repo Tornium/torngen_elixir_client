@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Forumsubscribedthreads do
   @moduledoc """
   Get updates on threads you subscribed to.
 
-  Requires minimal access key. <br>This selection returns data visible in 'Subscribed Threads' section on forum page. Threads are sorted in the same way as on site.
+  Requires minimal access key. This selection returns data visible in 'Subscribed Threads' section on forum page. Threads are sorted in the same way as on site.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

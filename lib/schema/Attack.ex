@@ -88,13 +88,13 @@ defmodule Torngen.Client.Schema.Attack do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "chain" => {:static, :number},
-             "fair_fight" => {:static, :number},
-             "group" => {:static, :number},
-             "overseas" => {:static, :number},
-             "retaliation" => {:static, :number},
-             "war" => {:static, :number},
-             "warlord" => {:static, :number}
+             group: {:static, :number},
+             chain: {:static, :number},
+             warlord: {:static, :number},
+             war: {:static, :number},
+             retaliation: {:static, :number},
+             overseas: {:static, :number},
+             fair_fight: {:static, :number}
            }}
         ),
       is_stealthed:
@@ -160,13 +160,13 @@ defmodule Torngen.Client.Schema.Attack do
       value,
       {:object,
        %{
-         "chain" => {:static, :number},
-         "fair_fight" => {:static, :number},
-         "group" => {:static, :number},
-         "overseas" => {:static, :number},
-         "retaliation" => {:static, :number},
-         "war" => {:static, :number},
-         "warlord" => {:static, :number}
+         group: {:static, :number},
+         chain: {:static, :number},
+         warlord: {:static, :number},
+         war: {:static, :number},
+         retaliation: {:static, :number},
+         overseas: {:static, :number},
+         fair_fight: {:static, :number}
        }}
     )
   end

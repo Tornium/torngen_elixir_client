@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Property.Lookup do
   @moduledoc """
   Get all available property selections.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

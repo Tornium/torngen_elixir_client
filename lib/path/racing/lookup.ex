@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing.Lookup do
   @moduledoc """
   Get all available racing selections.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

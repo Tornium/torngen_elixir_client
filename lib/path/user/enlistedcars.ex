@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Enlistedcars do
   @moduledoc """
   Get user enlisted cars.
 
-  Requires minimal access key. <br>Returns a list of all user enlisted cars.
+  Requires minimal access key. Returns a list of all user enlisted cars.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

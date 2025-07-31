@@ -33,16 +33,16 @@ defmodule Torngen.Client.Schema.PersonalStatsJobsExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "job_points_used" => {:static, :integer},
-             "stats" =>
+             stats:
                {:object,
                 %{
-                  "endurance" => {:static, :integer},
-                  "intelligence" => {:static, :integer},
-                  "manual" => {:static, :integer},
-                  "total" => {:static, :integer}
+                  total: {:static, :integer},
+                  manual: {:static, :integer},
+                  intelligence: {:static, :integer},
+                  endurance: {:static, :integer}
                 }},
-             "trains_received" => {:static, :integer}
+             trains_received: {:static, :integer},
+             job_points_used: {:static, :integer}
            }}
         )
     }
@@ -64,16 +64,16 @@ defmodule Torngen.Client.Schema.PersonalStatsJobsExtended do
       value,
       {:object,
        %{
-         "job_points_used" => {:static, :integer},
-         "stats" =>
+         stats:
            {:object,
             %{
-              "endurance" => {:static, :integer},
-              "intelligence" => {:static, :integer},
-              "manual" => {:static, :integer},
-              "total" => {:static, :integer}
+              total: {:static, :integer},
+              manual: {:static, :integer},
+              intelligence: {:static, :integer},
+              endurance: {:static, :integer}
             }},
-         "trains_received" => {:static, :integer}
+         trains_received: {:static, :integer},
+         job_points_used: {:static, :integer}
        }}
     )
   end

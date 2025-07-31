@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Search do
   @moduledoc """
   Search factions by name or other criteria.
 
-  Requires public access key. <br>This selection is standalone and cannot be used together with other selections.
+  Requires public access key. This selection is standalone and cannot be used together with other selections.
 
   ## Parmeters
   - name: Name  to search for.

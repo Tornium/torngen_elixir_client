@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Organizedcrimes do
   @moduledoc """
   Get organized crimes information.
 
-  Requires public access key. <br> Return the details about released faction organized crimes.
+  Requires public access key. Return the details about released faction organized crimes.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

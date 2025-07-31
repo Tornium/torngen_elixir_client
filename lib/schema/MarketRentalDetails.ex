@@ -41,13 +41,13 @@ defmodule Torngen.Client.Schema.MarketRentalDetails do
           {:array,
            {:object,
             %{
-              "cost" => {:static, :integer},
-              "cost_per_day" => {:static, :integer},
-              "happy" => {:static, :integer},
-              "market_price" => {:static, :integer},
-              "modifications" => {:array, Torngen.Client.Schema.PropertyModificationEnum},
-              "rental_period" => {:static, :integer},
-              "upkeep" => {:static, :integer}
+              upkeep: {:static, :integer},
+              rental_period: {:static, :integer},
+              modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+              market_price: {:static, :integer},
+              happy: {:static, :integer},
+              cost_per_day: {:static, :integer},
+              cost: {:static, :integer}
             }}}
         )
     }
@@ -74,13 +74,13 @@ defmodule Torngen.Client.Schema.MarketRentalDetails do
       {:array,
        {:object,
         %{
-          "cost" => {:static, :integer},
-          "cost_per_day" => {:static, :integer},
-          "happy" => {:static, :integer},
-          "market_price" => {:static, :integer},
-          "modifications" => {:array, Torngen.Client.Schema.PropertyModificationEnum},
-          "rental_period" => {:static, :integer},
-          "upkeep" => {:static, :integer}
+          upkeep: {:static, :integer},
+          rental_period: {:static, :integer},
+          modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+          market_price: {:static, :integer},
+          happy: {:static, :integer},
+          cost_per_day: {:static, :integer},
+          cost: {:static, :integer}
         }}}
     )
   end

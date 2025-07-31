@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Forum do
   @moduledoc """
   Get any Forum selection.
 
-  Requires public access key. <br>Choose one or more selections (comma separated).
+  Requires public access key. Choose one or more selections (comma separated).
 
   ## Parmeters
   - selections: Selection names

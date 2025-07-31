@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Attacksfull do
   @moduledoc """
   Get your simplified attacks.
 
-  Requires limited access key. <br>Returns up to 1,000 rows. <br>
+  Requires limited access key. Returns up to 1,000 rows.
 
   ## Parmeters
   - limit: N/A

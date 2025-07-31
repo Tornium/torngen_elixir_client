@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Bounties do
   @moduledoc """
   Get bounties placed on you.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

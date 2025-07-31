@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Bounties do
   @moduledoc """
   Get bounties.
 
-  Requires public key. <br>
+  Requires public key.
 
   ## Parmeters
   - limit: N/A

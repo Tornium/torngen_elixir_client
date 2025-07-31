@@ -38,18 +38,18 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
           {:array,
            {:object,
             %{
-              "country" => Torngen.Client.Schema.CountryEnum,
-              "hourly_profit" => {:static, :integer},
-              "item" =>
+              item:
                 {:object,
                  %{
-                   "due" => {:one_of, [static: :null, static: :integer]},
-                   "id" => Torngen.Client.Schema.ItemId,
-                   "name" => {:static, :string},
-                   "price" => {:static, :integer},
-                   "value" => {:static, :integer}
+                   id: Torngen.Client.Schema.ItemId,
+                   name: {:static, :string},
+                   value: {:static, :integer},
+                   price: {:static, :integer},
+                   due: {:one_of, [static: :null, static: :integer]}
                  }},
-              "trip_duration" => {:static, :integer}
+              trip_duration: {:static, :integer},
+              hourly_profit: {:static, :integer},
+              country: Torngen.Client.Schema.CountryEnum
             }}}
         )
     }
@@ -72,18 +72,18 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
       {:array,
        {:object,
         %{
-          "country" => Torngen.Client.Schema.CountryEnum,
-          "hourly_profit" => {:static, :integer},
-          "item" =>
+          item:
             {:object,
              %{
-               "due" => {:one_of, [static: :null, static: :integer]},
-               "id" => Torngen.Client.Schema.ItemId,
-               "name" => {:static, :string},
-               "price" => {:static, :integer},
-               "value" => {:static, :integer}
+               id: Torngen.Client.Schema.ItemId,
+               name: {:static, :string},
+               value: {:static, :integer},
+               price: {:static, :integer},
+               due: {:one_of, [static: :null, static: :integer]}
              }},
-          "trip_duration" => {:static, :integer}
+          trip_duration: {:static, :integer},
+          hourly_profit: {:static, :integer},
+          country: Torngen.Client.Schema.CountryEnum
         }}}
     )
   end

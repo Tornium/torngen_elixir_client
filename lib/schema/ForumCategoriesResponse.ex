@@ -32,10 +32,10 @@ defmodule Torngen.Client.Schema.ForumCategoriesResponse do
           {:array,
            {:object,
             %{
-              "acronym" => {:static, :string},
-              "id" => Torngen.Client.Schema.ForumId,
-              "threads" => {:static, :integer},
-              "title" => {:static, :string}
+              id: Torngen.Client.Schema.ForumId,
+              threads: {:static, :integer},
+              title: {:static, :string},
+              acronym: {:static, :string}
             }}}
         )
     }
@@ -58,10 +58,10 @@ defmodule Torngen.Client.Schema.ForumCategoriesResponse do
       {:array,
        {:object,
         %{
-          "acronym" => {:static, :string},
-          "id" => Torngen.Client.Schema.ForumId,
-          "threads" => {:static, :integer},
-          "title" => {:static, :string}
+          id: Torngen.Client.Schema.ForumId,
+          threads: {:static, :integer},
+          title: {:static, :string},
+          acronym: {:static, :string}
         }}}
     )
   end

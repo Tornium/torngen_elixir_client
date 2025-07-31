@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Logcategories do
   @moduledoc """
   Get available log categories.
 
-  Requires public key. <br>
+  Requires public key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

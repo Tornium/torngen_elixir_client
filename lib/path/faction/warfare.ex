@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Warfare do
   @moduledoc """
   Get faction warfare.
 
-  Requires public access key. <br>The response depends on the selected category.
+  Requires public access key. The response depends on the selected category.
 
   ## Parmeters
   - cat: N/A

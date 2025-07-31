@@ -13,8 +13,7 @@ defmodule Torngen.Client.Schema.TornHofWithOffenses do
   def parse(%{} = data) do
     %__MODULE__{
       values: [
-        data
-        |> Torngen.Client.Schema.parse({:object, %{"criminal_offenses" => {:static, :integer}}}),
+        data |> Torngen.Client.Schema.parse({:object, %{criminal_offenses: {:static, :integer}}}),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornHofBasic)
       ]
     }

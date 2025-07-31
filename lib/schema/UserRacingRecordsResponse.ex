@@ -36,17 +36,16 @@ defmodule Torngen.Client.Schema.UserRacingRecordsResponse do
           {:array,
            {:object,
             %{
-              "records" =>
+              track:
+                {:object, %{id: Torngen.Client.Schema.RaceTrackId, name: {:static, :string}}},
+              records:
                 {:array,
                  {:object,
                   %{
-                    "car_id" => Torngen.Client.Schema.ItemId,
-                    "car_name" => {:static, :string},
-                    "lap_time" => {:static, :integer}
-                  }}},
-              "track" =>
-                {:object,
-                 %{"id" => Torngen.Client.Schema.RaceTrackId, "name" => {:static, :string}}}
+                    lap_time: {:static, :integer},
+                    car_name: {:static, :string},
+                    car_id: Torngen.Client.Schema.ItemId
+                  }}}
             }}}
         )
     }
@@ -69,16 +68,15 @@ defmodule Torngen.Client.Schema.UserRacingRecordsResponse do
       {:array,
        {:object,
         %{
-          "records" =>
+          track: {:object, %{id: Torngen.Client.Schema.RaceTrackId, name: {:static, :string}}},
+          records:
             {:array,
              {:object,
               %{
-                "car_id" => Torngen.Client.Schema.ItemId,
-                "car_name" => {:static, :string},
-                "lap_time" => {:static, :integer}
-              }}},
-          "track" =>
-            {:object, %{"id" => Torngen.Client.Schema.RaceTrackId, "name" => {:static, :string}}}
+                lap_time: {:static, :integer},
+                car_name: {:static, :string},
+                car_id: Torngen.Client.Schema.ItemId
+              }}}
         }}}
     )
   end

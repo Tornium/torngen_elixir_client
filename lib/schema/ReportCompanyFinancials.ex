@@ -28,9 +28,9 @@ defmodule Torngen.Client.Schema.ReportCompanyFinancials do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "average" => {:static, :integer},
-             "highest" => {:static, :integer},
-             "lowest" => {:static, :integer}
+             lowest: {:static, :integer},
+             highest: {:static, :integer},
+             average: {:static, :integer}
            }}
         ),
       employees: data |> Map.get("employees") |> Torngen.Client.Schema.parse({:static, :integer}),
@@ -53,11 +53,7 @@ defmodule Torngen.Client.Schema.ReportCompanyFinancials do
     Torngen.Client.Schema.validate?(
       value,
       {:object,
-       %{
-         "average" => {:static, :integer},
-         "highest" => {:static, :integer},
-         "lowest" => {:static, :integer}
-       }}
+       %{lowest: {:static, :integer}, highest: {:static, :integer}, average: {:static, :integer}}}
     )
   end
 

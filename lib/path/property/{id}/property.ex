@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Property.Id.Property do
   @moduledoc """
   Get a specific property.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - id: Property id

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.TerritoryWarId.Territorywarreport do
   @moduledoc """
   Get territory war details.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - territoryWarId: Territory war id

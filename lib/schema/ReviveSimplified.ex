@@ -45,12 +45,12 @@ defmodule Torngen.Client.Schema.ReviveSimplified do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "early_discharge" => {:static, :boolean},
-             "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-             "hospital_reason" => {:static, :string},
-             "id" => Torngen.Client.Schema.UserId,
-             "last_action" => {:static, :integer},
-             "online_status" => {:static, :string}
+             id: Torngen.Client.Schema.UserId,
+             online_status: {:static, :string},
+             last_action: {:static, :integer},
+             hospital_reason: {:static, :string},
+             early_discharge: {:static, :boolean},
+             faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
            }}
         ),
       success_chance:
@@ -61,8 +61,8 @@ defmodule Torngen.Client.Schema.ReviveSimplified do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-             "id" => Torngen.Client.Schema.UserId
+             id: Torngen.Client.Schema.UserId,
+             faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
            }}
         ),
       result: data |> Map.get("result") |> Torngen.Client.Schema.parse({:static, :string}),
@@ -90,12 +90,12 @@ defmodule Torngen.Client.Schema.ReviveSimplified do
       value,
       {:object,
        %{
-         "early_discharge" => {:static, :boolean},
-         "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-         "hospital_reason" => {:static, :string},
-         "id" => Torngen.Client.Schema.UserId,
-         "last_action" => {:static, :integer},
-         "online_status" => {:static, :string}
+         id: Torngen.Client.Schema.UserId,
+         online_status: {:static, :string},
+         last_action: {:static, :integer},
+         hospital_reason: {:static, :string},
+         early_discharge: {:static, :boolean},
+         faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
        }}
     )
   end
@@ -109,8 +109,8 @@ defmodule Torngen.Client.Schema.ReviveSimplified do
       value,
       {:object,
        %{
-         "faction_id" => {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-         "id" => Torngen.Client.Schema.UserId
+         id: Torngen.Client.Schema.UserId,
+         faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
        }}
     )
   end

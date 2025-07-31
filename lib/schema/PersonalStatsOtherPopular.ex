@@ -34,19 +34,17 @@ defmodule Torngen.Client.Schema.PersonalStatsOtherPopular do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "activity" =>
+             refills: {:object, %{nerve: {:static, :integer}, energy: {:static, :integer}}},
+             ranked_war_wins: {:static, :integer},
+             merits_bought: {:static, :integer},
+             donator_days: {:static, :integer},
+             awards: {:static, :integer},
+             activity:
                {:object,
                 %{
-                  "streak" =>
-                    {:object, %{"best" => {:static, :integer}, "current" => {:static, :integer}}},
-                  "time" => {:static, :integer}
-                }},
-             "awards" => {:static, :integer},
-             "donator_days" => {:static, :integer},
-             "merits_bought" => {:static, :integer},
-             "ranked_war_wins" => {:static, :integer},
-             "refills" =>
-               {:object, %{"energy" => {:static, :integer}, "nerve" => {:static, :integer}}}
+                  time: {:static, :integer},
+                  streak: {:object, %{current: {:static, :integer}, best: {:static, :integer}}}
+                }}
            }}
         )
     }
@@ -68,19 +66,17 @@ defmodule Torngen.Client.Schema.PersonalStatsOtherPopular do
       value,
       {:object,
        %{
-         "activity" =>
+         refills: {:object, %{nerve: {:static, :integer}, energy: {:static, :integer}}},
+         ranked_war_wins: {:static, :integer},
+         merits_bought: {:static, :integer},
+         donator_days: {:static, :integer},
+         awards: {:static, :integer},
+         activity:
            {:object,
             %{
-              "streak" =>
-                {:object, %{"best" => {:static, :integer}, "current" => {:static, :integer}}},
-              "time" => {:static, :integer}
-            }},
-         "awards" => {:static, :integer},
-         "donator_days" => {:static, :integer},
-         "merits_bought" => {:static, :integer},
-         "ranked_war_wins" => {:static, :integer},
-         "refills" =>
-           {:object, %{"energy" => {:static, :integer}, "nerve" => {:static, :integer}}}
+              time: {:static, :integer},
+              streak: {:object, %{current: {:static, :integer}, best: {:static, :integer}}}
+            }}
        }}
     )
   end

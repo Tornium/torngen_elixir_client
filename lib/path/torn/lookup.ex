@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Lookup do
   @moduledoc """
   Get all available torn selections.
 
-  Requires public key. <br>
+  Requires public key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

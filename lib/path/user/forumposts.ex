@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Forumposts do
   @moduledoc """
   Get your posts.
 
-  Requires public access key. <br>Returns 20 posts per page.
+  Requires public access key. Returns 20 posts per page.
 
   ## Parmeters
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').

@@ -33,16 +33,16 @@ defmodule Torngen.Client.Schema.PersonalStatsHospital do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "blood_withdrawn" => {:static, :integer},
-             "medical_items_used" => {:static, :integer},
-             "reviving" =>
+             reviving:
                {:object,
                 %{
-                  "revives" => {:static, :integer},
-                  "revives_received" => {:static, :integer},
-                  "skill" => {:static, :integer}
+                  skill: {:static, :integer},
+                  revives: {:static, :integer},
+                  revives_received: {:static, :integer}
                 }},
-             "times_hospitalized" => {:static, :integer}
+             medical_items_used: {:static, :integer},
+             times_hospitalized: {:static, :integer},
+             blood_withdrawn: {:static, :integer}
            }}
         )
     }
@@ -64,16 +64,16 @@ defmodule Torngen.Client.Schema.PersonalStatsHospital do
       value,
       {:object,
        %{
-         "blood_withdrawn" => {:static, :integer},
-         "medical_items_used" => {:static, :integer},
-         "reviving" =>
+         reviving:
            {:object,
             %{
-              "revives" => {:static, :integer},
-              "revives_received" => {:static, :integer},
-              "skill" => {:static, :integer}
+              skill: {:static, :integer},
+              revives: {:static, :integer},
+              revives_received: {:static, :integer}
             }},
-         "times_hospitalized" => {:static, :integer}
+         medical_items_used: {:static, :integer},
+         times_hospitalized: {:static, :integer},
+         blood_withdrawn: {:static, :integer}
        }}
     )
   end

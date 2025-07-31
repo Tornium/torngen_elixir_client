@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Id.Forumposts do
   @moduledoc """
   Get posts for a specific player.
 
-  Requires public access key. <br>Returns 20 posts per page for a specific player.
+  Requires public access key. Returns 20 posts per page for a specific player.
 
   ## Parmeters
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').

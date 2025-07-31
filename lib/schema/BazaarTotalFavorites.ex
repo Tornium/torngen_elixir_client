@@ -13,8 +13,7 @@ defmodule Torngen.Client.Schema.BazaarTotalFavorites do
   def parse(%{} = data) do
     %__MODULE__{
       values: [
-        data
-        |> Torngen.Client.Schema.parse({:object, %{"total_favorites" => {:static, :integer}}}),
+        data |> Torngen.Client.Schema.parse({:object, %{total_favorites: {:static, :integer}}}),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.Bazaar)
       ]
     }

@@ -38,27 +38,27 @@ defmodule Torngen.Client.Schema.PersonalStatsItems do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "found" =>
+             used:
                {:object,
                 %{
-                  "city" => {:static, :integer},
-                  "dump" => {:static, :integer},
-                  "easter_eggs" => {:static, :integer}
+                  stat_enhancers: {:static, :integer},
+                  energy_drinks: {:static, :integer},
+                  easter_eggs: {:static, :integer},
+                  consumables: {:static, :integer},
+                  candy: {:static, :integer},
+                  boosters: {:static, :integer},
+                  books: {:static, :integer},
+                  alcohol: {:static, :integer}
                 }},
-             "trashed" => {:static, :integer},
-             "used" =>
+             found:
                {:object,
                 %{
-                  "alcohol" => {:static, :integer},
-                  "books" => {:static, :integer},
-                  "boosters" => {:static, :integer},
-                  "candy" => {:static, :integer},
-                  "consumables" => {:static, :integer},
-                  "easter_eggs" => {:static, :integer},
-                  "energy_drinks" => {:static, :integer},
-                  "stat_enhancers" => {:static, :integer}
+                  easter_eggs: {:static, :integer},
+                  dump: {:static, :integer},
+                  city: {:static, :integer}
                 }},
-             "viruses_coded" => {:static, :integer}
+             viruses_coded: {:static, :integer},
+             trashed: {:static, :integer}
            }}
         )
     }
@@ -80,27 +80,27 @@ defmodule Torngen.Client.Schema.PersonalStatsItems do
       value,
       {:object,
        %{
-         "found" =>
+         used:
            {:object,
             %{
-              "city" => {:static, :integer},
-              "dump" => {:static, :integer},
-              "easter_eggs" => {:static, :integer}
+              stat_enhancers: {:static, :integer},
+              energy_drinks: {:static, :integer},
+              easter_eggs: {:static, :integer},
+              consumables: {:static, :integer},
+              candy: {:static, :integer},
+              boosters: {:static, :integer},
+              books: {:static, :integer},
+              alcohol: {:static, :integer}
             }},
-         "trashed" => {:static, :integer},
-         "used" =>
+         found:
            {:object,
             %{
-              "alcohol" => {:static, :integer},
-              "books" => {:static, :integer},
-              "boosters" => {:static, :integer},
-              "candy" => {:static, :integer},
-              "consumables" => {:static, :integer},
-              "easter_eggs" => {:static, :integer},
-              "energy_drinks" => {:static, :integer},
-              "stat_enhancers" => {:static, :integer}
+              easter_eggs: {:static, :integer},
+              dump: {:static, :integer},
+              city: {:static, :integer}
             }},
-         "viruses_coded" => {:static, :integer}
+         viruses_coded: {:static, :integer},
+         trashed: {:static, :integer}
        }}
     )
   end

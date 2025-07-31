@@ -39,33 +39,30 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "bazaar" =>
+             items:
                {:object,
                 %{
-                  "customers" => {:static, :integer},
-                  "profit" => {:static, :integer},
-                  "sales" => {:static, :integer}
+                  sent: {:static, :integer},
+                  bought: {:object, %{shops: {:static, :integer}, market: {:static, :integer}}},
+                  auctions: {:object, %{won: {:static, :integer}, sold: {:static, :integer}}}
                 }},
-             "item_market" =>
+             points: {:object, %{sold: {:static, :integer}, bought: {:static, :integer}}},
+             item_market:
                {:object,
                 %{
-                  "customers" => {:static, :integer},
-                  "fees" => {:static, :integer},
-                  "revenue" => {:static, :integer},
-                  "sales" => {:static, :integer}
+                  fees: {:static, :integer},
+                  sales: {:static, :integer},
+                  revenue: {:static, :integer},
+                  customers: {:static, :integer}
                 }},
-             "items" =>
+             bazaar:
                {:object,
                 %{
-                  "auctions" =>
-                    {:object, %{"sold" => {:static, :integer}, "won" => {:static, :integer}}},
-                  "bought" =>
-                    {:object, %{"market" => {:static, :integer}, "shops" => {:static, :integer}}},
-                  "sent" => {:static, :integer}
+                  sales: {:static, :integer},
+                  customers: {:static, :integer},
+                  profit: {:static, :integer}
                 }},
-             "points" =>
-               {:object, %{"bought" => {:static, :integer}, "sold" => {:static, :integer}}},
-             "trades" => {:static, :integer}
+             trades: {:static, :integer}
            }}
         )
     }
@@ -87,32 +84,30 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
       value,
       {:object,
        %{
-         "bazaar" =>
+         items:
            {:object,
             %{
-              "customers" => {:static, :integer},
-              "profit" => {:static, :integer},
-              "sales" => {:static, :integer}
+              sent: {:static, :integer},
+              bought: {:object, %{shops: {:static, :integer}, market: {:static, :integer}}},
+              auctions: {:object, %{won: {:static, :integer}, sold: {:static, :integer}}}
             }},
-         "item_market" =>
+         points: {:object, %{sold: {:static, :integer}, bought: {:static, :integer}}},
+         item_market:
            {:object,
             %{
-              "customers" => {:static, :integer},
-              "fees" => {:static, :integer},
-              "revenue" => {:static, :integer},
-              "sales" => {:static, :integer}
+              fees: {:static, :integer},
+              sales: {:static, :integer},
+              revenue: {:static, :integer},
+              customers: {:static, :integer}
             }},
-         "items" =>
+         bazaar:
            {:object,
             %{
-              "auctions" =>
-                {:object, %{"sold" => {:static, :integer}, "won" => {:static, :integer}}},
-              "bought" =>
-                {:object, %{"market" => {:static, :integer}, "shops" => {:static, :integer}}},
-              "sent" => {:static, :integer}
+              sales: {:static, :integer},
+              customers: {:static, :integer},
+              profit: {:static, :integer}
             }},
-         "points" => {:object, %{"bought" => {:static, :integer}, "sold" => {:static, :integer}}},
-         "trades" => {:static, :integer}
+         trades: {:static, :integer}
        }}
     )
   end

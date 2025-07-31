@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Forumthreads do
   @moduledoc """
   Get your threads.
 
-  Requires public access key. <br>Returns 100 threads per page. The field 'new_posts' is also available, indicating the amount of unread posts with a Minimum API key (or higher).
+  Requires public access key. Returns 100 threads per page. The field 'new_posts' is also available, indicating the amount of unread posts with a Minimum API key (or higher).
 
   ## Parmeters
   - limit: N/A

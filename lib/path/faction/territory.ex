@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Territory do
   @moduledoc """
   Get a list of your faction's territories.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

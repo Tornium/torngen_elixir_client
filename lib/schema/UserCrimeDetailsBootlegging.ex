@@ -44,10 +44,10 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "customers" => {:static, :integer},
-             "earnings" => {:static, :integer},
-             "sales" => {:static, :integer},
-             "visits" => {:static, :integer}
+             sales: {:static, :integer},
+             customers: {:static, :integer},
+             visits: {:static, :integer},
+             earnings: {:static, :integer}
            }}
         ),
       dvds_copied:
@@ -58,16 +58,16 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "action" => {:static, :integer},
-             "comedy" => {:static, :integer},
-             "drama" => {:static, :integer},
-             "earnings" => {:static, :integer},
-             "fantasy" => {:static, :integer},
-             "horror" => {:static, :integer},
-             "romance" => {:static, :integer},
-             "sci_fi" => {:static, :integer},
-             "thriller" => {:static, :integer},
-             "total" => {:static, :integer}
+             total: {:static, :integer},
+             action: {:static, :integer},
+             earnings: {:static, :integer},
+             thriller: {:static, :integer},
+             sci_fi: {:static, :integer},
+             romance: {:static, :integer},
+             horror: {:static, :integer},
+             fantasy: {:static, :integer},
+             drama: {:static, :integer},
+             comedy: {:static, :integer}
            }}
         )
     }
@@ -89,10 +89,10 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
       value,
       {:object,
        %{
-         "customers" => {:static, :integer},
-         "earnings" => {:static, :integer},
-         "sales" => {:static, :integer},
-         "visits" => {:static, :integer}
+         sales: {:static, :integer},
+         customers: {:static, :integer},
+         visits: {:static, :integer},
+         earnings: {:static, :integer}
        }}
     )
   end
@@ -106,16 +106,16 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
       value,
       {:object,
        %{
-         "action" => {:static, :integer},
-         "comedy" => {:static, :integer},
-         "drama" => {:static, :integer},
-         "earnings" => {:static, :integer},
-         "fantasy" => {:static, :integer},
-         "horror" => {:static, :integer},
-         "romance" => {:static, :integer},
-         "sci_fi" => {:static, :integer},
-         "thriller" => {:static, :integer},
-         "total" => {:static, :integer}
+         total: {:static, :integer},
+         action: {:static, :integer},
+         earnings: {:static, :integer},
+         thriller: {:static, :integer},
+         sci_fi: {:static, :integer},
+         romance: {:static, :integer},
+         horror: {:static, :integer},
+         fantasy: {:static, :integer},
+         drama: {:static, :integer},
+         comedy: {:static, :integer}
        }}
     )
   end

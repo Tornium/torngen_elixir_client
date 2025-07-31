@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Attacks do
   @moduledoc """
   Get your detailed attacks.
 
-  Requires limited access key. <br>
+  Requires limited access key.
 
   ## Parmeters
   - limit: N/A

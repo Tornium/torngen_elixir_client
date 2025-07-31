@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Forum.Threads do
   @moduledoc """
   Get threads across all forum categories.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - limit: N/A

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Key.Info do
   @moduledoc """
   Get current key info.
 
-  Available for any key. <br>
+  Available for any key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

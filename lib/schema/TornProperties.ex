@@ -35,13 +35,13 @@ defmodule Torngen.Client.Schema.TornProperties do
           {:array,
            {:object,
             %{
-              "cost" => {:static, :integer},
-              "happy" => {:static, :integer},
-              "id" => Torngen.Client.Schema.PropertyTypeId,
-              "modifications" => {:array, Torngen.Client.Schema.PropertyModificationEnum},
-              "name" => {:static, :string},
-              "staff" => {:array, Torngen.Client.Schema.PropertyStaffEnum},
-              "upkeep" => {:static, :integer}
+              id: Torngen.Client.Schema.PropertyTypeId,
+              name: {:static, :string},
+              upkeep: {:static, :integer},
+              modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+              happy: {:static, :integer},
+              cost: {:static, :integer},
+              staff: {:array, Torngen.Client.Schema.PropertyStaffEnum}
             }}}
         )
     }
@@ -64,13 +64,13 @@ defmodule Torngen.Client.Schema.TornProperties do
       {:array,
        {:object,
         %{
-          "cost" => {:static, :integer},
-          "happy" => {:static, :integer},
-          "id" => Torngen.Client.Schema.PropertyTypeId,
-          "modifications" => {:array, Torngen.Client.Schema.PropertyModificationEnum},
-          "name" => {:static, :string},
-          "staff" => {:array, Torngen.Client.Schema.PropertyStaffEnum},
-          "upkeep" => {:static, :integer}
+          id: Torngen.Client.Schema.PropertyTypeId,
+          name: {:static, :string},
+          upkeep: {:static, :integer},
+          modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+          happy: {:static, :integer},
+          cost: {:static, :integer},
+          staff: {:array, Torngen.Client.Schema.PropertyStaffEnum}
         }}}
     )
   end

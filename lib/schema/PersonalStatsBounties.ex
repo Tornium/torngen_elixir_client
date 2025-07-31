@@ -28,12 +28,9 @@ defmodule Torngen.Client.Schema.PersonalStatsBounties do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "collected" =>
-               {:object, %{"amount" => {:static, :integer}, "value" => {:static, :integer}}},
-             "placed" =>
-               {:object, %{"amount" => {:static, :integer}, "value" => {:static, :integer}}},
-             "received" =>
-               {:object, %{"amount" => {:static, :integer}, "value" => {:static, :integer}}}
+             received: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
+             placed: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
+             collected: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}}
            }}
         )
     }
@@ -55,12 +52,9 @@ defmodule Torngen.Client.Schema.PersonalStatsBounties do
       value,
       {:object,
        %{
-         "collected" =>
-           {:object, %{"amount" => {:static, :integer}, "value" => {:static, :integer}}},
-         "placed" =>
-           {:object, %{"amount" => {:static, :integer}, "value" => {:static, :integer}}},
-         "received" =>
-           {:object, %{"amount" => {:static, :integer}, "value" => {:static, :integer}}}
+         received: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
+         placed: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
+         collected: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}}
        }}
     )
   end

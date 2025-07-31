@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Key do
   @moduledoc """
   Get any Key selection.
 
-
+  N/A
 
   ## Parmeters
   - selections: Selection names

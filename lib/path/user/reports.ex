@@ -2,8 +2,7 @@ defmodule Torngen.Client.Path.User.Reports do
   @moduledoc """
   Get your reports.
 
-  Requires limited access key. <br>
-  * The default limit is set to 25. However, the limit can be set to 100 for the 'stats' category.
+  Requires limited access key. * The default limit is set to 25. However, the limit can be set to 100 for the 'stats' category.
 
   ## Parmeters
   - cat: Used to filter reports with a specific type.

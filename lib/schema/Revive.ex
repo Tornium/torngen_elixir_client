@@ -48,18 +48,18 @@ defmodule Torngen.Client.Schema.Revive do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "early_discharge" => {:static, :boolean},
-             "faction" =>
+             id: Torngen.Client.Schema.UserId,
+             name: {:static, :string},
+             faction:
                {:one_of,
                 [
                   static: :null,
-                  object: %{"id" => Torngen.Client.Schema.FactionId, "name" => {:static, :string}}
+                  object: %{id: Torngen.Client.Schema.FactionId, name: {:static, :string}}
                 ]},
-             "hospital_reason" => {:static, :string},
-             "id" => Torngen.Client.Schema.UserId,
-             "last_action" => {:static, :integer},
-             "name" => {:static, :string},
-             "online_status" => {:static, :string}
+             online_status: {:static, :string},
+             last_action: {:static, :integer},
+             hospital_reason: {:static, :string},
+             early_discharge: {:static, :boolean}
            }}
         ),
       success_chance:
@@ -70,15 +70,15 @@ defmodule Torngen.Client.Schema.Revive do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "faction" =>
+             id: Torngen.Client.Schema.UserId,
+             name: {:static, :string},
+             faction:
                {:one_of,
                 [
                   static: :null,
-                  object: %{"id" => Torngen.Client.Schema.FactionId, "name" => {:static, :string}}
+                  object: %{id: Torngen.Client.Schema.FactionId, name: {:static, :string}}
                 ]},
-             "id" => Torngen.Client.Schema.UserId,
-             "name" => {:static, :string},
-             "skill" => {:one_of, [static: :null, static: :number]}
+             skill: {:one_of, [static: :null, static: :number]}
            }}
         ),
       result: data |> Map.get("result") |> Torngen.Client.Schema.parse({:static, :string}),
@@ -106,18 +106,18 @@ defmodule Torngen.Client.Schema.Revive do
       value,
       {:object,
        %{
-         "early_discharge" => {:static, :boolean},
-         "faction" =>
+         id: Torngen.Client.Schema.UserId,
+         name: {:static, :string},
+         faction:
            {:one_of,
             [
               static: :null,
-              object: %{"id" => Torngen.Client.Schema.FactionId, "name" => {:static, :string}}
+              object: %{id: Torngen.Client.Schema.FactionId, name: {:static, :string}}
             ]},
-         "hospital_reason" => {:static, :string},
-         "id" => Torngen.Client.Schema.UserId,
-         "last_action" => {:static, :integer},
-         "name" => {:static, :string},
-         "online_status" => {:static, :string}
+         online_status: {:static, :string},
+         last_action: {:static, :integer},
+         hospital_reason: {:static, :string},
+         early_discharge: {:static, :boolean}
        }}
     )
   end
@@ -131,15 +131,15 @@ defmodule Torngen.Client.Schema.Revive do
       value,
       {:object,
        %{
-         "faction" =>
+         id: Torngen.Client.Schema.UserId,
+         name: {:static, :string},
+         faction:
            {:one_of,
             [
               static: :null,
-              object: %{"id" => Torngen.Client.Schema.FactionId, "name" => {:static, :string}}
+              object: %{id: Torngen.Client.Schema.FactionId, name: {:static, :string}}
             ]},
-         "id" => Torngen.Client.Schema.UserId,
-         "name" => {:static, :string},
-         "skill" => {:one_of, [static: :null, static: :number]}
+         skill: {:one_of, [static: :null, static: :number]}
        }}
     )
   end

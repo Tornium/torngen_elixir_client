@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Forumfriends do
   @moduledoc """
   Get updates on your friends' activity.
 
-  Requires minimal access key. <br>This selection returns data visible in 'Friends' section on forum page. Feed is sorted by timestamp descending. Only a maximum of 100 rows are returned.
+  Requires minimal access key. This selection returns data visible in 'Friends' section on forum page. Feed is sorted by timestamp descending. Only a maximum of 100 rows are returned.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

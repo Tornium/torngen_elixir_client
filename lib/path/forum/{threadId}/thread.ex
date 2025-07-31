@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Forum.ThreadId.Thread do
   @moduledoc """
   Get specific thread details.
 
-  Requires public access key. <br>Contains details of a thread including topic content and poll (if any).
+  Requires public access key. Contains details of a thread including topic content and poll (if any).
 
   ## Parmeters
   - threadId: Thread id

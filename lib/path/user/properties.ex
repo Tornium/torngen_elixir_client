@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Properties do
   @moduledoc """
   Get your own properties.
 
-  Requires public access key. <br>Extended responses are available when requesting the data with Limited or higher access keys.
+  Requires public access key. Extended responses are available when requesting the data with Limited or higher access keys.
 
   ## Parmeters
   - offset: N/A

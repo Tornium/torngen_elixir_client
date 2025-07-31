@@ -34,10 +34,10 @@ defmodule Torngen.Client.Schema.FactionBalance do
           {:array,
            {:object,
             %{
-              "id" => Torngen.Client.Schema.UserId,
-              "money" => {:static, :integer},
-              "points" => {:static, :integer},
-              "username" => {:static, :string}
+              id: Torngen.Client.Schema.UserId,
+              points: {:static, :integer},
+              username: {:static, :string},
+              money: {:static, :integer}
             }}}
         ),
       faction:
@@ -45,11 +45,7 @@ defmodule Torngen.Client.Schema.FactionBalance do
         |> Map.get("faction")
         |> Torngen.Client.Schema.parse(
           {:object,
-           %{
-             "money" => {:static, :integer},
-             "points" => {:static, :integer},
-             "scope" => {:static, :integer}
-           }}
+           %{scope: {:static, :integer}, points: {:static, :integer}, money: {:static, :integer}}}
         )
     }
   end
@@ -71,10 +67,10 @@ defmodule Torngen.Client.Schema.FactionBalance do
       {:array,
        {:object,
         %{
-          "id" => Torngen.Client.Schema.UserId,
-          "money" => {:static, :integer},
-          "points" => {:static, :integer},
-          "username" => {:static, :string}
+          id: Torngen.Client.Schema.UserId,
+          points: {:static, :integer},
+          username: {:static, :string},
+          money: {:static, :integer}
         }}}
     )
   end
@@ -83,11 +79,7 @@ defmodule Torngen.Client.Schema.FactionBalance do
     Torngen.Client.Schema.validate?(
       value,
       {:object,
-       %{
-         "money" => {:static, :integer},
-         "points" => {:static, :integer},
-         "scope" => {:static, :integer}
-       }}
+       %{scope: {:static, :integer}, points: {:static, :integer}, money: {:static, :integer}}}
     )
   end
 

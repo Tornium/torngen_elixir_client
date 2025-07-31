@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing.Cars do
   @moduledoc """
   Get cars and their racing stats.
 
-  Requires public access key. <br>Returns the stat details about racing cars.
+  Requires public access key. Returns the stat details about racing cars.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

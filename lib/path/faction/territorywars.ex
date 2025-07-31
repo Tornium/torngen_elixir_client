@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Territorywars do
   @moduledoc """
   Get territory wars history for your faction.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - cat: This parameter is deprecated

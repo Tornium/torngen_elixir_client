@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Applications do
   @moduledoc """
   Get your faction's applications.
 
-  Requires minimal access key with faction API access permissions. <br>
+  Requires minimal access key with faction API access permissions.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

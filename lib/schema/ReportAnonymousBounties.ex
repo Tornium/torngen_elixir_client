@@ -31,14 +31,14 @@ defmodule Torngen.Client.Schema.ReportAnonymousBounties do
           {:array,
            {:object,
             %{
-              "bounty" => {:static, :integer},
-              "text" => {:static, :string},
-              "user" =>
+              user:
                 {:one_of,
                  [
                    static: :null,
-                   object: %{"id" => Torngen.Client.Schema.UserId, "name" => {:static, :string}}
-                 ]}
+                   object: %{id: Torngen.Client.Schema.UserId, name: {:static, :string}}
+                 ]},
+              text: {:static, :string},
+              bounty: {:static, :integer}
             }}}
         )
     }
@@ -61,14 +61,14 @@ defmodule Torngen.Client.Schema.ReportAnonymousBounties do
       {:array,
        {:object,
         %{
-          "bounty" => {:static, :integer},
-          "text" => {:static, :string},
-          "user" =>
+          user:
             {:one_of,
              [
                static: :null,
-               object: %{"id" => Torngen.Client.Schema.UserId, "name" => {:static, :string}}
-             ]}
+               object: %{id: Torngen.Client.Schema.UserId, name: {:static, :string}}
+             ]},
+          text: {:static, :string},
+          bounty: {:static, :integer}
         }}}
     )
   end

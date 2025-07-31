@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn do
   @moduledoc """
   Get any Torn selection.
 
-  Requires public access key. <br> Choose one or more selections (comma separated).
+  Requires public access key. Choose one or more selections (comma separated).
 
   ## Parmeters
   - selections: Selection names

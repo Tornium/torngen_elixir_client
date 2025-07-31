@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Calendar do
   @moduledoc """
   Get calendar information.
 
-  Requires public access key. <br> Get the details about competitions & events in the running year.
+  Requires public access key. Get the details about competitions & events in the running year.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market.Timestamp do
   @moduledoc """
   Get current server time.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

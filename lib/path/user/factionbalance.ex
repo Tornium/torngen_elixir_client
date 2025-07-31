@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Factionbalance do
   @moduledoc """
   Get your current faction balance.
 
-  Requires limited access key. <br>
+  Requires limited access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

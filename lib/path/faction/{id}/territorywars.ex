@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.Id.Territorywars do
   @moduledoc """
   Get a faction's territory wars history.
 
-  Requires public access key. <br> 
+  Requires public access key.
 
   ## Parmeters
   - id: Faction id

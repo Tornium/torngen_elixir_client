@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Organizedcrime do
   @moduledoc """
   Get your current ongoing organized crime.
 
-  Requires minimal access key. <br>
+  Requires minimal access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

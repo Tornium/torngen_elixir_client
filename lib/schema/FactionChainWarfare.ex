@@ -19,10 +19,7 @@ defmodule Torngen.Client.Schema.FactionChainWarfare do
         data
         |> Torngen.Client.Schema.parse(
           {:object,
-           %{
-             "faction" =>
-               {:object, %{"id" => Torngen.Client.Schema.FactionId, "name" => {:static, :string}}}
-           }}
+           %{faction: {:object, %{id: Torngen.Client.Schema.FactionId, name: {:static, :string}}}}}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionChain)
       ]

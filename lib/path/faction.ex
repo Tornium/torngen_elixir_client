@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction do
   @moduledoc """
   Get any Faction selection.
 
-  Key access level depends on the required selections. <br> Choose one or more selections (comma separated).
+  Key access level depends on the required selections. Choose one or more selections (comma separated).
 
   ## Parmeters
   - selections: Selection names

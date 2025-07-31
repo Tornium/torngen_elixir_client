@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Territory do
   @moduledoc """
   Get territory details.
 
-  Requires public access key. <br>
+  Requires public access key.
 
   ## Parmeters
   - ids: Specific territory id or a list of territory ids (comma separated)

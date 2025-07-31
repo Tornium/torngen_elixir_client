@@ -2,8 +2,7 @@ defmodule Torngen.Client.Path.Key.Log do
   @moduledoc """
   Get current key log history.
 
-  Available for any key. <br>
-  * This selection contains up to last 250 request logs.
+  Available for any key. * This selection contains up to last 250 request logs.
 
   ## Parmeters
   - limit: N/A

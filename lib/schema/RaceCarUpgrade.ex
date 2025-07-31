@@ -55,13 +55,13 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             "acceleration" => {:static, :integer},
-             "braking" => {:static, :integer},
-             "dirt" => {:static, :integer},
-             "handling" => {:static, :integer},
-             "safety" => {:static, :integer},
-             "tarmac" => {:static, :integer},
-             "top_speed" => {:static, :integer}
+             top_speed: {:static, :integer},
+             tarmac: {:static, :integer},
+             safety: {:static, :integer},
+             handling: {:static, :integer},
+             dirt: {:static, :integer},
+             braking: {:static, :integer},
+             acceleration: {:static, :integer}
            }}
         ),
       description:
@@ -70,7 +70,7 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
         data
         |> Map.get("cost")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"cash" => {:static, :integer}, "points" => {:static, :integer}}}
+          {:object, %{points: {:static, :integer}, cash: {:static, :integer}}}
         ),
       class_required:
         data
@@ -111,13 +111,13 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
       value,
       {:object,
        %{
-         "acceleration" => {:static, :integer},
-         "braking" => {:static, :integer},
-         "dirt" => {:static, :integer},
-         "handling" => {:static, :integer},
-         "safety" => {:static, :integer},
-         "tarmac" => {:static, :integer},
-         "top_speed" => {:static, :integer}
+         top_speed: {:static, :integer},
+         tarmac: {:static, :integer},
+         safety: {:static, :integer},
+         handling: {:static, :integer},
+         dirt: {:static, :integer},
+         braking: {:static, :integer},
+         acceleration: {:static, :integer}
        }}
     )
   end
@@ -129,7 +129,7 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
   defp validate_key?(:cost, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"cash" => {:static, :integer}, "points" => {:static, :integer}}}
+      {:object, %{points: {:static, :integer}, cash: {:static, :integer}}}
     )
   end
 

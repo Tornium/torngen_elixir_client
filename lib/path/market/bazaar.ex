@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market.Bazaar do
   @moduledoc """
   Get bazaar directory.
 
-  Requires public access key. <br> The default response is of type 'BazaarWeekly', but if a category is chosen, the response will be of type 'BazaarSpecialized'.
+  Requires public access key. The default response is of type 'BazaarWeekly', but if a category is chosen, the response will be of type 'BazaarSpecialized'.
 
   ## Parmeters
   - cat: Category of specialized bazaars returned

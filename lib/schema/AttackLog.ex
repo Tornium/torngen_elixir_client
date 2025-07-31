@@ -44,16 +44,13 @@ defmodule Torngen.Client.Schema.AttackLog do
         |> Map.get("defender")
         |> Torngen.Client.Schema.parse(
           {:one_of,
-           [
-             static: :null,
-             object: %{"id" => Torngen.Client.Schema.UserId, "name" => {:static, :string}}
-           ]}
+           [static: :null, object: %{id: Torngen.Client.Schema.UserId, name: {:static, :string}}]}
         ),
       attacker_item:
         data
         |> Map.get("attacker_item")
         |> Torngen.Client.Schema.parse(
-          {:object, %{"id" => Torngen.Client.Schema.ItemId, "name" => {:static, :string}}}
+          {:object, %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}}
         ),
       attacker:
         data
@@ -63,14 +60,14 @@ defmodule Torngen.Client.Schema.AttackLog do
            [
              static: :null,
              object: %{
-               "id" => Torngen.Client.Schema.UserId,
-               "item" =>
+               id: Torngen.Client.Schema.UserId,
+               name: {:static, :string},
+               item:
                  {:one_of,
                   [
                     static: :null,
-                    object: %{"id" => Torngen.Client.Schema.ItemId, "name" => {:static, :string}}
-                  ]},
-               "name" => {:static, :string}
+                    object: %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}
+                  ]}
              }
            ]}
         ),
@@ -108,17 +105,14 @@ defmodule Torngen.Client.Schema.AttackLog do
     Torngen.Client.Schema.validate?(
       value,
       {:one_of,
-       [
-         static: :null,
-         object: %{"id" => Torngen.Client.Schema.UserId, "name" => {:static, :string}}
-       ]}
+       [static: :null, object: %{id: Torngen.Client.Schema.UserId, name: {:static, :string}}]}
     )
   end
 
   defp validate_key?(:attacker_item, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{"id" => Torngen.Client.Schema.ItemId, "name" => {:static, :string}}}
+      {:object, %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}}
     )
   end
 
@@ -129,14 +123,14 @@ defmodule Torngen.Client.Schema.AttackLog do
        [
          static: :null,
          object: %{
-           "id" => Torngen.Client.Schema.UserId,
-           "item" =>
+           id: Torngen.Client.Schema.UserId,
+           name: {:static, :string},
+           item:
              {:one_of,
               [
                 static: :null,
-                object: %{"id" => Torngen.Client.Schema.ItemId, "name" => {:static, :string}}
-              ]},
-           "name" => {:static, :string}
+                object: %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}
+              ]}
          }
        ]}
     )
