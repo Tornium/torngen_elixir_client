@@ -31,6 +31,10 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
             },
             :access => %{
               :type => Torngen.Client.Schema.ApiKeyAccessTypeEnum.t(),
+              :log => %{
+                :custom_permissions => boolean(),
+                :available => [Torngen.Client.Schema.KeyInfoAvailableLog.t()]
+              },
               :level => integer(),
               :faction_id => nil | Torngen.Client.Schema.FactionId.t(),
               :faction => boolean(),
@@ -53,6 +57,12 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
                {:object,
                 %{
                   type: Torngen.Client.Schema.ApiKeyAccessTypeEnum,
+                  log:
+                    {:object,
+                     %{
+                       available: {:array, Torngen.Client.Schema.KeyInfoAvailableLog},
+                       custom_permissions: {:static, :boolean}
+                     }},
                   level: {:static, :integer},
                   faction: {:static, :boolean},
                   company: {:static, :boolean},
@@ -104,6 +114,12 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
            {:object,
             %{
               type: Torngen.Client.Schema.ApiKeyAccessTypeEnum,
+              log:
+                {:object,
+                 %{
+                   available: {:array, Torngen.Client.Schema.KeyInfoAvailableLog},
+                   custom_permissions: {:static, :boolean}
+                 }},
               level: {:static, :integer},
               faction: {:static, :boolean},
               company: {:static, :boolean},
