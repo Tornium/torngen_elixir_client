@@ -5,6 +5,7 @@ defmodule Torngen.Client.Path.Faction.Attacks do
   Requires limited access key with faction API access permissions.
 
   ## Parmeters
+  - filters: It's possible to use this query parameter to only get incoming or outgoing attacks
   - limit: N/A
   - sort: Sorted by the greatest timestamps
   - to: Timestamp that sets the upper limit for the data returned
@@ -31,6 +32,12 @@ defmodule Torngen.Client.Path.Faction.Attacks do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :filters, value do
+    # It's possible to use this query parameter to only get incoming or outgoing attacks. If not specified, this selection will return both incoming and outgoing attacks.
+    {:query, :filters, value}
+  end
 
   @impl true
   defparameter :limit, value do

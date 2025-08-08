@@ -5,6 +5,7 @@ defmodule Torngen.Client.Path.User.Revives do
   Requires limited access key.
 
   ## Parmeters
+  - filters: It's possible to use this query parameter to only get incoming or outgoing revives
   - limit: N/A
   - sort: Sorted by the greatest timestamps
   - to: Timestamp that sets the upper limit for the data returned
@@ -32,6 +33,12 @@ defmodule Torngen.Client.Path.User.Revives do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :filters, value do
+    # It's possible to use this query parameter to only get incoming or outgoing revives. If not specified, this selection will return both incoming and outgoing revives.
+    {:query, :filters, value}
+  end
 
   @impl true
   defparameter :limit, value do
