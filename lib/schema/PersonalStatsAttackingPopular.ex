@@ -67,8 +67,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
              hits:
                {:object,
                 %{
-                  critical: {:static, :integer},
                   success: {:static, :integer},
+                  critical: {:static, :integer},
                   one_hit_kills: {:static, :integer},
                   miss: {:static, :integer}
                 }},
@@ -134,8 +134,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
          hits:
            {:object,
             %{
-              critical: {:static, :integer},
               success: {:static, :integer},
+              critical: {:static, :integer},
               one_hit_kills: {:static, :integer},
               miss: {:static, :integer}
             }},
