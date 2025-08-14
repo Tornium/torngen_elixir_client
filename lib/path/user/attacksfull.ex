@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Attacksfull do
   Requires limited access key. Returns up to 1,000 rows.
 
   ## Parmeters
-  - filters: It's possible to use this query parameter to only get incoming or outgoing attacks
+  - filters: It's possible to use this query parameter to only get incoming or outgoing attacks / revives
   - limit: N/A
   - sort: Sorted by the greatest timestamps
   - to: Timestamp that sets the upper limit for the data returned
@@ -35,7 +35,7 @@ defmodule Torngen.Client.Path.User.Attacksfull do
 
   @impl true
   defparameter :filters, value do
-    # It's possible to use this query parameter to only get incoming or outgoing attacks. If not specified, this selection will return both incoming and outgoing attacks.
+    # It's possible to use this query parameter to only get incoming or outgoing attacks / revives. If not specified, this selection will return both incoming and outgoing attacks / revives.
     {:query, :filters, value}
   end
 

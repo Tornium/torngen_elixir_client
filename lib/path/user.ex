@@ -13,6 +13,7 @@ defmodule Torngen.Client.Path.User do
   - sort: Sorted by the greatest timestamps
   - cat: Selection category
   - stat: Selection stat
+  - filters: It's possible to use this query parameter to only get incoming or outgoing attacks / revives
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - offset: N/A
   - timestamp: Timestamp to bypass cache
@@ -136,6 +137,12 @@ defmodule Torngen.Client.Path.User do
   defparameter :stat, value do
     # Selection stat
     {:query, :stat, value}
+  end
+
+  @impl true
+  defparameter :filters, value do
+    # It's possible to use this query parameter to only get incoming or outgoing attacks / revives. If not specified, this selection will return both incoming and outgoing attacks / revives.
+    {:query, :filters, value}
   end
 
   @impl true
