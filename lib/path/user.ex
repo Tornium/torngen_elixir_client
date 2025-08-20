@@ -23,6 +23,11 @@ defmodule Torngen.Client.Path.User do
   ## Response Module(s)
   - TimestampResponse
   - UserLookupResponse
+  - UserBattleStatsResponse
+  - UserSkillsResponse
+  - UserWorkStatsResponse
+  - UserJobPointsResponse
+  - UserMoneyResponse
   - FactionAttacksFullResponse
   - FactionAttacksResponse
   - UserOrganizedCrimeResponse
@@ -31,6 +36,7 @@ defmodule Torngen.Client.Path.User do
   - UserItemMarketResponse
   - RevivesFullResponse
   - RevivesResponse
+  - UserBasicResponse
   - UserFactionBalanceResponse
   - UserPropertiesResponse
   - UserJobRanksResponse
@@ -57,6 +63,11 @@ defmodule Torngen.Client.Path.User do
   @response_modules [
     TimestampResponse,
     UserLookupResponse,
+    UserBattleStatsResponse,
+    UserSkillsResponse,
+    UserWorkStatsResponse,
+    UserJobPointsResponse,
+    UserMoneyResponse,
     FactionAttacksFullResponse,
     FactionAttacksResponse,
     UserOrganizedCrimeResponse,
@@ -65,6 +76,7 @@ defmodule Torngen.Client.Path.User do
     UserItemMarketResponse,
     RevivesFullResponse,
     RevivesResponse,
+    UserBasicResponse,
     UserFactionBalanceResponse,
     UserPropertiesResponse,
     UserJobRanksResponse,
