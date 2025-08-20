@@ -1,24 +1,24 @@
-defmodule Torngen.Client.Path.User.Factionbalance do
+defmodule Torngen.Client.Path.User.Skills do
   @moduledoc """
-  Deprecated. Use user/money instead.
+  Get your skills.
 
-  Will be removed on 1st of December 2025. Requires limited access key.
+  Requires minimal access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Limited)
+  - key: API key (Public)
 
   ## Response Module(s)
-  - UserFactionBalanceResponse
+  - UserSkillsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/factionbalance"
-  @response_modules [UserFactionBalanceResponse]
+  @path "user/skills"
+  @response_modules [UserSkillsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -42,7 +42,7 @@ defmodule Torngen.Client.Path.User.Factionbalance do
 
   @impl true
   defparameter :key, value do
-    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

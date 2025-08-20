@@ -1,24 +1,25 @@
-defmodule Torngen.Client.Path.User.Factionbalance do
+defmodule Torngen.Client.Path.User.Basic do
   @moduledoc """
-  Deprecated. Use user/money instead.
+  Get your basic profile information.
 
-  Will be removed on 1st of December 2025. Requires limited access key.
+  Requires public access key.
 
   ## Parmeters
+  - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Limited)
+  - key: API key (Public)
 
   ## Response Module(s)
-  - UserFactionBalanceResponse
+  - UserBasicResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/factionbalance"
-  @response_modules [UserFactionBalanceResponse]
+  @path "user/basic"
+  @response_modules [UserBasicResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -27,6 +28,12 @@ defmodule Torngen.Client.Path.User.Factionbalance do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :striptags, value do
+    # Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
+    {:query, :striptags, value}
+  end
 
   @impl true
   defparameter :timestamp, value do
@@ -42,7 +49,7 @@ defmodule Torngen.Client.Path.User.Factionbalance do
 
   @impl true
   defparameter :key, value do
-    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 
