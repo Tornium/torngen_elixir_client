@@ -6,6 +6,7 @@ defmodule Torngen.Client.Path.User.Id.Properties do
 
   ## Parmeters
   - id: User id
+  - filters: It's possible to use this query parameter to filter properties by the key owner or their spouse.
   - offset: N/A
   - limit: N/A
   - timestamp: Timestamp to bypass cache
@@ -35,6 +36,12 @@ defmodule Torngen.Client.Path.User.Id.Properties do
   defparameter :id, value do
     # User id
     {:path, :id, value}
+  end
+
+  @impl true
+  defparameter :filters, value do
+    # It's possible to use this query parameter to filter properties by the key owner or their spouse.
+    {:query, :filters, value}
   end
 
   @impl true

@@ -5,6 +5,7 @@ defmodule Torngen.Client.Path.User.Properties do
   Requires public access key. Extended responses are available when requesting the data with Limited or higher access keys.
 
   ## Parmeters
+  - filters: It's possible to use this query parameter to filter properties by the key owner or their spouse.
   - offset: N/A
   - limit: N/A
   - timestamp: Timestamp to bypass cache
@@ -29,6 +30,12 @@ defmodule Torngen.Client.Path.User.Properties do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :filters, value do
+    # It's possible to use this query parameter to filter properties by the key owner or their spouse.
+    {:query, :filters, value}
+  end
 
   @impl true
   defparameter :offset, value do

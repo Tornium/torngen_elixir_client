@@ -2,11 +2,14 @@ defmodule Torngen.Client.Path.Forum.ThreadId.Posts do
   @moduledoc """
   Get specific forum thread posts.
 
-  Requires public access key. Returns 20 posts per page for a specific thread.
+  Requires public access key. Returns 20 posts per page for a specific thread. By default, it uses 'offset', but it's possible to filter posts with 'from' & 'to' parameters.
 
   ## Parmeters
-  - offset: N/A
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
+  - offset: N/A
+  - sort: Sorted by the greatest timestamps
+  - from: Timestamp that sets the lower limit for the data returned
+  - to: Timestamp that sets the upper limit for the data returned
   - threadId: Thread id
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
@@ -32,15 +35,33 @@ defmodule Torngen.Client.Path.Forum.ThreadId.Posts do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
+  defparameter :striptags, value do
+    # Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
+    {:query, :striptags, value}
+  end
+
+  @impl true
   defparameter :offset, value do
     # N/A
     {:query, :offset, value}
   end
 
   @impl true
-  defparameter :striptags, value do
-    # Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
-    {:query, :striptags, value}
+  defparameter :sort, value do
+    # Sorted by the greatest timestamps
+    {:query, :sort, value}
+  end
+
+  @impl true
+  defparameter :from, value do
+    # Timestamp that sets the lower limit for the data returned. Data returned will be after this time
+    {:query, :from, value}
+  end
+
+  @impl true
+  defparameter :to, value do
+    # Timestamp that sets the upper limit for the data returned. Data returned will be up to and including this time
+    {:query, :to, value}
   end
 
   @impl true
