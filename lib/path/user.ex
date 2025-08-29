@@ -35,6 +35,9 @@ defmodule Torngen.Client.Path.User do
   - UserListResponse
   - UserItemMarketResponse
   - RevivesFullResponse
+  - UserMeritsResponse
+  - UserMedalsResponse
+  - UserHonorsResponse
   - RevivesResponse
   - UserBasicResponse
   - UserFactionBalanceResponse
@@ -75,6 +78,9 @@ defmodule Torngen.Client.Path.User do
     UserListResponse,
     UserItemMarketResponse,
     RevivesFullResponse,
+    UserMeritsResponse,
+    UserMedalsResponse,
+    UserHonorsResponse,
     RevivesResponse,
     UserBasicResponse,
     UserFactionBalanceResponse,
