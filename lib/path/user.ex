@@ -34,6 +34,11 @@ defmodule Torngen.Client.Path.User do
   - UserPersonalStatsResponse
   - UserListResponse
   - UserItemMarketResponse
+  - UserIconsResponse
+  - UserCompetitionResponse
+  - UserFactionResponse
+  - UserJobResponse
+  - UserProfileResponse
   - RevivesFullResponse
   - UserMeritsResponse
   - UserMedalsResponse
@@ -77,6 +82,11 @@ defmodule Torngen.Client.Path.User do
     UserPersonalStatsResponse,
     UserListResponse,
     UserItemMarketResponse,
+    UserIconsResponse,
+    UserCompetitionResponse,
+    UserFactionResponse,
+    UserJobResponse,
+    UserProfileResponse,
     RevivesFullResponse,
     UserMeritsResponse,
     UserMedalsResponse,
