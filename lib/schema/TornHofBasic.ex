@@ -40,7 +40,7 @@ defmodule Torngen.Client.Schema.TornHofBasic do
           username: String.t(),
           signed_up: integer(),
           rank_number: integer(),
-          rank_name: String.t(),
+          rank_name: Torngen.Client.Schema.UserRankEnum.t(),
           rank: String.t(),
           position: integer(),
           level: integer(),
@@ -63,7 +63,10 @@ defmodule Torngen.Client.Schema.TornHofBasic do
       signed_up: data |> Map.get("signed_up") |> Torngen.Client.Schema.parse({:static, :integer}),
       rank_number:
         data |> Map.get("rank_number") |> Torngen.Client.Schema.parse({:static, :integer}),
-      rank_name: data |> Map.get("rank_name") |> Torngen.Client.Schema.parse({:static, :string}),
+      rank_name:
+        data
+        |> Map.get("rank_name")
+        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserRankEnum),
       rank: data |> Map.get("rank") |> Torngen.Client.Schema.parse({:static, :string}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :integer}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
@@ -110,7 +113,7 @@ defmodule Torngen.Client.Schema.TornHofBasic do
   end
 
   defp validate_key?(:rank_name, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserRankEnum)
   end
 
   defp validate_key?(:rank, value) do
