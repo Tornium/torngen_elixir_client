@@ -53,7 +53,9 @@ defmodule Torngen.Client.Schema.UserTitleEnum do
     "Tourist",
     "Nudist",
     "Sage",
-    "Coward"
+    "Coward",
+    "Newcomer",
+    "Deserter"
   ]
 
   @spec values() :: [t()]

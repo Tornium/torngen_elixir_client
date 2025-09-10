@@ -34,6 +34,7 @@ defmodule Torngen.Client.Schema.UserProfileResponse do
             :forum_posts => integer(),
             :faction_id => nil | Torngen.Client.Schema.FactionId.t(),
             :enemies => integer(),
+            :donator_status => nil | Torngen.Client.Schema.UserDonatorStatusEnum.t(),
             :awards => integer(),
             :age => integer()
           }
@@ -71,6 +72,8 @@ defmodule Torngen.Client.Schema.UserProfileResponse do
              gender: Torngen.Client.Schema.UserGenderEnum,
              forum_posts: {:static, :integer},
              enemies: {:static, :integer},
+             donator_status:
+               {:one_of, [{:static, :null}, Torngen.Client.Schema.UserDonatorStatusEnum]},
              age: {:static, :integer}
            }}
         )
@@ -115,6 +118,8 @@ defmodule Torngen.Client.Schema.UserProfileResponse do
          gender: Torngen.Client.Schema.UserGenderEnum,
          forum_posts: {:static, :integer},
          enemies: {:static, :integer},
+         donator_status:
+           {:one_of, [{:static, :null}, Torngen.Client.Schema.UserDonatorStatusEnum]},
          age: {:static, :integer}
        }}
     )

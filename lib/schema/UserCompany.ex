@@ -5,11 +5,12 @@ defmodule Torngen.Client.Schema.UserCompany do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:type_id, :type, :position, :name, :id, :days_in_company]
+  @keys [:type_id, :type, :rating, :position, :name, :id, :days_in_company]
 
   defstruct [
     :type_id,
     :type,
+    :rating,
     :position,
     :name,
     :id,
@@ -19,6 +20,7 @@ defmodule Torngen.Client.Schema.UserCompany do
   @type t :: %__MODULE__{
           type_id: Torngen.Client.Schema.CompanyTypeId.t(),
           type: String.t(),
+          rating: integer(),
           position: String.t(),
           name: String.t(),
           id: Torngen.Client.Schema.CompanyId.t(),
@@ -33,6 +35,7 @@ defmodule Torngen.Client.Schema.UserCompany do
         |> Map.get("type_id")
         |> Torngen.Client.Schema.parse(Torngen.Client.Schema.CompanyTypeId),
       type: data |> Map.get("type") |> Torngen.Client.Schema.parse({:enum, :string, ["company"]}),
+      rating: data |> Map.get("rating") |> Torngen.Client.Schema.parse({:static, :integer}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :string}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.CompanyId),
@@ -58,6 +61,10 @@ defmodule Torngen.Client.Schema.UserCompany do
 
   defp validate_key?(:type, value) do
     Torngen.Client.Schema.validate?(value, {:enum, :string, ["company"]})
+  end
+
+  defp validate_key?(:rating, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
   defp validate_key?(:position, value) do

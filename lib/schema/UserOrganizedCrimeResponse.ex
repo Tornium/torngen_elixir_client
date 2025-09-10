@@ -12,7 +12,10 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimeResponse do
   ]
 
   @type t :: %__MODULE__{
-          organizedCrime: nil | Torngen.Client.Schema.FactionCrime.t()
+          organizedCrime:
+            nil
+            | Torngen.Client.Schema.UserOrganizedCrimeError.t()
+            | Torngen.Client.Schema.FactionCrime.t()
         }
 
   @impl true
@@ -22,7 +25,12 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimeResponse do
         data
         |> Map.get("organizedCrime")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrime]}
+          {:one_of,
+           [
+             {:static, :null},
+             Torngen.Client.Schema.UserOrganizedCrimeError,
+             Torngen.Client.Schema.FactionCrime
+           ]}
         )
     }
   end
@@ -41,7 +49,12 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimeResponse do
   defp validate_key?(:organizedCrime, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrime]}
+      {:one_of,
+       [
+         {:static, :null},
+         Torngen.Client.Schema.UserOrganizedCrimeError,
+         Torngen.Client.Schema.FactionCrime
+       ]}
     )
   end
 
