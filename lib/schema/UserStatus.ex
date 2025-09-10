@@ -5,14 +5,15 @@ defmodule Torngen.Client.Schema.UserStatus do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:until, :travel_type, :state, :details, :description]
+  @keys [:until, :travel_type, :state, :details, :description, :color]
 
   defstruct [
     :until,
     :travel_type,
     :state,
     :details,
-    :description
+    :description,
+    :color
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +21,8 @@ defmodule Torngen.Client.Schema.UserStatus do
           travel_type: String.t(),
           state: String.t(),
           details: nil | String.t(),
-          description: String.t()
+          description: String.t(),
+          color: String.t()
         }
 
   @impl true
@@ -38,7 +40,8 @@ defmodule Torngen.Client.Schema.UserStatus do
         |> Map.get("details")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]}),
       description:
-        data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string})
+        data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string}),
+      color: data |> Map.get("color") |> Torngen.Client.Schema.parse({:static, :string})
     }
   end
 
@@ -70,6 +73,10 @@ defmodule Torngen.Client.Schema.UserStatus do
   end
 
   defp validate_key?(:description, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :string})
+  end
+
+  defp validate_key?(:color, value) do
     Torngen.Client.Schema.validate?(value, {:static, :string})
   end
 
