@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.HonorRarityEnum do
+defmodule Torngen.Client.Schema.UserPlaneImageTypeEnum do
   @moduledoc false
 
   require Logger
@@ -7,17 +7,7 @@ defmodule Torngen.Client.Schema.HonorRarityEnum do
 
   @type t :: String.t()
 
-  @values [
-    "Extremely Rare",
-    "Very Rare",
-    "Rare",
-    "Limited",
-    "Uncommon",
-    "Common",
-    "Very Common",
-    "Unknown",
-    "Unknown Rarity"
-  ]
+  @values ["private_jet", "light_aircraft", "airliner"]
 
   @spec values() :: [t()]
   def values, do: @values
@@ -30,7 +20,7 @@ defmodule Torngen.Client.Schema.HonorRarityEnum do
     if validate?(data) do
       data
     else
-      Logger.warning("Invalid enum value #{inspect(data)} of HonorRarityEnum")
+      Logger.warning("Invalid enum value #{inspect(data)} of UserPlaneImageTypeEnum")
       nil
     end
   end
