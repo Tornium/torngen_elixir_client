@@ -36,9 +36,7 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
                 :available => [Torngen.Client.Schema.KeyInfoAvailableLog.t()]
               },
               :level => integer(),
-              :faction_id => nil | Torngen.Client.Schema.FactionId.t(),
               :faction => boolean(),
-              :company_id => nil | Torngen.Client.Schema.CompanyId.t(),
               :company => boolean()
             }
           }
@@ -65,9 +63,7 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
                      }},
                   level: {:static, :integer},
                   faction: {:static, :boolean},
-                  company: {:static, :boolean},
-                  faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-                  company_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]}
+                  company: {:static, :boolean}
                 }},
              user:
                {:object,
@@ -122,9 +118,7 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
                  }},
               level: {:static, :integer},
               faction: {:static, :boolean},
-              company: {:static, :boolean},
-              faction_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]},
-              company_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.CompanyId]}
+              company: {:static, :boolean}
             }},
          user:
            {:object,

@@ -5,7 +5,6 @@ defmodule Torngen.Client.Path.Faction.Territorywars do
   Requires public access key.
 
   ## Parmeters
-  - cat: This parameter is deprecated
   - from: Timestamp that sets the lower limit for the data returned
   - to: Timestamp that sets the upper limit for the data returned
   - sort: Sorted by the greatest timestamps
@@ -15,7 +14,7 @@ defmodule Torngen.Client.Path.Faction.Territorywars do
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionTerritoryWarsResponse
+  - FactionTerritoryWarsHistoryResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
@@ -23,7 +22,7 @@ defmodule Torngen.Client.Path.Faction.Territorywars do
   @behaviour Torngen.Client.Path
 
   @path "faction/territorywars"
-  @response_modules [FactionTerritoryWarsResponse]
+  @response_modules [FactionTerritoryWarsHistoryResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -32,13 +31,6 @@ defmodule Torngen.Client.Path.Faction.Territorywars do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  @deprecated "See OpenAPI specification"
-  defparameter :cat, value do
-    # This parameter is deprecated. The territory wars list can now instead be fetched via 'faction' -> 'warfare' endpoint. This functionality will be removed on 1st of September 2025.
-    {:query, :cat, value}
-  end
 
   @impl true
   defparameter :from, value do
