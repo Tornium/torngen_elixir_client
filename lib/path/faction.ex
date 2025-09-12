@@ -26,7 +26,6 @@ defmodule Torngen.Client.Path.Faction do
   - FactionRankedWarResponse
   - FactionRacketsResponse
   - FactionContributorsResponse
-  - FactionTerritoryWarsResponse
   - FactionStatsResponse
   - FactionUpgradesResponse
   - FactionTerritoriesResponse
@@ -67,7 +66,6 @@ defmodule Torngen.Client.Path.Faction do
     FactionRankedWarResponse,
     FactionRacketsResponse,
     FactionContributorsResponse,
-    FactionTerritoryWarsResponse,
     FactionStatsResponse,
     FactionUpgradesResponse,
     FactionTerritoriesResponse,

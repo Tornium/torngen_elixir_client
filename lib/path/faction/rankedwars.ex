@@ -5,7 +5,6 @@ defmodule Torngen.Client.Path.Faction.Rankedwars do
   Requires public access key.
 
   ## Parmeters
-  - cat: This parameter is deprecated
   - from: Timestamp that sets the lower limit for the data returned
   - to: Timestamp that sets the upper limit for the data returned
   - sort: Sorted by the greatest timestamps
@@ -31,13 +30,6 @@ defmodule Torngen.Client.Path.Faction.Rankedwars do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  @deprecated "See OpenAPI specification"
-  defparameter :cat, value do
-    # This parameter is deprecated. The ranked wars list can now instead be fetched via 'faction' -> 'warfare' endpoint. This functionality will be removed on 1st of September 2025.
-    {:query, :cat, value}
-  end
 
   @impl true
   defparameter :from, value do
