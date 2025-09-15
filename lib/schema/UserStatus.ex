@@ -20,7 +20,7 @@ defmodule Torngen.Client.Schema.UserStatus do
   @type t :: %__MODULE__{
           until: nil | integer(),
           travel_type: String.t(),
-          state: String.t(),
+          state: String.t() | Torngen.Client.Schema.UserStatusStateEnum.t(),
           plane_image_type: Torngen.Client.Schema.UserPlaneImageTypeEnum.t(),
           details: nil | String.t(),
           description: String.t(),
@@ -36,7 +36,12 @@ defmodule Torngen.Client.Schema.UserStatus do
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
       travel_type:
         data |> Map.get("travel_type") |> Torngen.Client.Schema.parse({:static, :string}),
-      state: data |> Map.get("state") |> Torngen.Client.Schema.parse({:static, :string}),
+      state:
+        data
+        |> Map.get("state")
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [{:static, :string}, Torngen.Client.Schema.UserStatusStateEnum]}
+        ),
       plane_image_type:
         data
         |> Map.get("plane_image_type")
@@ -71,7 +76,10 @@ defmodule Torngen.Client.Schema.UserStatus do
   end
 
   defp validate_key?(:state, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:one_of, [{:static, :string}, Torngen.Client.Schema.UserStatusStateEnum]}
+    )
   end
 
   defp validate_key?(:plane_image_type, value) do
