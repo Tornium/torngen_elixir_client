@@ -7,6 +7,7 @@ defmodule Torngen.Client.Path.Faction do
   ## Parmeters
   - selections: Selection names
   - id: selection id
+  - legacy: Legacy selection names for which you want or expect API v1 response
   - limit: N/A
   - from: Timestamp that sets the lower limit for the data returned
   - to: Timestamp that sets the upper limit for the data returned
@@ -113,6 +114,12 @@ defmodule Torngen.Client.Path.Faction do
   defparameter :id, value do
     # selection id
     {:query, :id, value}
+  end
+
+  @impl true
+  defparameter :legacy, value do
+    # Legacy selection names for which you want or expect API v1 response
+    {:query, :legacy, value}
   end
 
   @impl true

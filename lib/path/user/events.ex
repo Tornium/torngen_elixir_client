@@ -1,29 +1,28 @@
-defmodule Torngen.Client.Path.User.List do
+defmodule Torngen.Client.Path.User.Events do
   @moduledoc """
-  Get your friends, enemies or targets list.
+  Get your events.
 
-  Requires limited access key.
+  Requires limited access key. Unfortunately, the 'sort' parameter is not available for this selection.
 
   ## Parmeters
-  - cat: Select list type
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - limit: N/A
-  - offset: N/A
-  - sort: Sort rows from newest to oldest Default ordering is ascending
+  - from: Timestamp that sets the lower limit for the data returned
+  - to: Timestamp that sets the upper limit for the data returned
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Limited)
 
   ## Response Module(s)
-  - UserListResponse
+  - UserEventsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/list"
-  @response_modules [UserListResponse]
+  @path "user/events"
+  @response_modules [UserEventsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -32,12 +31,6 @@ defmodule Torngen.Client.Path.User.List do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :cat, value do
-    # Select list type
-    {:query, :cat, value}
-  end
 
   @impl true
   defparameter :striptags, value do
@@ -52,15 +45,15 @@ defmodule Torngen.Client.Path.User.List do
   end
 
   @impl true
-  defparameter :offset, value do
-    # N/A
-    {:query, :offset, value}
+  defparameter :from, value do
+    # Timestamp that sets the lower limit for the data returned. Data returned will be after this time
+    {:query, :from, value}
   end
 
   @impl true
-  defparameter :sort, value do
-    # Sort rows from newest to oldest Default ordering is ascending
-    {:query, :sort, value}
+  defparameter :to, value do
+    # Timestamp that sets the upper limit for the data returned. Data returned will be up to and including this time
+    {:query, :to, value}
   end
 
   @impl true

@@ -7,6 +7,7 @@ defmodule Torngen.Client.Path.Market do
   ## Parmeters
   - selections: Selection names
   - id: selection id
+  - legacy: Legacy selection names for which you want or expect API v1 response
   - cat: Category of specialized bazaars returned
   - bonus: Used to filter weapons with a specific bonus
   - sort: Direction to sort rows in
@@ -59,6 +60,12 @@ defmodule Torngen.Client.Path.Market do
   defparameter :id, value do
     # selection id
     {:query, :id, value}
+  end
+
+  @impl true
+  defparameter :legacy, value do
+    # Legacy selection names for which you want or expect API v1 response
+    {:query, :legacy, value}
   end
 
   @impl true
