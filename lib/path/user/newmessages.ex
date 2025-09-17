@@ -1,24 +1,24 @@
-defmodule Torngen.Client.Path.User.Enlistedcars do
+defmodule Torngen.Client.Path.User.Newmessages do
   @moduledoc """
-  Get your enlisted cars.
+  Get your unseen messages.
 
-  Requires minimal access key. Returns a list of all user enlisted cars.
+  Requires limited access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Minimal)
+  - key: API key (Limited)
 
   ## Response Module(s)
-  - UserEnlistedCarsResponse
+  - UserNewMessagesResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/enlistedcars"
-  @response_modules [UserEnlistedCarsResponse]
+  @path "user/newmessages"
+  @response_modules [UserNewMessagesResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -42,7 +42,7 @@ defmodule Torngen.Client.Path.User.Enlistedcars do
 
   @impl true
   defparameter :key, value do
-    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

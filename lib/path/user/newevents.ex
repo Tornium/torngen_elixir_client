@@ -1,24 +1,25 @@
-defmodule Torngen.Client.Path.User.Enlistedcars do
+defmodule Torngen.Client.Path.User.Newevents do
   @moduledoc """
-  Get your enlisted cars.
+  Get your unseen events.
 
-  Requires minimal access key. Returns a list of all user enlisted cars.
+  Requires limited access key.
 
   ## Parmeters
+  - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Minimal)
+  - key: API key (Limited)
 
   ## Response Module(s)
-  - UserEnlistedCarsResponse
+  - UserNewEventsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/enlistedcars"
-  @response_modules [UserEnlistedCarsResponse]
+  @path "user/newevents"
+  @response_modules [UserNewEventsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -27,6 +28,12 @@ defmodule Torngen.Client.Path.User.Enlistedcars do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :striptags, value do
+    # Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
+    {:query, :striptags, value}
+  end
 
   @impl true
   defparameter :timestamp, value do
@@ -42,7 +49,7 @@ defmodule Torngen.Client.Path.User.Enlistedcars do
 
   @impl true
   defparameter :key, value do
-    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 
