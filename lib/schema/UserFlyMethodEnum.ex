@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.CountryEnum do
+defmodule Torngen.Client.Schema.UserFlyMethodEnum do
   @moduledoc false
 
   require Logger
@@ -7,20 +7,7 @@ defmodule Torngen.Client.Schema.CountryEnum do
 
   @type t :: String.t()
 
-  @values [
-    "Mexico",
-    "Hawaii",
-    "South Africa",
-    "Japan",
-    "China",
-    "Argentina",
-    "Switzerland",
-    "Canada",
-    "United Kingdom",
-    "UAE",
-    "Cayman Islands",
-    "Torn"
-  ]
+  @values ["Private", "Business", "Airstrip", "Standard"]
 
   @spec values() :: [t()]
   def values, do: @values
@@ -33,7 +20,7 @@ defmodule Torngen.Client.Schema.CountryEnum do
     if validate?(data) do
       data
     else
-      Logger.warning("Invalid enum value #{inspect(data)} of CountryEnum")
+      Logger.warning("Invalid enum value #{inspect(data)} of UserFlyMethodEnum")
       nil
     end
   end

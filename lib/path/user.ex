@@ -34,6 +34,12 @@ defmodule Torngen.Client.Path.User do
   - UserJobPointsResponse
   - UserMoneyResponse
   - FactionAttacksFullResponse
+  - UserVirusResponse
+  - UserTravelResponse
+  - UserRefillsResponse
+  - UserNotificationsResponse
+  - UserCooldownsResponse
+  - UserBarsResponse
   - FactionAttacksResponse
   - UserOrganizedCrimeResponse
   - UserPersonalStatsResponse
@@ -86,6 +92,12 @@ defmodule Torngen.Client.Path.User do
     UserJobPointsResponse,
     UserMoneyResponse,
     FactionAttacksFullResponse,
+    UserVirusResponse,
+    UserTravelResponse,
+    UserRefillsResponse,
+    UserNotificationsResponse,
+    UserCooldownsResponse,
+    UserBarsResponse,
     FactionAttacksResponse,
     UserOrganizedCrimeResponse,
     UserPersonalStatsResponse,
