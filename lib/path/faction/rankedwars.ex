@@ -2,9 +2,11 @@ defmodule Torngen.Client.Path.Faction.Rankedwars do
   @moduledoc """
   Get ranked wars history for your faction.
 
-  Requires public access key.
+  Requires public access key. Use offset to get older results which are always ordered descending.
 
   ## Parmeters
+  - offset: N/A
+  - limit: N/A
   - from: Timestamp that sets the lower limit for the data returned
   - to: Timestamp that sets the upper limit for the data returned
   - sort: Sorted by the greatest timestamps
@@ -30,6 +32,18 @@ defmodule Torngen.Client.Path.Faction.Rankedwars do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :offset, value do
+    # N/A
+    {:query, :offset, value}
+  end
+
+  @impl true
+  defparameter :limit, value do
+    # N/A
+    {:query, :limit, value}
+  end
 
   @impl true
   defparameter :from, value do

@@ -5,6 +5,9 @@ defmodule Torngen.Client.Path.Torn.Honors do
   Requires public access key.
 
   ## Parmeters
+  - limit: N/A
+  - offset: N/A
+  - sort: Sorted by the greatest timestamps
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
@@ -27,6 +30,24 @@ defmodule Torngen.Client.Path.Torn.Honors do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :limit, value do
+    # N/A
+    {:query, :limit, value}
+  end
+
+  @impl true
+  defparameter :offset, value do
+    # N/A
+    {:query, :offset, value}
+  end
+
+  @impl true
+  defparameter :sort, value do
+    # Sorted by the greatest timestamps
+    {:query, :sort, value}
+  end
 
   @impl true
   defparameter :timestamp, value do
