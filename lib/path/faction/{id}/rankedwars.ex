@@ -2,10 +2,12 @@ defmodule Torngen.Client.Path.Faction.Id.Rankedwars do
   @moduledoc """
   Get a faction's ranked wars history.
 
-  Requires public access key.
+  Requires public access key. Use offset to get older results which are always ordered descending.
 
   ## Parmeters
   - id: Faction id
+  - offset: N/A
+  - limit: N/A
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
@@ -33,6 +35,18 @@ defmodule Torngen.Client.Path.Faction.Id.Rankedwars do
   defparameter :id, value do
     # Faction id
     {:path, :id, value}
+  end
+
+  @impl true
+  defparameter :offset, value do
+    # N/A
+    {:query, :offset, value}
+  end
+
+  @impl true
+  defparameter :limit, value do
+    # N/A
+    {:query, :limit, value}
   end
 
   @impl true

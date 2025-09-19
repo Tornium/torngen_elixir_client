@@ -7,6 +7,7 @@ defmodule Torngen.Client.Path.Market.Id.Itemmarket do
   ## Parmeters
   - id: Item id
   - bonus: Used to filter weapons with a specific bonus.
+  - limit: N/A
   - offset: N/A
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
@@ -41,6 +42,12 @@ defmodule Torngen.Client.Path.Market.Id.Itemmarket do
   defparameter :bonus, value do
     # Used to filter weapons with a specific bonus.
     {:query, :bonus, value}
+  end
+
+  @impl true
+  defparameter :limit, value do
+    # N/A
+    {:query, :limit, value}
   end
 
   @impl true
