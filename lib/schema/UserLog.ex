@@ -31,7 +31,7 @@ defmodule Torngen.Client.Schema.UserLog do
   def parse(%{} = data) do
     %__MODULE__{
       timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
-      params: data |> Map.get("params") |> Torngen.Client.Schema.parse({:object, %{}}),
+      params: data |> Map.get("params") |> Torngen.Client.Schema.parse({:object, :any}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserLogId),
       details:
         data
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.UserLog do
              category: {:static, :string}
            }}
         ),
-      data: data |> Map.get("data") |> Torngen.Client.Schema.parse({:object, %{}})
+      data: data |> Map.get("data") |> Torngen.Client.Schema.parse({:object, :any})
     }
   end
 
@@ -64,7 +64,7 @@ defmodule Torngen.Client.Schema.UserLog do
   end
 
   defp validate_key?(:params, value) do
-    Torngen.Client.Schema.validate?(value, {:object, %{}})
+    Torngen.Client.Schema.validate?(value, {:object, :any})
   end
 
   defp validate_key?(:id, value) do
@@ -80,7 +80,7 @@ defmodule Torngen.Client.Schema.UserLog do
   end
 
   defp validate_key?(:data, value) do
-    Torngen.Client.Schema.validate?(value, {:object, %{}})
+    Torngen.Client.Schema.validate?(value, {:object, :any})
   end
 
   @spec keys() :: list(atom())

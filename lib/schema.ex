@@ -21,10 +21,21 @@ defmodule Torngen.Client.Schema do
     Kernel.apply(type, :parse, [value])
   end
 
+  def parse(value, {:object, :any}) do
+    Map.new(value)
+  end
+
   def parse(value, {:object, pair_types}) do
     try do
       pair_types
-      |> Enum.map(fn {key, type} -> {key, parse(Map.get(value, key), type)} end)
+      |> Enum.map(fn {key, type} ->
+        {
+          key,
+          value
+          |> Map.get(Atom.to_string(key))
+          |> parse(type)
+        }
+      end)
       |> Map.new()
     rescue
       _ -> nil
