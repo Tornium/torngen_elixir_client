@@ -5,24 +5,24 @@ defmodule Torngen.Client.Schema.MarketRentalsResponse do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:properties, :_metadata]
+  @keys [:rentals, :_metadata]
 
   defstruct [
-    :properties,
+    :rentals,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
-          properties: Torngen.Client.Schema.MarketRentalDetails.t(),
+          rentals: Torngen.Client.Schema.MarketRentalDetails.t(),
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      properties:
+      rentals:
         data
-        |> Map.get("properties")
+        |> Map.get("rentals")
         |> Torngen.Client.Schema.parse(Torngen.Client.Schema.MarketRentalDetails),
       _metadata:
         data
@@ -42,7 +42,7 @@ defmodule Torngen.Client.Schema.MarketRentalsResponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:properties, value) do
+  defp validate_key?(:rentals, value) do
     Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.MarketRentalDetails)
   end
 

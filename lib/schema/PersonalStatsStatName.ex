@@ -223,7 +223,8 @@ defmodule Torngen.Client.Schema.PersonalStatsStatName do
     "disposalskill",
     "crackingskill",
     "forgeryskill",
-    "scammingskill"
+    "scammingskill",
+    "arsonskill"
   ]
 
   @spec values() :: [t()]

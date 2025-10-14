@@ -27,7 +27,8 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
             :cracking => integer(),
             :card_skimming => integer(),
             :burglary => integer(),
-            :bootlegging => integer()
+            :bootlegging => integer(),
+            :arson => integer()
           },
           offenses: %{
             :vandalism => integer(),
@@ -64,7 +65,8 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
              cracking: {:static, :integer},
              card_skimming: {:static, :integer},
              burglary: {:static, :integer},
-             bootlegging: {:static, :integer}
+             bootlegging: {:static, :integer},
+             arson: {:static, :integer}
            }}
         ),
       offenses:
@@ -119,7 +121,8 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
          cracking: {:static, :integer},
          card_skimming: {:static, :integer},
          burglary: {:static, :integer},
-         bootlegging: {:static, :integer}
+         bootlegging: {:static, :integer},
+         arson: {:static, :integer}
        }}
     )
   end
