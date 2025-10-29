@@ -15,7 +15,7 @@ defmodule Torngen.Client.Schema.UserLastAction do
 
   @type t :: %__MODULE__{
           timestamp: integer(),
-          status: String.t(),
+          status: Torngen.Client.Schema.UserLastActionStatusEnum.t(),
           relative: String.t()
         }
 
@@ -23,7 +23,10 @@ defmodule Torngen.Client.Schema.UserLastAction do
   def parse(%{} = data) do
     %__MODULE__{
       timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
-      status: data |> Map.get("status") |> Torngen.Client.Schema.parse({:static, :string}),
+      status:
+        data
+        |> Map.get("status")
+        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserLastActionStatusEnum),
       relative: data |> Map.get("relative") |> Torngen.Client.Schema.parse({:static, :string})
     }
   end
@@ -44,7 +47,7 @@ defmodule Torngen.Client.Schema.UserLastAction do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserLastActionStatusEnum)
   end
 
   defp validate_key?(:relative, value) do
