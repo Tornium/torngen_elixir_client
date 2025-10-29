@@ -43,6 +43,7 @@ defmodule Torngen.Client.Path.User do
   - FactionAttacksResponse
   - UserOrganizedCrimeResponse
   - UserPersonalStatsResponse
+  - UserMissionsResponse
   - UserListResponse
   - UserItemMarketResponse
   - UserIconsResponse
@@ -101,6 +102,7 @@ defmodule Torngen.Client.Path.User do
     FactionAttacksResponse,
     UserOrganizedCrimeResponse,
     UserPersonalStatsResponse,
+    UserMissionsResponse,
     UserListResponse,
     UserItemMarketResponse,
     UserIconsResponse,
