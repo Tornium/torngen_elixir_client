@@ -5,6 +5,7 @@ defmodule Torngen.Client.Path.Faction.Balance do
   Requires limited access key with faction API access permissions.
 
   ## Parmeters
+  - cat: By default, this selection will return only current faction's member balances, and the option 'all' will return all current members balances + additionally those of ex-members which do have money or points on their balance.
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Limited)
@@ -27,6 +28,12 @@ defmodule Torngen.Client.Path.Faction.Balance do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :cat, value do
+    # By default, this selection will return only current faction's member balances, and the option 'all' will return all current members balances + additionally those of ex-members which do have money or points on their balance.
+    {:query, :cat, value}
+  end
 
   @impl true
   defparameter :timestamp, value do
