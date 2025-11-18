@@ -7,6 +7,7 @@ defmodule Torngen.Client.Path.User.Log do
   ## Parmeters
   - log: Log ids, comma separated, e.g
   - cat: Log category id
+  - target: Get logs where you interacted with a specific player by passing their player ID.
   - limit: N/A
   - to: Timestamp that sets the upper limit for the data returned
   - from: Timestamp that sets the lower limit for the data returned
@@ -43,6 +44,12 @@ defmodule Torngen.Client.Path.User.Log do
   defparameter :cat, value do
     # Log category id
     {:query, :cat, value}
+  end
+
+  @impl true
+  defparameter :target, value do
+    # Get logs where you interacted with a specific player by passing their player ID.
+    {:query, :target, value}
   end
 
   @impl true
