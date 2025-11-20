@@ -5,7 +5,7 @@ defmodule Torngen.Client.Schema.TornMedal do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:type, :rarity, :name, :id, :description, :circulation]
+  @keys [:type, :rarity, :name, :id, :description, :crimes_version, :circulation]
 
   defstruct [
     :type,
@@ -13,6 +13,7 @@ defmodule Torngen.Client.Schema.TornMedal do
     :name,
     :id,
     :description,
+    :crimes_version,
     :circulation
   ]
 
@@ -22,6 +23,7 @@ defmodule Torngen.Client.Schema.TornMedal do
           name: String.t(),
           id: Torngen.Client.Schema.MedalId.t(),
           description: String.t(),
+          crimes_version: Torngen.Client.Schema.AwardCrimesVersionEnum.t(),
           circulation: integer()
         }
 
@@ -42,6 +44,10 @@ defmodule Torngen.Client.Schema.TornMedal do
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.MedalId),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string}),
+      crimes_version:
+        data
+        |> Map.get("crimes_version")
+        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AwardCrimesVersionEnum),
       circulation:
         data |> Map.get("circulation") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -79,6 +85,10 @@ defmodule Torngen.Client.Schema.TornMedal do
 
   defp validate_key?(:description, value) do
     Torngen.Client.Schema.validate?(value, {:static, :string})
+  end
+
+  defp validate_key?(:crimes_version, value) do
+    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AwardCrimesVersionEnum)
   end
 
   defp validate_key?(:circulation, value) do
