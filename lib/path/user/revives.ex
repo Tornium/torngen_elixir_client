@@ -36,7 +36,7 @@ defmodule Torngen.Client.Path.User.Revives do
 
   @impl true
   defparameter :filters, value do
-    # It's possible to use this query parameter to only get incoming or outgoing attacks / revives. If not specified, this selection will return both incoming and outgoing attacks / revives.
+    # It's possible to use this query parameter to only get incoming or outgoing attacks / revives. If not specified, this selection will return both incoming and outgoing attacks / revives. It's also possible to combine this with 'idFilter'. This filter allows using from/to to filter by ids instead of timestamps.
     {:query, :filters, value}
   end
 
