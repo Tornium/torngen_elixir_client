@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Id.Hof do
   Requires public access key. The battle_stats selection will be populated only when requesting selection with Limited, Full or Custom key and for yourself.
 
   ## Parmeters
-  - id: User id
+  - id: User id or user discord id
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
@@ -31,7 +31,7 @@ defmodule Torngen.Client.Path.User.Id.Hof do
 
   @impl true
   defparameter :id, value do
-    # User id
+    # User id or user discord id
     {:path, :id, value}
   end
 

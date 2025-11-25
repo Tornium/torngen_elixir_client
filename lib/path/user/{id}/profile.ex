@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Id.Profile do
   Requires public access key.
 
   ## Parmeters
-  - id: User id
+  - id: User id or user discord id
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
@@ -32,7 +32,7 @@ defmodule Torngen.Client.Path.User.Id.Profile do
 
   @impl true
   defparameter :id, value do
-    # User id
+    # User id or user discord id
     {:path, :id, value}
   end
 

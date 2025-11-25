@@ -6,7 +6,7 @@ defmodule Torngen.Client.Path.User.Id.Forumposts do
 
   ## Parmeters
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
-  - id: User id
+  - id: User id or user discord id
   - limit: N/A
   - sort: Sorted by the greatest timestamps
   - from: Timestamp that sets the lower limit for the data returned
@@ -42,7 +42,7 @@ defmodule Torngen.Client.Path.User.Id.Forumposts do
 
   @impl true
   defparameter :id, value do
-    # User id
+    # User id or user discord id
     {:path, :id, value}
   end
 
