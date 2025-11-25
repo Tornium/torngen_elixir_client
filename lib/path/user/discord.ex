@@ -1,28 +1,24 @@
-defmodule Torngen.Client.Path.User.Id.Properties do
+defmodule Torngen.Client.Path.User.Discord do
   @moduledoc """
-  Get specific user's properties.
+  Get your discord information.
 
-  Requires public access key. Extended responses are available when requesting the data with Limited or higher access keys for yourself or your spouse.
+  Requires public key.
 
   ## Parmeters
-  - id: User id or user discord id
-  - filters: It's possible to use this query parameter to filter properties by the key owner or their spouse.
-  - offset: N/A
-  - limit: N/A
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - UserPropertiesResponse
+  - UserDiscordResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/{id}/properties"
-  @response_modules [UserPropertiesResponse]
+  @path "user/discord"
+  @response_modules [UserDiscordResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -31,30 +27,6 @@ defmodule Torngen.Client.Path.User.Id.Properties do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :id, value do
-    # User id or user discord id
-    {:path, :id, value}
-  end
-
-  @impl true
-  defparameter :filters, value do
-    # It's possible to use this query parameter to filter properties by the key owner or their spouse.
-    {:query, :filters, value}
-  end
-
-  @impl true
-  defparameter :offset, value do
-    # N/A
-    {:query, :offset, value}
-  end
-
-  @impl true
-  defparameter :limit, value do
-    # N/A
-    {:query, :limit, value}
-  end
 
   @impl true
   defparameter :timestamp, value do

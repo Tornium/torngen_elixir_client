@@ -1,25 +1,24 @@
-defmodule Torngen.Client.Path.User.Id.Icons do
+defmodule Torngen.Client.Path.User.Weaponexp do
   @moduledoc """
-  Get icons information for a specific player.
+  Get your weapon experience information.
 
-  Requires public access key. When requesting data for yourself with 'Custom', 'Limited' or 'Full' access keys, the response will be of type UserIconPrivate, otherwise UserIconPublic.
+  Requires minimal key.
 
   ## Parmeters
-  - id: User id or user discord id
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Public)
+  - key: API key (Minimal)
 
   ## Response Module(s)
-  - UserIconsResponse
+  - UserWeaponExpResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/{id}/icons"
-  @response_modules [UserIconsResponse]
+  @path "user/weaponexp"
+  @response_modules [UserWeaponExpResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -28,12 +27,6 @@ defmodule Torngen.Client.Path.User.Id.Icons do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :id, value do
-    # User id or user discord id
-    {:path, :id, value}
-  end
 
   @impl true
   defparameter :timestamp, value do
@@ -49,7 +42,7 @@ defmodule Torngen.Client.Path.User.Id.Icons do
 
   @impl true
   defparameter :key, value do
-    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

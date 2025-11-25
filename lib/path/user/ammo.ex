@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Ammo do
   @moduledoc """
   Get your ammo information.
 
-  Requires public minimal key.
+  Requires minimal key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

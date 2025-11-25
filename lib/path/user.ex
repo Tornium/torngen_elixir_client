@@ -72,6 +72,9 @@ defmodule Torngen.Client.Path.User do
   - UserForumPostsResponse
   - UserEnlistedCarsResponse
   - UserRacesResponse
+  - UserDiscordResponse
+  - UserAmmoResponse
+  - UserWeaponExpResponse
   - UserCrimesResponse
   """
 
@@ -131,6 +134,9 @@ defmodule Torngen.Client.Path.User do
     UserForumPostsResponse,
     UserEnlistedCarsResponse,
     UserRacesResponse,
+    UserDiscordResponse,
+    UserAmmoResponse,
+    UserWeaponExpResponse,
     UserCrimesResponse
   ]
 

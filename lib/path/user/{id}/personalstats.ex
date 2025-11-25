@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Id.Personalstats do
   Requires public access key. * UserPersonalStatsFull is returned only when this selection is requested for the key owner with Limited, Full or Custom key. * UserPersonalStatsFullPublic is returned when the requested category is 'all'. * UserPersonalStatsPopular is returned when the requested category is 'popular'. Please try to use UserPersonalStatsPopular over UserPersonalStatsFullPublic wherever possible in order to reduce the server load. * Otherwise, UserPersonalStatsCategory is returned for the matched category. * It's possible to request specific stats via 'stat' parameter. In this case the response will vary depending on the stats requested. Private stats are still available only to the key owner (with Limited or higher key). * Additionally, historical stats can also be fetched via 'stat' query parameter, but 'timestamp' parameter must be provided as well. It's only possible to pass up to 10 historical stats at once (the rest is trimmed). When requesting historical stats the response will be of type UserPersonalStatsHistoric.
 
   ## Parmeters
-  - id: User id
+  - id: User id or user discord id
   - cat:
   - stat: Stat names (10 maximum)
   - timestamp: Returns stats until this timestamp (converted to nearest date).
@@ -33,7 +33,7 @@ defmodule Torngen.Client.Path.User.Id.Personalstats do
 
   @impl true
   defparameter :id, value do
-    # User id
+    # User id or user discord id
     {:path, :id, value}
   end
 

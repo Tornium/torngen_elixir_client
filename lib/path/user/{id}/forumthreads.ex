@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Id.Forumthreads do
   Requires public access key. Returns 100 threads per page for a specific player. When requesting data for the key owner, a field 'new_posts' is also available, indicating the amount of unread posts. Minimum API key is required for that.
 
   ## Parmeters
-  - id: User id
+  - id: User id or user discord id
   - limit: N/A
   - sort: Sorted by the greatest timestamps
   - from: Timestamp that sets the lower limit for the data returned
@@ -35,7 +35,7 @@ defmodule Torngen.Client.Path.User.Id.Forumthreads do
 
   @impl true
   defparameter :id, value do
-    # User id
+    # User id or user discord id
     {:path, :id, value}
   end
 
