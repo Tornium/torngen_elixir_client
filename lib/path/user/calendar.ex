@@ -1,6 +1,6 @@
 defmodule Torngen.Client.Path.User.Calendar do
   @moduledoc """
-  Get your competition's event start time.
+  Get your calendar events start time.
 
   Requires minimal access key. Only available to yourself.
 

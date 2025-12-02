@@ -30,7 +30,6 @@ defmodule Torngen.Client.Schema.FactionPositionAbilityEnum do
     "Newsletter Sending",
     "Announcement Changes",
     "Description Changes",
-    "Organised Crimes",
     "Utility Item Loaning",
     "Consumable Item Usage"
   ]
