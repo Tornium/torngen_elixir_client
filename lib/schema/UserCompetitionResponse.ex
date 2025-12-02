@@ -13,7 +13,8 @@ defmodule Torngen.Client.Schema.UserCompetitionResponse do
 
   @type t :: %__MODULE__{
           competition:
-            Torngen.Client.Schema.UserCompetitionRps.t()
+            Torngen.Client.Schema.UserCompetitionElimination.t()
+            | Torngen.Client.Schema.UserCompetitionRps.t()
             | Torngen.Client.Schema.UserCompetitionEasterEggs.t()
             | Torngen.Client.Schema.UserCompetitionHalloween.t()
         }
@@ -27,6 +28,7 @@ defmodule Torngen.Client.Schema.UserCompetitionResponse do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
+             Torngen.Client.Schema.UserCompetitionElimination,
              Torngen.Client.Schema.UserCompetitionRps,
              Torngen.Client.Schema.UserCompetitionEasterEggs,
              Torngen.Client.Schema.UserCompetitionHalloween
@@ -51,6 +53,7 @@ defmodule Torngen.Client.Schema.UserCompetitionResponse do
       value,
       {:one_of,
        [
+         Torngen.Client.Schema.UserCompetitionElimination,
          Torngen.Client.Schema.UserCompetitionRps,
          Torngen.Client.Schema.UserCompetitionEasterEggs,
          Torngen.Client.Schema.UserCompetitionHalloween

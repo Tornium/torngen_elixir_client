@@ -44,6 +44,7 @@ defmodule Torngen.Client.Path.User do
   - UserOrganizedCrimeResponse
   - UserPersonalStatsResponse
   - UserMissionsResponse
+  - UserEquipmentResponse
   - UserListResponse
   - UserItemMarketResponse
   - UserIconsResponse
@@ -65,6 +66,8 @@ defmodule Torngen.Client.Path.User do
   - UserRacingRecordsResponse
   - UserCalendarResponse
   - UserHofResponse
+  - ReportsResponse
+  - UserPropertyResponse
   - UserForumFriendsResponse
   - UserForumFeedResponse
   - UserForumSubscribedThreadsResponse
@@ -106,6 +109,7 @@ defmodule Torngen.Client.Path.User do
     UserOrganizedCrimeResponse,
     UserPersonalStatsResponse,
     UserMissionsResponse,
+    UserEquipmentResponse,
     UserListResponse,
     UserItemMarketResponse,
     UserIconsResponse,
@@ -127,6 +131,8 @@ defmodule Torngen.Client.Path.User do
     UserRacingRecordsResponse,
     UserCalendarResponse,
     UserHofResponse,
+    ReportsResponse,
+    UserPropertyResponse,
     UserForumFriendsResponse,
     UserForumFeedResponse,
     UserForumSubscribedThreadsResponse,

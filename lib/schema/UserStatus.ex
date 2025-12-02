@@ -1,15 +1,14 @@
 defmodule Torngen.Client.Schema.UserStatus do
   @moduledoc false
 
-  use Torngen.Client.SchemaObjectAccess, deprecated: [:travel_type]
+  use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:until, :travel_type, :state, :plane_image_type, :details, :description, :color]
+  @keys [:until, :state, :plane_image_type, :details, :description, :color]
 
   defstruct [
     :until,
-    :travel_type,
     :state,
     :plane_image_type,
     :details,
@@ -19,7 +18,6 @@ defmodule Torngen.Client.Schema.UserStatus do
 
   @type t :: %__MODULE__{
           until: nil | integer(),
-          travel_type: String.t(),
           state: String.t() | Torngen.Client.Schema.UserStatusStateEnum.t(),
           plane_image_type: Torngen.Client.Schema.UserPlaneImageTypeEnum.t(),
           details: nil | String.t(),
@@ -34,8 +32,6 @@ defmodule Torngen.Client.Schema.UserStatus do
         data
         |> Map.get("until")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
-      travel_type:
-        data |> Map.get("travel_type") |> Torngen.Client.Schema.parse({:static, :string}),
       state:
         data
         |> Map.get("state")
@@ -69,10 +65,6 @@ defmodule Torngen.Client.Schema.UserStatus do
 
   defp validate_key?(:until, value) do
     Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :integer]})
-  end
-
-  defp validate_key?(:travel_type, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
   end
 
   defp validate_key?(:state, value) do
