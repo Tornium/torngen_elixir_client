@@ -26,7 +26,8 @@ defmodule TorngenElixirClient.MixProject do
   defp deps do
     [
       {:torngen, "~> 0.1.1", runtime: false},
-      {:ex_doc, "~> 0.34", only: :dev, runtime: false, optional: true}
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false, optional: true},
+      {:req, "~> 0.5", only: :test},
     ]
   end
 

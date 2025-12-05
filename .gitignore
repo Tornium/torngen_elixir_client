@@ -23,3 +23,6 @@ torngen_elixir_client-*.tar
 /tmp/
 
 openapi.json
+
+.iex.exs
+.env
