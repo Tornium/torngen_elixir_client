@@ -28,9 +28,10 @@ defmodule TorngenElixirClient.Test.DynamicSelection do
 
       assert floor(request.status / 100) == 2
 
-      request
-      |> Map.fetch!(:body)
-      |> mod.parse()
+      case Map.fetch!(request, :body) do
+        %{"error" => _} -> nil
+        response -> mod.parse(response)
+      end
     end
   end
 end
