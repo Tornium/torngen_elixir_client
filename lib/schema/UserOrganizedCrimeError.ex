@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimeError do
 
   @type t :: %__MODULE__{
           error: String.t(),
-          code: integer()
+          code: 27
         }
 
   @impl true

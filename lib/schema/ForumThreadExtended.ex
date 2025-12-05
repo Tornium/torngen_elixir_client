@@ -24,9 +24,9 @@ defmodule Torngen.Client.Schema.ForumThreadExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
+             content: {:static, :string},
              poll: {:one_of, [{:static, :null}, Torngen.Client.Schema.ForumPoll]},
-             content_raw: {:static, :string},
-             content: {:static, :string}
+             content_raw: {:static, :string}
            }}
         ),
         data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadBase)
