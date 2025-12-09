@@ -31,6 +31,8 @@ defmodule Torngen.Client.Path.Torn do
   - TornItemAmmoResponse
   - TornBountiesResponse
   - TornMedalsResponse
+  - TornEliminationTeamPlayersResponse
+  - TornEliminationTeamsResponse
   - TornItemDetailsResponse
   - TornHonorsResponse
   - TornOrganizedCrimeResponse
@@ -63,6 +65,8 @@ defmodule Torngen.Client.Path.Torn do
     TornItemAmmoResponse,
     TornBountiesResponse,
     TornMedalsResponse,
+    TornEliminationTeamPlayersResponse,
+    TornEliminationTeamsResponse,
     TornItemDetailsResponse,
     TornHonorsResponse,
     TornOrganizedCrimeResponse,
