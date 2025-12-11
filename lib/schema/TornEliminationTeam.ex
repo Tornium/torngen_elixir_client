@@ -41,7 +41,7 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
           name: String.t(),
           losses: integer(),
           lives: integer(),
-          leaders: [Torngen.Client.Schema.BasicUser.t()],
+          leaders: [Torngen.Client.Schema.TornEliminationTeamLeader.t()],
           id: Torngen.Client.Schema.EliminationTeamId.t(),
           eliminated_timestamp: nil | integer(),
           eliminated: boolean()
@@ -61,7 +61,7 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
       leaders:
         data
         |> Map.get("leaders")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BasicUser}),
+        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornEliminationTeamLeader}),
       id:
         data
         |> Map.get("id")
@@ -115,7 +115,10 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
   end
 
   defp validate_key?(:leaders, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BasicUser})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, Torngen.Client.Schema.TornEliminationTeamLeader}
+    )
   end
 
   defp validate_key?(:id, value) do
