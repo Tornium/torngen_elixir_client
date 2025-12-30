@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.FactionAttacksResponse do
+defmodule Torngen.Client.Schema.AttacksFullResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
@@ -13,7 +13,7 @@ defmodule Torngen.Client.Schema.FactionAttacksResponse do
   ]
 
   @type t :: %__MODULE__{
-          attacks: [Torngen.Client.Schema.Attack.t()],
+          attacks: [Torngen.Client.Schema.AttackSimplified.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
@@ -23,7 +23,7 @@ defmodule Torngen.Client.Schema.FactionAttacksResponse do
       attacks:
         data
         |> Map.get("attacks")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.Attack}),
+        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.AttackSimplified}),
       _metadata:
         data
         |> Map.get("_metadata")
@@ -43,7 +43,7 @@ defmodule Torngen.Client.Schema.FactionAttacksResponse do
   end
 
   defp validate_key?(:attacks, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.Attack})
+    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.AttackSimplified})
   end
 
   defp validate_key?(:_metadata, value) do
