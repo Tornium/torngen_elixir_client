@@ -13,7 +13,7 @@ defmodule Torngen.Client.Schema.UserRacesResponse do
   ]
 
   @type t :: %__MODULE__{
-          races: [Torngen.Client.Schema.RacingRaceDetails.t()],
+          races: [Torngen.Client.Schema.UserRaceDetails.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
@@ -23,7 +23,7 @@ defmodule Torngen.Client.Schema.UserRacesResponse do
       races:
         data
         |> Map.get("races")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.RacingRaceDetails}),
+        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserRaceDetails}),
       _metadata:
         data
         |> Map.get("_metadata")
@@ -43,7 +43,7 @@ defmodule Torngen.Client.Schema.UserRacesResponse do
   end
 
   defp validate_key?(:races, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.RacingRaceDetails})
+    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserRaceDetails})
   end
 
   defp validate_key?(:_metadata, value) do

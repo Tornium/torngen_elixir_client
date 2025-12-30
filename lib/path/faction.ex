@@ -40,13 +40,13 @@ defmodule Torngen.Client.Path.Faction do
   - FactionChainsResponse
   - FactionOngoingChainResponse
   - FactionApplicationsResponse
-  - FactionAttacksFullResponse
+  - AttacksFullResponse
   - RevivesFullResponse
   - FactionPositionsResponse
   - FactionTerritoriesOwnershipResponse
   - FactionRaidWarReportResponse
   - FactionBalanceResponse
-  - FactionAttacksResponse
+  - AttacksResponse
   - FactionTerritoryWarsHistoryResponse
   - RevivesResponse
   - FactionNewsResponse
@@ -80,13 +80,13 @@ defmodule Torngen.Client.Path.Faction do
     FactionChainsResponse,
     FactionOngoingChainResponse,
     FactionApplicationsResponse,
-    FactionAttacksFullResponse,
+    AttacksFullResponse,
     RevivesFullResponse,
     FactionPositionsResponse,
     FactionTerritoriesOwnershipResponse,
     FactionRaidWarReportResponse,
     FactionBalanceResponse,
-    FactionAttacksResponse,
+    AttacksResponse,
     FactionTerritoryWarsHistoryResponse,
     RevivesResponse,
     FactionNewsResponse,

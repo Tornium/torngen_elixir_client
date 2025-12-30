@@ -15,7 +15,7 @@ defmodule Torngen.Client.Path.User.Attacks do
   - key: API key (Limited)
 
   ## Response Module(s)
-  - FactionAttacksResponse
+  - AttacksResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
@@ -23,7 +23,7 @@ defmodule Torngen.Client.Path.User.Attacks do
   @behaviour Torngen.Client.Path
 
   @path "user/attacks"
-  @response_modules [FactionAttacksResponse]
+  @response_modules [AttacksResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
