@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornCrime do
           id: Torngen.Client.Schema.TornCrimeId.t(),
           enhancer_name: String.t(),
           enhancer_id: integer(),
-          category_name: String.t(),
+          category_name: nil | String.t(),
           category_id: integer()
         }
 
@@ -55,13 +55,18 @@ defmodule Torngen.Client.Schema.TornCrime do
       notes:
         data |> Map.get("notes") |> Torngen.Client.Schema.parse({:array, {:static, :string}}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornCrimeId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornCrimeId}),
       enhancer_name:
         data |> Map.get("enhancer_name") |> Torngen.Client.Schema.parse({:static, :string}),
       enhancer_id:
         data |> Map.get("enhancer_id") |> Torngen.Client.Schema.parse({:static, :integer}),
       category_name:
-        data |> Map.get("category_name") |> Torngen.Client.Schema.parse({:static, :string}),
+        data
+        |> Map.get("category_name")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :string]}),
       category_id:
         data |> Map.get("category_id") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -95,7 +100,7 @@ defmodule Torngen.Client.Schema.TornCrime do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornCrimeId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornCrimeId})
   end
 
   defp validate_key?(:enhancer_name, value) do

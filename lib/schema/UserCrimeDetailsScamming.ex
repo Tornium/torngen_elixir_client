@@ -17,20 +17,20 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsScamming do
 
   @type t :: %__MODULE__{
           zones: %{
-            :temptation => integer(),
-            :sensitivity => integer(),
-            :red => integer(),
-            :neutral => integer(),
-            :medium_reward => integer(),
-            :low_reward => integer(),
-            :high_reward => integer(),
-            :hesitation => integer(),
-            :concern => integer()
+            temptation: integer(),
+            sensitivity: integer(),
+            red: integer(),
+            neutral: integer(),
+            medium_reward: integer(),
+            low_reward: integer(),
+            high_reward: integer(),
+            hesitation: integer(),
+            concern: integer()
           },
-          payouts: %{:medium => integer(), :low => integer(), :high => integer()},
+          payouts: %{medium: integer(), low: integer(), high: integer()},
           most_responses: integer(),
-          emails: %{:scraper => integer(), :phisher => integer()},
-          concerns: %{:resolved => integer(), :attempts => integer()}
+          emails: %{scraper: integer(), phisher: integer()},
+          concerns: %{resolved: integer(), attempts: integer()}
         }
 
   @impl true

@@ -27,16 +27,19 @@ defmodule Torngen.Client.Schema.FactionRaidReport do
   def parse(%{} = data) do
     %__MODULE__{
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaidWarId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaidWarId}),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer}),
       defender:
         data
         |> Map.get("defender")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionRaidReportFaction),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionRaidReportFaction}),
       aggressor:
         data
         |> Map.get("aggressor")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionRaidReportFaction)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionRaidReportFaction})
     }
   end
 
@@ -56,7 +59,7 @@ defmodule Torngen.Client.Schema.FactionRaidReport do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaidWarId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaidWarId})
   end
 
   defp validate_key?(:end, value) do
@@ -64,11 +67,11 @@ defmodule Torngen.Client.Schema.FactionRaidReport do
   end
 
   defp validate_key?(:defender, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionRaidReportFaction)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionRaidReportFaction})
   end
 
   defp validate_key?(:aggressor, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionRaidReportFaction)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionRaidReportFaction})
   end
 
   @spec keys() :: list(atom())

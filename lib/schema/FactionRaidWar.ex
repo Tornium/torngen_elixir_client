@@ -29,7 +29,9 @@ defmodule Torngen.Client.Schema.FactionRaidWar do
       factions:
         data
         |> Map.get("factions")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionRaidWarParticipant}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionRaidWarParticipant}}
+        ),
       end:
         data
         |> Map.get("end")
@@ -59,7 +61,7 @@ defmodule Torngen.Client.Schema.FactionRaidWar do
   defp validate_key?(:factions, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionRaidWarParticipant}
+      {:array, {:ref, Torngen.Client.Schema.FactionRaidWarParticipant}}
     )
   end
 

@@ -16,7 +16,7 @@ defmodule Torngen.Client.Schema.UserCompetitionHalloween do
   @type t :: %__MODULE__{
           treats_collected: integer(),
           name: String.t(),
-          basket: %{:name => String.t(), :id => Torngen.Client.Schema.ItemId.t()}
+          basket: %{name: String.t(), id: Torngen.Client.Schema.ItemId.t()}
         }
 
   @impl true
@@ -30,7 +30,7 @@ defmodule Torngen.Client.Schema.UserCompetitionHalloween do
         data
         |> Map.get("basket")
         |> Torngen.Client.Schema.parse(
-          {:object, %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}}
+          {:object, %{id: {:ref, Torngen.Client.Schema.ItemId}, name: {:static, :string}}}
         )
     }
   end
@@ -57,7 +57,7 @@ defmodule Torngen.Client.Schema.UserCompetitionHalloween do
   defp validate_key?(:basket, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}}
+      {:object, %{id: {:ref, Torngen.Client.Schema.ItemId}, name: {:static, :string}}}
     )
   end
 

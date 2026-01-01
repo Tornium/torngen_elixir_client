@@ -15,13 +15,13 @@ defmodule Torngen.Client.Schema.FactionBalance do
   @type t :: %__MODULE__{
           members: [
             %{
-              :username => String.t(),
-              :points => integer(),
-              :money => integer(),
-              :id => Torngen.Client.Schema.UserId.t()
+              username: String.t(),
+              points: integer(),
+              money: integer(),
+              id: Torngen.Client.Schema.UserId.t()
             }
           ],
-          faction: %{:scope => integer(), :points => integer(), :money => integer()}
+          faction: %{scope: integer(), points: integer(), money: integer()}
         }
 
   @impl true
@@ -34,10 +34,10 @@ defmodule Torngen.Client.Schema.FactionBalance do
           {:array,
            {:object,
             %{
-              id: Torngen.Client.Schema.UserId,
+              id: {:ref, Torngen.Client.Schema.UserId},
+              username: {:static, :string},
               points: {:static, :integer},
-              money: {:static, :integer},
-              username: {:static, :string}
+              money: {:static, :integer}
             }}}
         ),
       faction:
@@ -67,10 +67,10 @@ defmodule Torngen.Client.Schema.FactionBalance do
       {:array,
        {:object,
         %{
-          id: Torngen.Client.Schema.UserId,
+          id: {:ref, Torngen.Client.Schema.UserId},
+          username: {:static, :string},
           points: {:static, :integer},
-          money: {:static, :integer},
-          username: {:static, :string}
+          money: {:static, :integer}
         }}}
     )
   end

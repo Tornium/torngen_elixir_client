@@ -13,9 +13,9 @@ defmodule Torngen.Client.Schema.PersonalStatsMissions do
 
   @type t :: %__MODULE__{
           missions: %{
-            :missions => integer(),
-            :credits => integer(),
-            :contracts => %{:total => integer(), :duke => integer()}
+            missions: integer(),
+            credits: integer(),
+            contracts: %{total: integer(), duke: integer()}
           }
         }
 

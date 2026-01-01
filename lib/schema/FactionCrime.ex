@@ -56,16 +56,16 @@ defmodule Torngen.Client.Schema.FactionCrime do
       status:
         data
         |> Map.get("status")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionCrimeStatusEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionCrimeStatusEnum}),
       slots:
         data
         |> Map.get("slots")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionCrimeSlot}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionCrimeSlot}}),
       rewards:
         data
         |> Map.get("rewards")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeReward]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeReward]}
         ),
       ready_at:
         data
@@ -75,7 +75,7 @@ defmodule Torngen.Client.Schema.FactionCrime do
         data
         |> Map.get("previous_crime_id")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeId]}
         ),
       planning_at:
         data
@@ -84,9 +84,11 @@ defmodule Torngen.Client.Schema.FactionCrime do
       name:
         data
         |> Map.get("name")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.OrganizedCrimeName),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.OrganizedCrimeName}),
       id:
-        data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionCrimeId),
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionCrimeId}),
       expired_at:
         data |> Map.get("expired_at") |> Torngen.Client.Schema.parse({:static, :integer}),
       executed_at:
@@ -112,17 +114,20 @@ defmodule Torngen.Client.Schema.FactionCrime do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionCrimeStatusEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionCrimeStatusEnum})
   end
 
   defp validate_key?(:slots, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionCrimeSlot})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionCrimeSlot}}
+    )
   end
 
   defp validate_key?(:rewards, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeReward]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeReward]}
     )
   end
 
@@ -133,7 +138,7 @@ defmodule Torngen.Client.Schema.FactionCrime do
   defp validate_key?(:previous_crime_id, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeId]}
     )
   end
 
@@ -142,11 +147,11 @@ defmodule Torngen.Client.Schema.FactionCrime do
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.OrganizedCrimeName)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.OrganizedCrimeName})
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionCrimeId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionCrimeId})
   end
 
   defp validate_key?(:expired_at, value) do

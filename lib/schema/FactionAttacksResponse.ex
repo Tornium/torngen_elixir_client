@@ -1,29 +1,29 @@
-defmodule Torngen.Client.Schema.UserLogsResponse do
+defmodule Torngen.Client.Schema.FactionAttacksResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:log, :_metadata]
+  @keys [:attacks, :_metadata]
 
   defstruct [
-    :log,
+    :attacks,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
-          log: [Torngen.Client.Schema.UserLog.t()],
+          attacks: [Torngen.Client.Schema.Attack.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      log:
+      attacks:
         data
-        |> Map.get("log")
-        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserLog}}),
+        |> Map.get("attacks")
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.Attack}}),
       _metadata:
         data
         |> Map.get("_metadata")
@@ -42,8 +42,8 @@ defmodule Torngen.Client.Schema.UserLogsResponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:log, value) do
-    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserLog}})
+  defp validate_key?(:attacks, value) do
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.Attack}})
   end
 
   defp validate_key?(:_metadata, value) do

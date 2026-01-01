@@ -16,11 +16,11 @@ defmodule Torngen.Client.Schema.MarketPropertyDetails do
           property: Torngen.Client.Schema.BasicProperty.t(),
           listings: [
             %{
-              :upkeep => integer(),
-              :modifications => [Torngen.Client.Schema.PropertyModificationEnum.t()],
-              :market_price => integer(),
-              :happy => integer(),
-              :cost => integer()
+              upkeep: integer(),
+              modifications: [Torngen.Client.Schema.PropertyModificationEnum.t()],
+              market_price: integer(),
+              happy: integer(),
+              cost: integer()
             }
           ]
         }
@@ -31,7 +31,7 @@ defmodule Torngen.Client.Schema.MarketPropertyDetails do
       property:
         data
         |> Map.get("property")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.BasicProperty),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.BasicProperty}),
       listings:
         data
         |> Map.get("listings")
@@ -40,7 +40,7 @@ defmodule Torngen.Client.Schema.MarketPropertyDetails do
            {:object,
             %{
               upkeep: {:static, :integer},
-              modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+              modifications: {:array, {:ref, Torngen.Client.Schema.PropertyModificationEnum}},
               market_price: {:static, :integer},
               happy: {:static, :integer},
               cost: {:static, :integer}
@@ -61,7 +61,7 @@ defmodule Torngen.Client.Schema.MarketPropertyDetails do
   end
 
   defp validate_key?(:property, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.BasicProperty)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.BasicProperty})
   end
 
   defp validate_key?(:listings, value) do
@@ -71,7 +71,7 @@ defmodule Torngen.Client.Schema.MarketPropertyDetails do
        {:object,
         %{
           upkeep: {:static, :integer},
-          modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+          modifications: {:array, {:ref, Torngen.Client.Schema.PropertyModificationEnum}},
           market_price: {:static, :integer},
           happy: {:static, :integer},
           cost: {:static, :integer}

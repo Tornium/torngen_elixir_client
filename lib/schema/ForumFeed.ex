@@ -35,22 +35,22 @@ defmodule Torngen.Client.Schema.ForumFeed do
       user:
         data
         |> Map.get("user")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadAuthor),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadAuthor}),
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumFeedTypeEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumFeedTypeEnum}),
       title: data |> Map.get("title") |> Torngen.Client.Schema.parse({:static, :string}),
       timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
       thread_id:
         data
         |> Map.get("thread_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadId}),
       text: data |> Map.get("text") |> Torngen.Client.Schema.parse({:static, :string}),
       post_id:
         data
         |> Map.get("post_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumPostId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumPostId}),
       is_seen: data |> Map.get("is_seen") |> Torngen.Client.Schema.parse({:static, :boolean})
     }
   end
@@ -67,11 +67,11 @@ defmodule Torngen.Client.Schema.ForumFeed do
   end
 
   defp validate_key?(:user, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadAuthor)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadAuthor})
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumFeedTypeEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumFeedTypeEnum})
   end
 
   defp validate_key?(:title, value) do
@@ -83,7 +83,7 @@ defmodule Torngen.Client.Schema.ForumFeed do
   end
 
   defp validate_key?(:thread_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadId})
   end
 
   defp validate_key?(:text, value) do
@@ -91,7 +91,7 @@ defmodule Torngen.Client.Schema.ForumFeed do
   end
 
   defp validate_key?(:post_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumPostId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumPostId})
   end
 
   defp validate_key?(:is_seen, value) do

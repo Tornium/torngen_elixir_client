@@ -23,11 +23,15 @@ defmodule Torngen.Client.Schema.ReportMostWanted do
       top:
         data
         |> Map.get("top")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ReportWarrantDetails}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ReportWarrantDetails}}
+        ),
       notable:
         data
         |> Map.get("notable")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ReportWarrantDetails})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ReportWarrantDetails}}
+        )
     }
   end
 
@@ -43,11 +47,17 @@ defmodule Torngen.Client.Schema.ReportMostWanted do
   end
 
   defp validate_key?(:top, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ReportWarrantDetails})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ReportWarrantDetails}}
+    )
   end
 
   defp validate_key?(:notable, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ReportWarrantDetails})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ReportWarrantDetails}}
+    )
   end
 
   @spec keys() :: list(atom())

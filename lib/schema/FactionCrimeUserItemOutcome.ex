@@ -27,15 +27,21 @@ defmodule Torngen.Client.Schema.FactionCrimeUserItemOutcome do
       owned_by:
         data
         |> Map.get("owned_by")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionCrimeUserItemOutcomeEnum),
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.FactionCrimeUserItemOutcomeEnum}
+        ),
       outcome:
         data
         |> Map.get("outcome")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionCrimeItemOutcomeEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionCrimeItemOutcomeEnum}),
       item_uid:
-        data |> Map.get("item_uid") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemUid),
+        data
+        |> Map.get("item_uid")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemUid}),
       item_id:
-        data |> Map.get("item_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId)
+        data
+        |> Map.get("item_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId})
     }
   end
 
@@ -51,19 +57,25 @@ defmodule Torngen.Client.Schema.FactionCrimeUserItemOutcome do
   end
 
   defp validate_key?(:owned_by, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionCrimeUserItemOutcomeEnum)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.FactionCrimeUserItemOutcomeEnum}
+    )
   end
 
   defp validate_key?(:outcome, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionCrimeItemOutcomeEnum)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.FactionCrimeItemOutcomeEnum}
+    )
   end
 
   defp validate_key?(:item_uid, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemUid)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemUid})
   end
 
   defp validate_key?(:item_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   @spec keys() :: list(atom())

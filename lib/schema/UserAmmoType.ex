@@ -26,7 +26,7 @@ defmodule Torngen.Client.Schema.UserAmmoType do
       name:
         data
         |> Map.get("name")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemAmmoTypeEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemAmmoTypeEnum}),
       equipped: data |> Map.get("equipped") |> Torngen.Client.Schema.parse({:static, :boolean})
     }
   end
@@ -47,7 +47,7 @@ defmodule Torngen.Client.Schema.UserAmmoType do
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemAmmoTypeEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemAmmoTypeEnum})
   end
 
   defp validate_key?(:equipped, value) do

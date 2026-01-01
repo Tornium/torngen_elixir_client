@@ -13,10 +13,10 @@ defmodule Torngen.Client.Schema.UserNotificationsResponse do
 
   @type t :: %__MODULE__{
           notifications: %{
-            :messages => integer(),
-            :events => integer(),
-            :competition => integer(),
-            :awards => integer()
+            messages: integer(),
+            events: integer(),
+            competition: integer(),
+            awards: integer()
           }
         }
 

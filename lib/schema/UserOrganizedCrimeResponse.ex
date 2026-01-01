@@ -27,9 +27,9 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimeResponse do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             {:static, :null},
-             Torngen.Client.Schema.UserOrganizedCrimeError,
-             Torngen.Client.Schema.FactionCrime
+             static: :null,
+             ref: Torngen.Client.Schema.UserOrganizedCrimeError,
+             ref: Torngen.Client.Schema.FactionCrime
            ]}
         )
     }
@@ -51,9 +51,9 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimeResponse do
       value,
       {:one_of,
        [
-         {:static, :null},
-         Torngen.Client.Schema.UserOrganizedCrimeError,
-         Torngen.Client.Schema.FactionCrime
+         static: :null,
+         ref: Torngen.Client.Schema.UserOrganizedCrimeError,
+         ref: Torngen.Client.Schema.FactionCrime
        ]}
     )
   end

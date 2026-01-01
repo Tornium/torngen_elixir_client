@@ -29,9 +29,14 @@ defmodule Torngen.Client.Schema.TornItemMods do
       weapons:
         data
         |> Map.get("weapons")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornItemWeaponTypeEnum}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornItemWeaponTypeEnum}}
+        ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemModId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemModId}),
       dual_fit: data |> Map.get("dual_fit") |> Torngen.Client.Schema.parse({:static, :boolean}),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string})
@@ -50,7 +55,10 @@ defmodule Torngen.Client.Schema.TornItemMods do
   end
 
   defp validate_key?(:weapons, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornItemWeaponTypeEnum})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornItemWeaponTypeEnum}}
+    )
   end
 
   defp validate_key?(:name, value) do
@@ -58,7 +66,7 @@ defmodule Torngen.Client.Schema.TornItemMods do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemModId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemModId})
   end
 
   defp validate_key?(:dual_fit, value) do

@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.PropertyPropertyResponse do
       property:
         data
         |> Map.get("property")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent)
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent}
+        )
     }
   end
 
@@ -39,7 +41,7 @@ defmodule Torngen.Client.Schema.PropertyPropertyResponse do
   defp validate_key?(:property, value) do
     Torngen.Client.Schema.validate?(
       value,
-      Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent
+      {:ref, Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent}
     )
   end
 

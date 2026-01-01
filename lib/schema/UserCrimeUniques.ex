@@ -23,7 +23,7 @@ defmodule Torngen.Client.Schema.UserCrimeUniques do
       rewards:
         data
         |> Map.get("rewards")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserCrimeUniquesReward),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserCrimeUniquesReward}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -40,7 +40,7 @@ defmodule Torngen.Client.Schema.UserCrimeUniques do
   end
 
   defp validate_key?(:rewards, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserCrimeUniquesReward)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserCrimeUniquesReward})
   end
 
   defp validate_key?(:id, value) do

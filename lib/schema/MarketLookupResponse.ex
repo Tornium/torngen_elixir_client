@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.MarketLookupResponse do
       selections:
         data
         |> Map.get("selections")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.MarketSelectionName})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.MarketSelectionName}}
+        )
     }
   end
 
@@ -37,7 +39,10 @@ defmodule Torngen.Client.Schema.MarketLookupResponse do
   end
 
   defp validate_key?(:selections, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.MarketSelectionName})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.MarketSelectionName}}
+    )
   end
 
   @spec keys() :: list(atom())

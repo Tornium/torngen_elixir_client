@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.RacingTracksResponse do
       tracks:
         data
         |> Map.get("tracks")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.RaceTrack})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.RaceTrack}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.RacingTracksResponse do
   end
 
   defp validate_key?(:tracks, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.RaceTrack})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.RaceTrack}})
   end
 
   @spec keys() :: list(atom())

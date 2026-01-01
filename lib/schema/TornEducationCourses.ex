@@ -33,13 +33,16 @@ defmodule Torngen.Client.Schema.TornEducationCourses do
       rewards:
         data
         |> Map.get("rewards")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornEducationRewards),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornEducationRewards}),
       prerequisites:
         data
         |> Map.get("prerequisites")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornEducationPrerequisites),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornEducationPrerequisites}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.EducationId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.EducationId}),
       duration: data |> Map.get("duration") |> Torngen.Client.Schema.parse({:static, :integer}),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string}),
@@ -59,11 +62,14 @@ defmodule Torngen.Client.Schema.TornEducationCourses do
   end
 
   defp validate_key?(:rewards, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornEducationRewards)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornEducationRewards})
   end
 
   defp validate_key?(:prerequisites, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornEducationPrerequisites)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.TornEducationPrerequisites}
+    )
   end
 
   defp validate_key?(:name, value) do
@@ -71,7 +77,7 @@ defmodule Torngen.Client.Schema.TornEducationCourses do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.EducationId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.EducationId})
   end
 
   defp validate_key?(:duration, value) do

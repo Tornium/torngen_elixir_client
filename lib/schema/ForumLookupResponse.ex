@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.ForumLookupResponse do
       selections:
         data
         |> Map.get("selections")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ForumSelectionName})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.ForumSelectionName}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.ForumLookupResponse do
   end
 
   defp validate_key?(:selections, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ForumSelectionName})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ForumSelectionName}}
+    )
   end
 
   @spec keys() :: list(atom())

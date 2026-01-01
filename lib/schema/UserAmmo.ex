@@ -25,9 +25,10 @@ defmodule Torngen.Client.Schema.UserAmmo do
       types:
         data
         |> Map.get("types")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserAmmoType}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserAmmoType}}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AmmoId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AmmoId})
     }
   end
 
@@ -43,7 +44,7 @@ defmodule Torngen.Client.Schema.UserAmmo do
   end
 
   defp validate_key?(:types, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserAmmoType})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserAmmoType}})
   end
 
   defp validate_key?(:name, value) do
@@ -51,7 +52,7 @@ defmodule Torngen.Client.Schema.UserAmmo do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AmmoId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AmmoId})
   end
 
   @spec keys() :: list(atom())

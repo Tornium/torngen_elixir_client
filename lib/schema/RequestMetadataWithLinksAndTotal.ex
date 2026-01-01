@@ -13,18 +13,19 @@ defmodule Torngen.Client.Schema.RequestMetadataWithLinksAndTotal do
   ]
 
   @type t :: %__MODULE__{
-          total: integer(),
+          total: nil | integer(),
           links: Torngen.Client.Schema.RequestLinks.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      total: data |> Map.get("total") |> Torngen.Client.Schema.parse({:static, :integer}),
+      total:
+        data |> Map.get("total") |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
       links:
         data
         |> Map.get("links")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestLinks})
     }
   end
 
@@ -44,7 +45,7 @@ defmodule Torngen.Client.Schema.RequestMetadataWithLinksAndTotal do
   end
 
   defp validate_key?(:links, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestLinks})
   end
 
   @spec keys() :: list(atom())

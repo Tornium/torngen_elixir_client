@@ -27,7 +27,9 @@ defmodule Torngen.Client.Schema.TornEducation do
       courses:
         data
         |> Map.get("courses")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornEducationCourses})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornEducationCourses}}
+        )
     }
   end
 
@@ -51,7 +53,10 @@ defmodule Torngen.Client.Schema.TornEducation do
   end
 
   defp validate_key?(:courses, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornEducationCourses})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornEducationCourses}}
+    )
   end
 
   @spec keys() :: list(atom())

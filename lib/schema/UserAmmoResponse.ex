@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.UserAmmoResponse do
   ]
 
   @type t :: %__MODULE__{
-          ammo: [Torngen.Client.Schema.UserAmmo.t()]
+          ammo: nil | [Torngen.Client.Schema.UserAmmo.t()]
         }
 
   @impl true
@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.UserAmmoResponse do
       ammo:
         data
         |> Map.get("ammo")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserAmmo})
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, array: {:ref, Torngen.Client.Schema.UserAmmo}]}
+        )
     }
   end
 
@@ -37,7 +39,7 @@ defmodule Torngen.Client.Schema.UserAmmoResponse do
   end
 
   defp validate_key?(:ammo, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserAmmo})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserAmmo}})
   end
 
   @spec keys() :: list(atom())

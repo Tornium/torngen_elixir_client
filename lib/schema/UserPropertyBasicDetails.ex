@@ -19,8 +19,8 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
   ]
 
   @type t :: %__MODULE__{
-          upkeep: %{:staff => integer(), :property => integer()},
-          staff: [%{:type => Torngen.Client.Schema.PropertyStaffEnum.t(), :amount => integer()}],
+          upkeep: %{staff: integer(), property: integer()},
+          staff: [%{type: Torngen.Client.Schema.PropertyStaffEnum.t(), amount: integer()}],
           property: Torngen.Client.Schema.BasicProperty.t(),
           owner: Torngen.Client.Schema.BasicUser.t(),
           modifications: [Torngen.Client.Schema.PropertyModificationEnum.t()],
@@ -44,21 +44,28 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
         |> Torngen.Client.Schema.parse(
           {:array,
            {:object,
-            %{type: Torngen.Client.Schema.PropertyStaffEnum, amount: {:static, :integer}}}}
+            %{type: {:ref, Torngen.Client.Schema.PropertyStaffEnum}, amount: {:static, :integer}}}}
         ),
       property:
         data
         |> Map.get("property")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.BasicProperty),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.BasicProperty}),
       owner:
-        data |> Map.get("owner") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.BasicUser),
+        data
+        |> Map.get("owner")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.BasicUser}),
       modifications:
         data
         |> Map.get("modifications")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.PropertyModificationEnum}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.PropertyModificationEnum}}
+        ),
       market_price:
         data |> Map.get("market_price") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.PropertyId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.PropertyId}),
       happy: data |> Map.get("happy") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -85,22 +92,23 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
     Torngen.Client.Schema.validate?(
       value,
       {:array,
-       {:object, %{type: Torngen.Client.Schema.PropertyStaffEnum, amount: {:static, :integer}}}}
+       {:object,
+        %{type: {:ref, Torngen.Client.Schema.PropertyStaffEnum}, amount: {:static, :integer}}}}
     )
   end
 
   defp validate_key?(:property, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.BasicProperty)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.BasicProperty})
   end
 
   defp validate_key?(:owner, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.BasicUser)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.BasicUser})
   end
 
   defp validate_key?(:modifications, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.PropertyModificationEnum}
+      {:array, {:ref, Torngen.Client.Schema.PropertyModificationEnum}}
     )
   end
 
@@ -109,7 +117,7 @@ defmodule Torngen.Client.Schema.UserPropertyBasicDetails do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.PropertyId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.PropertyId})
   end
 
   defp validate_key?(:happy, value) do

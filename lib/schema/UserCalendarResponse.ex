@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserCalendarResponse do
       calendar:
         data
         |> Map.get("calendar")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserCalendar)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserCalendar})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserCalendarResponse do
   end
 
   defp validate_key?(:calendar, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserCalendar)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserCalendar})
   end
 
   @spec keys() :: list(atom())

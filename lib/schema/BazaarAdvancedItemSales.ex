@@ -6,7 +6,7 @@ defmodule Torngen.Client.Schema.BazaarAdvancedItemSales do
   defstruct [:values]
 
   @type t :: %__MODULE__{
-          values: [%{:advanced_item_sales => integer()} | Torngen.Client.Schema.Bazaar.t()]
+          values: [%{advanced_item_sales: integer()} | Torngen.Client.Schema.Bazaar.t()]
         }
 
   @impl true
@@ -15,7 +15,7 @@ defmodule Torngen.Client.Schema.BazaarAdvancedItemSales do
       values: [
         data
         |> Torngen.Client.Schema.parse({:object, %{advanced_item_sales: {:static, :integer}}}),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.Bazaar)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.Bazaar})
       ]
     }
   end

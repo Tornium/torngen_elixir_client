@@ -19,11 +19,7 @@ defmodule Torngen.Client.Schema.UserLog do
           timestamp: integer(),
           params: %{},
           id: Torngen.Client.Schema.UserLogId.t(),
-          details: %{
-            :title => String.t(),
-            :id => Torngen.Client.Schema.LogId.t(),
-            :category => String.t()
-          },
+          details: %{title: String.t(), id: Torngen.Client.Schema.LogId.t(), category: String.t()},
           data: %{}
         }
 
@@ -32,14 +28,17 @@ defmodule Torngen.Client.Schema.UserLog do
     %__MODULE__{
       timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
       params: data |> Map.get("params") |> Torngen.Client.Schema.parse({:object, :any}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserLogId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserLogId}),
       details:
         data
         |> Map.get("details")
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             id: Torngen.Client.Schema.LogId,
+             id: {:ref, Torngen.Client.Schema.LogId},
              title: {:static, :string},
              category: {:static, :string}
            }}
@@ -68,14 +67,18 @@ defmodule Torngen.Client.Schema.UserLog do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserLogId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserLogId})
   end
 
   defp validate_key?(:details, value) do
     Torngen.Client.Schema.validate?(
       value,
       {:object,
-       %{id: Torngen.Client.Schema.LogId, title: {:static, :string}, category: {:static, :string}}}
+       %{
+         id: {:ref, Torngen.Client.Schema.LogId},
+         title: {:static, :string},
+         category: {:static, :string}
+       }}
     )
   end
 

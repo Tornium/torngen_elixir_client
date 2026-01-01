@@ -25,13 +25,13 @@ defmodule Torngen.Client.Schema.TornRacketReward do
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornRacketType),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornRacketType}),
       quantity: data |> Map.get("quantity") |> Torngen.Client.Schema.parse({:static, :integer}),
       id:
         data
         |> Map.get("id")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemId]}
         )
     }
   end
@@ -48,7 +48,7 @@ defmodule Torngen.Client.Schema.TornRacketReward do
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornRacketType)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornRacketType})
   end
 
   defp validate_key?(:quantity, value) do
@@ -58,7 +58,7 @@ defmodule Torngen.Client.Schema.TornRacketReward do
   defp validate_key?(:id, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemId]}
     )
   end
 

@@ -23,7 +23,10 @@ defmodule Torngen.Client.Schema.TornMerit do
   def parse(%{} = data) do
     %__MODULE__{
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.MeritId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.MeritId}),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string})
     }
@@ -45,7 +48,7 @@ defmodule Torngen.Client.Schema.TornMerit do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.MeritId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.MeritId})
   end
 
   defp validate_key?(:description, value) do

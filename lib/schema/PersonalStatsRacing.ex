@@ -13,9 +13,9 @@ defmodule Torngen.Client.Schema.PersonalStatsRacing do
 
   @type t :: %__MODULE__{
           racing: %{
-            :skill => integer(),
-            :races => %{:won => integer(), :entered => integer()},
-            :points => integer()
+            skill: integer(),
+            races: %{won: integer(), entered: integer()},
+            points: integer()
           }
         }
 
@@ -29,8 +29,8 @@ defmodule Torngen.Client.Schema.PersonalStatsRacing do
           {:object,
            %{
              points: {:static, :integer},
-             skill: {:static, :integer},
-             races: {:object, %{won: {:static, :integer}, entered: {:static, :integer}}}
+             races: {:object, %{won: {:static, :integer}, entered: {:static, :integer}}},
+             skill: {:static, :integer}
            }}
         )
     }
@@ -53,8 +53,8 @@ defmodule Torngen.Client.Schema.PersonalStatsRacing do
       {:object,
        %{
          points: {:static, :integer},
-         skill: {:static, :integer},
-         races: {:object, %{won: {:static, :integer}, entered: {:static, :integer}}}
+         races: {:object, %{won: {:static, :integer}, entered: {:static, :integer}}},
+         skill: {:static, :integer}
        }}
     )
   end

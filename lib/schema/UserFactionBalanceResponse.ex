@@ -22,7 +22,7 @@ defmodule Torngen.Client.Schema.UserFactionBalanceResponse do
         data
         |> Map.get("factionBalance")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserFactionBalance]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFactionBalance]}
         )
     }
   end
@@ -41,7 +41,7 @@ defmodule Torngen.Client.Schema.UserFactionBalanceResponse do
   defp validate_key?(:factionBalance, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserFactionBalance]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFactionBalance]}
     )
   end
 

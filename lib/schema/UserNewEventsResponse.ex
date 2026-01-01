@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserNewEventsResponse do
       events:
         data
         |> Map.get("events")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserEvent})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserEvent}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserNewEventsResponse do
   end
 
   defp validate_key?(:events, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserEvent})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserEvent}})
   end
 
   @spec keys() :: list(atom())

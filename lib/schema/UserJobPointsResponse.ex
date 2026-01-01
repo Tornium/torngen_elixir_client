@@ -13,15 +13,15 @@ defmodule Torngen.Client.Schema.UserJobPointsResponse do
 
   @type t :: %__MODULE__{
           jobpoints: %{
-            :jobs => %{
-              :medical => integer(),
-              :law => integer(),
-              :grocer => integer(),
-              :education => integer(),
-              :casino => integer(),
-              :army => integer()
+            jobs: %{
+              medical: integer(),
+              law: integer(),
+              grocer: integer(),
+              education: integer(),
+              casino: integer(),
+              army: integer()
             },
-            :companies => [Torngen.Client.Schema.UserCompanyPoints.t()]
+            companies: [Torngen.Client.Schema.UserCompanyPoints.t()]
           }
         }
 
@@ -37,14 +37,14 @@ defmodule Torngen.Client.Schema.UserJobPointsResponse do
              jobs:
                {:object,
                 %{
+                  education: {:static, :integer},
                   medical: {:static, :integer},
                   law: {:static, :integer},
                   grocer: {:static, :integer},
-                  education: {:static, :integer},
                   casino: {:static, :integer},
                   army: {:static, :integer}
                 }},
-             companies: {:array, Torngen.Client.Schema.UserCompanyPoints}
+             companies: {:array, {:ref, Torngen.Client.Schema.UserCompanyPoints}}
            }}
         )
     }
@@ -69,14 +69,14 @@ defmodule Torngen.Client.Schema.UserJobPointsResponse do
          jobs:
            {:object,
             %{
+              education: {:static, :integer},
               medical: {:static, :integer},
               law: {:static, :integer},
               grocer: {:static, :integer},
-              education: {:static, :integer},
               casino: {:static, :integer},
               army: {:static, :integer}
             }},
-         companies: {:array, Torngen.Client.Schema.UserCompanyPoints}
+         companies: {:array, {:ref, Torngen.Client.Schema.UserCompanyPoints}}
        }}
     )
   end

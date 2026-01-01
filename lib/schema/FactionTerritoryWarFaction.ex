@@ -17,10 +17,11 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFaction do
 
   @type t :: %__MODULE__{
           score: integer(),
-          players_on_wall: [Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers.t()],
+          players_on_wall:
+            nil | [Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers.t()],
           name: String.t(),
           id: Torngen.Client.Schema.FactionId.t(),
-          chain: integer()
+          chain: nil | integer()
         }
 
   @impl true
@@ -31,11 +32,19 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFaction do
         data
         |> Map.get("players_on_wall")
         |> Torngen.Client.Schema.parse(
-          {:array, Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers}
+          {:one_of,
+           [
+             static: :null,
+             array: {:ref, Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers}
+           ]}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
-      chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer})
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
+      chain:
+        data |> Map.get("chain") |> Torngen.Client.Schema.parse({:one_of, [static: :integer]})
     }
   end
 
@@ -57,7 +66,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFaction do
   defp validate_key?(:players_on_wall, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers}
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarFactionWallPlayers}}
     )
   end
 
@@ -66,7 +75,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:chain, value) do

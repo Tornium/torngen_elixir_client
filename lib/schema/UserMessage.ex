@@ -33,15 +33,19 @@ defmodule Torngen.Client.Schema.UserMessage do
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserMessageTypeEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserMessageTypeEnum}),
       topic: data |> Map.get("topic") |> Torngen.Client.Schema.parse({:static, :string}),
       timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
       sender:
-        data |> Map.get("sender") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.BasicUser),
+        data
+        |> Map.get("sender")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.BasicUser}),
       seen: data |> Map.get("seen") |> Torngen.Client.Schema.parse({:static, :boolean}),
       read: data |> Map.get("read") |> Torngen.Client.Schema.parse({:static, :boolean}),
       id:
-        data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserMessageId)
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserMessageId})
     }
   end
 
@@ -57,7 +61,7 @@ defmodule Torngen.Client.Schema.UserMessage do
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserMessageTypeEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserMessageTypeEnum})
   end
 
   defp validate_key?(:topic, value) do
@@ -69,7 +73,7 @@ defmodule Torngen.Client.Schema.UserMessage do
   end
 
   defp validate_key?(:sender, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.BasicUser)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.BasicUser})
   end
 
   defp validate_key?(:seen, value) do
@@ -81,7 +85,7 @@ defmodule Torngen.Client.Schema.UserMessage do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserMessageId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserMessageId})
   end
 
   @spec keys() :: list(atom())

@@ -24,7 +24,7 @@ defmodule Torngen.Client.Schema.AttackingFinishingHitEffects do
       name:
         data
         |> Map.get("name")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AttackFinishingHitEffect)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackFinishingHitEffect})
     }
   end
 
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.AttackingFinishingHitEffects do
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AttackFinishingHitEffect)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AttackFinishingHitEffect})
   end
 
   @spec keys() :: list(atom())

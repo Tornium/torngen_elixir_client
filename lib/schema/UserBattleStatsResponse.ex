@@ -13,11 +13,11 @@ defmodule Torngen.Client.Schema.UserBattleStatsResponse do
 
   @type t :: %__MODULE__{
           battlestats: %{
-            :total => integer(),
-            :strength => Torngen.Client.Schema.UserBattleStatDetail.t(),
-            :speed => Torngen.Client.Schema.UserBattleStatDetail.t(),
-            :dexterity => Torngen.Client.Schema.UserBattleStatDetail.t(),
-            :defense => Torngen.Client.Schema.UserBattleStatDetail.t()
+            total: integer(),
+            strength: Torngen.Client.Schema.UserBattleStatDetail.t(),
+            speed: Torngen.Client.Schema.UserBattleStatDetail.t(),
+            dexterity: Torngen.Client.Schema.UserBattleStatDetail.t(),
+            defense: Torngen.Client.Schema.UserBattleStatDetail.t()
           }
         }
 
@@ -31,10 +31,10 @@ defmodule Torngen.Client.Schema.UserBattleStatsResponse do
           {:object,
            %{
              total: {:static, :integer},
-             speed: Torngen.Client.Schema.UserBattleStatDetail,
-             strength: Torngen.Client.Schema.UserBattleStatDetail,
-             dexterity: Torngen.Client.Schema.UserBattleStatDetail,
-             defense: Torngen.Client.Schema.UserBattleStatDetail
+             speed: {:ref, Torngen.Client.Schema.UserBattleStatDetail},
+             strength: {:ref, Torngen.Client.Schema.UserBattleStatDetail},
+             dexterity: {:ref, Torngen.Client.Schema.UserBattleStatDetail},
+             defense: {:ref, Torngen.Client.Schema.UserBattleStatDetail}
            }}
         )
     }
@@ -57,10 +57,10 @@ defmodule Torngen.Client.Schema.UserBattleStatsResponse do
       {:object,
        %{
          total: {:static, :integer},
-         speed: Torngen.Client.Schema.UserBattleStatDetail,
-         strength: Torngen.Client.Schema.UserBattleStatDetail,
-         dexterity: Torngen.Client.Schema.UserBattleStatDetail,
-         defense: Torngen.Client.Schema.UserBattleStatDetail
+         speed: {:ref, Torngen.Client.Schema.UserBattleStatDetail},
+         strength: {:ref, Torngen.Client.Schema.UserBattleStatDetail},
+         dexterity: {:ref, Torngen.Client.Schema.UserBattleStatDetail},
+         defense: {:ref, Torngen.Client.Schema.UserBattleStatDetail}
        }}
     )
   end

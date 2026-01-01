@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserPropertyResponse do
       property:
         data
         |> Map.get("property")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyDetails)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserPropertyDetails})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserPropertyResponse do
   end
 
   defp validate_key?(:property, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserPropertyDetails)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserPropertyDetails})
   end
 
   @spec keys() :: list(atom())

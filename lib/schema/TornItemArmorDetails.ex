@@ -23,11 +23,13 @@ defmodule Torngen.Client.Schema.TornItemArmorDetails do
       coverage:
         data
         |> Map.get("coverage")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornItemArmorCoverage}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornItemArmorCoverage}}
+        ),
       base_stats:
         data
         |> Map.get("base_stats")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemBaseStats)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemBaseStats})
     }
   end
 
@@ -43,11 +45,14 @@ defmodule Torngen.Client.Schema.TornItemArmorDetails do
   end
 
   defp validate_key?(:coverage, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornItemArmorCoverage})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornItemArmorCoverage}}
+    )
   end
 
   defp validate_key?(:base_stats, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemBaseStats)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemBaseStats})
   end
 
   @spec keys() :: list(atom())

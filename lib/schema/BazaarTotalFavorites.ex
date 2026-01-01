@@ -6,7 +6,7 @@ defmodule Torngen.Client.Schema.BazaarTotalFavorites do
   defstruct [:values]
 
   @type t :: %__MODULE__{
-          values: [%{:total_favorites => integer()} | Torngen.Client.Schema.Bazaar.t()]
+          values: [%{total_favorites: integer()} | Torngen.Client.Schema.Bazaar.t()]
         }
 
   @impl true
@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.BazaarTotalFavorites do
     %__MODULE__{
       values: [
         data |> Torngen.Client.Schema.parse({:object, %{total_favorites: {:static, :integer}}}),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.Bazaar)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.Bazaar})
       ]
     }
   end

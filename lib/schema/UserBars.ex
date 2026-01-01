@@ -27,17 +27,26 @@ defmodule Torngen.Client.Schema.UserBars do
   def parse(%{} = data) do
     %__MODULE__{
       nerve:
-        data |> Map.get("nerve") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserBar),
-      life: data |> Map.get("life") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserBar),
+        data
+        |> Map.get("nerve")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserBar}),
+      life:
+        data
+        |> Map.get("life")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserBar}),
       happy:
-        data |> Map.get("happy") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserBar),
+        data
+        |> Map.get("happy")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserBar}),
       energy:
-        data |> Map.get("energy") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserBar),
+        data
+        |> Map.get("energy")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserBar}),
       chain:
         data
         |> Map.get("chain")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionOngoingChain]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionOngoingChain]}
         )
     }
   end
@@ -54,25 +63,25 @@ defmodule Torngen.Client.Schema.UserBars do
   end
 
   defp validate_key?(:nerve, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserBar)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserBar})
   end
 
   defp validate_key?(:life, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserBar)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserBar})
   end
 
   defp validate_key?(:happy, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserBar)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserBar})
   end
 
   defp validate_key?(:energy, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserBar)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserBar})
   end
 
   defp validate_key?(:chain, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionOngoingChain]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionOngoingChain]}
     )
   end
 

@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeResponse do
       organizedcrimes:
         data
         |> Map.get("organizedcrimes")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornOrganizedCrime})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornOrganizedCrime}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeResponse do
   end
 
   defp validate_key?(:organizedcrimes, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornOrganizedCrime})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornOrganizedCrime}}
+    )
   end
 
   @spec keys() :: list(atom())

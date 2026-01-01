@@ -22,7 +22,7 @@ defmodule Torngen.Client.Schema.UserVirusResponse do
         data
         |> Map.get("virus")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserVirus]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserVirus]}
         )
     }
   end
@@ -41,7 +41,7 @@ defmodule Torngen.Client.Schema.UserVirusResponse do
   defp validate_key?(:virus, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserVirus]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserVirus]}
     )
   end
 

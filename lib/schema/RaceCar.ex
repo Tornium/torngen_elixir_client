@@ -55,13 +55,13 @@ defmodule Torngen.Client.Schema.RaceCar do
       class:
         data
         |> Map.get("class")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceClassEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceClassEnum}),
       car_item_name:
         data |> Map.get("car_item_name") |> Torngen.Client.Schema.parse({:static, :string}),
       car_item_id:
         data
         |> Map.get("car_item_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId}),
       braking: data |> Map.get("braking") |> Torngen.Client.Schema.parse({:static, :integer}),
       acceleration:
         data |> Map.get("acceleration") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -100,7 +100,7 @@ defmodule Torngen.Client.Schema.RaceCar do
   end
 
   defp validate_key?(:class, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceClassEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceClassEnum})
   end
 
   defp validate_key?(:car_item_name, value) do
@@ -108,7 +108,7 @@ defmodule Torngen.Client.Schema.RaceCar do
   end
 
   defp validate_key?(:car_item_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   defp validate_key?(:braking, value) do

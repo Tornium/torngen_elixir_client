@@ -22,7 +22,9 @@ defmodule Torngen.Client.Schema.TornLogCategory do
     %__MODULE__{
       title: data |> Map.get("title") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
-        data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.LogCategoryId)
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.LogCategoryId})
     }
   end
 
@@ -42,7 +44,7 @@ defmodule Torngen.Client.Schema.TornLogCategory do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.LogCategoryId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.LogCategoryId})
   end
 
   @spec keys() :: list(atom())

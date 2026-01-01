@@ -21,7 +21,10 @@ defmodule Torngen.Client.Schema.UserMeritUpgrade do
   def parse(%{} = data) do
     %__MODULE__{
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.MeritId)
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.MeritId})
     }
   end
 
@@ -41,7 +44,7 @@ defmodule Torngen.Client.Schema.UserMeritUpgrade do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.MeritId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.MeritId})
   end
 
   @spec keys() :: list(atom())

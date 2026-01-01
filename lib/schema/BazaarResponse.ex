@@ -23,7 +23,8 @@ defmodule Torngen.Client.Schema.BazaarResponse do
         data
         |> Map.get("bazaar")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [Torngen.Client.Schema.BazaarSpecialized, Torngen.Client.Schema.BazaarWeekly]}
+          {:one_of,
+           [ref: Torngen.Client.Schema.BazaarSpecialized, ref: Torngen.Client.Schema.BazaarWeekly]}
         )
     }
   end
@@ -42,7 +43,8 @@ defmodule Torngen.Client.Schema.BazaarResponse do
   defp validate_key?(:bazaar, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [Torngen.Client.Schema.BazaarSpecialized, Torngen.Client.Schema.BazaarWeekly]}
+      {:one_of,
+       [ref: Torngen.Client.Schema.BazaarSpecialized, ref: Torngen.Client.Schema.BazaarWeekly]}
     )
   end
 

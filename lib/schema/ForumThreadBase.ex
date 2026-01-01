@@ -64,7 +64,7 @@ defmodule Torngen.Client.Schema.ForumThreadBase do
         data
         |> Map.get("last_poster")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.ForumThreadAuthor]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.ForumThreadAuthor]}
         ),
       last_post_time:
         data
@@ -73,16 +73,20 @@ defmodule Torngen.Client.Schema.ForumThreadBase do
       is_sticky: data |> Map.get("is_sticky") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_locked: data |> Map.get("is_locked") |> Torngen.Client.Schema.parse({:static, :boolean}),
       id:
-        data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadId),
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadId}),
       has_poll: data |> Map.get("has_poll") |> Torngen.Client.Schema.parse({:static, :boolean}),
       forum_id:
-        data |> Map.get("forum_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumId),
+        data
+        |> Map.get("forum_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumId}),
       first_post_time:
         data |> Map.get("first_post_time") |> Torngen.Client.Schema.parse({:static, :integer}),
       author:
         data
         |> Map.get("author")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadAuthor)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadAuthor})
     }
   end
 
@@ -116,7 +120,7 @@ defmodule Torngen.Client.Schema.ForumThreadBase do
   defp validate_key?(:last_poster, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.ForumThreadAuthor]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.ForumThreadAuthor]}
     )
   end
 
@@ -133,7 +137,7 @@ defmodule Torngen.Client.Schema.ForumThreadBase do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadId})
   end
 
   defp validate_key?(:has_poll, value) do
@@ -141,7 +145,7 @@ defmodule Torngen.Client.Schema.ForumThreadBase do
   end
 
   defp validate_key?(:forum_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumId})
   end
 
   defp validate_key?(:first_post_time, value) do
@@ -149,7 +153,7 @@ defmodule Torngen.Client.Schema.ForumThreadBase do
   end
 
   defp validate_key?(:author, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadAuthor)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadAuthor})
   end
 
   @spec keys() :: list(atom())

@@ -33,20 +33,24 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFinished do
       territory:
         data
         |> Map.get("territory")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionTerritoryEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionTerritoryEnum}),
       target: data |> Map.get("target") |> Torngen.Client.Schema.parse({:static, :integer}),
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
       result:
         data
         |> Map.get("result")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionTerritoryWarResultEnum),
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.FactionTerritoryWarResultEnum}
+        ),
       id:
-        data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TerritoryWarId),
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TerritoryWarId}),
       factions:
         data
         |> Map.get("factions")
         |> Torngen.Client.Schema.parse(
-          {:array, Torngen.Client.Schema.FactionTerritoryWarFinishedFaction}
+          {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarFinishedFaction}}
         ),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -64,7 +68,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFinished do
   end
 
   defp validate_key?(:territory, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionTerritoryEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionTerritoryEnum})
   end
 
   defp validate_key?(:target, value) do
@@ -76,17 +80,20 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarFinished do
   end
 
   defp validate_key?(:result, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionTerritoryWarResultEnum)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.FactionTerritoryWarResultEnum}
+    )
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TerritoryWarId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TerritoryWarId})
   end
 
   defp validate_key?(:factions, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionTerritoryWarFinishedFaction}
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarFinishedFaction}}
     )
   end
 

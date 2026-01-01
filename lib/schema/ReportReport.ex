@@ -34,16 +34,16 @@ defmodule Torngen.Client.Schema.ReportReport do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             Torngen.Client.Schema.ReportInvestment,
-             Torngen.Client.Schema.ReportAnonymousBounties,
-             Torngen.Client.Schema.ReportStockAnalysis,
-             Torngen.Client.Schema.ReportTrueLevel,
-             Torngen.Client.Schema.ReportCompanyFinancials,
-             Torngen.Client.Schema.ReportFriendOrFoe,
-             Torngen.Client.Schema.ReportHistory,
-             Torngen.Client.Schema.ReportMostWanted,
-             Torngen.Client.Schema.ReportStats,
-             Torngen.Client.Schema.ReportMoney
+             ref: Torngen.Client.Schema.ReportInvestment,
+             ref: Torngen.Client.Schema.ReportAnonymousBounties,
+             ref: Torngen.Client.Schema.ReportStockAnalysis,
+             ref: Torngen.Client.Schema.ReportTrueLevel,
+             ref: Torngen.Client.Schema.ReportCompanyFinancials,
+             ref: Torngen.Client.Schema.ReportFriendOrFoe,
+             ref: Torngen.Client.Schema.ReportHistory,
+             ref: Torngen.Client.Schema.ReportMostWanted,
+             ref: Torngen.Client.Schema.ReportStats,
+             ref: Torngen.Client.Schema.ReportMoney
            ]}
         )
     }
@@ -65,16 +65,16 @@ defmodule Torngen.Client.Schema.ReportReport do
       value,
       {:one_of,
        [
-         Torngen.Client.Schema.ReportInvestment,
-         Torngen.Client.Schema.ReportAnonymousBounties,
-         Torngen.Client.Schema.ReportStockAnalysis,
-         Torngen.Client.Schema.ReportTrueLevel,
-         Torngen.Client.Schema.ReportCompanyFinancials,
-         Torngen.Client.Schema.ReportFriendOrFoe,
-         Torngen.Client.Schema.ReportHistory,
-         Torngen.Client.Schema.ReportMostWanted,
-         Torngen.Client.Schema.ReportStats,
-         Torngen.Client.Schema.ReportMoney
+         ref: Torngen.Client.Schema.ReportInvestment,
+         ref: Torngen.Client.Schema.ReportAnonymousBounties,
+         ref: Torngen.Client.Schema.ReportStockAnalysis,
+         ref: Torngen.Client.Schema.ReportTrueLevel,
+         ref: Torngen.Client.Schema.ReportCompanyFinancials,
+         ref: Torngen.Client.Schema.ReportFriendOrFoe,
+         ref: Torngen.Client.Schema.ReportHistory,
+         ref: Torngen.Client.Schema.ReportMostWanted,
+         ref: Torngen.Client.Schema.ReportStats,
+         ref: Torngen.Client.Schema.ReportMoney
        ]}
     )
   end

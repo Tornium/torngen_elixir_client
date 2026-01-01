@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionContributorsResponse do
       contributors:
         data
         |> Map.get("contributors")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionContributor})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionContributor}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.FactionContributorsResponse do
   end
 
   defp validate_key?(:contributors, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionContributor})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionContributor}}
+    )
   end
 
   @spec keys() :: list(atom())

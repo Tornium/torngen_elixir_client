@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionMembersResponse do
       members:
         data
         |> Map.get("members")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionMember})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionMember}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionMembersResponse do
   end
 
   defp validate_key?(:members, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionMember})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionMember}})
   end
 
   @spec keys() :: list(atom())

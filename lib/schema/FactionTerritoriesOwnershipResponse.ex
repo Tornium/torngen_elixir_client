@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.FactionTerritoriesOwnershipResponse do
       territoryOwnership:
         data
         |> Map.get("territoryOwnership")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritoryOwnership})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionTerritoryOwnership}}
+        )
     }
   end
 
@@ -39,7 +41,7 @@ defmodule Torngen.Client.Schema.FactionTerritoriesOwnershipResponse do
   defp validate_key?(:territoryOwnership, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionTerritoryOwnership}
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryOwnership}}
     )
   end
 

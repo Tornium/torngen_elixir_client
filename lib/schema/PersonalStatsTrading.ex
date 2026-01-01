@@ -13,20 +13,16 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
 
   @type t :: %__MODULE__{
           trading: %{
-            :trades => integer(),
-            :points => %{:sold => integer(), :bought => integer()},
-            :items => %{
-              :sent => integer(),
-              :bought => %{:shops => integer(), :market => integer()},
-              :auctions => %{:won => integer(), :sold => integer()}
+            trades: integer(),
+            points: %{sold: integer(), bought: integer()},
+            items: %{
+              sent: integer(),
+              bought: %{shops: integer(), market: integer()},
+              auctions: %{won: integer(), sold: integer()}
             },
-            :item_market => %{
-              :sales => integer(),
-              :revenue => integer(),
-              :fees => integer(),
-              :customers => integer()
-            },
-            :bazaar => %{:sales => integer(), :profit => integer(), :customers => integer()}
+            item_market:
+              nil | %{sales: integer(), revenue: integer(), fees: integer(), customers: integer()},
+            bazaar: %{sales: integer(), profit: integer(), customers: integer()}
           }
         }
 
@@ -47,14 +43,6 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
                   auctions: {:object, %{won: {:static, :integer}, sold: {:static, :integer}}}
                 }},
              points: {:object, %{sold: {:static, :integer}, bought: {:static, :integer}}},
-             item_market:
-               {:object,
-                %{
-                  fees: {:static, :integer},
-                  sales: {:static, :integer},
-                  revenue: {:static, :integer},
-                  customers: {:static, :integer}
-                }},
              bazaar:
                {:object,
                 %{
@@ -62,6 +50,17 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
                   customers: {:static, :integer},
                   profit: {:static, :integer}
                 }},
+             item_market:
+               {:one_of,
+                [
+                  static: :null,
+                  object: %{
+                    fees: {:static, :integer},
+                    sales: {:static, :integer},
+                    revenue: {:static, :integer},
+                    customers: {:static, :integer}
+                  }
+                ]},
              trades: {:static, :integer}
            }}
         )
@@ -92,14 +91,6 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
               auctions: {:object, %{won: {:static, :integer}, sold: {:static, :integer}}}
             }},
          points: {:object, %{sold: {:static, :integer}, bought: {:static, :integer}}},
-         item_market:
-           {:object,
-            %{
-              fees: {:static, :integer},
-              sales: {:static, :integer},
-              revenue: {:static, :integer},
-              customers: {:static, :integer}
-            }},
          bazaar:
            {:object,
             %{
@@ -107,6 +98,17 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
               customers: {:static, :integer},
               profit: {:static, :integer}
             }},
+         item_market:
+           {:one_of,
+            [
+              static: :null,
+              object: %{
+                fees: {:static, :integer},
+                sales: {:static, :integer},
+                revenue: {:static, :integer},
+                customers: {:static, :integer}
+              }
+            ]},
          trades: {:static, :integer}
        }}
     )

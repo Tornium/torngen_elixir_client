@@ -28,7 +28,7 @@ defmodule Torngen.Client.Schema.ForumPoll do
       answers:
         data
         |> Map.get("answers")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ForumPollVote})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.ForumPollVote}})
     }
   end
 
@@ -52,7 +52,7 @@ defmodule Torngen.Client.Schema.ForumPoll do
   end
 
   defp validate_key?(:answers, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ForumPollVote})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.ForumPollVote}})
   end
 
   @spec keys() :: list(atom())

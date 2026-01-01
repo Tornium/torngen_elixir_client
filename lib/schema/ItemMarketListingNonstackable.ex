@@ -26,7 +26,7 @@ defmodule Torngen.Client.Schema.ItemMarketListingNonstackable do
       item_details:
         data
         |> Map.get("item_details")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemMarketListingItemDetails),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemMarketListingItemDetails}),
       amount: data |> Map.get("amount") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -47,7 +47,10 @@ defmodule Torngen.Client.Schema.ItemMarketListingNonstackable do
   end
 
   defp validate_key?(:item_details, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemMarketListingItemDetails)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.ItemMarketListingItemDetails}
+    )
   end
 
   defp validate_key?(:amount, value) do

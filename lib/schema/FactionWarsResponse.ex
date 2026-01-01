@@ -21,11 +21,13 @@ defmodule Torngen.Client.Schema.FactionWarsResponse do
   def parse(%{} = data) do
     %__MODULE__{
       wars:
-        data |> Map.get("wars") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionWars),
+        data
+        |> Map.get("wars")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionWars}),
       pacts:
         data
         |> Map.get("pacts")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionPact})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionPact}})
     }
   end
 
@@ -41,11 +43,11 @@ defmodule Torngen.Client.Schema.FactionWarsResponse do
   end
 
   defp validate_key?(:wars, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionWars)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionWars})
   end
 
   defp validate_key?(:pacts, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionPact})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionPact}})
   end
 
   @spec keys() :: list(atom())

@@ -31,7 +31,7 @@ defmodule Torngen.Client.Schema.UserCrimeAttempts do
       subcrimes:
         data
         |> Map.get("subcrimes")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserSubcrime}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserSubcrime}}),
       fail: data |> Map.get("fail") |> Torngen.Client.Schema.parse({:static, :integer}),
       critical_fail:
         data |> Map.get("critical_fail") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -58,7 +58,7 @@ defmodule Torngen.Client.Schema.UserCrimeAttempts do
   end
 
   defp validate_key?(:subcrimes, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserSubcrime})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserSubcrime}})
   end
 
   defp validate_key?(:fail, value) do

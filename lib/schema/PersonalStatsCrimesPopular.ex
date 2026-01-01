@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesPopular do
   ]
 
   @type t :: %__MODULE__{
-          crimes: %{:version => String.t(), :total => integer()}
+          crimes: %{version: String.t(), total: integer()}
         }
 
   @impl true

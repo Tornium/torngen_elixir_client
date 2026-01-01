@@ -28,12 +28,12 @@ defmodule Torngen.Client.Schema.FactionChainReportBonus do
       defender_id:
         data
         |> Map.get("defender_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer}),
       attacker_id:
         data
         |> Map.get("attacker_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId})
     }
   end
 
@@ -53,7 +53,7 @@ defmodule Torngen.Client.Schema.FactionChainReportBonus do
   end
 
   defp validate_key?(:defender_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:chain, value) do
@@ -61,7 +61,7 @@ defmodule Torngen.Client.Schema.FactionChainReportBonus do
   end
 
   defp validate_key?(:attacker_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   @spec keys() :: list(atom())

@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.FactionRaidsResponse do
       raids:
         data
         |> Map.get("raids")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionRaidWarfare}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionRaidWarfare}}),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -43,11 +43,14 @@ defmodule Torngen.Client.Schema.FactionRaidsResponse do
   end
 
   defp validate_key?(:raids, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionRaidWarfare})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionRaidWarfare}}
+    )
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

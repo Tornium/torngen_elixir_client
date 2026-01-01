@@ -26,13 +26,13 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
         data
         |> Map.get("required_item")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.TornOrganizedCrimeRequiredItem]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.TornOrganizedCrimeRequiredItem]}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornOrganizedCrimePositionId)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId})
     }
   end
 
@@ -50,7 +50,7 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
   defp validate_key?(:required_item, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.TornOrganizedCrimeRequiredItem]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.TornOrganizedCrimeRequiredItem]}
     )
   end
 
@@ -59,7 +59,10 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornOrganizedCrimePositionId)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId}
+    )
   end
 
   @spec keys() :: list(atom())

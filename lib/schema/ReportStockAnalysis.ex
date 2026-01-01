@@ -14,16 +14,16 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
   @type t :: %__MODULE__{
           items: [
             %{
-              :trip_duration => integer(),
-              :item => %{
-                :value => integer(),
-                :price => integer(),
-                :name => String.t(),
-                :id => Torngen.Client.Schema.ItemId.t(),
-                :due => nil | integer()
+              trip_duration: integer(),
+              item: %{
+                value: integer(),
+                price: integer(),
+                name: String.t(),
+                id: Torngen.Client.Schema.ItemId.t(),
+                due: nil | integer()
               },
-              :hourly_profit => integer(),
-              :country => Torngen.Client.Schema.CountryEnum.t()
+              hourly_profit: integer(),
+              country: Torngen.Client.Schema.CountryEnum.t()
             }
           ]
         }
@@ -41,7 +41,7 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
               item:
                 {:object,
                  %{
-                   id: Torngen.Client.Schema.ItemId,
+                   id: {:ref, Torngen.Client.Schema.ItemId},
                    name: {:static, :string},
                    value: {:static, :integer},
                    price: {:static, :integer},
@@ -49,7 +49,7 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
                  }},
               trip_duration: {:static, :integer},
               hourly_profit: {:static, :integer},
-              country: Torngen.Client.Schema.CountryEnum
+              country: {:ref, Torngen.Client.Schema.CountryEnum}
             }}}
         )
     }
@@ -75,7 +75,7 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
           item:
             {:object,
              %{
-               id: Torngen.Client.Schema.ItemId,
+               id: {:ref, Torngen.Client.Schema.ItemId},
                name: {:static, :string},
                value: {:static, :integer},
                price: {:static, :integer},
@@ -83,7 +83,7 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
              }},
           trip_duration: {:static, :integer},
           hourly_profit: {:static, :integer},
-          country: Torngen.Client.Schema.CountryEnum
+          country: {:ref, Torngen.Client.Schema.CountryEnum}
         }}}
     )
   end

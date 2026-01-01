@@ -8,10 +8,10 @@ defmodule Torngen.Client.Schema.TornItemDetails do
   @type t :: %__MODULE__{
           values: [
             %{
-              :type => Torngen.Client.Schema.TornItemTypeEnum.t(),
-              :sub_type => nil | Torngen.Client.Schema.TornItemWeaponTypeEnum.t(),
-              :name => String.t(),
-              :id => Torngen.Client.Schema.ItemId.t()
+              type: Torngen.Client.Schema.TornItemTypeEnum.t(),
+              sub_type: nil | Torngen.Client.Schema.TornItemWeaponTypeEnum.t(),
+              name: String.t(),
+              id: Torngen.Client.Schema.ItemId.t()
             }
             | Torngen.Client.Schema.ItemMarketListingItemDetails.t()
           ]
@@ -25,13 +25,15 @@ defmodule Torngen.Client.Schema.TornItemDetails do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             id: Torngen.Client.Schema.ItemId,
+             id: {:ref, Torngen.Client.Schema.ItemId},
              name: {:static, :string},
-             type: Torngen.Client.Schema.TornItemTypeEnum,
-             sub_type: {:one_of, [{:static, :null}, Torngen.Client.Schema.TornItemWeaponTypeEnum]}
+             type: {:ref, Torngen.Client.Schema.TornItemTypeEnum},
+             sub_type:
+               {:one_of, [static: :null, ref: Torngen.Client.Schema.TornItemWeaponTypeEnum]}
            }}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemMarketListingItemDetails)
+        data
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemMarketListingItemDetails})
       ]
     }
   end

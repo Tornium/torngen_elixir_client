@@ -66,17 +66,18 @@ defmodule Torngen.Client.Schema.TornHofBasic do
       rank_name:
         data
         |> Map.get("rank_name")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserRankEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserRankEnum}),
       rank: data |> Map.get("rank") |> Torngen.Client.Schema.parse({:static, :string}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :integer}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
       last_action:
         data |> Map.get("last_action") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       faction_id:
         data
         |> Map.get("faction_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       age_in_days:
         data |> Map.get("age_in_days") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -113,7 +114,7 @@ defmodule Torngen.Client.Schema.TornHofBasic do
   end
 
   defp validate_key?(:rank_name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserRankEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserRankEnum})
   end
 
   defp validate_key?(:rank, value) do
@@ -133,11 +134,11 @@ defmodule Torngen.Client.Schema.TornHofBasic do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:faction_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:age_in_days, value) do

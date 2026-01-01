@@ -13,8 +13,8 @@ defmodule Torngen.Client.Schema.PersonalStatsHospitalPopular do
 
   @type t :: %__MODULE__{
           hospital: %{
-            :reviving => %{:skill => integer(), :revives => integer()},
-            :medical_items_used => integer()
+            reviving: %{skill: integer(), revives: integer()},
+            medical_items_used: integer()
           }
         }
 

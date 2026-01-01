@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.TornCalendarActivity do
   @type t :: %__MODULE__{
           title: String.t(),
           start: integer(),
-          fixed_start_time: boolean(),
+          fixed_start_time: nil | boolean(),
           end: integer(),
           description: String.t()
         }
@@ -29,7 +29,9 @@ defmodule Torngen.Client.Schema.TornCalendarActivity do
       title: data |> Map.get("title") |> Torngen.Client.Schema.parse({:static, :string}),
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
       fixed_start_time:
-        data |> Map.get("fixed_start_time") |> Torngen.Client.Schema.parse({:static, :boolean}),
+        data
+        |> Map.get("fixed_start_time")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :boolean]}),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer}),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string})

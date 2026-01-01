@@ -26,11 +26,13 @@ defmodule Torngen.Client.Schema.UserCrimeRewards do
       items:
         data
         |> Map.get("items")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserCrimeRewardItem}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.UserCrimeRewardItem}}
+        ),
       ammo:
         data
         |> Map.get("ammo")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserCrimeRewardAmmo)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserCrimeRewardAmmo})
     }
   end
 
@@ -50,11 +52,14 @@ defmodule Torngen.Client.Schema.UserCrimeRewards do
   end
 
   defp validate_key?(:items, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserCrimeRewardItem})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.UserCrimeRewardItem}}
+    )
   end
 
   defp validate_key?(:ammo, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserCrimeRewardAmmo)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserCrimeRewardAmmo})
   end
 
   @spec keys() :: list(atom())

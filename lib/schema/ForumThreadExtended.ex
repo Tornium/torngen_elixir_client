@@ -8,9 +8,9 @@ defmodule Torngen.Client.Schema.ForumThreadExtended do
   @type t :: %__MODULE__{
           values: [
             %{
-              :poll => nil | Torngen.Client.Schema.ForumPoll.t(),
-              :content_raw => String.t(),
-              :content => String.t()
+              poll: nil | Torngen.Client.Schema.ForumPoll.t(),
+              content_raw: String.t(),
+              content: String.t()
             }
             | Torngen.Client.Schema.ForumThreadBase.t()
           ]
@@ -24,12 +24,12 @@ defmodule Torngen.Client.Schema.ForumThreadExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             poll: {:one_of, [{:static, :null}, Torngen.Client.Schema.ForumPoll]},
-             content_raw: {:static, :string},
-             content: {:static, :string}
+             content: {:static, :string},
+             poll: {:one_of, [static: :null, ref: Torngen.Client.Schema.ForumPoll]},
+             content_raw: {:static, :string}
            }}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadBase)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadBase})
       ]
     }
   end

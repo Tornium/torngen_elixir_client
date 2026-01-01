@@ -13,36 +13,27 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
 
   @type t :: %__MODULE__{
           attacking: %{
-            :networth => %{
-              :money_mugged => integer(),
-              :largest_mug => integer(),
-              :items_looted => integer()
+            networth: %{money_mugged: integer(), largest_mug: integer(), items_looted: integer()},
+            killstreak: %{best: integer()},
+            hits: %{
+              success: integer(),
+              one_hit_kills: integer(),
+              miss: integer(),
+              critical: integer()
             },
-            :killstreak => %{:best => integer()},
-            :hits => %{
-              :success => integer(),
-              :one_hit_kills => integer(),
-              :miss => integer(),
-              :critical => integer()
-            },
-            :faction => %{:respect => integer(), :ranked_war_hits => integer()},
-            :escapes => %{:player => integer(), :foes => integer()},
-            :elo => integer(),
-            :defends => %{:won => integer(), :stalemate => integer(), :lost => integer()},
-            :damage => %{:total => integer(), :best => integer()},
-            :attacks => %{
-              :won => integer(),
-              :stalemate => integer(),
-              :lost => integer(),
-              :assist => integer()
-            },
-            :ammunition => %{
-              :tracer => integer(),
-              :total => integer(),
-              :special => integer(),
-              :piercing => integer(),
-              :incendiary => integer(),
-              :hollow_point => integer()
+            faction: %{respect: integer(), ranked_war_hits: integer()},
+            escapes: %{player: integer(), foes: integer()},
+            elo: integer(),
+            defends: %{won: integer(), stalemate: integer(), lost: integer()},
+            damage: %{total: integer(), best: integer()},
+            attacks: %{won: integer(), stalemate: integer(), lost: integer(), assist: integer()},
+            ammunition: %{
+              tracer: integer(),
+              total: integer(),
+              special: integer(),
+              piercing: integer(),
+              incendiary: integer(),
+              hollow_point: integer()
             }
           }
         }
@@ -56,6 +47,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              networth:
                {:object,
                 %{
@@ -74,7 +66,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
                 }},
              faction:
                {:object, %{respect: {:static, :integer}, ranked_war_hits: {:static, :integer}}},
-             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -123,6 +114,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
       value,
       {:object,
        %{
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          networth:
            {:object,
             %{
@@ -141,7 +133,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
             }},
          faction:
            {:object, %{respect: {:static, :integer}, ranked_war_hits: {:static, :integer}}},
-         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,

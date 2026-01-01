@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserJobRanksResponse do
       jobranks:
         data
         |> Map.get("jobranks")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserJobRanks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserJobRanks})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserJobRanksResponse do
   end
 
   defp validate_key?(:jobranks, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserJobRanks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserJobRanks})
   end
 
   @spec keys() :: list(atom())

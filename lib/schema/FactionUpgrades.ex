@@ -16,7 +16,7 @@ defmodule Torngen.Client.Schema.FactionUpgrades do
   @type t :: %__MODULE__{
           war: [Torngen.Client.Schema.FactionBranchDetails.t()],
           peace: [Torngen.Client.Schema.FactionBranchDetails.t()],
-          core: %{:upgrades => [Torngen.Client.Schema.FactionUpgradeDetails.t()]}
+          core: %{upgrades: nil | [Torngen.Client.Schema.FactionUpgradeDetails.t()]}
         }
 
   @impl true
@@ -25,16 +25,25 @@ defmodule Torngen.Client.Schema.FactionUpgrades do
       war:
         data
         |> Map.get("war")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionBranchDetails}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionBranchDetails}}
+        ),
       peace:
         data
         |> Map.get("peace")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionBranchDetails}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionBranchDetails}}
+        ),
       core:
         data
         |> Map.get("core")
         |> Torngen.Client.Schema.parse(
-          {:object, %{upgrades: {:array, Torngen.Client.Schema.FactionUpgradeDetails}}}
+          {:object,
+           %{
+             upgrades:
+               {:one_of,
+                [static: :null, array: {:ref, Torngen.Client.Schema.FactionUpgradeDetails}]}
+           }}
         )
     }
   end
@@ -51,17 +60,27 @@ defmodule Torngen.Client.Schema.FactionUpgrades do
   end
 
   defp validate_key?(:war, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionBranchDetails})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionBranchDetails}}
+    )
   end
 
   defp validate_key?(:peace, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionBranchDetails})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionBranchDetails}}
+    )
   end
 
   defp validate_key?(:core, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{upgrades: {:array, Torngen.Client.Schema.FactionUpgradeDetails}}}
+      {:object,
+       %{
+         upgrades:
+           {:one_of, [static: :null, array: {:ref, Torngen.Client.Schema.FactionUpgradeDetails}]}
+       }}
     )
   end
 

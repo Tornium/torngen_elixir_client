@@ -24,7 +24,8 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeRequiredItem do
     %__MODULE__{
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       is_used: data |> Map.get("is_used") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId})
     }
   end
 
@@ -48,7 +49,7 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeRequiredItem do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   @spec keys() :: list(atom())

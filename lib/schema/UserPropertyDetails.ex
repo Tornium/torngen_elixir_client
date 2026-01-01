@@ -7,7 +7,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetails do
 
   @type t :: %__MODULE__{
           values: [
-            %{:used_by => [Torngen.Client.Schema.BasicUser.t()]}
+            %{used_by: [Torngen.Client.Schema.BasicUser.t()]}
             | Torngen.Client.Schema.UserPropertyBasicDetails.t()
           ]
         }
@@ -18,9 +18,10 @@ defmodule Torngen.Client.Schema.UserPropertyDetails do
       values: [
         data
         |> Torngen.Client.Schema.parse(
-          {:object, %{used_by: {:array, Torngen.Client.Schema.BasicUser}}}
+          {:object, %{used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}}}}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)
+        data
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserPropertyBasicDetails})
       ]
     }
   end

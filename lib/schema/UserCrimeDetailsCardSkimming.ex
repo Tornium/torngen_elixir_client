@@ -14,17 +14,17 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsCardSkimming do
 
   @type t :: %__MODULE__{
           skimmers: %{
-            :oldest_recovered => integer(),
-            :most_lucrative => integer(),
-            :lost => integer(),
-            :active => integer()
+            oldest_recovered: integer(),
+            most_lucrative: integer(),
+            lost: integer(),
+            active: integer()
           },
           card_details: %{
-            :sold => integer(),
-            :recovered => integer(),
-            :recoverable => integer(),
-            :lost => integer(),
-            :areas => [%{:id => integer(), :amount => integer()}]
+            sold: integer(),
+            recovered: integer(),
+            recoverable: integer(),
+            lost: integer(),
+            areas: [%{id: integer(), amount: integer()}]
           }
         }
 

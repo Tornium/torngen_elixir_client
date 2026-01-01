@@ -33,17 +33,17 @@ defmodule Torngen.Client.Schema.UserPropertiesResponse do
           {:array,
            {:one_of,
             [
-              Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
-              Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
-              Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
-              Torngen.Client.Schema.UserPropertyDetailsExtended,
-              Torngen.Client.Schema.UserPropertyBasicDetails
+              ref: Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
+              ref: Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
+              ref: Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
+              ref: Torngen.Client.Schema.UserPropertyDetailsExtended,
+              ref: Torngen.Client.Schema.UserPropertyBasicDetails
             ]}}
         ),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -64,17 +64,17 @@ defmodule Torngen.Client.Schema.UserPropertiesResponse do
       {:array,
        {:one_of,
         [
-          Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
-          Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
-          Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
-          Torngen.Client.Schema.UserPropertyDetailsExtended,
-          Torngen.Client.Schema.UserPropertyBasicDetails
+          ref: Torngen.Client.Schema.UserPropertyDetailsExtendedForSale,
+          ref: Torngen.Client.Schema.UserPropertyDetailsExtendedForRent,
+          ref: Torngen.Client.Schema.UserPropertyDetailsExtendedRented,
+          ref: Torngen.Client.Schema.UserPropertyDetailsExtended,
+          ref: Torngen.Client.Schema.UserPropertyBasicDetails
         ]}}
     )
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

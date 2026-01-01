@@ -28,7 +28,9 @@ defmodule Torngen.Client.Schema.FactionPosition do
       abilities:
         data
         |> Map.get("abilities")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionPositionAbilityEnum})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionPositionAbilityEnum}}
+        )
     }
   end
 
@@ -54,7 +56,7 @@ defmodule Torngen.Client.Schema.FactionPosition do
   defp validate_key?(:abilities, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionPositionAbilityEnum}
+      {:array, {:ref, Torngen.Client.Schema.FactionPositionAbilityEnum}}
     )
   end
 

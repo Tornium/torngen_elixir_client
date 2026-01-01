@@ -24,7 +24,9 @@ defmodule Torngen.Client.Schema.TornFactionTree do
       branches:
         data
         |> Map.get("branches")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornFactionTreeBranch})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornFactionTreeBranch}}
+        )
     }
   end
 
@@ -44,7 +46,10 @@ defmodule Torngen.Client.Schema.TornFactionTree do
   end
 
   defp validate_key?(:branches, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornFactionTreeBranch})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornFactionTreeBranch}}
+    )
   end
 
   @spec keys() :: list(atom())

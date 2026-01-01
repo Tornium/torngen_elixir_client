@@ -23,10 +23,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
           id: Torngen.Client.Schema.RankedWarId.t(),
           factions: [
             %{
-              :score => integer(),
-              :name => String.t(),
-              :id => Torngen.Client.Schema.FactionId.t(),
-              :chain => integer()
+              score: integer(),
+              name: String.t(),
+              id: Torngen.Client.Schema.FactionId.t(),
+              chain: integer()
             }
           ],
           end: integer()
@@ -39,11 +39,14 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
         data
         |> Map.get("winner")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
         ),
       target: data |> Map.get("target") |> Torngen.Client.Schema.parse({:static, :integer}),
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RankedWarId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RankedWarId}),
       factions:
         data
         |> Map.get("factions")
@@ -51,10 +54,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
           {:array,
            {:object,
             %{
-              id: Torngen.Client.Schema.FactionId,
+              id: {:ref, Torngen.Client.Schema.FactionId},
               name: {:static, :string},
-              score: {:static, :integer},
-              chain: {:static, :integer}
+              chain: {:static, :integer},
+              score: {:static, :integer}
             }}}
         ),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -75,7 +78,7 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
   defp validate_key?(:winner, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
     )
   end
 
@@ -88,7 +91,7 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RankedWarId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RankedWarId})
   end
 
   defp validate_key?(:factions, value) do
@@ -97,10 +100,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
       {:array,
        {:object,
         %{
-          id: Torngen.Client.Schema.FactionId,
+          id: {:ref, Torngen.Client.Schema.FactionId},
           name: {:static, :string},
-          score: {:static, :integer},
-          chain: {:static, :integer}
+          chain: {:static, :integer},
+          score: {:static, :integer}
         }}}
     )
   end

@@ -8,12 +8,12 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedForRent do
   @type t :: %__MODULE__{
           values: [
             %{
-              :used_by => [Torngen.Client.Schema.BasicUser.t()],
-              :status => String.t(),
-              :renter_asked => Torngen.Client.Schema.BasicUser.t(),
-              :rental_period => integer(),
-              :cost_per_day => integer(),
-              :cost => integer()
+              used_by: [Torngen.Client.Schema.BasicUser.t()],
+              status: String.t(),
+              renter_asked: nil | Torngen.Client.Schema.BasicUser.t(),
+              rental_period: integer(),
+              cost_per_day: integer(),
+              cost: integer()
             }
             | Torngen.Client.Schema.UserPropertyBasicDetails.t()
           ]
@@ -31,11 +31,12 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedForRent do
              rental_period: {:static, :integer},
              cost_per_day: {:static, :integer},
              cost: {:static, :integer},
-             used_by: {:array, Torngen.Client.Schema.BasicUser},
-             renter_asked: Torngen.Client.Schema.BasicUser
+             used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}},
+             renter_asked: {:one_of, [static: :null, ref: Torngen.Client.Schema.BasicUser]}
            }}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)
+        data
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserPropertyBasicDetails})
       ]
     }
   end

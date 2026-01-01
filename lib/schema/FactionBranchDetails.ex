@@ -27,7 +27,9 @@ defmodule Torngen.Client.Schema.FactionBranchDetails do
       upgrades:
         data
         |> Map.get("upgrades")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionUpgradeDetails}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionUpgradeDetails}}
+        ),
       order: data |> Map.get("order") |> Torngen.Client.Schema.parse({:static, :integer}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       multiplier:
@@ -47,7 +49,10 @@ defmodule Torngen.Client.Schema.FactionBranchDetails do
   end
 
   defp validate_key?(:upgrades, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionUpgradeDetails})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionUpgradeDetails}}
+    )
   end
 
   defp validate_key?(:order, value) do

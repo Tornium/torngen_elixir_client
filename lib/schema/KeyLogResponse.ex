@@ -14,12 +14,12 @@ defmodule Torngen.Client.Schema.KeyLogResponse do
   @type t :: %__MODULE__{
           log: [
             %{
-              :type => String.t(),
-              :timestamp => integer(),
-              :selections => String.t(),
-              :ip => String.t(),
-              :id => nil | String.t() | integer(),
-              :comment => nil | String.t()
+              type: String.t(),
+              timestamp: integer(),
+              selections: String.t(),
+              ip: String.t(),
+              id: nil | String.t() | integer(),
+              comment: nil | nil | String.t()
             }
           ]
         }
@@ -38,7 +38,7 @@ defmodule Torngen.Client.Schema.KeyLogResponse do
               timestamp: {:static, :integer},
               type: {:static, :string},
               ip: {:static, :string},
-              comment: {:one_of, [static: :null, static: :string]},
+              comment: {:one_of, [static: :null, one_of: [static: :null, static: :string]]},
               selections: {:static, :string}
             }}}
         )
@@ -66,7 +66,7 @@ defmodule Torngen.Client.Schema.KeyLogResponse do
           timestamp: {:static, :integer},
           type: {:static, :string},
           ip: {:static, :string},
-          comment: {:one_of, [static: :null, static: :string]},
+          comment: {:one_of, [static: :null, one_of: [static: :null, static: :string]]},
           selections: {:static, :string}
         }}}
     )

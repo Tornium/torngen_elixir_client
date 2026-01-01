@@ -5,16 +5,14 @@ defmodule Torngen.Client.Schema.BazaarBargainSales do
 
   defstruct [:values]
 
-  @type t :: %__MODULE__{
-          values: [%{:bargain_sales => integer()} | Torngen.Client.Schema.Bazaar.t()]
-        }
+  @type t :: %__MODULE__{values: [%{bargain_sales: integer()} | Torngen.Client.Schema.Bazaar.t()]}
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
       values: [
         data |> Torngen.Client.Schema.parse({:object, %{bargain_sales: {:static, :integer}}}),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.Bazaar)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.Bazaar})
       ]
     }
   end

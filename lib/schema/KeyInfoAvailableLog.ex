@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.KeyInfoAvailableLog do
       log_ids:
         data
         |> Map.get("log_ids")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.LogId}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.LogId}}),
       category_id:
         data
         |> Map.get("category_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.LogCategoryId)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.LogCategoryId})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.KeyInfoAvailableLog do
   end
 
   defp validate_key?(:log_ids, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.LogId})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.LogId}})
   end
 
   defp validate_key?(:category_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.LogCategoryId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.LogCategoryId})
   end
 
   @spec keys() :: list(atom())

@@ -23,7 +23,10 @@ defmodule Torngen.Client.Schema.UserIconPublic do
   def parse(%{} = data) do
     %__MODULE__{
       title: data |> Map.get("title") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserIconId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserIconId}),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string})
     }
@@ -45,7 +48,7 @@ defmodule Torngen.Client.Schema.UserIconPublic do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserIconId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserIconId})
   end
 
   defp validate_key?(:description, value) do

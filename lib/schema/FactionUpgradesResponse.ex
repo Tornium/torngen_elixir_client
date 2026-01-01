@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.FactionUpgradesResponse do
       upgrades:
         data
         |> Map.get("upgrades")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionUpgrades),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionUpgrades}),
       state:
         data
         |> Map.get("state")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionBranchStateEnum)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionBranchStateEnum})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.FactionUpgradesResponse do
   end
 
   defp validate_key?(:upgrades, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionUpgrades)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionUpgrades})
   end
 
   defp validate_key?(:state, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionBranchStateEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionBranchStateEnum})
   end
 
   @spec keys() :: list(atom())

@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.PersonalStatsJobsPublic do
   ]
 
   @type t :: %__MODULE__{
-          jobs: %{:trains_received => integer(), :job_points_used => integer()}
+          jobs: %{trains_received: integer(), job_points_used: integer()}
         }
 
   @impl true

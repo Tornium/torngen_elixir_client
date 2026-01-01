@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornHonorsResponse do
       honors:
         data
         |> Map.get("honors")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornHonor})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornHonor}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornHonorsResponse do
   end
 
   defp validate_key?(:honors, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornHonor})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornHonor}})
   end
 
   @spec keys() :: list(atom())

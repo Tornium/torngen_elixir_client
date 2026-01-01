@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserMedalsResponse do
       medals:
         data
         |> Map.get("medals")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserMedal})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserMedal}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserMedalsResponse do
   end
 
   defp validate_key?(:medals, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserMedal})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserMedal}})
   end
 
   @spec keys() :: list(atom())

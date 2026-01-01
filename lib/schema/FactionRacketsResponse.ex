@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionRacketsResponse do
       rackets:
         data
         |> Map.get("rackets")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornRacket})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornRacket}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionRacketsResponse do
   end
 
   defp validate_key?(:rackets, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornRacket})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornRacket}})
   end
 
   @spec keys() :: list(atom())

@@ -19,7 +19,9 @@ defmodule Torngen.Client.Schema.UserHofResponse do
   def parse(%{} = data) do
     %__MODULE__{
       hof:
-        data |> Map.get("hof") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserHofStats)
+        data
+        |> Map.get("hof")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserHofStats})
     }
   end
 
@@ -35,7 +37,7 @@ defmodule Torngen.Client.Schema.UserHofResponse do
   end
 
   defp validate_key?(:hof, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserHofStats)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserHofStats})
   end
 
   @spec keys() :: list(atom())

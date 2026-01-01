@@ -24,11 +24,14 @@ defmodule Torngen.Client.Schema.ItemMarketListingItemDetails do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      uid: data |> Map.get("uid") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemUid),
+      uid:
+        data
+        |> Map.get("uid")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemUid}),
       stats:
         data
         |> Map.get("stats")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemMarketListingItemStats),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemMarketListingItemStats}),
       rarity:
         data
         |> Map.get("rarity")
@@ -38,7 +41,9 @@ defmodule Torngen.Client.Schema.ItemMarketListingItemDetails do
       bonuses:
         data
         |> Map.get("bonuses")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ItemMarketListingItemBonus})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ItemMarketListingItemBonus}}
+        )
     }
   end
 
@@ -54,11 +59,14 @@ defmodule Torngen.Client.Schema.ItemMarketListingItemDetails do
   end
 
   defp validate_key?(:uid, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemUid)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemUid})
   end
 
   defp validate_key?(:stats, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemMarketListingItemStats)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.ItemMarketListingItemStats}
+    )
   end
 
   defp validate_key?(:rarity, value) do
@@ -71,7 +79,7 @@ defmodule Torngen.Client.Schema.ItemMarketListingItemDetails do
   defp validate_key?(:bonuses, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.ItemMarketListingItemBonus}
+      {:array, {:ref, Torngen.Client.Schema.ItemMarketListingItemBonus}}
     )
   end
 

@@ -23,11 +23,13 @@ defmodule Torngen.Client.Schema.TornEliminationTeamPlayersResponse do
       eliminationteam:
         data
         |> Map.get("eliminationteam")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornEliminationTeamPlayer}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamPlayer}}
+        ),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -45,12 +47,12 @@ defmodule Torngen.Client.Schema.TornEliminationTeamPlayersResponse do
   defp validate_key?(:eliminationteam, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.TornEliminationTeamPlayer}
+      {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamPlayer}}
     )
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

@@ -35,16 +35,18 @@ defmodule Torngen.Client.Schema.UserJob do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             Torngen.Client.Schema.JobPositionEducationEnum,
-             Torngen.Client.Schema.JobPositionLawEnum,
-             Torngen.Client.Schema.JobPositionMedicalEnum,
-             Torngen.Client.Schema.JobPositionCasinoEnum,
-             Torngen.Client.Schema.JobPositionGrocerEnum,
-             Torngen.Client.Schema.JobPositionArmyEnum
+             ref: Torngen.Client.Schema.JobPositionEducationEnum,
+             ref: Torngen.Client.Schema.JobPositionLawEnum,
+             ref: Torngen.Client.Schema.JobPositionMedicalEnum,
+             ref: Torngen.Client.Schema.JobPositionCasinoEnum,
+             ref: Torngen.Client.Schema.JobPositionGrocerEnum,
+             ref: Torngen.Client.Schema.JobPositionArmyEnum
            ]}
         ),
       name:
-        data |> Map.get("name") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.JobTypeEnum)
+        data
+        |> Map.get("name")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.JobTypeEnum})
     }
   end
 
@@ -68,18 +70,18 @@ defmodule Torngen.Client.Schema.UserJob do
       value,
       {:one_of,
        [
-         Torngen.Client.Schema.JobPositionEducationEnum,
-         Torngen.Client.Schema.JobPositionLawEnum,
-         Torngen.Client.Schema.JobPositionMedicalEnum,
-         Torngen.Client.Schema.JobPositionCasinoEnum,
-         Torngen.Client.Schema.JobPositionGrocerEnum,
-         Torngen.Client.Schema.JobPositionArmyEnum
+         ref: Torngen.Client.Schema.JobPositionEducationEnum,
+         ref: Torngen.Client.Schema.JobPositionLawEnum,
+         ref: Torngen.Client.Schema.JobPositionMedicalEnum,
+         ref: Torngen.Client.Schema.JobPositionCasinoEnum,
+         ref: Torngen.Client.Schema.JobPositionGrocerEnum,
+         ref: Torngen.Client.Schema.JobPositionArmyEnum
        ]}
     )
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.JobTypeEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.JobTypeEnum})
   end
 
   @spec keys() :: list(atom())

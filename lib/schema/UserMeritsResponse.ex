@@ -19,7 +19,9 @@ defmodule Torngen.Client.Schema.UserMeritsResponse do
   def parse(%{} = data) do
     %__MODULE__{
       merits:
-        data |> Map.get("merits") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserMerits)
+        data
+        |> Map.get("merits")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserMerits})
     }
   end
 
@@ -35,7 +37,7 @@ defmodule Torngen.Client.Schema.UserMeritsResponse do
   end
 
   defp validate_key?(:merits, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserMerits)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserMerits})
   end
 
   @spec keys() :: list(atom())

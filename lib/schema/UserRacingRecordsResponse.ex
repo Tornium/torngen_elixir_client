@@ -14,12 +14,12 @@ defmodule Torngen.Client.Schema.UserRacingRecordsResponse do
   @type t :: %__MODULE__{
           racingrecords: [
             %{
-              :track => %{:name => String.t(), :id => Torngen.Client.Schema.RaceTrackId.t()},
-              :records => [
+              track: %{name: String.t(), id: Torngen.Client.Schema.RaceTrackId.t()},
+              records: [
                 %{
-                  :lap_time => integer(),
-                  :car_name => String.t(),
-                  :car_id => Torngen.Client.Schema.ItemId.t()
+                  lap_time: integer(),
+                  car_name: String.t(),
+                  car_id: Torngen.Client.Schema.ItemId.t()
                 }
               ]
             }
@@ -37,14 +37,15 @@ defmodule Torngen.Client.Schema.UserRacingRecordsResponse do
            {:object,
             %{
               track:
-                {:object, %{id: Torngen.Client.Schema.RaceTrackId, name: {:static, :string}}},
+                {:object,
+                 %{id: {:ref, Torngen.Client.Schema.RaceTrackId}, name: {:static, :string}}},
               records:
                 {:array,
                  {:object,
                   %{
+                    car_id: {:ref, Torngen.Client.Schema.ItemId},
                     lap_time: {:static, :integer},
-                    car_name: {:static, :string},
-                    car_id: Torngen.Client.Schema.ItemId
+                    car_name: {:static, :string}
                   }}}
             }}}
         )
@@ -68,14 +69,15 @@ defmodule Torngen.Client.Schema.UserRacingRecordsResponse do
       {:array,
        {:object,
         %{
-          track: {:object, %{id: Torngen.Client.Schema.RaceTrackId, name: {:static, :string}}},
+          track:
+            {:object, %{id: {:ref, Torngen.Client.Schema.RaceTrackId}, name: {:static, :string}}},
           records:
             {:array,
              {:object,
               %{
+                car_id: {:ref, Torngen.Client.Schema.ItemId},
                 lap_time: {:static, :integer},
-                car_name: {:static, :string},
-                car_id: Torngen.Client.Schema.ItemId
+                car_name: {:static, :string}
               }}}
         }}}
     )

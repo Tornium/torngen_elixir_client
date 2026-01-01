@@ -18,12 +18,12 @@ defmodule Torngen.Client.Schema.TornMedal do
   ]
 
   @type t :: %__MODULE__{
-          type: %{:title => Torngen.Client.Schema.MedalTypeEnum.t(), :id => String.t()},
+          type: %{title: Torngen.Client.Schema.MedalTypeEnum.t(), id: String.t()},
           rarity: Torngen.Client.Schema.HonorRarityEnum.t(),
           name: String.t(),
           id: Torngen.Client.Schema.MedalId.t(),
           description: String.t(),
-          crimes_version: Torngen.Client.Schema.AwardCrimesVersionEnum.t(),
+          crimes_version: nil | Torngen.Client.Schema.AwardCrimesVersionEnum.t(),
           circulation: integer()
         }
 
@@ -34,20 +34,25 @@ defmodule Torngen.Client.Schema.TornMedal do
         data
         |> Map.get("type")
         |> Torngen.Client.Schema.parse(
-          {:object, %{id: {:static, :string}, title: Torngen.Client.Schema.MedalTypeEnum}}
+          {:object, %{id: {:static, :string}, title: {:ref, Torngen.Client.Schema.MedalTypeEnum}}}
         ),
       rarity:
         data
         |> Map.get("rarity")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.HonorRarityEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.HonorRarityEnum}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.MedalId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.MedalId}),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string}),
       crimes_version:
         data
         |> Map.get("crimes_version")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AwardCrimesVersionEnum),
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.AwardCrimesVersionEnum]}
+        ),
       circulation:
         data |> Map.get("circulation") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -67,12 +72,12 @@ defmodule Torngen.Client.Schema.TornMedal do
   defp validate_key?(:type, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{id: {:static, :string}, title: Torngen.Client.Schema.MedalTypeEnum}}
+      {:object, %{id: {:static, :string}, title: {:ref, Torngen.Client.Schema.MedalTypeEnum}}}
     )
   end
 
   defp validate_key?(:rarity, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.HonorRarityEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.HonorRarityEnum})
   end
 
   defp validate_key?(:name, value) do
@@ -80,7 +85,7 @@ defmodule Torngen.Client.Schema.TornMedal do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.MedalId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.MedalId})
   end
 
   defp validate_key?(:description, value) do
@@ -88,7 +93,7 @@ defmodule Torngen.Client.Schema.TornMedal do
   end
 
   defp validate_key?(:crimes_version, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AwardCrimesVersionEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AwardCrimesVersionEnum})
   end
 
   defp validate_key?(:circulation, value) do

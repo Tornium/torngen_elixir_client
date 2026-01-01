@@ -34,15 +34,15 @@ defmodule Torngen.Client.Schema.UserPersonalStatsPopular do
         |> Torngen.Client.Schema.parse(
           {:all_of,
            [
-             Torngen.Client.Schema.PersonalStatsOtherPopular,
-             Torngen.Client.Schema.PersonalStatsNetworthPublic,
-             Torngen.Client.Schema.PersonalStatsDrugs,
-             Torngen.Client.Schema.PersonalStatsTravelPopular,
-             Torngen.Client.Schema.PersonalStatsItemsPopular,
-             Torngen.Client.Schema.PersonalStatsCrimesPopular,
-             Torngen.Client.Schema.PersonalStatsHospitalPopular,
-             Torngen.Client.Schema.PersonalStatsJobsPublic,
-             Torngen.Client.Schema.PersonalStatsAttackingPopular
+             ref: Torngen.Client.Schema.PersonalStatsOtherPopular,
+             ref: Torngen.Client.Schema.PersonalStatsNetworthPublic,
+             ref: Torngen.Client.Schema.PersonalStatsDrugs,
+             ref: Torngen.Client.Schema.PersonalStatsTravelPopular,
+             ref: Torngen.Client.Schema.PersonalStatsItemsPopular,
+             ref: Torngen.Client.Schema.PersonalStatsCrimesPopular,
+             ref: Torngen.Client.Schema.PersonalStatsHospitalPopular,
+             ref: Torngen.Client.Schema.PersonalStatsJobsPublic,
+             ref: Torngen.Client.Schema.PersonalStatsAttackingPopular
            ]}
         )
     }
@@ -64,15 +64,15 @@ defmodule Torngen.Client.Schema.UserPersonalStatsPopular do
       value,
       {:all_of,
        [
-         Torngen.Client.Schema.PersonalStatsOtherPopular,
-         Torngen.Client.Schema.PersonalStatsNetworthPublic,
-         Torngen.Client.Schema.PersonalStatsDrugs,
-         Torngen.Client.Schema.PersonalStatsTravelPopular,
-         Torngen.Client.Schema.PersonalStatsItemsPopular,
-         Torngen.Client.Schema.PersonalStatsCrimesPopular,
-         Torngen.Client.Schema.PersonalStatsHospitalPopular,
-         Torngen.Client.Schema.PersonalStatsJobsPublic,
-         Torngen.Client.Schema.PersonalStatsAttackingPopular
+         ref: Torngen.Client.Schema.PersonalStatsOtherPopular,
+         ref: Torngen.Client.Schema.PersonalStatsNetworthPublic,
+         ref: Torngen.Client.Schema.PersonalStatsDrugs,
+         ref: Torngen.Client.Schema.PersonalStatsTravelPopular,
+         ref: Torngen.Client.Schema.PersonalStatsItemsPopular,
+         ref: Torngen.Client.Schema.PersonalStatsCrimesPopular,
+         ref: Torngen.Client.Schema.PersonalStatsHospitalPopular,
+         ref: Torngen.Client.Schema.PersonalStatsJobsPublic,
+         ref: Torngen.Client.Schema.PersonalStatsAttackingPopular
        ]}
     )
   end

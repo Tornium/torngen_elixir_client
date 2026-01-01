@@ -13,10 +13,10 @@ defmodule Torngen.Client.Schema.UserWorkStatsResponse do
 
   @type t :: %__MODULE__{
           workstats: %{
-            :total => integer(),
-            :manual_labor => integer(),
-            :intelligence => integer(),
-            :endurance => integer()
+            total: integer(),
+            manual_labor: integer(),
+            intelligence: integer(),
+            endurance: integer()
           }
         }
 

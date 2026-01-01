@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornSubcrimesResponse do
       subcrimes:
         data
         |> Map.get("subcrimes")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornSubcrime})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornSubcrime}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornSubcrimesResponse do
   end
 
   defp validate_key?(:subcrimes, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornSubcrime})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornSubcrime}})
   end
 
   @spec keys() :: list(atom())

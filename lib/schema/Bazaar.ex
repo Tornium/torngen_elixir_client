@@ -24,7 +24,8 @@ defmodule Torngen.Client.Schema.Bazaar do
     %__MODULE__{
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       is_open: data |> Map.get("is_open") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId})
     }
   end
 
@@ -48,7 +49,7 @@ defmodule Torngen.Client.Schema.Bazaar do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   @spec keys() :: list(atom())

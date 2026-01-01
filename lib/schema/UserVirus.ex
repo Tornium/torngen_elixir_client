@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.UserVirus do
 
   @type t :: %__MODULE__{
           until: integer(),
-          item: %{:name => String.t(), :id => Torngen.Client.Schema.ItemId.t()}
+          item: %{name: String.t(), id: Torngen.Client.Schema.ItemId.t()}
         }
 
   @impl true
@@ -25,7 +25,7 @@ defmodule Torngen.Client.Schema.UserVirus do
         data
         |> Map.get("item")
         |> Torngen.Client.Schema.parse(
-          {:object, %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}}
+          {:object, %{id: {:ref, Torngen.Client.Schema.ItemId}, name: {:static, :string}}}
         )
     }
   end
@@ -48,7 +48,7 @@ defmodule Torngen.Client.Schema.UserVirus do
   defp validate_key?(:item, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{id: Torngen.Client.Schema.ItemId, name: {:static, :string}}}
+      {:object, %{id: {:ref, Torngen.Client.Schema.ItemId}, name: {:static, :string}}}
     )
   end
 

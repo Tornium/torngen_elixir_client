@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.UserCompanyPoints do
 
   @type t :: %__MODULE__{
           points: integer(),
-          company: %{:name => String.t(), :id => Torngen.Client.Schema.CompanyTypeId.t()}
+          company: %{name: String.t(), id: Torngen.Client.Schema.CompanyTypeId.t()}
         }
 
   @impl true
@@ -25,7 +25,7 @@ defmodule Torngen.Client.Schema.UserCompanyPoints do
         data
         |> Map.get("company")
         |> Torngen.Client.Schema.parse(
-          {:object, %{id: Torngen.Client.Schema.CompanyTypeId, name: {:static, :string}}}
+          {:object, %{id: {:ref, Torngen.Client.Schema.CompanyTypeId}, name: {:static, :string}}}
         )
     }
   end
@@ -48,7 +48,7 @@ defmodule Torngen.Client.Schema.UserCompanyPoints do
   defp validate_key?(:company, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{id: Torngen.Client.Schema.CompanyTypeId, name: {:static, :string}}}
+      {:object, %{id: {:ref, Torngen.Client.Schema.CompanyTypeId}, name: {:static, :string}}}
     )
   end
 

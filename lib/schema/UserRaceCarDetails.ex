@@ -8,14 +8,14 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
   @type t :: %__MODULE__{
           values: [
             %{
-              :worth => integer(),
-              :races_won => integer(),
-              :races_entered => integer(),
-              :points_spent => integer(),
-              :parts => [Torngen.Client.Schema.RaceCarUpgradeId.t()],
-              :name => nil | String.t(),
-              :is_removed => boolean(),
-              :id => Torngen.Client.Schema.RaceCarId.t()
+              worth: integer(),
+              races_won: integer(),
+              races_entered: integer(),
+              points_spent: integer(),
+              parts: [Torngen.Client.Schema.RaceCarUpgradeId.t()],
+              name: nil | String.t(),
+              is_removed: boolean(),
+              id: Torngen.Client.Schema.RaceCarId.t()
             }
             | Torngen.Client.Schema.RaceCar.t()
           ]
@@ -29,9 +29,9 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             id: Torngen.Client.Schema.RaceCarId,
+             id: {:ref, Torngen.Client.Schema.RaceCarId},
              name: {:one_of, [static: :null, static: :string]},
-             parts: {:array, Torngen.Client.Schema.RaceCarUpgradeId},
+             parts: {:array, {:ref, Torngen.Client.Schema.RaceCarUpgradeId}},
              worth: {:static, :integer},
              races_won: {:static, :integer},
              races_entered: {:static, :integer},
@@ -39,7 +39,7 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
              is_removed: {:static, :boolean}
            }}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceCar)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceCar})
       ]
     }
   end

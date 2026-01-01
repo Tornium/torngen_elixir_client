@@ -30,7 +30,7 @@ defmodule Torngen.Client.Schema.UserMerits do
       upgrades:
         data
         |> Map.get("upgrades")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserMeritUpgrade}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserMeritUpgrade}}),
       medals: data |> Map.get("medals") |> Torngen.Client.Schema.parse({:static, :integer}),
       honors: data |> Map.get("honors") |> Torngen.Client.Schema.parse({:static, :integer}),
       available: data |> Map.get("available") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -53,7 +53,10 @@ defmodule Torngen.Client.Schema.UserMerits do
   end
 
   defp validate_key?(:upgrades, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserMeritUpgrade})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.UserMeritUpgrade}}
+    )
   end
 
   defp validate_key?(:medals, value) do

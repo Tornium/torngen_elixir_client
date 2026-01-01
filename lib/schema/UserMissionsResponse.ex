@@ -13,37 +13,37 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
 
   @type t :: %__MODULE__{
           missions: %{
-            :rewards => [
+            rewards: [
               %{
-                :type => Torngen.Client.Schema.MissionRewardUpgrade.t(),
-                :expires_at => integer(),
-                :details =>
+                type: Torngen.Client.Schema.MissionRewardUpgrade.t(),
+                expires_at: integer(),
+                details:
                   Torngen.Client.Schema.MissionRewardDetailsItem.t()
                   | Torngen.Client.Schema.MissionRewardDetailsUpgrade.t()
                   | Torngen.Client.Schema.MissionRewardDetailsAmmo.t(),
-                :cost => integer(),
-                :amount => integer()
+                cost: integer(),
+                amount: integer()
               }
             ],
-            :givers => [
+            givers: [
               %{
-                :name => String.t(),
-                :id => Torngen.Client.Schema.UserId.t(),
-                :contracts => [
+                name: String.t(),
+                id: Torngen.Client.Schema.UserId.t(),
+                contracts: [
                   %{
-                    :title => String.t(),
-                    :status => Torngen.Client.Schema.MissionStatusEnum.t(),
-                    :started_at => nil | integer(),
-                    :rewards => nil | %{:money => integer(), :credits => integer()},
-                    :expires_at => nil | integer(),
-                    :difficulty => Torngen.Client.Schema.MissionDifficultyEnum.t(),
-                    :created_at => integer(),
-                    :completed_at => nil | integer()
+                    title: String.t(),
+                    status: Torngen.Client.Schema.MissionStatusEnum.t(),
+                    started_at: nil | integer(),
+                    rewards: nil | %{money: integer(), credits: integer()},
+                    expires_at: nil | integer(),
+                    difficulty: Torngen.Client.Schema.MissionDifficultyEnum.t(),
+                    created_at: integer(),
+                    completed_at: nil | integer()
                   }
                 ]
               }
             ],
-            :credits => integer()
+            credits: integer()
           }
         }
 
@@ -56,34 +56,34 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             credits: {:static, :integer},
              rewards:
                {:array,
                 {:object,
                  %{
-                   type: Torngen.Client.Schema.MissionRewardUpgrade,
+                   type: {:ref, Torngen.Client.Schema.MissionRewardUpgrade},
                    details:
                      {:one_of,
                       [
-                        Torngen.Client.Schema.MissionRewardDetailsItem,
-                        Torngen.Client.Schema.MissionRewardDetailsUpgrade,
-                        Torngen.Client.Schema.MissionRewardDetailsAmmo
+                        ref: Torngen.Client.Schema.MissionRewardDetailsItem,
+                        ref: Torngen.Client.Schema.MissionRewardDetailsUpgrade,
+                        ref: Torngen.Client.Schema.MissionRewardDetailsAmmo
                       ]},
                    cost: {:static, :integer},
                    amount: {:static, :integer},
                    expires_at: {:static, :integer}
                  }}},
+             credits: {:static, :integer},
              givers:
                {:array,
                 {:object,
                  %{
-                   id: Torngen.Client.Schema.UserId,
+                   id: {:ref, Torngen.Client.Schema.UserId},
                    name: {:static, :string},
                    contracts:
                      {:array,
                       {:object,
                        %{
-                         status: Torngen.Client.Schema.MissionStatusEnum,
+                         status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
                          started_at: {:one_of, [static: :null, static: :integer]},
                          title: {:static, :string},
                          rewards:
@@ -93,7 +93,7 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                               object: %{credits: {:static, :integer}, money: {:static, :integer}}
                             ]},
                          expires_at: {:one_of, [static: :null, static: :integer]},
-                         difficulty: Torngen.Client.Schema.MissionDifficultyEnum,
+                         difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                          created_at: {:static, :integer},
                          completed_at: {:one_of, [static: :null, static: :integer]}
                        }}}
@@ -119,34 +119,34 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
       value,
       {:object,
        %{
-         credits: {:static, :integer},
          rewards:
            {:array,
             {:object,
              %{
-               type: Torngen.Client.Schema.MissionRewardUpgrade,
+               type: {:ref, Torngen.Client.Schema.MissionRewardUpgrade},
                details:
                  {:one_of,
                   [
-                    Torngen.Client.Schema.MissionRewardDetailsItem,
-                    Torngen.Client.Schema.MissionRewardDetailsUpgrade,
-                    Torngen.Client.Schema.MissionRewardDetailsAmmo
+                    ref: Torngen.Client.Schema.MissionRewardDetailsItem,
+                    ref: Torngen.Client.Schema.MissionRewardDetailsUpgrade,
+                    ref: Torngen.Client.Schema.MissionRewardDetailsAmmo
                   ]},
                cost: {:static, :integer},
                amount: {:static, :integer},
                expires_at: {:static, :integer}
              }}},
+         credits: {:static, :integer},
          givers:
            {:array,
             {:object,
              %{
-               id: Torngen.Client.Schema.UserId,
+               id: {:ref, Torngen.Client.Schema.UserId},
                name: {:static, :string},
                contracts:
                  {:array,
                   {:object,
                    %{
-                     status: Torngen.Client.Schema.MissionStatusEnum,
+                     status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
                      started_at: {:one_of, [static: :null, static: :integer]},
                      title: {:static, :string},
                      rewards:
@@ -156,7 +156,7 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                           object: %{credits: {:static, :integer}, money: {:static, :integer}}
                         ]},
                      expires_at: {:one_of, [static: :null, static: :integer]},
-                     difficulty: Torngen.Client.Schema.MissionDifficultyEnum,
+                     difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                      created_at: {:static, :integer},
                      completed_at: {:one_of, [static: :null, static: :integer]}
                    }}}

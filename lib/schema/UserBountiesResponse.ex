@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserBountiesResponse do
       bounties:
         data
         |> Map.get("bounties")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.Bounty})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.Bounty}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserBountiesResponse do
   end
 
   defp validate_key?(:bounties, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.Bounty})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.Bounty}})
   end
 
   @spec keys() :: list(atom())

@@ -16,7 +16,7 @@ defmodule Torngen.Client.Schema.UserCompetitionRps do
   @type t :: %__MODULE__{
           status: Torngen.Client.Schema.UserRpsStatus.t(),
           name: String.t(),
-          hp: %{:maximum => integer(), :current => integer()}
+          hp: %{maximum: integer(), current: integer()}
         }
 
   @impl true
@@ -25,7 +25,7 @@ defmodule Torngen.Client.Schema.UserCompetitionRps do
       status:
         data
         |> Map.get("status")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserRpsStatus),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserRpsStatus}),
       name:
         data
         |> Map.get("name")
@@ -51,7 +51,7 @@ defmodule Torngen.Client.Schema.UserCompetitionRps do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserRpsStatus)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserRpsStatus})
   end
 
   defp validate_key?(:name, value) do

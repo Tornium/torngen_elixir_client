@@ -17,7 +17,7 @@ defmodule Torngen.Client.Schema.FactionUpgradeDetails do
   ]
 
   @type t :: %__MODULE__{
-          unlocked_at: integer(),
+          unlocked_at: nil | integer(),
           name: String.t(),
           level: integer(),
           id: Torngen.Client.Schema.FactionBranchId.t(),
@@ -29,13 +29,15 @@ defmodule Torngen.Client.Schema.FactionUpgradeDetails do
   def parse(%{} = data) do
     %__MODULE__{
       unlocked_at:
-        data |> Map.get("unlocked_at") |> Torngen.Client.Schema.parse({:static, :integer}),
+        data
+        |> Map.get("unlocked_at")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionBranchId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionBranchId}),
       cost: data |> Map.get("cost") |> Torngen.Client.Schema.parse({:static, :integer}),
       ability: data |> Map.get("ability") |> Torngen.Client.Schema.parse({:static, :string})
     }
@@ -65,7 +67,7 @@ defmodule Torngen.Client.Schema.FactionUpgradeDetails do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionBranchId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionBranchId})
   end
 
   defp validate_key?(:cost, value) do

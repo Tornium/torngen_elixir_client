@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionChainReportResponse do
       chainreport:
         data
         |> Map.get("chainreport")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionChainReport)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionChainReport})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionChainReportResponse do
   end
 
   defp validate_key?(:chainreport, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionChainReport)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionChainReport})
   end
 
   @spec keys() :: list(atom())

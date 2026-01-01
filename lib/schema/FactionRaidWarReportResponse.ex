@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionRaidWarReportResponse do
       raidreport:
         data
         |> Map.get("raidreport")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionRaidReport})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionRaidReport}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.FactionRaidWarReportResponse do
   end
 
   defp validate_key?(:raidreport, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionRaidReport})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionRaidReport}}
+    )
   end
 
   @spec keys() :: list(atom())

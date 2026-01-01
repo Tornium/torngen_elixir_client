@@ -30,13 +30,20 @@ defmodule Torngen.Client.Schema.FactionRaidReportFaction do
       non_attackers:
         data
         |> Map.get("non_attackers")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionRaidReportUser}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionRaidReportUser}}
+        ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       attackers:
         data
         |> Map.get("attackers")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionRaidReportAttacker})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionRaidReportAttacker}}
+        )
     }
   end
 
@@ -56,7 +63,10 @@ defmodule Torngen.Client.Schema.FactionRaidReportFaction do
   end
 
   defp validate_key?(:non_attackers, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionRaidReportUser})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionRaidReportUser}}
+    )
   end
 
   defp validate_key?(:name, value) do
@@ -64,13 +74,13 @@ defmodule Torngen.Client.Schema.FactionRaidReportFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:attackers, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionRaidReportAttacker}
+      {:array, {:ref, Torngen.Client.Schema.FactionRaidReportAttacker}}
     )
   end
 

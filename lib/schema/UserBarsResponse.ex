@@ -18,7 +18,10 @@ defmodule Torngen.Client.Schema.UserBarsResponse do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      bars: data |> Map.get("bars") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserBars)
+      bars:
+        data
+        |> Map.get("bars")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserBars})
     }
   end
 
@@ -34,7 +37,7 @@ defmodule Torngen.Client.Schema.UserBarsResponse do
   end
 
   defp validate_key?(:bars, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserBars)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserBars})
   end
 
   @spec keys() :: list(atom())

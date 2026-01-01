@@ -26,7 +26,7 @@ defmodule Torngen.Client.Schema.UserSkillDetail do
         data
         |> Map.get("slug")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :string}, Torngen.Client.Schema.UserSkillSlugEnum]}
+          {:one_of, [static: :string, ref: Torngen.Client.Schema.UserSkillSlugEnum]}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :number})
@@ -47,7 +47,7 @@ defmodule Torngen.Client.Schema.UserSkillDetail do
   defp validate_key?(:slug, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :string}, Torngen.Client.Schema.UserSkillSlugEnum]}
+      {:one_of, [static: :string, ref: Torngen.Client.Schema.UserSkillSlugEnum]}
     )
   end
 

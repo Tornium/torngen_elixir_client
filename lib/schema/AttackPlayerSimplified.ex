@@ -20,12 +20,13 @@ defmodule Torngen.Client.Schema.AttackPlayerSimplified do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       faction_id:
         data
         |> Map.get("faction_id")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
         )
     }
   end
@@ -42,13 +43,13 @@ defmodule Torngen.Client.Schema.AttackPlayerSimplified do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:faction_id, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
     )
   end
 

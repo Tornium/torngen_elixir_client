@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.UserEquipmentResponse do
       equipment:
         data
         |> Map.get("equipment")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserEquipment}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserEquipment}}),
       clothing:
         data
         |> Map.get("clothing")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserClothing})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserClothing}})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.UserEquipmentResponse do
   end
 
   defp validate_key?(:equipment, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserEquipment})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserEquipment}})
   end
 
   defp validate_key?(:clothing, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserClothing})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserClothing}})
   end
 
   @spec keys() :: list(atom())

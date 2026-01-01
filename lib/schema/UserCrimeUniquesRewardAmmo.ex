@@ -23,7 +23,9 @@ defmodule Torngen.Client.Schema.UserCrimeUniquesRewardAmmo do
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserCrimeUniquesRewardAmmoEnum),
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.UserCrimeUniquesRewardAmmoEnum}
+        ),
       amount: data |> Map.get("amount") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -40,7 +42,10 @@ defmodule Torngen.Client.Schema.UserCrimeUniquesRewardAmmo do
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserCrimeUniquesRewardAmmoEnum)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.UserCrimeUniquesRewardAmmoEnum}
+    )
   end
 
   defp validate_key?(:amount, value) do

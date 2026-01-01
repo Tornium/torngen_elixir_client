@@ -31,9 +31,9 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
           item_requirement:
             nil
             | %{
-                :is_reusable => boolean(),
-                :is_available => boolean(),
-                :id => Torngen.Client.Schema.ItemId.t()
+                is_reusable: boolean(),
+                is_available: boolean(),
+                id: Torngen.Client.Schema.ItemId.t()
               },
           checkpoint_pass_rate: integer()
         }
@@ -45,14 +45,14 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
         data
         |> Map.get("user")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUser]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeUser]}
         ),
       position_number:
         data |> Map.get("position_number") |> Torngen.Client.Schema.parse({:static, :integer}),
       position_id:
         data
         |> Map.get("position_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornOrganizedCrimePositionId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :string}),
       item_requirement:
         data
@@ -62,7 +62,7 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
            [
              static: :null,
              object: %{
-               id: Torngen.Client.Schema.ItemId,
+               id: {:ref, Torngen.Client.Schema.ItemId},
                is_reusable: {:static, :boolean},
                is_available: {:static, :boolean}
              }
@@ -89,7 +89,7 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
   defp validate_key?(:user, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUser]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeUser]}
     )
   end
 
@@ -98,7 +98,10 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
   end
 
   defp validate_key?(:position_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornOrganizedCrimePositionId)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId}
+    )
   end
 
   defp validate_key?(:position, value) do
@@ -112,7 +115,7 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
        [
          static: :null,
          object: %{
-           id: Torngen.Client.Schema.ItemId,
+           id: {:ref, Torngen.Client.Schema.ItemId},
            is_reusable: {:static, :boolean},
            is_available: {:static, :boolean}
          }

@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserWeaponExpResponse do
       weaponexp:
         data
         |> Map.get("weaponexp")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserWeaponExp})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserWeaponExp}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserWeaponExpResponse do
   end
 
   defp validate_key?(:weaponexp, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserWeaponExp})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserWeaponExp}})
   end
 
   @spec keys() :: list(atom())

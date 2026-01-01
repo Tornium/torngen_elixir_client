@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionCrimeResponse do
       crime:
         data
         |> Map.get("crime")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionCrime)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionCrime})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionCrimeResponse do
   end
 
   defp validate_key?(:crime, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionCrime)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionCrime})
   end
 
   @spec keys() :: list(atom())

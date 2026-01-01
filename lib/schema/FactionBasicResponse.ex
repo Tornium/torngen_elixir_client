@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionBasicResponse do
       basic:
         data
         |> Map.get("basic")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionBasic)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionBasic})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionBasicResponse do
   end
 
   defp validate_key?(:basic, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionBasic)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionBasic})
   end
 
   @spec keys() :: list(atom())

@@ -34,14 +34,14 @@ defmodule Torngen.Client.Schema.UserItemMarkeListingItemDetails do
         data
         |> Map.get("uid")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemUid]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemUid]}
         ),
       type: data |> Map.get("type") |> Torngen.Client.Schema.parse({:static, :string}),
       stats:
         data
         |> Map.get("stats")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemMarketListingItemStats]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemMarketListingItemStats]}
         ),
       rarity:
         data
@@ -54,7 +54,9 @@ defmodule Torngen.Client.Schema.UserItemMarkeListingItemDetails do
       bonuses:
         data
         |> Map.get("bonuses")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ItemMarketListingItemBonus})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ItemMarketListingItemBonus}}
+        )
     }
   end
 
@@ -72,7 +74,7 @@ defmodule Torngen.Client.Schema.UserItemMarkeListingItemDetails do
   defp validate_key?(:uid, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemUid]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemUid]}
     )
   end
 
@@ -83,7 +85,7 @@ defmodule Torngen.Client.Schema.UserItemMarkeListingItemDetails do
   defp validate_key?(:stats, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemMarketListingItemStats]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemMarketListingItemStats]}
     )
   end
 
@@ -105,7 +107,7 @@ defmodule Torngen.Client.Schema.UserItemMarkeListingItemDetails do
   defp validate_key?(:bonuses, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.ItemMarketListingItemBonus}
+      {:array, {:ref, Torngen.Client.Schema.ItemMarketListingItemBonus}}
     )
   end
 

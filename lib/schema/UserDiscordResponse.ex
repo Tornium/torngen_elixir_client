@@ -13,8 +13,8 @@ defmodule Torngen.Client.Schema.UserDiscordResponse do
 
   @type t :: %__MODULE__{
           discord: %{
-            :user_id => Torngen.Client.Schema.UserId.t(),
-            :discord_id => Torngen.Client.Schema.DiscordId.t()
+            user_id: Torngen.Client.Schema.UserId.t(),
+            discord_id: Torngen.Client.Schema.DiscordId.t()
           }
         }
 
@@ -26,7 +26,10 @@ defmodule Torngen.Client.Schema.UserDiscordResponse do
         |> Map.get("discord")
         |> Torngen.Client.Schema.parse(
           {:object,
-           %{user_id: Torngen.Client.Schema.UserId, discord_id: Torngen.Client.Schema.DiscordId}}
+           %{
+             user_id: {:ref, Torngen.Client.Schema.UserId},
+             discord_id: {:ref, Torngen.Client.Schema.DiscordId}
+           }}
         )
     }
   end
@@ -46,7 +49,10 @@ defmodule Torngen.Client.Schema.UserDiscordResponse do
     Torngen.Client.Schema.validate?(
       value,
       {:object,
-       %{user_id: Torngen.Client.Schema.UserId, discord_id: Torngen.Client.Schema.DiscordId}}
+       %{
+         user_id: {:ref, Torngen.Client.Schema.UserId},
+         discord_id: {:ref, Torngen.Client.Schema.DiscordId}
+       }}
     )
   end
 

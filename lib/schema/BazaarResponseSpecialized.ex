@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.BazaarResponseSpecialized do
       bazaar:
         data
         |> Map.get("bazaar")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.BazaarSpecialized)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.BazaarSpecialized})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.BazaarResponseSpecialized do
   end
 
   defp validate_key?(:bazaar, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.BazaarSpecialized)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.BazaarSpecialized})
   end
 
   @spec keys() :: list(atom())

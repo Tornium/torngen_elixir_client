@@ -27,7 +27,7 @@ defmodule Torngen.Client.Schema.UserBattleStatDetail do
         data
         |> Map.get("modifiers")
         |> Torngen.Client.Schema.parse(
-          {:array, Torngen.Client.Schema.UserBattleStatModifierDetail}
+          {:array, {:ref, Torngen.Client.Schema.UserBattleStatModifierDetail}}
         ),
       modifier: data |> Map.get("modifier") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -51,7 +51,7 @@ defmodule Torngen.Client.Schema.UserBattleStatDetail do
   defp validate_key?(:modifiers, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.UserBattleStatModifierDetail}
+      {:array, {:ref, Torngen.Client.Schema.UserBattleStatModifierDetail}}
     )
   end
 

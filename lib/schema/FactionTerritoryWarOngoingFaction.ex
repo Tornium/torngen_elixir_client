@@ -32,11 +32,14 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarOngoingFaction do
       playerIds:
         data
         |> Map.get("playerIds")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserId}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserId}}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       is_aggressor:
         data |> Map.get("is_aggressor") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -57,7 +60,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarOngoingFaction do
   end
 
   defp validate_key?(:playerIds, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserId})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserId}})
   end
 
   defp validate_key?(:name, value) do
@@ -69,7 +72,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarOngoingFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:chain, value) do

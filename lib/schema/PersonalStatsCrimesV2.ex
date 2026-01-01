@@ -16,31 +16,31 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
   @type t :: %__MODULE__{
           version: String.t(),
           skills: %{
-            :shoplifting => integer(),
-            :search_for_cash => integer(),
-            :scamming => integer(),
-            :pickpocketing => integer(),
-            :hustling => integer(),
-            :graffiti => integer(),
-            :forgery => integer(),
-            :disposal => integer(),
-            :cracking => integer(),
-            :card_skimming => integer(),
-            :burglary => integer(),
-            :bootlegging => integer(),
-            :arson => integer()
+            shoplifting: integer(),
+            search_for_cash: integer(),
+            scamming: integer(),
+            pickpocketing: integer(),
+            hustling: integer(),
+            graffiti: integer(),
+            forgery: integer(),
+            disposal: integer(),
+            cracking: integer(),
+            card_skimming: integer(),
+            burglary: integer(),
+            bootlegging: integer(),
+            arson: integer()
           },
           offenses: %{
-            :vandalism => integer(),
-            :total => integer(),
-            :theft => integer(),
-            :organized_crimes => integer(),
-            :illicit_services => integer(),
-            :illegal_production => integer(),
-            :fraud => integer(),
-            :extortion => integer(),
-            :cybercrime => integer(),
-            :counterfeiting => integer()
+            vandalism: integer(),
+            total: integer(),
+            theft: integer(),
+            organized_crimes: integer(),
+            illicit_services: integer(),
+            illegal_production: integer(),
+            fraud: integer(),
+            extortion: integer(),
+            cybercrime: integer(),
+            counterfeiting: integer()
           }
         }
 
@@ -76,12 +76,12 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
           {:object,
            %{
              total: {:static, :integer},
-             vandalism: {:static, :integer},
              theft: {:static, :integer},
              organized_crimes: {:static, :integer},
+             fraud: {:static, :integer},
+             vandalism: {:static, :integer},
              illicit_services: {:static, :integer},
              illegal_production: {:static, :integer},
-             fraud: {:static, :integer},
              extortion: {:static, :integer},
              cybercrime: {:static, :integer},
              counterfeiting: {:static, :integer}
@@ -133,12 +133,12 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
       {:object,
        %{
          total: {:static, :integer},
-         vandalism: {:static, :integer},
          theft: {:static, :integer},
          organized_crimes: {:static, :integer},
+         fraud: {:static, :integer},
+         vandalism: {:static, :integer},
          illicit_services: {:static, :integer},
          illegal_production: {:static, :integer},
-         fraud: {:static, :integer},
          extortion: {:static, :integer},
          cybercrime: {:static, :integer},
          counterfeiting: {:static, :integer}

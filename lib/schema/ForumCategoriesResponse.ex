@@ -14,10 +14,10 @@ defmodule Torngen.Client.Schema.ForumCategoriesResponse do
   @type t :: %__MODULE__{
           categories: [
             %{
-              :title => String.t(),
-              :threads => integer(),
-              :id => Torngen.Client.Schema.ForumId.t(),
-              :acronym => String.t()
+              title: String.t(),
+              threads: integer(),
+              id: Torngen.Client.Schema.ForumId.t(),
+              acronym: String.t()
             }
           ]
         }
@@ -32,7 +32,7 @@ defmodule Torngen.Client.Schema.ForumCategoriesResponse do
           {:array,
            {:object,
             %{
-              id: Torngen.Client.Schema.ForumId,
+              id: {:ref, Torngen.Client.Schema.ForumId},
               threads: {:static, :integer},
               title: {:static, :string},
               acronym: {:static, :string}
@@ -58,7 +58,7 @@ defmodule Torngen.Client.Schema.ForumCategoriesResponse do
       {:array,
        {:object,
         %{
-          id: Torngen.Client.Schema.ForumId,
+          id: {:ref, Torngen.Client.Schema.ForumId},
           threads: {:static, :integer},
           title: {:static, :string},
           acronym: {:static, :string}

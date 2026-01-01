@@ -5,14 +5,14 @@ defmodule Torngen.Client.Schema.TornEliminationTeamLeader do
 
   defstruct [:values]
 
-  @type t :: %__MODULE__{values: [%{:active => boolean()} | Torngen.Client.Schema.BasicUser.t()]}
+  @type t :: %__MODULE__{values: [%{active: boolean()} | Torngen.Client.Schema.BasicUser.t()]}
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
       values: [
         data |> Torngen.Client.Schema.parse({:object, %{active: {:static, :boolean}}}),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.BasicUser)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.BasicUser})
       ]
     }
   end

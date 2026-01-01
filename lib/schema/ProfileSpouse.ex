@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.ProfileSpouse do
           status: Torngen.Client.Schema.UserMaritalStatusEnum.t(),
           name: String.t(),
           id: Torngen.Client.Schema.UserId.t(),
-          days_married: integer()
+          days_married: nil | integer()
         }
 
   @impl true
@@ -27,11 +27,14 @@ defmodule Torngen.Client.Schema.ProfileSpouse do
       status:
         data
         |> Map.get("status")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserMaritalStatusEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserMaritalStatusEnum}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       days_married:
-        data |> Map.get("days_married") |> Torngen.Client.Schema.parse({:static, :integer})
+        data
+        |> Map.get("days_married")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]})
     }
   end
 
@@ -47,7 +50,7 @@ defmodule Torngen.Client.Schema.ProfileSpouse do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserMaritalStatusEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserMaritalStatusEnum})
   end
 
   defp validate_key?(:name, value) do
@@ -55,7 +58,7 @@ defmodule Torngen.Client.Schema.ProfileSpouse do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:days_married, value) do

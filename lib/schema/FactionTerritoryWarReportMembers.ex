@@ -32,7 +32,8 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportMembers do
       score: data |> Map.get("score") |> Torngen.Client.Schema.parse({:static, :integer}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
       joins: data |> Map.get("joins") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       clears: data |> Map.get("clears") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -65,7 +66,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportMembers do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:clears, value) do

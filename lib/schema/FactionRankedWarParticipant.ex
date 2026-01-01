@@ -26,7 +26,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarParticipant do
     %__MODULE__{
       score: data |> Map.get("score") |> Torngen.Client.Schema.parse({:static, :integer}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -51,7 +54,7 @@ defmodule Torngen.Client.Schema.FactionRankedWarParticipant do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:chain, value) do

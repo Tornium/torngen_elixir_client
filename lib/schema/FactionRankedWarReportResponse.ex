@@ -13,40 +13,36 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
 
   @type t :: %__MODULE__{
           rankedwarreport: %{
-            :winner => Torngen.Client.Schema.FactionId.t(),
-            :start => integer(),
-            :id => Torngen.Client.Schema.RankedWarId.t(),
-            :forfeit => boolean(),
-            :factions => [
+            winner: Torngen.Client.Schema.FactionId.t(),
+            start: integer(),
+            id: Torngen.Client.Schema.RankedWarId.t(),
+            forfeit: boolean(),
+            factions: [
               %{
-                :score => integer(),
-                :rewards => %{
-                  :respect => integer(),
-                  :points => integer(),
-                  :items => [
-                    %{
-                      :quantity => integer(),
-                      :name => String.t(),
-                      :id => Torngen.Client.Schema.ItemId.t()
-                    }
+                score: integer(),
+                rewards: %{
+                  respect: integer(),
+                  points: integer(),
+                  items: [
+                    %{quantity: integer(), name: String.t(), id: Torngen.Client.Schema.ItemId.t()}
                   ]
                 },
-                :rank => %{:before => String.t(), :after => String.t()},
-                :name => String.t(),
-                :members => [
+                rank: %{before: String.t(), after: String.t()},
+                name: String.t(),
+                members: [
                   %{
-                    :score => integer() | float(),
-                    :name => String.t(),
-                    :level => integer(),
-                    :id => Torngen.Client.Schema.UserId.t(),
-                    :attacks => integer()
+                    score: integer() | float(),
+                    name: String.t(),
+                    level: integer(),
+                    id: Torngen.Client.Schema.UserId.t(),
+                    attacks: integer()
                   }
                 ],
-                :id => Torngen.Client.Schema.FactionId.t(),
-                :attacks => integer()
+                id: Torngen.Client.Schema.FactionId.t(),
+                attacks: integer()
               }
             ],
-            :end => integer()
+            end: integer()
           }
         }
 
@@ -59,19 +55,17 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             id: Torngen.Client.Schema.RankedWarId,
+             id: {:ref, Torngen.Client.Schema.RankedWarId},
              start: {:static, :integer},
              end: {:static, :integer},
-             winner: Torngen.Client.Schema.FactionId,
-             forfeit: {:static, :boolean},
              factions:
                {:array,
                 {:object,
                  %{
-                   id: Torngen.Client.Schema.FactionId,
+                   id: {:ref, Torngen.Client.Schema.FactionId},
                    name: {:static, :string},
                    attacks: {:static, :integer},
-                   score: {:static, :integer},
+                   rank: {:object, %{after: {:static, :string}, before: {:static, :string}}},
                    rewards:
                      {:object,
                       %{
@@ -79,25 +73,27 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
                           {:array,
                            {:object,
                             %{
-                              id: Torngen.Client.Schema.ItemId,
+                              id: {:ref, Torngen.Client.Schema.ItemId},
                               name: {:static, :string},
                               quantity: {:static, :integer}
                             }}},
                         points: {:static, :integer},
                         respect: {:static, :integer}
                       }},
-                   rank: {:object, %{after: {:static, :string}, before: {:static, :string}}},
                    members:
                      {:array,
                       {:object,
                        %{
-                         id: Torngen.Client.Schema.UserId,
+                         id: {:ref, Torngen.Client.Schema.UserId},
                          name: {:static, :string},
                          level: {:static, :integer},
                          attacks: {:static, :integer},
                          score: {:static, :number}
-                       }}}
-                 }}}
+                       }}},
+                   score: {:static, :integer}
+                 }}},
+             winner: {:ref, Torngen.Client.Schema.FactionId},
+             forfeit: {:static, :boolean}
            }}
         )
     }
@@ -119,19 +115,17 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
       value,
       {:object,
        %{
-         id: Torngen.Client.Schema.RankedWarId,
+         id: {:ref, Torngen.Client.Schema.RankedWarId},
          start: {:static, :integer},
          end: {:static, :integer},
-         winner: Torngen.Client.Schema.FactionId,
-         forfeit: {:static, :boolean},
          factions:
            {:array,
             {:object,
              %{
-               id: Torngen.Client.Schema.FactionId,
+               id: {:ref, Torngen.Client.Schema.FactionId},
                name: {:static, :string},
                attacks: {:static, :integer},
-               score: {:static, :integer},
+               rank: {:object, %{after: {:static, :string}, before: {:static, :string}}},
                rewards:
                  {:object,
                   %{
@@ -139,25 +133,27 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
                       {:array,
                        {:object,
                         %{
-                          id: Torngen.Client.Schema.ItemId,
+                          id: {:ref, Torngen.Client.Schema.ItemId},
                           name: {:static, :string},
                           quantity: {:static, :integer}
                         }}},
                     points: {:static, :integer},
                     respect: {:static, :integer}
                   }},
-               rank: {:object, %{after: {:static, :string}, before: {:static, :string}}},
                members:
                  {:array,
                   {:object,
                    %{
-                     id: Torngen.Client.Schema.UserId,
+                     id: {:ref, Torngen.Client.Schema.UserId},
                      name: {:static, :string},
                      level: {:static, :integer},
                      attacks: {:static, :integer},
                      score: {:static, :number}
-                   }}}
-             }}}
+                   }}},
+               score: {:static, :integer}
+             }}},
+         winner: {:ref, Torngen.Client.Schema.FactionId},
+         forfeit: {:static, :boolean}
        }}
     )
   end

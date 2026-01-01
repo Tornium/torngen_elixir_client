@@ -13,8 +13,8 @@ defmodule Torngen.Client.Schema.Report do
   def parse(%{} = data) do
     %__MODULE__{
       values: [
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ReportReport),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ReportBase)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ReportReport}),
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ReportBase})
       ]
     }
   end

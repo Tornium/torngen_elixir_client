@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthPublic do
   ]
 
   @type t :: %__MODULE__{
-          networth: %{:total => integer()}
+          networth: %{total: integer()}
         }
 
   @impl true

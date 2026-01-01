@@ -15,23 +15,23 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
 
   @type t :: %__MODULE__{
           online_store: %{
-            :visits => integer(),
-            :sales => integer(),
-            :earnings => integer(),
-            :customers => integer()
+            visits: integer(),
+            sales: integer(),
+            earnings: integer(),
+            customers: integer()
           },
-          dvds_copied: integer(),
+          dvds_copied: nil | integer(),
           dvd_sales: %{
-            :total => integer(),
-            :thriller => integer(),
-            :sci_fi => integer(),
-            :romance => integer(),
-            :horror => integer(),
-            :fantasy => integer(),
-            :earnings => integer(),
-            :drama => integer(),
-            :comedy => integer(),
-            :action => integer()
+            total: integer(),
+            thriller: integer(),
+            sci_fi: integer(),
+            romance: integer(),
+            horror: integer(),
+            fantasy: integer(),
+            earnings: integer(),
+            drama: integer(),
+            comedy: integer(),
+            action: integer()
           }
         }
 
@@ -51,7 +51,9 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
            }}
         ),
       dvds_copied:
-        data |> Map.get("dvds_copied") |> Torngen.Client.Schema.parse({:static, :integer}),
+        data
+        |> Map.get("dvds_copied")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
       dvd_sales:
         data
         |> Map.get("dvd_sales")

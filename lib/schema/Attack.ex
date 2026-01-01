@@ -49,13 +49,13 @@ defmodule Torngen.Client.Schema.Attack do
           respect_loss: integer() | float(),
           respect_gain: integer() | float(),
           modifiers: %{
-            :warlord => integer() | float(),
-            :war => integer() | float(),
-            :retaliation => integer() | float(),
-            :overseas => integer() | float(),
-            :group => integer() | float(),
-            :fair_fight => integer() | float(),
-            :chain => integer() | float()
+            warlord: integer() | float(),
+            war: integer() | float(),
+            retaliation: integer() | float(),
+            overseas: integer() | float(),
+            group: integer() | float(),
+            fair_fight: integer() | float(),
+            chain: integer() | float()
           },
           is_stealthed: boolean(),
           is_ranked_war: boolean(),
@@ -77,7 +77,7 @@ defmodule Torngen.Client.Schema.Attack do
       result:
         data
         |> Map.get("result")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionAttackResult),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionAttackResult}),
       respect_loss:
         data |> Map.get("respect_loss") |> Torngen.Client.Schema.parse({:static, :number}),
       respect_gain:
@@ -90,10 +90,10 @@ defmodule Torngen.Client.Schema.Attack do
            %{
              group: {:static, :number},
              chain: {:static, :number},
-             warlord: {:static, :number},
              war: {:static, :number},
-             retaliation: {:static, :number},
              overseas: {:static, :number},
+             warlord: {:static, :number},
+             retaliation: {:static, :number},
              fair_fight: {:static, :number}
            }}
         ),
@@ -104,26 +104,31 @@ defmodule Torngen.Client.Schema.Attack do
       is_raid: data |> Map.get("is_raid") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_interrupted:
         data |> Map.get("is_interrupted") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AttackId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackId}),
       finishing_hit_effects:
         data
         |> Map.get("finishing_hit_effects")
         |> Torngen.Client.Schema.parse(
-          {:array, Torngen.Client.Schema.AttackingFinishingHitEffects}
+          {:array, {:ref, Torngen.Client.Schema.AttackingFinishingHitEffects}}
         ),
       ended: data |> Map.get("ended") |> Torngen.Client.Schema.parse({:static, :integer}),
       defender:
         data
         |> Map.get("defender")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AttackPlayer),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackPlayer}),
       code:
-        data |> Map.get("code") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AttackCode),
+        data
+        |> Map.get("code")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackCode}),
       chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer}),
       attacker:
         data
         |> Map.get("attacker")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.AttackPlayer]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayer]}
         )
     }
   end
@@ -144,7 +149,7 @@ defmodule Torngen.Client.Schema.Attack do
   end
 
   defp validate_key?(:result, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionAttackResult)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionAttackResult})
   end
 
   defp validate_key?(:respect_loss, value) do
@@ -162,10 +167,10 @@ defmodule Torngen.Client.Schema.Attack do
        %{
          group: {:static, :number},
          chain: {:static, :number},
-         warlord: {:static, :number},
          war: {:static, :number},
-         retaliation: {:static, :number},
          overseas: {:static, :number},
+         warlord: {:static, :number},
+         retaliation: {:static, :number},
          fair_fight: {:static, :number}
        }}
     )
@@ -188,13 +193,13 @@ defmodule Torngen.Client.Schema.Attack do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AttackId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AttackId})
   end
 
   defp validate_key?(:finishing_hit_effects, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.AttackingFinishingHitEffects}
+      {:array, {:ref, Torngen.Client.Schema.AttackingFinishingHitEffects}}
     )
   end
 
@@ -203,11 +208,11 @@ defmodule Torngen.Client.Schema.Attack do
   end
 
   defp validate_key?(:defender, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AttackPlayer)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AttackPlayer})
   end
 
   defp validate_key?(:code, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AttackCode)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AttackCode})
   end
 
   defp validate_key?(:chain, value) do
@@ -217,7 +222,7 @@ defmodule Torngen.Client.Schema.Attack do
   defp validate_key?(:attacker, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.AttackPlayer]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayer]}
     )
   end
 

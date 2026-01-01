@@ -62,7 +62,7 @@ defmodule Torngen.Client.Schema.ForumPost do
       thread_id:
         data
         |> Map.get("thread_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadId}),
       quoted_post_id:
         data
         |> Map.get("quoted_post_id")
@@ -72,13 +72,16 @@ defmodule Torngen.Client.Schema.ForumPost do
       is_pinned: data |> Map.get("is_pinned") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_legacy: data |> Map.get("is_legacy") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_edited: data |> Map.get("is_edited") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumPostId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumPostId}),
       has_quote: data |> Map.get("has_quote") |> Torngen.Client.Schema.parse({:static, :boolean}),
       edited_by:
         data
         |> Map.get("edited_by")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserId]}
         ),
       dislikes: data |> Map.get("dislikes") |> Torngen.Client.Schema.parse({:static, :integer}),
       created_time:
@@ -87,7 +90,7 @@ defmodule Torngen.Client.Schema.ForumPost do
       author:
         data
         |> Map.get("author")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadAuthor)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadAuthor})
     }
   end
 
@@ -103,7 +106,7 @@ defmodule Torngen.Client.Schema.ForumPost do
   end
 
   defp validate_key?(:thread_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadId})
   end
 
   defp validate_key?(:quoted_post_id, value) do
@@ -131,7 +134,7 @@ defmodule Torngen.Client.Schema.ForumPost do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumPostId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumPostId})
   end
 
   defp validate_key?(:has_quote, value) do
@@ -141,7 +144,7 @@ defmodule Torngen.Client.Schema.ForumPost do
   defp validate_key?(:edited_by, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserId]}
     )
   end
 
@@ -158,7 +161,7 @@ defmodule Torngen.Client.Schema.ForumPost do
   end
 
   defp validate_key?(:author, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadAuthor)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadAuthor})
   end
 
   @spec keys() :: list(atom())

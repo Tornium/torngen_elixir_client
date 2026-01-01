@@ -13,18 +13,18 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
 
   @type t :: %__MODULE__{
           investments: %{
-            :stocks => %{
-              :profits => integer(),
-              :payouts => integer(),
-              :net_profits => integer(),
-              :losses => integer(),
-              :fees => integer()
+            stocks: %{
+              profits: integer(),
+              payouts: integer(),
+              net_profits: integer(),
+              losses: integer(),
+              fees: integer()
             },
-            :bank => %{
-              :total => integer(),
-              :time_remaining => integer(),
-              :profit => integer(),
-              :current => integer()
+            bank: %{
+              total: integer(),
+              time_remaining: integer(),
+              profit: integer(),
+              current: integer()
             }
           }
         }
@@ -50,10 +50,10 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
                {:object,
                 %{
                   fees: {:static, :integer},
-                  profits: {:static, :integer},
+                  losses: {:static, :integer},
                   payouts: {:static, :integer},
-                  net_profits: {:static, :integer},
-                  losses: {:static, :integer}
+                  profits: {:static, :integer},
+                  net_profits: {:static, :integer}
                 }}
            }}
         )
@@ -88,10 +88,10 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
            {:object,
             %{
               fees: {:static, :integer},
-              profits: {:static, :integer},
+              losses: {:static, :integer},
               payouts: {:static, :integer},
-              net_profits: {:static, :integer},
-              losses: {:static, :integer}
+              profits: {:static, :integer},
+              net_profits: {:static, :integer}
             }}
        }}
     )

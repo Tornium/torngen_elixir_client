@@ -26,7 +26,8 @@ defmodule Torngen.Client.Schema.ItemMarketItem do
     %__MODULE__{
       type: data |> Map.get("type") |> Torngen.Client.Schema.parse({:static, :string}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId}),
       average_price:
         data |> Map.get("average_price") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -52,7 +53,7 @@ defmodule Torngen.Client.Schema.ItemMarketItem do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   defp validate_key?(:average_price, value) do

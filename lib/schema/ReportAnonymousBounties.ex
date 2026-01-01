@@ -14,9 +14,9 @@ defmodule Torngen.Client.Schema.ReportAnonymousBounties do
   @type t :: %__MODULE__{
           bounties: [
             %{
-              :user => nil | %{:name => String.t(), :id => Torngen.Client.Schema.UserId.t()},
-              :text => String.t(),
-              :bounty => integer()
+              user: nil | %{name: String.t(), id: Torngen.Client.Schema.UserId.t()},
+              text: String.t(),
+              bounty: integer()
             }
           ]
         }
@@ -35,7 +35,7 @@ defmodule Torngen.Client.Schema.ReportAnonymousBounties do
                 {:one_of,
                  [
                    static: :null,
-                   object: %{id: Torngen.Client.Schema.UserId, name: {:static, :string}}
+                   object: %{id: {:ref, Torngen.Client.Schema.UserId}, name: {:static, :string}}
                  ]},
               text: {:static, :string},
               bounty: {:static, :integer}
@@ -65,7 +65,7 @@ defmodule Torngen.Client.Schema.ReportAnonymousBounties do
             {:one_of,
              [
                static: :null,
-               object: %{id: Torngen.Client.Schema.UserId, name: {:static, :string}}
+               object: %{id: {:ref, Torngen.Client.Schema.UserId}, name: {:static, :string}}
              ]},
           text: {:static, :string},
           bounty: {:static, :integer}

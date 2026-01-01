@@ -23,11 +23,15 @@ defmodule Torngen.Client.Schema.ReportFriendOrFoe do
       friends:
         data
         |> Map.get("friends")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ReportFriendOrFoeUser}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ReportFriendOrFoeUser}}
+        ),
       enemies:
         data
         |> Map.get("enemies")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ReportFriendOrFoeUser})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ReportFriendOrFoeUser}}
+        )
     }
   end
 
@@ -43,11 +47,17 @@ defmodule Torngen.Client.Schema.ReportFriendOrFoe do
   end
 
   defp validate_key?(:friends, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ReportFriendOrFoeUser})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ReportFriendOrFoeUser}}
+    )
   end
 
   defp validate_key?(:enemies, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ReportFriendOrFoeUser})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ReportFriendOrFoeUser}}
+    )
   end
 
   @spec keys() :: list(atom())

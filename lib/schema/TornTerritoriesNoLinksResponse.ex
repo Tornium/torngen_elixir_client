@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornTerritoriesNoLinksResponse do
       territory:
         data
         |> Map.get("territory")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornTerritory})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornTerritory}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornTerritoriesNoLinksResponse do
   end
 
   defp validate_key?(:territory, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornTerritory})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornTerritory}})
   end
 
   @spec keys() :: list(atom())

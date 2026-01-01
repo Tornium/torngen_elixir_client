@@ -5,16 +5,14 @@ defmodule Torngen.Client.Schema.UserEquipment do
 
   defstruct [:values]
 
-  @type t :: %__MODULE__{
-          values: [%{:slot => integer()} | Torngen.Client.Schema.TornItemDetails.t()]
-        }
+  @type t :: %__MODULE__{values: [%{slot: integer()} | Torngen.Client.Schema.TornItemDetails.t()]}
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
       values: [
         data |> Torngen.Client.Schema.parse({:object, %{slot: {:static, :integer}}}),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemDetails)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemDetails})
       ]
     }
   end

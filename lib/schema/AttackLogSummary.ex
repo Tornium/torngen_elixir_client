@@ -35,7 +35,7 @@ defmodule Torngen.Client.Schema.AttackLogSummary do
         data
         |> Map.get("id")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserId]}
         ),
       hits: data |> Map.get("hits") |> Torngen.Client.Schema.parse({:static, :integer}),
       damage: data |> Map.get("damage") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -64,7 +64,7 @@ defmodule Torngen.Client.Schema.AttackLogSummary do
   defp validate_key?(:id, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserId]}
     )
   end
 

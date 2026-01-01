@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.FactionCrimeUser do
 
   @type t :: %__MODULE__{
           progress: integer() | float(),
-          outcome_duration: nil | integer(),
+          outcome_duration: nil | nil | integer(),
           outcome: nil | Torngen.Client.Schema.FactionCrimeUserOutcome.t(),
           joined_at: integer(),
           item_outcome: nil | Torngen.Client.Schema.FactionCrimeUserItemOutcome.t(),
@@ -32,21 +32,24 @@ defmodule Torngen.Client.Schema.FactionCrimeUser do
       outcome_duration:
         data
         |> Map.get("outcome_duration")
-        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, one_of: [static: :null, static: :integer]]}
+        ),
       outcome:
         data
         |> Map.get("outcome")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUserOutcome]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeUserOutcome]}
         ),
       joined_at: data |> Map.get("joined_at") |> Torngen.Client.Schema.parse({:static, :integer}),
       item_outcome:
         data
         |> Map.get("item_outcome")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUserItemOutcome]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeUserItemOutcome]}
         ),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId})
     }
   end
 
@@ -72,7 +75,7 @@ defmodule Torngen.Client.Schema.FactionCrimeUser do
   defp validate_key?(:outcome, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUserOutcome]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeUserOutcome]}
     )
   end
 
@@ -83,12 +86,12 @@ defmodule Torngen.Client.Schema.FactionCrimeUser do
   defp validate_key?(:item_outcome, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionCrimeUserItemOutcome]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeUserItemOutcome]}
     )
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   @spec keys() :: list(atom())

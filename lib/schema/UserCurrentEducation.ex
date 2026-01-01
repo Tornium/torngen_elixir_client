@@ -21,7 +21,10 @@ defmodule Torngen.Client.Schema.UserCurrentEducation do
   def parse(%{} = data) do
     %__MODULE__{
       until: data |> Map.get("until") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.EducationId)
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.EducationId})
     }
   end
 
@@ -41,7 +44,7 @@ defmodule Torngen.Client.Schema.UserCurrentEducation do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.EducationId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.EducationId})
   end
 
   @spec keys() :: list(atom())

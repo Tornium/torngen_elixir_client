@@ -13,10 +13,10 @@ defmodule Torngen.Client.Schema.UserRefillsResponse do
 
   @type t :: %__MODULE__{
           refills: %{
-            :token => boolean(),
-            :special_count => integer(),
-            :nerve => boolean(),
-            :energy => boolean()
+            token: boolean(),
+            special_count: integer(),
+            nerve: boolean(),
+            energy: boolean()
           }
         }
 

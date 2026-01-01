@@ -36,20 +36,20 @@ defmodule Torngen.Client.Schema.Race do
           title: String.t(),
           status: Torngen.Client.Schema.RaceStatusEnum.t(),
           schedule: %{
-            :start => integer(),
-            :join_until => integer(),
-            :join_from => integer(),
-            :end => nil | integer()
+            start: integer(),
+            join_until: integer(),
+            join_from: integer(),
+            end: nil | integer()
           },
           requirements: %{
-            :requires_stock_car => boolean(),
-            :requires_password => boolean(),
-            :join_fee => integer(),
-            :driver_class => nil | Torngen.Client.Schema.RaceClassEnum.t(),
-            :car_item_id => nil | Torngen.Client.Schema.ItemId.t(),
-            :car_class => nil | Torngen.Client.Schema.RaceClassEnum.t()
+            requires_stock_car: boolean(),
+            requires_password: boolean(),
+            join_fee: integer(),
+            driver_class: nil | Torngen.Client.Schema.RaceClassEnum.t(),
+            car_item_id: nil | Torngen.Client.Schema.ItemId.t(),
+            car_class: nil | Torngen.Client.Schema.RaceClassEnum.t()
           },
-          participants: %{:minimum => integer(), :maximum => integer(), :current => integer()},
+          participants: %{minimum: integer(), maximum: integer(), current: integer()},
           laps: integer(),
           is_official: boolean(),
           id: Torngen.Client.Schema.RaceId.t(),
@@ -62,12 +62,12 @@ defmodule Torngen.Client.Schema.Race do
       track_id:
         data
         |> Map.get("track_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceTrackId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceTrackId}),
       title: data |> Map.get("title") |> Torngen.Client.Schema.parse({:static, :string}),
       status:
         data
         |> Map.get("status")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceStatusEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceStatusEnum}),
       schedule:
         data
         |> Map.get("schedule")
@@ -86,12 +86,12 @@ defmodule Torngen.Client.Schema.Race do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
+             car_item_id: {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemId]},
+             car_class: {:one_of, [static: :null, ref: Torngen.Client.Schema.RaceClassEnum]},
              requires_stock_car: {:static, :boolean},
              requires_password: {:static, :boolean},
              join_fee: {:static, :integer},
-             driver_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
-             car_item_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]},
-             car_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]}
+             driver_class: {:one_of, [static: :null, ref: Torngen.Client.Schema.RaceClassEnum]}
            }}
         ),
       participants:
@@ -108,9 +108,12 @@ defmodule Torngen.Client.Schema.Race do
       laps: data |> Map.get("laps") |> Torngen.Client.Schema.parse({:static, :integer}),
       is_official:
         data |> Map.get("is_official") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceId}),
       creator_id:
-        data |> Map.get("creator_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId)
+        data
+        |> Map.get("creator_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId})
     }
   end
 
@@ -126,7 +129,7 @@ defmodule Torngen.Client.Schema.Race do
   end
 
   defp validate_key?(:track_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceTrackId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceTrackId})
   end
 
   defp validate_key?(:title, value) do
@@ -134,7 +137,7 @@ defmodule Torngen.Client.Schema.Race do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceStatusEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceStatusEnum})
   end
 
   defp validate_key?(:schedule, value) do
@@ -155,12 +158,12 @@ defmodule Torngen.Client.Schema.Race do
       value,
       {:object,
        %{
+         car_item_id: {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemId]},
+         car_class: {:one_of, [static: :null, ref: Torngen.Client.Schema.RaceClassEnum]},
          requires_stock_car: {:static, :boolean},
          requires_password: {:static, :boolean},
          join_fee: {:static, :integer},
-         driver_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]},
-         car_item_id: {:one_of, [{:static, :null}, Torngen.Client.Schema.ItemId]},
-         car_class: {:one_of, [{:static, :null}, Torngen.Client.Schema.RaceClassEnum]}
+         driver_class: {:one_of, [static: :null, ref: Torngen.Client.Schema.RaceClassEnum]}
        }}
     )
   end
@@ -182,11 +185,11 @@ defmodule Torngen.Client.Schema.Race do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceId})
   end
 
   defp validate_key?(:creator_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   @spec keys() :: list(atom())

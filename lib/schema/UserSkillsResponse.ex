@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserSkillsResponse do
       skills:
         data
         |> Map.get("skills")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserSkillDetail})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserSkillDetail}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.UserSkillsResponse do
   end
 
   defp validate_key?(:skills, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserSkillDetail})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.UserSkillDetail}}
+    )
   end
 
   @spec keys() :: list(atom())

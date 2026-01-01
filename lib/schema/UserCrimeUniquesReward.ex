@@ -26,17 +26,19 @@ defmodule Torngen.Client.Schema.UserCrimeUniquesReward do
         data
         |> Map.get("money")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserCrimeUniquesRewardMoney]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserCrimeUniquesRewardMoney]}
         ),
       items:
         data
         |> Map.get("items")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserCrimeRewardItem}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.UserCrimeRewardItem}}
+        ),
       ammo:
         data
         |> Map.get("ammo")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserCrimeUniquesRewardAmmo]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserCrimeUniquesRewardAmmo]}
         )
     }
   end
@@ -55,18 +57,21 @@ defmodule Torngen.Client.Schema.UserCrimeUniquesReward do
   defp validate_key?(:money, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserCrimeUniquesRewardMoney]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserCrimeUniquesRewardMoney]}
     )
   end
 
   defp validate_key?(:items, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserCrimeRewardItem})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.UserCrimeRewardItem}}
+    )
   end
 
   defp validate_key?(:ammo, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserCrimeUniquesRewardAmmo]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserCrimeUniquesRewardAmmo]}
     )
   end
 

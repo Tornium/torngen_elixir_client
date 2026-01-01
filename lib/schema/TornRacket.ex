@@ -31,7 +31,7 @@ defmodule Torngen.Client.Schema.TornRacket do
       reward:
         data
         |> Map.get("reward")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornRacketReward),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornRacketReward}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
       description:
@@ -55,7 +55,7 @@ defmodule Torngen.Client.Schema.TornRacket do
   end
 
   defp validate_key?(:reward, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornRacketReward)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornRacketReward})
   end
 
   defp validate_key?(:name, value) do

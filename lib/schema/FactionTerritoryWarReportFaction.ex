@@ -36,12 +36,15 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportFaction do
         data
         |> Map.get("members")
         |> Torngen.Client.Schema.parse(
-          {:array, Torngen.Client.Schema.FactionTerritoryWarReportMembers}
+          {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarReportMembers}}
         ),
       joins: data |> Map.get("joins") |> Torngen.Client.Schema.parse({:static, :integer}),
       is_aggressor:
         data |> Map.get("is_aggressor") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       clears: data |> Map.get("clears") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -68,7 +71,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportFaction do
   defp validate_key?(:members, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionTerritoryWarReportMembers}
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarReportMembers}}
     )
   end
 
@@ -81,7 +84,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:clears, value) do

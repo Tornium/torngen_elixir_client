@@ -23,10 +23,10 @@ defmodule Torngen.Client.Schema.TornItemWeaponDetails do
           ammo:
             nil
             | %{
-                :rate_of_fire => %{:minimum => integer(), :maximum => integer()},
-                :name => String.t(),
-                :magazine_rounds => integer(),
-                :id => Torngen.Client.Schema.AmmoId.t()
+                rate_of_fire: %{minimum: integer(), maximum: integer()},
+                name: String.t(),
+                magazine_rounds: integer(),
+                id: Torngen.Client.Schema.AmmoId.t()
               }
         }
 
@@ -38,15 +38,15 @@ defmodule Torngen.Client.Schema.TornItemWeaponDetails do
       mods:
         data
         |> Map.get("mods")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ItemModId}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.ItemModId}}),
       category:
         data
         |> Map.get("category")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemWeaponCategoryEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemWeaponCategoryEnum}),
       base_stats:
         data
         |> Map.get("base_stats")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemBaseStats),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemBaseStats}),
       ammo:
         data
         |> Map.get("ammo")
@@ -55,7 +55,7 @@ defmodule Torngen.Client.Schema.TornItemWeaponDetails do
            [
              static: :null,
              object: %{
-               id: Torngen.Client.Schema.AmmoId,
+               id: {:ref, Torngen.Client.Schema.AmmoId},
                name: {:static, :string},
                rate_of_fire:
                  {:object, %{maximum: {:static, :integer}, minimum: {:static, :integer}}},
@@ -82,15 +82,18 @@ defmodule Torngen.Client.Schema.TornItemWeaponDetails do
   end
 
   defp validate_key?(:mods, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ItemModId})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.ItemModId}})
   end
 
   defp validate_key?(:category, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemWeaponCategoryEnum)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.TornItemWeaponCategoryEnum}
+    )
   end
 
   defp validate_key?(:base_stats, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemBaseStats)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemBaseStats})
   end
 
   defp validate_key?(:ammo, value) do
@@ -100,7 +103,7 @@ defmodule Torngen.Client.Schema.TornItemWeaponDetails do
        [
          static: :null,
          object: %{
-           id: Torngen.Client.Schema.AmmoId,
+           id: {:ref, Torngen.Client.Schema.AmmoId},
            name: {:static, :string},
            rate_of_fire: {:object, %{maximum: {:static, :integer}, minimum: {:static, :integer}}},
            magazine_rounds: {:static, :integer}

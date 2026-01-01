@@ -19,7 +19,9 @@ defmodule Torngen.Client.Schema.UserBasicResponse do
   def parse(%{} = data) do
     %__MODULE__{
       profile:
-        data |> Map.get("profile") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserBasic)
+        data
+        |> Map.get("profile")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserBasic})
     }
   end
 
@@ -35,7 +37,7 @@ defmodule Torngen.Client.Schema.UserBasicResponse do
   end
 
   defp validate_key?(:profile, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserBasic)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserBasic})
   end
 
   @spec keys() :: list(atom())

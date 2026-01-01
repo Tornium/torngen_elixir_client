@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornEducationResponse do
       education:
         data
         |> Map.get("education")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornEducation})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornEducation}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornEducationResponse do
   end
 
   defp validate_key?(:education, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornEducation})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornEducation}})
   end
 
   @spec keys() :: list(atom())

@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserNewMessagesResponse do
       messages:
         data
         |> Map.get("messages")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserMessage})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserMessage}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserNewMessagesResponse do
   end
 
   defp validate_key?(:messages, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserMessage})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserMessage}})
   end
 
   @spec keys() :: list(atom())

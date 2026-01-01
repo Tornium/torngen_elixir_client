@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionBalanceResponse do
       balance:
         data
         |> Map.get("balance")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionBalance)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionBalance})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionBalanceResponse do
   end
 
   defp validate_key?(:balance, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionBalance)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionBalance})
   end
 
   @spec keys() :: list(atom())

@@ -32,7 +32,10 @@ defmodule Torngen.Client.Schema.UserFaction do
       tag: data |> Map.get("tag") |> Torngen.Client.Schema.parse({:static, :string}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :string}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       days_in_faction:
         data |> Map.get("days_in_faction") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -66,7 +69,7 @@ defmodule Torngen.Client.Schema.UserFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:days_in_faction, value) do

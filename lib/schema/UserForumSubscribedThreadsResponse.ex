@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.UserForumSubscribedThreadsResponse do
   ]
 
   @type t :: %__MODULE__{
-          forumSubscribedThreads: [Torngen.Client.Schema.ForumSubscribedThread.t()]
+          forumSubscribedThreads: nil | [Torngen.Client.Schema.ForumSubscribedThread.t()]
         }
 
   @impl true
@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.UserForumSubscribedThreadsResponse do
       forumSubscribedThreads:
         data
         |> Map.get("forumSubscribedThreads")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ForumSubscribedThread})
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, array: {:ref, Torngen.Client.Schema.ForumSubscribedThread}]}
+        )
     }
   end
 
@@ -37,7 +39,10 @@ defmodule Torngen.Client.Schema.UserForumSubscribedThreadsResponse do
   end
 
   defp validate_key?(:forumSubscribedThreads, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ForumSubscribedThread})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ForumSubscribedThread}}
+    )
   end
 
   @spec keys() :: list(atom())

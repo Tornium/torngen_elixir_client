@@ -23,11 +23,15 @@ defmodule Torngen.Client.Schema.ReportHistory do
       factions:
         data
         |> Map.get("factions")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ReportHistoryFaction}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ReportHistoryFaction}}
+        ),
       companies:
         data
         |> Map.get("companies")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ReportHistoryCompany})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.ReportHistoryCompany}}
+        )
     }
   end
 
@@ -43,11 +47,17 @@ defmodule Torngen.Client.Schema.ReportHistory do
   end
 
   defp validate_key?(:factions, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ReportHistoryFaction})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ReportHistoryFaction}}
+    )
   end
 
   defp validate_key?(:companies, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ReportHistoryCompany})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ReportHistoryCompany}}
+    )
   end
 
   @spec keys() :: list(atom())

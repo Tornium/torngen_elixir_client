@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.ReportsResponse do
       reports:
         data
         |> Map.get("reports")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.Report}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.Report}}),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.ReportsResponse do
   end
 
   defp validate_key?(:reports, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.Report})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.Report}})
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

@@ -64,19 +64,23 @@ defmodule Torngen.Client.Schema.RacerDetails do
         |> Map.get("has_crashed")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :boolean]}),
       driver_id:
-        data |> Map.get("driver_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+        data
+        |> Map.get("driver_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       car_item_name:
         data |> Map.get("car_item_name") |> Torngen.Client.Schema.parse({:static, :string}),
       car_item_id:
         data
         |> Map.get("car_item_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId}),
       car_id:
-        data |> Map.get("car_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceCarId),
+        data
+        |> Map.get("car_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceCarId}),
       car_class:
         data
         |> Map.get("car_class")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceClassEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceClassEnum}),
       best_lap_time:
         data
         |> Map.get("best_lap_time")
@@ -112,7 +116,7 @@ defmodule Torngen.Client.Schema.RacerDetails do
   end
 
   defp validate_key?(:driver_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:car_item_name, value) do
@@ -120,15 +124,15 @@ defmodule Torngen.Client.Schema.RacerDetails do
   end
 
   defp validate_key?(:car_item_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   defp validate_key?(:car_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceCarId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceCarId})
   end
 
   defp validate_key?(:car_class, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceClassEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceClassEnum})
   end
 
   defp validate_key?(:best_lap_time, value) do

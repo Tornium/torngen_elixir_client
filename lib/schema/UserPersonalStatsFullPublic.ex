@@ -41,22 +41,22 @@ defmodule Torngen.Client.Schema.UserPersonalStatsFullPublic do
         |> Torngen.Client.Schema.parse(
           {:all_of,
            [
-             Torngen.Client.Schema.PersonalStatsOther,
-             Torngen.Client.Schema.PersonalStatsNetworthPublic,
-             Torngen.Client.Schema.PersonalStatsRacing,
-             Torngen.Client.Schema.PersonalStatsMissions,
-             Torngen.Client.Schema.PersonalStatsDrugs,
-             Torngen.Client.Schema.PersonalStatsTravel,
-             Torngen.Client.Schema.PersonalStatsItems,
-             Torngen.Client.Schema.PersonalStatsBounties,
-             Torngen.Client.Schema.PersonalStatsCrimes,
-             Torngen.Client.Schema.PersonalStatsCommunication,
-             Torngen.Client.Schema.PersonalStatsFinishingHits,
-             Torngen.Client.Schema.PersonalStatsHospital,
-             Torngen.Client.Schema.PersonalStatsJail,
-             Torngen.Client.Schema.PersonalStatsTrading,
-             Torngen.Client.Schema.PersonalStatsJobsPublic,
-             Torngen.Client.Schema.PersonalStatsAttackingPublic
+             ref: Torngen.Client.Schema.PersonalStatsOther,
+             ref: Torngen.Client.Schema.PersonalStatsNetworthPublic,
+             ref: Torngen.Client.Schema.PersonalStatsRacing,
+             ref: Torngen.Client.Schema.PersonalStatsMissions,
+             ref: Torngen.Client.Schema.PersonalStatsDrugs,
+             ref: Torngen.Client.Schema.PersonalStatsTravel,
+             ref: Torngen.Client.Schema.PersonalStatsItems,
+             ref: Torngen.Client.Schema.PersonalStatsBounties,
+             ref: Torngen.Client.Schema.PersonalStatsCrimes,
+             ref: Torngen.Client.Schema.PersonalStatsCommunication,
+             ref: Torngen.Client.Schema.PersonalStatsFinishingHits,
+             ref: Torngen.Client.Schema.PersonalStatsHospital,
+             ref: Torngen.Client.Schema.PersonalStatsJail,
+             ref: Torngen.Client.Schema.PersonalStatsTrading,
+             ref: Torngen.Client.Schema.PersonalStatsJobsPublic,
+             ref: Torngen.Client.Schema.PersonalStatsAttackingPublic
            ]}
         )
     }
@@ -78,22 +78,22 @@ defmodule Torngen.Client.Schema.UserPersonalStatsFullPublic do
       value,
       {:all_of,
        [
-         Torngen.Client.Schema.PersonalStatsOther,
-         Torngen.Client.Schema.PersonalStatsNetworthPublic,
-         Torngen.Client.Schema.PersonalStatsRacing,
-         Torngen.Client.Schema.PersonalStatsMissions,
-         Torngen.Client.Schema.PersonalStatsDrugs,
-         Torngen.Client.Schema.PersonalStatsTravel,
-         Torngen.Client.Schema.PersonalStatsItems,
-         Torngen.Client.Schema.PersonalStatsBounties,
-         Torngen.Client.Schema.PersonalStatsCrimes,
-         Torngen.Client.Schema.PersonalStatsCommunication,
-         Torngen.Client.Schema.PersonalStatsFinishingHits,
-         Torngen.Client.Schema.PersonalStatsHospital,
-         Torngen.Client.Schema.PersonalStatsJail,
-         Torngen.Client.Schema.PersonalStatsTrading,
-         Torngen.Client.Schema.PersonalStatsJobsPublic,
-         Torngen.Client.Schema.PersonalStatsAttackingPublic
+         ref: Torngen.Client.Schema.PersonalStatsOther,
+         ref: Torngen.Client.Schema.PersonalStatsNetworthPublic,
+         ref: Torngen.Client.Schema.PersonalStatsRacing,
+         ref: Torngen.Client.Schema.PersonalStatsMissions,
+         ref: Torngen.Client.Schema.PersonalStatsDrugs,
+         ref: Torngen.Client.Schema.PersonalStatsTravel,
+         ref: Torngen.Client.Schema.PersonalStatsItems,
+         ref: Torngen.Client.Schema.PersonalStatsBounties,
+         ref: Torngen.Client.Schema.PersonalStatsCrimes,
+         ref: Torngen.Client.Schema.PersonalStatsCommunication,
+         ref: Torngen.Client.Schema.PersonalStatsFinishingHits,
+         ref: Torngen.Client.Schema.PersonalStatsHospital,
+         ref: Torngen.Client.Schema.PersonalStatsJail,
+         ref: Torngen.Client.Schema.PersonalStatsTrading,
+         ref: Torngen.Client.Schema.PersonalStatsJobsPublic,
+         ref: Torngen.Client.Schema.PersonalStatsAttackingPublic
        ]}
     )
   end

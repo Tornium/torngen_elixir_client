@@ -33,12 +33,15 @@ defmodule Torngen.Client.Schema.UserCompany do
       type_id:
         data
         |> Map.get("type_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.CompanyTypeId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.CompanyTypeId}),
       type: data |> Map.get("type") |> Torngen.Client.Schema.parse({:enum, :string, ["company"]}),
       rating: data |> Map.get("rating") |> Torngen.Client.Schema.parse({:static, :integer}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :string}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.CompanyId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.CompanyId}),
       days_in_company:
         data |> Map.get("days_in_company") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -56,7 +59,7 @@ defmodule Torngen.Client.Schema.UserCompany do
   end
 
   defp validate_key?(:type_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.CompanyTypeId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.CompanyTypeId})
   end
 
   defp validate_key?(:type, value) do
@@ -76,7 +79,7 @@ defmodule Torngen.Client.Schema.UserCompany do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.CompanyId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.CompanyId})
   end
 
   defp validate_key?(:days_in_company, value) do

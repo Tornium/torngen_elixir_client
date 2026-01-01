@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornItemDetailsResponse do
       itemdetails:
         data
         |> Map.get("itemdetails")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemDetails)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemDetails})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornItemDetailsResponse do
   end
 
   defp validate_key?(:itemdetails, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemDetails)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemDetails})
   end
 
   @spec keys() :: list(atom())

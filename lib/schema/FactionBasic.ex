@@ -60,21 +60,28 @@ defmodule Torngen.Client.Schema.FactionBasic do
       tag: data |> Map.get("tag") |> Torngen.Client.Schema.parse({:static, :string}),
       respect: data |> Map.get("respect") |> Torngen.Client.Schema.parse({:static, :integer}),
       rank:
-        data |> Map.get("rank") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionRank),
+        data
+        |> Map.get("rank")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionRank}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       members: data |> Map.get("members") |> Torngen.Client.Schema.parse({:static, :integer}),
       leader_id:
-        data |> Map.get("leader_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+        data
+        |> Map.get("leader_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       is_enlisted:
         data
         |> Map.get("is_enlisted")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :boolean]}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       days_old: data |> Map.get("days_old") |> Torngen.Client.Schema.parse({:static, :integer}),
       co_leader_id:
         data
         |> Map.get("co_leader_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       capacity: data |> Map.get("capacity") |> Torngen.Client.Schema.parse({:static, :integer}),
       best_chain:
         data |> Map.get("best_chain") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -105,7 +112,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
   end
 
   defp validate_key?(:rank, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionRank)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionRank})
   end
 
   defp validate_key?(:name, value) do
@@ -117,7 +124,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
   end
 
   defp validate_key?(:leader_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:is_enlisted, value) do
@@ -125,7 +132,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:days_old, value) do
@@ -133,7 +140,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
   end
 
   defp validate_key?(:co_leader_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:capacity, value) do

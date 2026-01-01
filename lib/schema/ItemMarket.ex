@@ -32,14 +32,14 @@ defmodule Torngen.Client.Schema.ItemMarket do
           {:array,
            {:one_of,
             [
-              Torngen.Client.Schema.ItemMarketListingStackable,
-              Torngen.Client.Schema.ItemMarketListingNonstackable
+              ref: Torngen.Client.Schema.ItemMarketListingStackable,
+              ref: Torngen.Client.Schema.ItemMarketListingNonstackable
             ]}}
         ),
       item:
         data
         |> Map.get("item")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemMarketItem),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemMarketItem}),
       cache_timestamp:
         data |> Map.get("cache_timestamp") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -62,14 +62,14 @@ defmodule Torngen.Client.Schema.ItemMarket do
       {:array,
        {:one_of,
         [
-          Torngen.Client.Schema.ItemMarketListingStackable,
-          Torngen.Client.Schema.ItemMarketListingNonstackable
+          ref: Torngen.Client.Schema.ItemMarketListingStackable,
+          ref: Torngen.Client.Schema.ItemMarketListingNonstackable
         ]}}
     )
   end
 
   defp validate_key?(:item, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemMarketItem)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemMarketItem})
   end
 
   defp validate_key?(:cache_timestamp, value) do

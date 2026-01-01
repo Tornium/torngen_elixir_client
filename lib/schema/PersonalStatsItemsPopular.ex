@@ -13,17 +13,17 @@ defmodule Torngen.Client.Schema.PersonalStatsItemsPopular do
 
   @type t :: %__MODULE__{
           items: %{
-            :used => %{
-              :stat_enhancers => integer(),
-              :energy_drinks => integer(),
-              :easter_eggs => integer(),
-              :consumables => integer(),
-              :candy => integer(),
-              :boosters => integer(),
-              :books => integer(),
-              :alcohol => integer()
+            used: %{
+              stat_enhancers: integer(),
+              energy_drinks: integer(),
+              easter_eggs: integer(),
+              consumables: integer(),
+              candy: integer(),
+              boosters: integer(),
+              books: integer(),
+              alcohol: integer()
             },
-            :found => %{:dump => integer()}
+            found: %{dump: integer()}
           }
         }
 

@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.TornEliminationTeamsResponse do
       elimination:
         data
         |> Map.get("elimination")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornEliminationTeam})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornEliminationTeam}}
+        )
     }
   end
 
@@ -37,7 +39,10 @@ defmodule Torngen.Client.Schema.TornEliminationTeamsResponse do
   end
 
   defp validate_key?(:elimination, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornEliminationTeam})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornEliminationTeam}}
+    )
   end
 
   @spec keys() :: list(atom())

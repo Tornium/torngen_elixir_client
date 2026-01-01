@@ -41,12 +41,12 @@ defmodule Torngen.Client.Schema.UserCrime do
       uniques:
         data
         |> Map.get("uniques")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserCrimeUniques}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserCrimeUniques}}),
       skill: data |> Map.get("skill") |> Torngen.Client.Schema.parse({:static, :integer}),
       rewards:
         data
         |> Map.get("rewards")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserCrimeRewards),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserCrimeRewards}),
       progression_bonus:
         data |> Map.get("progression_bonus") |> Torngen.Client.Schema.parse({:static, :integer}),
       nerve_spent:
@@ -57,20 +57,20 @@ defmodule Torngen.Client.Schema.UserCrime do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             {:static, :null},
-             Torngen.Client.Schema.UserCrimeDetailsScamming,
-             Torngen.Client.Schema.UserCrimeDetailsCracking,
-             Torngen.Client.Schema.UserCrimeDetailsHustling,
-             Torngen.Client.Schema.UserCrimeDetailsCardSkimming,
-             Torngen.Client.Schema.UserCrimeDetailsShoplifting,
-             Torngen.Client.Schema.UserCrimeDetailsGraffiti,
-             Torngen.Client.Schema.UserCrimeDetailsBootlegging
+             static: :null,
+             ref: Torngen.Client.Schema.UserCrimeDetailsScamming,
+             ref: Torngen.Client.Schema.UserCrimeDetailsCracking,
+             ref: Torngen.Client.Schema.UserCrimeDetailsHustling,
+             ref: Torngen.Client.Schema.UserCrimeDetailsCardSkimming,
+             ref: Torngen.Client.Schema.UserCrimeDetailsShoplifting,
+             ref: Torngen.Client.Schema.UserCrimeDetailsGraffiti,
+             ref: Torngen.Client.Schema.UserCrimeDetailsBootlegging
            ]}
         ),
       attempts:
         data
         |> Map.get("attempts")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserCrimeAttempts)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserCrimeAttempts})
     }
   end
 
@@ -86,7 +86,10 @@ defmodule Torngen.Client.Schema.UserCrime do
   end
 
   defp validate_key?(:uniques, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserCrimeUniques})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.UserCrimeUniques}}
+    )
   end
 
   defp validate_key?(:skill, value) do
@@ -94,7 +97,7 @@ defmodule Torngen.Client.Schema.UserCrime do
   end
 
   defp validate_key?(:rewards, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserCrimeRewards)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserCrimeRewards})
   end
 
   defp validate_key?(:progression_bonus, value) do
@@ -110,20 +113,20 @@ defmodule Torngen.Client.Schema.UserCrime do
       value,
       {:one_of,
        [
-         {:static, :null},
-         Torngen.Client.Schema.UserCrimeDetailsScamming,
-         Torngen.Client.Schema.UserCrimeDetailsCracking,
-         Torngen.Client.Schema.UserCrimeDetailsHustling,
-         Torngen.Client.Schema.UserCrimeDetailsCardSkimming,
-         Torngen.Client.Schema.UserCrimeDetailsShoplifting,
-         Torngen.Client.Schema.UserCrimeDetailsGraffiti,
-         Torngen.Client.Schema.UserCrimeDetailsBootlegging
+         static: :null,
+         ref: Torngen.Client.Schema.UserCrimeDetailsScamming,
+         ref: Torngen.Client.Schema.UserCrimeDetailsCracking,
+         ref: Torngen.Client.Schema.UserCrimeDetailsHustling,
+         ref: Torngen.Client.Schema.UserCrimeDetailsCardSkimming,
+         ref: Torngen.Client.Schema.UserCrimeDetailsShoplifting,
+         ref: Torngen.Client.Schema.UserCrimeDetailsGraffiti,
+         ref: Torngen.Client.Schema.UserCrimeDetailsBootlegging
        ]}
     )
   end
 
   defp validate_key?(:attempts, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserCrimeAttempts)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserCrimeAttempts})
   end
 
   @spec keys() :: list(atom())

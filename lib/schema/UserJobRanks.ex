@@ -31,27 +31,27 @@ defmodule Torngen.Client.Schema.UserJobRanks do
       medical:
         data
         |> Map.get("medical")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.JobPositionMedicalEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.JobPositionMedicalEnum}),
       law:
         data
         |> Map.get("law")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.JobPositionLawEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.JobPositionLawEnum}),
       grocer:
         data
         |> Map.get("grocer")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.JobPositionGrocerEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.JobPositionGrocerEnum}),
       education:
         data
         |> Map.get("education")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.JobPositionEducationEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.JobPositionEducationEnum}),
       casino:
         data
         |> Map.get("casino")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.JobPositionCasinoEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.JobPositionCasinoEnum}),
       army:
         data
         |> Map.get("army")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.JobPositionArmyEnum)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.JobPositionArmyEnum})
     }
   end
 
@@ -67,27 +67,27 @@ defmodule Torngen.Client.Schema.UserJobRanks do
   end
 
   defp validate_key?(:medical, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.JobPositionMedicalEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.JobPositionMedicalEnum})
   end
 
   defp validate_key?(:law, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.JobPositionLawEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.JobPositionLawEnum})
   end
 
   defp validate_key?(:grocer, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.JobPositionGrocerEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.JobPositionGrocerEnum})
   end
 
   defp validate_key?(:education, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.JobPositionEducationEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.JobPositionEducationEnum})
   end
 
   defp validate_key?(:casino, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.JobPositionCasinoEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.JobPositionCasinoEnum})
   end
 
   defp validate_key?(:army, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.JobPositionArmyEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.JobPositionArmyEnum})
   end
 
   @spec keys() :: list(atom())

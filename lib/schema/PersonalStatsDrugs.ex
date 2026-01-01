@@ -13,19 +13,19 @@ defmodule Torngen.Client.Schema.PersonalStatsDrugs do
 
   @type t :: %__MODULE__{
           drugs: %{
-            :xanax => integer(),
-            :vicodin => integer(),
-            :total => integer(),
-            :speed => integer(),
-            :shrooms => integer(),
-            :rehabilitations => %{:fees => integer(), :amount => integer()},
-            :pcp => integer(),
-            :overdoses => integer(),
-            :opium => integer(),
-            :lsd => integer(),
-            :ketamine => integer(),
-            :ecstasy => integer(),
-            :cannabis => integer()
+            xanax: integer(),
+            vicodin: integer(),
+            total: integer(),
+            speed: integer(),
+            shrooms: integer(),
+            rehabilitations: %{fees: integer(), amount: integer()},
+            pcp: integer(),
+            overdoses: integer(),
+            opium: integer(),
+            lsd: integer(),
+            ketamine: integer(),
+            ecstasy: integer(),
+            cannabis: integer()
           }
         }
 
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.PersonalStatsDrugs do
              vicodin: {:static, :integer},
              shrooms: {:static, :integer},
              rehabilitations:
-               {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}},
+               {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}},
              pcp: {:static, :integer},
              overdoses: {:static, :integer},
              opium: {:static, :integer},
@@ -78,7 +78,7 @@ defmodule Torngen.Client.Schema.PersonalStatsDrugs do
          xanax: {:static, :integer},
          vicodin: {:static, :integer},
          shrooms: {:static, :integer},
-         rehabilitations: {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}},
+         rehabilitations: {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}},
          pcp: {:static, :integer},
          overdoses: {:static, :integer},
          opium: {:static, :integer},

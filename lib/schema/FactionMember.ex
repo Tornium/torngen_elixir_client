@@ -54,24 +54,27 @@ defmodule Torngen.Client.Schema.FactionMember do
   def parse(%{} = data) do
     %__MODULE__{
       status:
-        data |> Map.get("status") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserStatus),
+        data
+        |> Map.get("status")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserStatus}),
       revive_setting:
         data
         |> Map.get("revive_setting")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ReviveSetting),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ReviveSetting}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :string}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
       last_action:
         data
         |> Map.get("last_action")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserLastAction),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserLastAction}),
       is_revivable:
         data |> Map.get("is_revivable") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_on_wall:
         data |> Map.get("is_on_wall") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_in_oc: data |> Map.get("is_in_oc") |> Torngen.Client.Schema.parse({:static, :boolean}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       has_early_discharge:
         data |> Map.get("has_early_discharge") |> Torngen.Client.Schema.parse({:static, :boolean}),
       days_in_faction:
@@ -91,11 +94,11 @@ defmodule Torngen.Client.Schema.FactionMember do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserStatus)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserStatus})
   end
 
   defp validate_key?(:revive_setting, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ReviveSetting)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ReviveSetting})
   end
 
   defp validate_key?(:position, value) do
@@ -111,7 +114,7 @@ defmodule Torngen.Client.Schema.FactionMember do
   end
 
   defp validate_key?(:last_action, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserLastAction)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserLastAction})
   end
 
   defp validate_key?(:is_revivable, value) do
@@ -127,7 +130,7 @@ defmodule Torngen.Client.Schema.FactionMember do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:has_early_discharge, value) do

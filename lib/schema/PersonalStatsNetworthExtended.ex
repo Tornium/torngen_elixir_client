@@ -13,26 +13,26 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthExtended do
 
   @type t :: %__MODULE__{
           networth: %{
-            :wallet => integer(),
-            :vaults => integer(),
-            :unpaid_fees => integer(),
-            :total => integer(),
-            :stock_market => integer(),
-            :property => integer(),
-            :points => integer(),
-            :piggy_bank => integer(),
-            :pending => integer(),
-            :overseas_bank => integer(),
-            :loans => integer(),
-            :item_market => integer(),
-            :inventory => integer(),
-            :enlisted_cars => integer(),
-            :display_case => integer(),
-            :company => integer(),
-            :bookie => integer(),
-            :bazaar => integer(),
-            :bank => integer(),
-            :auction_house => integer()
+            wallet: integer(),
+            vaults: integer(),
+            unpaid_fees: integer(),
+            total: integer(),
+            stock_market: integer(),
+            property: integer(),
+            points: integer(),
+            piggy_bank: integer(),
+            pending: integer(),
+            overseas_bank: integer(),
+            loans: integer(),
+            item_market: integer(),
+            inventory: integer(),
+            enlisted_cars: integer(),
+            display_case: integer(),
+            company: integer(),
+            bookie: integer(),
+            bazaar: integer(),
+            bank: integer(),
+            auction_house: integer()
           }
         }
 
@@ -49,6 +49,7 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthExtended do
              total: {:static, :integer},
              property: {:static, :integer},
              points: {:static, :integer},
+             bazaar: {:static, :integer},
              wallet: {:static, :integer},
              vaults: {:static, :integer},
              unpaid_fees: {:static, :integer},
@@ -62,7 +63,6 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthExtended do
              display_case: {:static, :integer},
              company: {:static, :integer},
              bookie: {:static, :integer},
-             bazaar: {:static, :integer},
              bank: {:static, :integer},
              auction_house: {:static, :integer}
            }}
@@ -90,6 +90,7 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthExtended do
          total: {:static, :integer},
          property: {:static, :integer},
          points: {:static, :integer},
+         bazaar: {:static, :integer},
          wallet: {:static, :integer},
          vaults: {:static, :integer},
          unpaid_fees: {:static, :integer},
@@ -103,7 +104,6 @@ defmodule Torngen.Client.Schema.PersonalStatsNetworthExtended do
          display_case: {:static, :integer},
          company: {:static, :integer},
          bookie: {:static, :integer},
-         bazaar: {:static, :integer},
          bank: {:static, :integer},
          auction_house: {:static, :integer}
        }}

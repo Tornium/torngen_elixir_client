@@ -13,54 +13,41 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
 
   @type t :: %__MODULE__{
           attacking: %{
-            :unarmored_wins => integer(),
-            :networth => %{
-              :money_mugged => integer(),
-              :largest_mug => integer(),
-              :items_looted => integer()
+            unarmored_wins: integer(),
+            networth: %{money_mugged: integer(), largest_mug: integer(), items_looted: integer()},
+            killstreak: %{current: integer(), best: integer()},
+            hits: %{
+              success: integer(),
+              one_hit_kills: integer(),
+              miss: integer(),
+              critical: integer()
             },
-            :killstreak => %{:current => integer(), :best => integer()},
-            :hits => %{
-              :success => integer(),
-              :one_hit_kills => integer(),
-              :miss => integer(),
-              :critical => integer()
+            highest_level_beaten: integer(),
+            faction: %{
+              territory: %{wall_time: integer(), wall_joins: integer(), wall_clears: integer()},
+              retaliations: integer(),
+              respect: integer(),
+              ranked_war_hits: integer(),
+              raid_hits: integer()
             },
-            :highest_level_beaten => integer(),
-            :faction => %{
-              :territory => %{
-                :wall_time => integer(),
-                :wall_joins => integer(),
-                :wall_clears => integer()
-              },
-              :retaliations => integer(),
-              :respect => integer(),
-              :ranked_war_hits => integer(),
-              :raid_hits => integer()
+            escapes: %{player: integer(), foes: integer()},
+            elo: integer(),
+            defends: %{won: integer(), total: integer(), stalemate: integer(), lost: integer()},
+            damage: %{total: integer(), best: integer()},
+            attacks: %{
+              won: integer(),
+              stealth: integer(),
+              stalemate: integer(),
+              lost: integer(),
+              assist: integer()
             },
-            :escapes => %{:player => integer(), :foes => integer()},
-            :elo => integer(),
-            :defends => %{
-              :won => integer(),
-              :total => integer(),
-              :stalemate => integer(),
-              :lost => integer()
-            },
-            :damage => %{:total => integer(), :best => integer()},
-            :attacks => %{
-              :won => integer(),
-              :stealth => integer(),
-              :stalemate => integer(),
-              :lost => integer(),
-              :assist => integer()
-            },
-            :ammunition => %{
-              :tracer => integer(),
-              :total => integer(),
-              :special => integer(),
-              :piercing => integer(),
-              :incendiary => integer(),
-              :hollow_point => integer()
+            ammunition: %{
+              tracer: integer(),
+              total: integer(),
+              special: integer(),
+              piercing: integer(),
+              incendiary: integer(),
+              hollow_point: integer()
             }
           }
         }
@@ -74,7 +61,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             unarmored_wins: {:static, :integer},
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              networth:
                {:object,
                 %{
@@ -82,6 +69,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
                   largest_mug: {:static, :integer},
                   items_looted: {:static, :integer}
                 }},
+             unarmored_wins: {:static, :integer},
              killstreak: {:object, %{current: {:static, :integer}, best: {:static, :integer}}},
              hits:
                {:object,
@@ -107,7 +95,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
                   ranked_war_hits: {:static, :integer},
                   raid_hits: {:static, :integer}
                 }},
-             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -158,7 +145,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
       value,
       {:object,
        %{
-         unarmored_wins: {:static, :integer},
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          networth:
            {:object,
             %{
@@ -166,6 +153,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
               largest_mug: {:static, :integer},
               items_looted: {:static, :integer}
             }},
+         unarmored_wins: {:static, :integer},
          killstreak: {:object, %{current: {:static, :integer}, best: {:static, :integer}}},
          hits:
            {:object,
@@ -191,7 +179,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
               ranked_war_hits: {:static, :integer},
               raid_hits: {:static, :integer}
             }},
-         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,

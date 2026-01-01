@@ -18,17 +18,12 @@ defmodule Torngen.Client.Schema.FactionApplication do
   @type t :: %__MODULE__{
           valid_until: integer(),
           user: %{
-            :stats =>
+            stats:
               nil
-              | %{
-                  :strength => integer(),
-                  :speed => integer(),
-                  :dexterity => integer(),
-                  :defense => integer()
-                },
-            :name => String.t(),
-            :level => integer(),
-            :id => Torngen.Client.Schema.UserId.t()
+              | %{strength: integer(), speed: integer(), dexterity: integer(), defense: integer()},
+            name: String.t(),
+            level: integer(),
+            id: Torngen.Client.Schema.UserId.t()
           },
           status: Torngen.Client.Schema.FactionApplicationStatusEnum.t(),
           message: nil | String.t(),
@@ -46,7 +41,7 @@ defmodule Torngen.Client.Schema.FactionApplication do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             id: Torngen.Client.Schema.UserId,
+             id: {:ref, Torngen.Client.Schema.UserId},
              name: {:static, :string},
              level: {:static, :integer},
              stats:
@@ -65,7 +60,7 @@ defmodule Torngen.Client.Schema.FactionApplication do
       status:
         data
         |> Map.get("status")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionApplicationStatusEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionApplicationStatusEnum}),
       message:
         data
         |> Map.get("message")
@@ -94,7 +89,7 @@ defmodule Torngen.Client.Schema.FactionApplication do
       value,
       {:object,
        %{
-         id: Torngen.Client.Schema.UserId,
+         id: {:ref, Torngen.Client.Schema.UserId},
          name: {:static, :string},
          level: {:static, :integer},
          stats:
@@ -113,7 +108,10 @@ defmodule Torngen.Client.Schema.FactionApplication do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionApplicationStatusEnum)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.FactionApplicationStatusEnum}
+    )
   end
 
   defp validate_key?(:message, value) do

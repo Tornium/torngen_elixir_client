@@ -44,35 +44,43 @@ defmodule Torngen.Client.Schema.BazaarWeekly do
       trending:
         data
         |> Map.get("trending")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarRecentFavorites}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.BazaarRecentFavorites}}
+        ),
       top_grossing:
         data
         |> Map.get("top_grossing")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarWeeklyIncome}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.BazaarWeeklyIncome}}),
       most_popular:
         data
         |> Map.get("most_popular")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarTotalFavorites}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.BazaarTotalFavorites}}
+        ),
       dollar_sale:
         data
         |> Map.get("dollar_sale")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarDollarSales}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.BazaarDollarSales}}),
       busiest:
         data
         |> Map.get("busiest")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarWeeklyCustomers}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.BazaarWeeklyCustomers}}
+        ),
       bulk:
         data
         |> Map.get("bulk")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarBulkSales}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.BazaarBulkSales}}),
       bargain:
         data
         |> Map.get("bargain")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarBargainSales}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.BazaarBargainSales}}),
       advanced_item:
         data
         |> Map.get("advanced_item")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.BazaarAdvancedItemSales})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.BazaarAdvancedItemSales}}
+        )
     }
   end
 
@@ -88,37 +96,58 @@ defmodule Torngen.Client.Schema.BazaarWeekly do
   end
 
   defp validate_key?(:trending, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BazaarRecentFavorites})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.BazaarRecentFavorites}}
+    )
   end
 
   defp validate_key?(:top_grossing, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BazaarWeeklyIncome})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.BazaarWeeklyIncome}}
+    )
   end
 
   defp validate_key?(:most_popular, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BazaarTotalFavorites})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.BazaarTotalFavorites}}
+    )
   end
 
   defp validate_key?(:dollar_sale, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BazaarDollarSales})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.BazaarDollarSales}}
+    )
   end
 
   defp validate_key?(:busiest, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BazaarWeeklyCustomers})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.BazaarWeeklyCustomers}}
+    )
   end
 
   defp validate_key?(:bulk, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BazaarBulkSales})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.BazaarBulkSales}}
+    )
   end
 
   defp validate_key?(:bargain, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.BazaarBargainSales})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.BazaarBargainSales}}
+    )
   end
 
   defp validate_key?(:advanced_item, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.BazaarAdvancedItemSales}
+      {:array, {:ref, Torngen.Client.Schema.BazaarAdvancedItemSales}}
     )
   end
 

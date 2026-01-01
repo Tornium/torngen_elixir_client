@@ -30,13 +30,15 @@ defmodule Torngen.Client.Schema.RaceRecord do
       driver_name:
         data |> Map.get("driver_name") |> Torngen.Client.Schema.parse({:static, :string}),
       driver_id:
-        data |> Map.get("driver_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+        data
+        |> Map.get("driver_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       car_item_name:
         data |> Map.get("car_item_name") |> Torngen.Client.Schema.parse({:static, :string}),
       car_item_id:
         data
         |> Map.get("car_item_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId})
     }
   end
 
@@ -60,7 +62,7 @@ defmodule Torngen.Client.Schema.RaceRecord do
   end
 
   defp validate_key?(:driver_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:car_item_name, value) do
@@ -68,7 +70,7 @@ defmodule Torngen.Client.Schema.RaceRecord do
   end
 
   defp validate_key?(:car_item_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   @spec keys() :: list(atom())

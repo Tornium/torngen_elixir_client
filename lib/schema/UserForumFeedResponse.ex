@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserForumFeedResponse do
       forumFeed:
         data
         |> Map.get("forumFeed")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ForumFeed})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.ForumFeed}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.UserForumFeedResponse do
   end
 
   defp validate_key?(:forumFeed, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ForumFeed})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.ForumFeed}})
   end
 
   @spec keys() :: list(atom())

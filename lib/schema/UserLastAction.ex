@@ -26,7 +26,7 @@ defmodule Torngen.Client.Schema.UserLastAction do
       status:
         data
         |> Map.get("status")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserLastActionStatusEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserLastActionStatusEnum}),
       relative: data |> Map.get("relative") |> Torngen.Client.Schema.parse({:static, :string})
     }
   end
@@ -47,7 +47,7 @@ defmodule Torngen.Client.Schema.UserLastAction do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserLastActionStatusEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserLastActionStatusEnum})
   end
 
   defp validate_key?(:relative, value) do

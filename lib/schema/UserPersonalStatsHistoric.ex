@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.UserPersonalStatsHistoric do
       personalstats:
         data
         |> Map.get("personalstats")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.PersonalStatsHistoricStat})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.PersonalStatsHistoricStat}}
+        )
     }
   end
 
@@ -39,7 +41,7 @@ defmodule Torngen.Client.Schema.UserPersonalStatsHistoric do
   defp validate_key?(:personalstats, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.PersonalStatsHistoricStat}
+      {:array, {:ref, Torngen.Client.Schema.PersonalStatsHistoricStat}}
     )
   end
 

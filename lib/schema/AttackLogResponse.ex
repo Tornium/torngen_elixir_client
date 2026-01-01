@@ -14,8 +14,8 @@ defmodule Torngen.Client.Schema.AttackLogResponse do
 
   @type t :: %__MODULE__{
           attacklog: %{
-            :summary => [Torngen.Client.Schema.AttackLogSummary.t()],
-            :log => [Torngen.Client.Schema.AttackLog.t()]
+            summary: [Torngen.Client.Schema.AttackLogSummary.t()],
+            log: [Torngen.Client.Schema.AttackLog.t()]
           },
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
@@ -29,14 +29,14 @@ defmodule Torngen.Client.Schema.AttackLogResponse do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             log: {:array, Torngen.Client.Schema.AttackLog},
-             summary: {:array, Torngen.Client.Schema.AttackLogSummary}
+             log: {:array, {:ref, Torngen.Client.Schema.AttackLog}},
+             summary: {:array, {:ref, Torngen.Client.Schema.AttackLogSummary}}
            }}
         ),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -56,14 +56,14 @@ defmodule Torngen.Client.Schema.AttackLogResponse do
       value,
       {:object,
        %{
-         log: {:array, Torngen.Client.Schema.AttackLog},
-         summary: {:array, Torngen.Client.Schema.AttackLogSummary}
+         log: {:array, {:ref, Torngen.Client.Schema.AttackLog}},
+         summary: {:array, {:ref, Torngen.Client.Schema.AttackLogSummary}}
        }}
     )
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

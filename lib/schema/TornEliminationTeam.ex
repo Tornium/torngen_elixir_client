@@ -61,11 +61,13 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
       leaders:
         data
         |> Map.get("leaders")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornEliminationTeamLeader}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamLeader}}
+        ),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.EliminationTeamId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.EliminationTeamId}),
       eliminated_timestamp:
         data
         |> Map.get("eliminated_timestamp")
@@ -117,12 +119,12 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
   defp validate_key?(:leaders, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.TornEliminationTeamLeader}
+      {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamLeader}}
     )
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.EliminationTeamId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.EliminationTeamId})
   end
 
   defp validate_key?(:eliminated_timestamp, value) do

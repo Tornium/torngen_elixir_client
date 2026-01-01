@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.UserLookupResponse do
       selections:
         data
         |> Map.get("selections")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserSelectionName})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserSelectionName}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.UserLookupResponse do
   end
 
   defp validate_key?(:selections, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserSelectionName})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.UserSelectionName}}
+    )
   end
 
   @spec keys() :: list(atom())

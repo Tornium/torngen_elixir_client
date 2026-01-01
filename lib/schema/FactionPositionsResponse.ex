@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionPositionsResponse do
       positions:
         data
         |> Map.get("positions")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionPosition})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionPosition}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.FactionPositionsResponse do
   end
 
   defp validate_key?(:positions, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionPosition})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionPosition}}
+    )
   end
 
   @spec keys() :: list(atom())

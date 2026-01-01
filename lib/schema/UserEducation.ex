@@ -24,12 +24,12 @@ defmodule Torngen.Client.Schema.UserEducation do
         data
         |> Map.get("current")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserCurrentEducation]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserCurrentEducation]}
         ),
       complete:
         data
         |> Map.get("complete")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.EducationId})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.EducationId}})
     }
   end
 
@@ -47,12 +47,12 @@ defmodule Torngen.Client.Schema.UserEducation do
   defp validate_key?(:current, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserCurrentEducation]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserCurrentEducation]}
     )
   end
 
   defp validate_key?(:complete, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.EducationId})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.EducationId}})
   end
 
   @spec keys() :: list(atom())

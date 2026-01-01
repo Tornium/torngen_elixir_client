@@ -7,7 +7,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtended do
 
   @type t :: %__MODULE__{
           values: [
-            %{:used_by => [Torngen.Client.Schema.BasicUser.t()], :status => String.t()}
+            %{used_by: [Torngen.Client.Schema.BasicUser.t()], status: String.t()}
             | Torngen.Client.Schema.UserPropertyBasicDetails.t()
           ]
         }
@@ -21,10 +21,11 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtended do
           {:object,
            %{
              status: {:enum, :string, ["none", "in_use"]},
-             used_by: {:array, Torngen.Client.Schema.BasicUser}
+             used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}}
            }}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)
+        data
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserPropertyBasicDetails})
       ]
     }
   end

@@ -23,7 +23,8 @@ defmodule Torngen.Client.Schema.UserWeaponExp do
   def parse(%{} = data) do
     %__MODULE__{
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId}),
       exp: data |> Map.get("exp") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -44,7 +45,7 @@ defmodule Torngen.Client.Schema.UserWeaponExp do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   defp validate_key?(:exp, value) do

@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.RacingCarUpgradesResponse do
       carupgrades:
         data
         |> Map.get("carupgrades")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.RaceCarUpgrade})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.RaceCarUpgrade}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.RacingCarUpgradesResponse do
   end
 
   defp validate_key?(:carupgrades, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.RaceCarUpgrade})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.RaceCarUpgrade}})
   end
 
   @spec keys() :: list(atom())

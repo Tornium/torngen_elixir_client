@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.RequestMetadataWithLinks do
       links:
         data
         |> Map.get("links")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestLinks})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.RequestMetadataWithLinks do
   end
 
   defp validate_key?(:links, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestLinks})
   end
 
   @spec keys() :: list(atom())

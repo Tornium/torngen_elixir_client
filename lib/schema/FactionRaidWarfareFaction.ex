@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.FactionRaidWarfareFaction do
           score: integer() | float(),
           name: String.t(),
           id: Torngen.Client.Schema.FactionId.t(),
-          chain: integer()
+          chain: nil | integer()
         }
 
   @impl true
@@ -26,8 +26,12 @@ defmodule Torngen.Client.Schema.FactionRaidWarfareFaction do
     %__MODULE__{
       score: data |> Map.get("score") |> Torngen.Client.Schema.parse({:static, :number}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
-      chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer})
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
+      chain:
+        data |> Map.get("chain") |> Torngen.Client.Schema.parse({:one_of, [static: :integer]})
     }
   end
 
@@ -51,7 +55,7 @@ defmodule Torngen.Client.Schema.FactionRaidWarfareFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:chain, value) do

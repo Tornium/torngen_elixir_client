@@ -28,7 +28,7 @@ defmodule Torngen.Client.Schema.FactionPact do
       faction_id:
         data
         |> Map.get("faction_id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId})
     }
   end
 
@@ -52,7 +52,7 @@ defmodule Torngen.Client.Schema.FactionPact do
   end
 
   defp validate_key?(:faction_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   @spec keys() :: list(atom())

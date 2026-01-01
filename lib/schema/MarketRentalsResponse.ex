@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.MarketRentalsResponse do
       rentals:
         data
         |> Map.get("rentals")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.MarketRentalDetails),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.MarketRentalDetails}),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.MarketRentalsResponse do
   end
 
   defp validate_key?(:rentals, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.MarketRentalDetails)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.MarketRentalDetails})
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

@@ -64,7 +64,7 @@ defmodule Torngen.Client.Schema.FactionSearch do
       leader:
         data
         |> Map.get("leader")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionSearchLeader),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionSearchLeader}),
       is_recruiting:
         data |> Map.get("is_recruiting") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_destroyed:
@@ -73,12 +73,15 @@ defmodule Torngen.Client.Schema.FactionSearch do
         data
         |> Map.get("image")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId}),
       co_leader:
         data
         |> Map.get("co_leader")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionSearchLeader]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionSearchLeader]}
         )
     }
   end
@@ -115,7 +118,7 @@ defmodule Torngen.Client.Schema.FactionSearch do
   end
 
   defp validate_key?(:leader, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionSearchLeader)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionSearchLeader})
   end
 
   defp validate_key?(:is_recruiting, value) do
@@ -131,13 +134,13 @@ defmodule Torngen.Client.Schema.FactionSearch do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   defp validate_key?(:co_leader, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionSearchLeader]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionSearchLeader]}
     )
   end
 

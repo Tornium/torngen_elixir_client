@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.FactionCrimesResponse do
       crimes:
         data
         |> Map.get("crimes")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionCrime}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionCrime}}),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.FactionCrimesResponse do
   end
 
   defp validate_key?(:crimes, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionCrime})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionCrime}})
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

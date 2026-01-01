@@ -24,7 +24,9 @@ defmodule Torngen.Client.Schema.TornItemArmorCoverage do
       name:
         data
         |> Map.get("name")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemArmorCoveragePartEnum)
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.TornItemArmorCoveragePartEnum}
+        )
     }
   end
 
@@ -44,7 +46,10 @@ defmodule Torngen.Client.Schema.TornItemArmorCoverage do
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemArmorCoveragePartEnum)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.TornItemArmorCoveragePartEnum}
+    )
   end
 
   @spec keys() :: list(atom())

@@ -6,7 +6,7 @@ defmodule Torngen.Client.Schema.ForumThreadUserExtended do
   defstruct [:values]
 
   @type t :: %__MODULE__{
-          values: [%{:new_posts => nil | integer()} | Torngen.Client.Schema.ForumThreadBase.t()]
+          values: [%{new_posts: nil | integer()} | Torngen.Client.Schema.ForumThreadBase.t()]
         }
 
   @impl true
@@ -17,7 +17,7 @@ defmodule Torngen.Client.Schema.ForumThreadUserExtended do
         |> Torngen.Client.Schema.parse(
           {:object, %{new_posts: {:one_of, [static: :null, static: :integer]}}}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadBase)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadBase})
       ]
     }
   end

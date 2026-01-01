@@ -35,21 +35,23 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarfare do
       territory:
         data
         |> Map.get("territory")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionTerritoryEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionTerritoryEnum}),
       target: data |> Map.get("target") |> Torngen.Client.Schema.parse({:static, :integer}),
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
       result: data |> Map.get("result") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
-        data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TerritoryWarId),
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TerritoryWarId}),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer}),
       defender:
         data
         |> Map.get("defender")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionTerritoryWarFaction),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionTerritoryWarFaction}),
       aggressor:
         data
         |> Map.get("aggressor")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionTerritoryWarFaction)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionTerritoryWarFaction})
     }
   end
 
@@ -65,7 +67,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarfare do
   end
 
   defp validate_key?(:territory, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionTerritoryEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionTerritoryEnum})
   end
 
   defp validate_key?(:target, value) do
@@ -81,7 +83,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarfare do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TerritoryWarId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TerritoryWarId})
   end
 
   defp validate_key?(:end, value) do
@@ -89,11 +91,17 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarfare do
   end
 
   defp validate_key?(:defender, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionTerritoryWarFaction)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.FactionTerritoryWarFaction}
+    )
   end
 
   defp validate_key?(:aggressor, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionTerritoryWarFaction)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.FactionTerritoryWarFaction}
+    )
   end
 
   @spec keys() :: list(atom())

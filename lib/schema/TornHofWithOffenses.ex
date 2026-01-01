@@ -6,7 +6,7 @@ defmodule Torngen.Client.Schema.TornHofWithOffenses do
   defstruct [:values]
 
   @type t :: %__MODULE__{
-          values: [%{:criminal_offenses => integer()} | Torngen.Client.Schema.TornHofBasic.t()]
+          values: [%{criminal_offenses: integer()} | Torngen.Client.Schema.TornHofBasic.t()]
         }
 
   @impl true
@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.TornHofWithOffenses do
     %__MODULE__{
       values: [
         data |> Torngen.Client.Schema.parse({:object, %{criminal_offenses: {:static, :integer}}}),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornHofBasic)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornHofBasic})
       ]
     }
   end

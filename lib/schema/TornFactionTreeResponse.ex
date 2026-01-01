@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornFactionTreeResponse do
       factionTree:
         data
         |> Map.get("factionTree")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornFactionTree})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornFactionTree}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.TornFactionTreeResponse do
   end
 
   defp validate_key?(:factionTree, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornFactionTree})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornFactionTree}}
+    )
   end
 
   @spec keys() :: list(atom())

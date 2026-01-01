@@ -34,7 +34,9 @@ defmodule Torngen.Client.Schema.UserItemMarketListing do
       item:
         data
         |> Map.get("item")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserItemMarkeListingItemDetails),
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.UserItemMarkeListingItemDetails}
+        ),
       is_anonymous:
         data |> Map.get("is_anonymous") |> Torngen.Client.Schema.parse({:static, :boolean}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :integer}),
@@ -61,7 +63,10 @@ defmodule Torngen.Client.Schema.UserItemMarketListing do
   end
 
   defp validate_key?(:item, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserItemMarkeListingItemDetails)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.UserItemMarkeListingItemDetails}
+    )
   end
 
   defp validate_key?(:is_anonymous, value) do

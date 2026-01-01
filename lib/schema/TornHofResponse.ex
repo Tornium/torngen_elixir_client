@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.TornHofResponse do
       hof:
         data
         |> Map.get("hof")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornHof}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornHof}}),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.TornHofResponse do
   end
 
   defp validate_key?(:hof, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornHof})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornHof}})
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

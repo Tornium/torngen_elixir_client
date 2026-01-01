@@ -16,13 +16,13 @@ defmodule Torngen.Client.Schema.MarketRentalDetails do
           property: Torngen.Client.Schema.BasicProperty.t(),
           listings: [
             %{
-              :upkeep => integer(),
-              :rental_period => integer(),
-              :modifications => [Torngen.Client.Schema.PropertyModificationEnum.t()],
-              :market_price => integer(),
-              :happy => integer(),
-              :cost_per_day => integer(),
-              :cost => integer()
+              upkeep: integer(),
+              rental_period: integer(),
+              modifications: [Torngen.Client.Schema.PropertyModificationEnum.t()],
+              market_price: integer(),
+              happy: integer(),
+              cost_per_day: integer(),
+              cost: integer()
             }
           ]
         }
@@ -33,7 +33,7 @@ defmodule Torngen.Client.Schema.MarketRentalDetails do
       property:
         data
         |> Map.get("property")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.BasicProperty),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.BasicProperty}),
       listings:
         data
         |> Map.get("listings")
@@ -43,7 +43,7 @@ defmodule Torngen.Client.Schema.MarketRentalDetails do
             %{
               upkeep: {:static, :integer},
               rental_period: {:static, :integer},
-              modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+              modifications: {:array, {:ref, Torngen.Client.Schema.PropertyModificationEnum}},
               market_price: {:static, :integer},
               happy: {:static, :integer},
               cost_per_day: {:static, :integer},
@@ -65,7 +65,7 @@ defmodule Torngen.Client.Schema.MarketRentalDetails do
   end
 
   defp validate_key?(:property, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.BasicProperty)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.BasicProperty})
   end
 
   defp validate_key?(:listings, value) do
@@ -76,7 +76,7 @@ defmodule Torngen.Client.Schema.MarketRentalDetails do
         %{
           upkeep: {:static, :integer},
           rental_period: {:static, :integer},
-          modifications: {:array, Torngen.Client.Schema.PropertyModificationEnum},
+          modifications: {:array, {:ref, Torngen.Client.Schema.PropertyModificationEnum}},
           market_price: {:static, :integer},
           happy: {:static, :integer},
           cost_per_day: {:static, :integer},

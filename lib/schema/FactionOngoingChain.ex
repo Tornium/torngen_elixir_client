@@ -36,7 +36,10 @@ defmodule Torngen.Client.Schema.FactionOngoingChain do
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
       modifier: data |> Map.get("modifier") |> Torngen.Client.Schema.parse({:static, :number}),
       max: data |> Map.get("max") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ChainId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ChainId}),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer}),
       current: data |> Map.get("current") |> Torngen.Client.Schema.parse({:static, :integer}),
       cooldown: data |> Map.get("cooldown") |> Torngen.Client.Schema.parse({:static, :integer})
@@ -71,7 +74,7 @@ defmodule Torngen.Client.Schema.FactionOngoingChain do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ChainId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ChainId})
   end
 
   defp validate_key?(:end, value) do

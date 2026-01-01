@@ -33,25 +33,27 @@ defmodule Torngen.Client.Schema.TornOrganizedCrime do
       spawn:
         data
         |> Map.get("spawn")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornOrganizedCrimeSpawn),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornOrganizedCrimeSpawn}),
       slots:
         data
         |> Map.get("slots")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornOrganizedCrimeSlot}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornOrganizedCrimeSlot}}
+        ),
       scope:
         data
         |> Map.get("scope")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornOrganizedCrimeScope),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornOrganizedCrimeScope}),
       prerequisite:
         data
         |> Map.get("prerequisite")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.OrganizedCrimeName]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.OrganizedCrimeName]}
         ),
       name:
         data
         |> Map.get("name")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.OrganizedCrimeName),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.OrganizedCrimeName}),
       difficulty:
         data |> Map.get("difficulty") |> Torngen.Client.Schema.parse({:static, :integer}),
       description:
@@ -71,26 +73,29 @@ defmodule Torngen.Client.Schema.TornOrganizedCrime do
   end
 
   defp validate_key?(:spawn, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornOrganizedCrimeSpawn)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornOrganizedCrimeSpawn})
   end
 
   defp validate_key?(:slots, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornOrganizedCrimeSlot})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornOrganizedCrimeSlot}}
+    )
   end
 
   defp validate_key?(:scope, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornOrganizedCrimeScope)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornOrganizedCrimeScope})
   end
 
   defp validate_key?(:prerequisite, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.OrganizedCrimeName]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.OrganizedCrimeName]}
     )
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.OrganizedCrimeName)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.OrganizedCrimeName})
   end
 
   defp validate_key?(:difficulty, value) do

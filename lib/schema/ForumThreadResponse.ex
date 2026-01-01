@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.ForumThreadResponse do
       thread:
         data
         |> Map.get("thread")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadExtended)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadExtended})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.ForumThreadResponse do
   end
 
   defp validate_key?(:thread, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadExtended)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadExtended})
   end
 
   @spec keys() :: list(atom())

@@ -26,8 +26,8 @@ defmodule Torngen.Client.Schema.UserIconsResponse do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             array: Torngen.Client.Schema.UserIconPublic,
-             array: Torngen.Client.Schema.UserIconPrivate
+             array: {:ref, Torngen.Client.Schema.UserIconPublic},
+             array: {:ref, Torngen.Client.Schema.UserIconPrivate}
            ]}
         )
     }
@@ -48,7 +48,10 @@ defmodule Torngen.Client.Schema.UserIconsResponse do
     Torngen.Client.Schema.validate?(
       value,
       {:one_of,
-       [array: Torngen.Client.Schema.UserIconPublic, array: Torngen.Client.Schema.UserIconPrivate]}
+       [
+         array: {:ref, Torngen.Client.Schema.UserIconPublic},
+         array: {:ref, Torngen.Client.Schema.UserIconPrivate}
+       ]}
     )
   end
 

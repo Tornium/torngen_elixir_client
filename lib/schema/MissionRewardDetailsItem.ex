@@ -27,15 +27,16 @@ defmodule Torngen.Client.Schema.MissionRewardDetailsItem do
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemTypeEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemTypeEnum}),
       sub_type:
         data
         |> Map.get("sub_type")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.TornItemWeaponTypeEnum]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.TornItemWeaponTypeEnum]}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId})
     }
   end
 
@@ -51,13 +52,13 @@ defmodule Torngen.Client.Schema.MissionRewardDetailsItem do
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemTypeEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemTypeEnum})
   end
 
   defp validate_key?(:sub_type, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.TornItemWeaponTypeEnum]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.TornItemWeaponTypeEnum]}
     )
   end
 
@@ -66,7 +67,7 @@ defmodule Torngen.Client.Schema.MissionRewardDetailsItem do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   @spec keys() :: list(atom())

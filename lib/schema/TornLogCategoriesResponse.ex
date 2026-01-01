@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornLogCategoriesResponse do
       logcategories:
         data
         |> Map.get("logcategories")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornLogCategory})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornLogCategory}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.TornLogCategoriesResponse do
   end
 
   defp validate_key?(:logcategories, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornLogCategory})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornLogCategory}}
+    )
   end
 
   @spec keys() :: list(atom())

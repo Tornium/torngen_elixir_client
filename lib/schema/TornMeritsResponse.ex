@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornMeritsResponse do
       merits:
         data
         |> Map.get("merits")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornMerit})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornMerit}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornMeritsResponse do
   end
 
   defp validate_key?(:merits, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornMerit})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornMerit}})
   end
 
   @spec keys() :: list(atom())

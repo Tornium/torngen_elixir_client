@@ -26,7 +26,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryOwnership do
         data
         |> Map.get("owned_by")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
         ),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :string}),
       acquired_at:
@@ -50,7 +50,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryOwnership do
   defp validate_key?(:owned_by, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
     )
   end
 

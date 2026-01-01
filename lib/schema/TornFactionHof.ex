@@ -31,12 +31,15 @@ defmodule Torngen.Client.Schema.TornFactionHof do
       values:
         data
         |> Map.get("values")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionHofValues),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionHofValues}),
       rank: data |> Map.get("rank") |> Torngen.Client.Schema.parse({:static, :string}),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :integer}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       members: data |> Map.get("members") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId)
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId})
     }
   end
 
@@ -52,7 +55,7 @@ defmodule Torngen.Client.Schema.TornFactionHof do
   end
 
   defp validate_key?(:values, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionHofValues)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionHofValues})
   end
 
   defp validate_key?(:rank, value) do
@@ -72,7 +75,7 @@ defmodule Torngen.Client.Schema.TornFactionHof do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   @spec keys() :: list(atom())

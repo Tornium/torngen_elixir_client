@@ -23,16 +23,16 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
           name: String.t(),
           id: Torngen.Client.Schema.RaceCarUpgradeId.t(),
           effects: %{
-            :top_speed => integer(),
-            :tarmac => integer(),
-            :safety => integer(),
-            :handling => integer(),
-            :dirt => integer(),
-            :braking => integer(),
-            :acceleration => integer()
+            top_speed: integer(),
+            tarmac: integer(),
+            safety: integer(),
+            handling: integer(),
+            dirt: integer(),
+            braking: integer(),
+            acceleration: integer()
           },
           description: String.t(),
-          cost: %{:points => integer(), :cash => integer()},
+          cost: %{points: integer(), cash: integer()},
           class_required: Torngen.Client.Schema.RaceClassEnum.t(),
           category: Torngen.Client.Schema.RaceCarUpgradeCategory.t()
         }
@@ -43,12 +43,12 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
       subcategory:
         data
         |> Map.get("subcategory")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceCarUpgradeSubCategory),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceCarUpgradeSubCategory}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceCarUpgradeId),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceCarUpgradeId}),
       effects:
         data
         |> Map.get("effects")
@@ -75,11 +75,11 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
       class_required:
         data
         |> Map.get("class_required")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceClassEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceClassEnum}),
       category:
         data
         |> Map.get("category")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RaceCarUpgradeCategory)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RaceCarUpgradeCategory})
     }
   end
 
@@ -95,7 +95,10 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
   end
 
   defp validate_key?(:subcategory, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceCarUpgradeSubCategory)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.RaceCarUpgradeSubCategory}
+    )
   end
 
   defp validate_key?(:name, value) do
@@ -103,7 +106,7 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceCarUpgradeId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceCarUpgradeId})
   end
 
   defp validate_key?(:effects, value) do
@@ -134,11 +137,11 @@ defmodule Torngen.Client.Schema.RaceCarUpgrade do
   end
 
   defp validate_key?(:class_required, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceClassEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceClassEnum})
   end
 
   defp validate_key?(:category, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RaceCarUpgradeCategory)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RaceCarUpgradeCategory})
   end
 
   @spec keys() :: list(atom())

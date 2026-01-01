@@ -27,11 +27,15 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardPayout do
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionOrganizedCrimePayoutType),
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.FactionOrganizedCrimePayoutType}
+        ),
       percentage:
         data |> Map.get("percentage") |> Torngen.Client.Schema.parse({:static, :integer}),
       paid_by:
-        data |> Map.get("paid_by") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+        data
+        |> Map.get("paid_by")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       paid_at: data |> Map.get("paid_at") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -48,7 +52,10 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardPayout do
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionOrganizedCrimePayoutType)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.FactionOrganizedCrimePayoutType}
+    )
   end
 
   defp validate_key?(:percentage, value) do
@@ -56,7 +63,7 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardPayout do
   end
 
   defp validate_key?(:paid_by, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:paid_at, value) do

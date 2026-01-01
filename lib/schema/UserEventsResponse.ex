@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.UserEventsResponse do
       events:
         data
         |> Map.get("events")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.UserEvent}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserEvent}}),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -43,11 +43,11 @@ defmodule Torngen.Client.Schema.UserEventsResponse do
   end
 
   defp validate_key?(:events, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.UserEvent})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.UserEvent}})
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

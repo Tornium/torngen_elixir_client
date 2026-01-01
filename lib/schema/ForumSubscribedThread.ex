@@ -30,15 +30,21 @@ defmodule Torngen.Client.Schema.ForumSubscribedThread do
       posts:
         data
         |> Map.get("posts")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumSubscribedThreadPostsCount),
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.ForumSubscribedThreadPostsCount}
+        ),
       id:
-        data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadId),
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadId}),
       forum_id:
-        data |> Map.get("forum_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumId),
+        data
+        |> Map.get("forum_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumId}),
       author:
         data
         |> Map.get("author")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ForumThreadAuthor)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ForumThreadAuthor})
     }
   end
 
@@ -58,19 +64,22 @@ defmodule Torngen.Client.Schema.ForumSubscribedThread do
   end
 
   defp validate_key?(:posts, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumSubscribedThreadPostsCount)
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.ForumSubscribedThreadPostsCount}
+    )
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadId})
   end
 
   defp validate_key?(:forum_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumId})
   end
 
   defp validate_key?(:author, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ForumThreadAuthor)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ForumThreadAuthor})
   end
 
   @spec keys() :: list(atom())

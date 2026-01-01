@@ -42,17 +42,17 @@ defmodule Torngen.Client.Schema.FactionTerritory do
         data
         |> Map.get("racket")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.TornRacket]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.TornRacket]}
         ),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionTerritoryEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionTerritoryEnum}),
       density: data |> Map.get("density") |> Torngen.Client.Schema.parse({:static, :integer}),
       coordinates:
         data
         |> Map.get("coordinates")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornTerritoryCoordinates),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornTerritoryCoordinates}),
       acquired_at:
         data |> Map.get("acquired_at") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -88,12 +88,12 @@ defmodule Torngen.Client.Schema.FactionTerritory do
   defp validate_key?(:racket, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.TornRacket]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.TornRacket]}
     )
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionTerritoryEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionTerritoryEnum})
   end
 
   defp validate_key?(:density, value) do
@@ -101,7 +101,7 @@ defmodule Torngen.Client.Schema.FactionTerritory do
   end
 
   defp validate_key?(:coordinates, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornTerritoryCoordinates)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornTerritoryCoordinates})
   end
 
   defp validate_key?(:acquired_at, value) do

@@ -23,11 +23,11 @@ defmodule Torngen.Client.Schema.RevivesFullResponse do
       revives:
         data
         |> Map.get("revives")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.ReviveSimplified}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.ReviveSimplified}}),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -43,11 +43,14 @@ defmodule Torngen.Client.Schema.RevivesFullResponse do
   end
 
   defp validate_key?(:revives, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.ReviveSimplified})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.ReviveSimplified}}
+    )
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

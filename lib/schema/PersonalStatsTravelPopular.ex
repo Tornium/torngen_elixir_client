@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.PersonalStatsTravelPopular do
   ]
 
   @type t :: %__MODULE__{
-          travel: %{:total => integer(), :time_spent => integer()}
+          travel: %{total: integer(), time_spent: integer()}
         }
 
   @impl true

@@ -31,17 +31,17 @@ defmodule Torngen.Client.Schema.FactionWarfareResponse do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             array: Torngen.Client.Schema.FactionWarfareDirtyBomb,
-             array: Torngen.Client.Schema.FactionRaidWarfare,
-             array: Torngen.Client.Schema.FactionChainWarfare,
-             array: Torngen.Client.Schema.FactionTerritoryWarfare,
-             array: Torngen.Client.Schema.FactionRankedWarDetails
+             array: {:ref, Torngen.Client.Schema.FactionWarfareDirtyBomb},
+             array: {:ref, Torngen.Client.Schema.FactionRaidWarfare},
+             array: {:ref, Torngen.Client.Schema.FactionChainWarfare},
+             array: {:ref, Torngen.Client.Schema.FactionTerritoryWarfare},
+             array: {:ref, Torngen.Client.Schema.FactionRankedWarDetails}
            ]}
         ),
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RequestMetadataWithLinks)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
     }
   end
 
@@ -61,17 +61,17 @@ defmodule Torngen.Client.Schema.FactionWarfareResponse do
       value,
       {:one_of,
        [
-         array: Torngen.Client.Schema.FactionWarfareDirtyBomb,
-         array: Torngen.Client.Schema.FactionRaidWarfare,
-         array: Torngen.Client.Schema.FactionChainWarfare,
-         array: Torngen.Client.Schema.FactionTerritoryWarfare,
-         array: Torngen.Client.Schema.FactionRankedWarDetails
+         array: {:ref, Torngen.Client.Schema.FactionWarfareDirtyBomb},
+         array: {:ref, Torngen.Client.Schema.FactionRaidWarfare},
+         array: {:ref, Torngen.Client.Schema.FactionChainWarfare},
+         array: {:ref, Torngen.Client.Schema.FactionTerritoryWarfare},
+         array: {:ref, Torngen.Client.Schema.FactionRankedWarDetails}
        ]}
     )
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.RequestMetadataWithLinks)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

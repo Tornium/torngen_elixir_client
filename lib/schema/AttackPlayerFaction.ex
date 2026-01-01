@@ -21,7 +21,10 @@ defmodule Torngen.Client.Schema.AttackPlayerFaction do
   def parse(%{} = data) do
     %__MODULE__{
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionId)
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId})
     }
   end
 
@@ -41,7 +44,7 @@ defmodule Torngen.Client.Schema.AttackPlayerFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
   end
 
   @spec keys() :: list(atom())

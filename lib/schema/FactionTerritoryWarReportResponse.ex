@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportResponse do
       territorywarreport:
         data
         |> Map.get("territorywarreport")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritoryWarReport})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarReport}}
+        )
     }
   end
 
@@ -39,7 +41,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportResponse do
   defp validate_key?(:territorywarreport, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionTerritoryWarReport}
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarReport}}
     )
   end
 

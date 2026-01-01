@@ -21,7 +21,9 @@ defmodule Torngen.Client.Schema.RacingLookupResponse do
       selections:
         data
         |> Map.get("selections")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.RacingSelectionName})
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.RacingSelectionName}}
+        )
     }
   end
 
@@ -37,7 +39,10 @@ defmodule Torngen.Client.Schema.RacingLookupResponse do
   end
 
   defp validate_key?(:selections, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.RacingSelectionName})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.RacingSelectionName}}
+    )
   end
 
   @spec keys() :: list(atom())

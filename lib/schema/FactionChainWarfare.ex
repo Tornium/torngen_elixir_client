@@ -7,7 +7,7 @@ defmodule Torngen.Client.Schema.FactionChainWarfare do
 
   @type t :: %__MODULE__{
           values: [
-            %{:faction => %{:name => String.t(), :id => Torngen.Client.Schema.FactionId.t()}}
+            %{faction: %{name: String.t(), id: Torngen.Client.Schema.FactionId.t()}}
             | Torngen.Client.Schema.FactionChain.t()
           ]
         }
@@ -19,9 +19,12 @@ defmodule Torngen.Client.Schema.FactionChainWarfare do
         data
         |> Torngen.Client.Schema.parse(
           {:object,
-           %{faction: {:object, %{id: Torngen.Client.Schema.FactionId, name: {:static, :string}}}}}
+           %{
+             faction:
+               {:object, %{id: {:ref, Torngen.Client.Schema.FactionId}, name: {:static, :string}}}
+           }}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionChain)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionChain})
       ]
     }
   end

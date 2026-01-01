@@ -30,15 +30,20 @@ defmodule Torngen.Client.Schema.FactionWarfareDirtyBomb do
         data
         |> Map.get("user")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionWarfareDirtyBombPlanter]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionWarfareDirtyBombPlanter]}
         ),
       planted_at:
         data |> Map.get("planted_at") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.DirtyBombId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.DirtyBombId}),
       faction:
         data
         |> Map.get("faction")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionWarfareDirtyBombTargetFaction),
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.FactionWarfareDirtyBombTargetFaction}
+        ),
       detonated_at:
         data |> Map.get("detonated_at") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -58,7 +63,7 @@ defmodule Torngen.Client.Schema.FactionWarfareDirtyBomb do
   defp validate_key?(:user, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionWarfareDirtyBombPlanter]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionWarfareDirtyBombPlanter]}
     )
   end
 
@@ -67,13 +72,13 @@ defmodule Torngen.Client.Schema.FactionWarfareDirtyBomb do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.DirtyBombId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.DirtyBombId})
   end
 
   defp validate_key?(:faction, value) do
     Torngen.Client.Schema.validate?(
       value,
-      Torngen.Client.Schema.FactionWarfareDirtyBombTargetFaction
+      {:ref, Torngen.Client.Schema.FactionWarfareDirtyBombTargetFaction}
     )
   end
 

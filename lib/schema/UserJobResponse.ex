@@ -23,7 +23,11 @@ defmodule Torngen.Client.Schema.UserJobResponse do
         |> Map.get("job")
         |> Torngen.Client.Schema.parse(
           {:one_of,
-           [{:static, :null}, Torngen.Client.Schema.UserCompany, Torngen.Client.Schema.UserJob]}
+           [
+             static: :null,
+             ref: Torngen.Client.Schema.UserCompany,
+             ref: Torngen.Client.Schema.UserJob
+           ]}
         )
     }
   end
@@ -43,7 +47,7 @@ defmodule Torngen.Client.Schema.UserJobResponse do
     Torngen.Client.Schema.validate?(
       value,
       {:one_of,
-       [{:static, :null}, Torngen.Client.Schema.UserCompany, Torngen.Client.Schema.UserJob]}
+       [static: :null, ref: Torngen.Client.Schema.UserCompany, ref: Torngen.Client.Schema.UserJob]}
     )
   end
 

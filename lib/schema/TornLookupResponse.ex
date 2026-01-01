@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornLookupResponse do
       selections:
         data
         |> Map.get("selections")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornSelectionName})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornSelectionName}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.TornLookupResponse do
   end
 
   defp validate_key?(:selections, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornSelectionName})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornSelectionName}}
+    )
   end
 
   @spec keys() :: list(atom())

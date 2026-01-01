@@ -25,17 +25,19 @@ defmodule Torngen.Client.Schema.FactionWars do
       territory:
         data
         |> Map.get("territory")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritoryWar}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWar}}
+        ),
       ranked:
         data
         |> Map.get("ranked")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionRankedWar]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionRankedWar]}
         ),
       raids:
         data
         |> Map.get("raids")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionRaidWar})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionRaidWar}})
     }
   end
 
@@ -51,18 +53,21 @@ defmodule Torngen.Client.Schema.FactionWars do
   end
 
   defp validate_key?(:territory, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionTerritoryWar})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWar}}
+    )
   end
 
   defp validate_key?(:ranked, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionRankedWar]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionRankedWar]}
     )
   end
 
   defp validate_key?(:raids, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionRaidWar})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionRaidWar}})
   end
 
   @spec keys() :: list(atom())

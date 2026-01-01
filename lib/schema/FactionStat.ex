@@ -24,7 +24,7 @@ defmodule Torngen.Client.Schema.FactionStat do
       name:
         data
         |> Map.get("name")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionStatEnum)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionStatEnum})
     }
   end
 
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.FactionStat do
   end
 
   defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionStatEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionStatEnum})
   end
 
   @spec keys() :: list(atom())

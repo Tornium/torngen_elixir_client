@@ -6,7 +6,7 @@ defmodule Torngen.Client.Schema.UserIconPrivate do
   defstruct [:values]
 
   @type t :: %__MODULE__{
-          values: [%{:until => nil | integer()} | Torngen.Client.Schema.UserIconPublic.t()]
+          values: [%{until: nil | integer()} | Torngen.Client.Schema.UserIconPublic.t()]
         }
 
   @impl true
@@ -17,7 +17,7 @@ defmodule Torngen.Client.Schema.UserIconPrivate do
         |> Torngen.Client.Schema.parse(
           {:object, %{until: {:one_of, [static: :null, static: :integer]}}}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserIconPublic)
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserIconPublic})
       ]
     }
   end

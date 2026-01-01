@@ -7,11 +7,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedForSale do
 
   @type t :: %__MODULE__{
           values: [
-            %{
-              :used_by => [Torngen.Client.Schema.BasicUser.t()],
-              :status => String.t(),
-              :cost => integer()
-            }
+            %{used_by: [Torngen.Client.Schema.BasicUser.t()], status: String.t(), cost: integer()}
             | Torngen.Client.Schema.UserPropertyBasicDetails.t()
           ]
         }
@@ -26,10 +22,11 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedForSale do
            %{
              status: {:enum, :string, ["for_sale"]},
              cost: {:static, :integer},
-             used_by: {:array, Torngen.Client.Schema.BasicUser}
+             used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}}
            }}
         ),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserPropertyBasicDetails)
+        data
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserPropertyBasicDetails})
       ]
     }
   end

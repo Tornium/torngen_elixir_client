@@ -39,16 +39,18 @@ defmodule Torngen.Client.Schema.TornTerritory do
       neighbors:
         data
         |> Map.get("neighbors")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritoryEnum}),
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.FactionTerritoryEnum}}
+        ),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionTerritoryEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionTerritoryEnum}),
       density: data |> Map.get("density") |> Torngen.Client.Schema.parse({:static, :integer}),
       coordinates:
         data
         |> Map.get("coordinates")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornTerritoryCoordinates)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornTerritoryCoordinates})
     }
   end
 
@@ -80,11 +82,14 @@ defmodule Torngen.Client.Schema.TornTerritory do
   end
 
   defp validate_key?(:neighbors, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionTerritoryEnum})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryEnum}}
+    )
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionTerritoryEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionTerritoryEnum})
   end
 
   defp validate_key?(:density, value) do
@@ -92,7 +97,7 @@ defmodule Torngen.Client.Schema.TornTerritory do
   end
 
   defp validate_key?(:coordinates, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornTerritoryCoordinates)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornTerritoryCoordinates})
   end
 
   @spec keys() :: list(atom())

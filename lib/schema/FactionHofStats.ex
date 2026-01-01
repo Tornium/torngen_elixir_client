@@ -23,13 +23,17 @@ defmodule Torngen.Client.Schema.FactionHofStats do
   def parse(%{} = data) do
     %__MODULE__{
       respect:
-        data |> Map.get("respect") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.HofValue),
+        data
+        |> Map.get("respect")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.HofValue}),
       rank:
         data
         |> Map.get("rank")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.HofValueString),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.HofValueString}),
       chain:
-        data |> Map.get("chain") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.HofValue)
+        data
+        |> Map.get("chain")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.HofValue})
     }
   end
 
@@ -45,15 +49,15 @@ defmodule Torngen.Client.Schema.FactionHofStats do
   end
 
   defp validate_key?(:respect, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.HofValue)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.HofValue})
   end
 
   defp validate_key?(:rank, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.HofValueString)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.HofValueString})
   end
 
   defp validate_key?(:chain, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.HofValue)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.HofValue})
   end
 
   @spec keys() :: list(atom())

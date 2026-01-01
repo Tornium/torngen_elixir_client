@@ -16,17 +16,17 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
   @type t :: %__MODULE__{
           upgrades: [
             %{
-              :name => String.t(),
-              :level => integer(),
-              :cost => integer(),
-              :challenge =>
+              name: String.t(),
+              level: integer(),
+              cost: integer(),
+              challenge:
                 nil
                 | %{
-                    :stat => Torngen.Client.Schema.FactionStatEnum.t(),
-                    :description => String.t(),
-                    :amount_required => integer()
+                    stat: Torngen.Client.Schema.FactionStatEnum.t(),
+                    description: String.t(),
+                    amount_required: integer()
                   },
-              :ability => String.t()
+              ability: String.t()
             }
           ],
           name: String.t(),
@@ -46,24 +46,24 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
               name: {:static, :string},
               level: {:static, :integer},
               cost: {:static, :integer},
+              ability: {:static, :string},
               challenge:
                 {:one_of,
                  [
                    static: :null,
                    object: %{
                      description: {:static, :string},
-                     stat: Torngen.Client.Schema.FactionStatEnum,
+                     stat: {:ref, Torngen.Client.Schema.FactionStatEnum},
                      amount_required: {:static, :integer}
                    }
-                 ]},
-              ability: {:static, :string}
+                 ]}
             }}}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionBranchId)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionBranchId})
     }
   end
 
@@ -87,17 +87,17 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
           name: {:static, :string},
           level: {:static, :integer},
           cost: {:static, :integer},
+          ability: {:static, :string},
           challenge:
             {:one_of,
              [
                static: :null,
                object: %{
                  description: {:static, :string},
-                 stat: Torngen.Client.Schema.FactionStatEnum,
+                 stat: {:ref, Torngen.Client.Schema.FactionStatEnum},
                  amount_required: {:static, :integer}
                }
-             ]},
-          ability: {:static, :string}
+             ]}
         }}}
     )
   end
@@ -107,7 +107,7 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionBranchId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionBranchId})
   end
 
   @spec keys() :: list(atom())

@@ -15,9 +15,9 @@ defmodule Torngen.Client.Schema.TornEducationRewards do
 
   @type t :: %__MODULE__{
           working_stats: %{
-            :manual_labor => nil | integer(),
-            :intelligence => nil | integer(),
-            :endurance => nil | integer()
+            manual_labor: nil | integer(),
+            intelligence: nil | integer(),
+            endurance: nil | integer()
           },
           honor: nil | String.t(),
           effect: nil | String.t()

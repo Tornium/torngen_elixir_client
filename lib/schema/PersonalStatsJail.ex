@@ -13,9 +13,9 @@ defmodule Torngen.Client.Schema.PersonalStatsJail do
 
   @type t :: %__MODULE__{
           jail: %{
-            :times_jailed => integer(),
-            :busts => %{:success => integer(), :fails => integer()},
-            :bails => %{:fees => integer(), :amount => integer()}
+            times_jailed: integer(),
+            busts: %{success: integer(), fails: integer()},
+            bails: %{fees: integer(), amount: integer()}
           }
         }
 
@@ -30,7 +30,7 @@ defmodule Torngen.Client.Schema.PersonalStatsJail do
            %{
              times_jailed: {:static, :integer},
              busts: {:object, %{success: {:static, :integer}, fails: {:static, :integer}}},
-             bails: {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}}
+             bails: {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}}
            }}
         )
     }
@@ -54,7 +54,7 @@ defmodule Torngen.Client.Schema.PersonalStatsJail do
        %{
          times_jailed: {:static, :integer},
          busts: {:object, %{success: {:static, :integer}, fails: {:static, :integer}}},
-         bails: {:object, %{fees: {:static, :integer}, amount: {:static, :integer}}}
+         bails: {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}}
        }}
     )
   end

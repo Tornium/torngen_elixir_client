@@ -13,11 +13,11 @@ defmodule Torngen.Client.Schema.UserTravelResponse do
 
   @type t :: %__MODULE__{
           travel: %{
-            :time_left => integer(),
-            :method => nil | Torngen.Client.Schema.UserFlyMethodEnum.t(),
-            :destination => Torngen.Client.Schema.CountryEnum.t(),
-            :departed_at => nil | integer(),
-            :arrival_at => nil | integer()
+            time_left: integer(),
+            method: nil | Torngen.Client.Schema.UserFlyMethodEnum.t(),
+            destination: Torngen.Client.Schema.CountryEnum.t(),
+            departed_at: nil | integer(),
+            arrival_at: nil | integer()
           }
         }
 
@@ -31,8 +31,8 @@ defmodule Torngen.Client.Schema.UserTravelResponse do
           {:object,
            %{
              time_left: {:static, :integer},
-             destination: Torngen.Client.Schema.CountryEnum,
-             method: {:one_of, [{:static, :null}, Torngen.Client.Schema.UserFlyMethodEnum]},
+             destination: {:ref, Torngen.Client.Schema.CountryEnum},
+             method: {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFlyMethodEnum]},
              departed_at: {:one_of, [static: :null, static: :integer]},
              arrival_at: {:one_of, [static: :null, static: :integer]}
            }}
@@ -57,8 +57,8 @@ defmodule Torngen.Client.Schema.UserTravelResponse do
       {:object,
        %{
          time_left: {:static, :integer},
-         destination: Torngen.Client.Schema.CountryEnum,
-         method: {:one_of, [{:static, :null}, Torngen.Client.Schema.UserFlyMethodEnum]},
+         destination: {:ref, Torngen.Client.Schema.CountryEnum},
+         method: {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFlyMethodEnum]},
          departed_at: {:one_of, [static: :null, static: :integer]},
          arrival_at: {:one_of, [static: :null, static: :integer]}
        }}

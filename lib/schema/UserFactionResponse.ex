@@ -22,7 +22,7 @@ defmodule Torngen.Client.Schema.UserFactionResponse do
         data
         |> Map.get("faction")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserFaction]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFaction]}
         )
     }
   end
@@ -41,7 +41,7 @@ defmodule Torngen.Client.Schema.UserFactionResponse do
   defp validate_key?(:faction, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserFaction]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFaction]}
     )
   end
 

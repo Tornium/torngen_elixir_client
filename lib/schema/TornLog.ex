@@ -21,7 +21,8 @@ defmodule Torngen.Client.Schema.TornLog do
   def parse(%{} = data) do
     %__MODULE__{
       title: data |> Map.get("title") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.LogId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.LogId})
     }
   end
 
@@ -41,7 +42,7 @@ defmodule Torngen.Client.Schema.TornLog do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.LogId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.LogId})
   end
 
   @spec keys() :: list(atom())

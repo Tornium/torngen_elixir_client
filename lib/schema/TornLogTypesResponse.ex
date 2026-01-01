@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.TornLogTypesResponse do
       logtypes:
         data
         |> Map.get("logtypes")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.TornLog})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornLog}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.TornLogTypesResponse do
   end
 
   defp validate_key?(:logtypes, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.TornLog})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornLog}})
   end
 
   @spec keys() :: list(atom())

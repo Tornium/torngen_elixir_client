@@ -13,8 +13,8 @@ defmodule Torngen.Client.Schema.TornCalendarResponse do
 
   @type t :: %__MODULE__{
           calendar: %{
-            :events => [Torngen.Client.Schema.TornCalendarActivity.t()],
-            :competitions => [Torngen.Client.Schema.TornCalendarActivity.t()]
+            events: [Torngen.Client.Schema.TornCalendarActivity.t()],
+            competitions: [Torngen.Client.Schema.TornCalendarActivity.t()]
           }
         }
 
@@ -27,8 +27,8 @@ defmodule Torngen.Client.Schema.TornCalendarResponse do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             events: {:array, Torngen.Client.Schema.TornCalendarActivity},
-             competitions: {:array, Torngen.Client.Schema.TornCalendarActivity}
+             events: {:array, {:ref, Torngen.Client.Schema.TornCalendarActivity}},
+             competitions: {:array, {:ref, Torngen.Client.Schema.TornCalendarActivity}}
            }}
         )
     }
@@ -50,8 +50,8 @@ defmodule Torngen.Client.Schema.TornCalendarResponse do
       value,
       {:object,
        %{
-         events: {:array, Torngen.Client.Schema.TornCalendarActivity},
-         competitions: {:array, Torngen.Client.Schema.TornCalendarActivity}
+         events: {:array, {:ref, Torngen.Client.Schema.TornCalendarActivity}},
+         competitions: {:array, {:ref, Torngen.Client.Schema.TornCalendarActivity}}
        }}
     )
   end

@@ -26,8 +26,8 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimes do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             Torngen.Client.Schema.PersonalStatsCrimesV2,
-             Torngen.Client.Schema.PersonalStatsCrimesV1
+             ref: Torngen.Client.Schema.PersonalStatsCrimesV2,
+             ref: Torngen.Client.Schema.PersonalStatsCrimesV1
            ]}
         )
     }
@@ -48,7 +48,10 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimes do
     Torngen.Client.Schema.validate?(
       value,
       {:one_of,
-       [Torngen.Client.Schema.PersonalStatsCrimesV2, Torngen.Client.Schema.PersonalStatsCrimesV1]}
+       [
+         ref: Torngen.Client.Schema.PersonalStatsCrimesV2,
+         ref: Torngen.Client.Schema.PersonalStatsCrimesV1
+       ]}
     )
   end
 

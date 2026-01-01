@@ -21,7 +21,8 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardItem do
   def parse(%{} = data) do
     %__MODULE__{
       quantity: data |> Map.get("quantity") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId})
     }
   end
 
@@ -41,7 +42,7 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardItem do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   @spec keys() :: list(atom())

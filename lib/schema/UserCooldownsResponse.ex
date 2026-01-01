@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.UserCooldownsResponse do
   ]
 
   @type t :: %__MODULE__{
-          cooldowns: %{:medical => integer(), :drug => integer(), :booster => integer()}
+          cooldowns: %{medical: integer(), drug: integer(), booster: integer()}
         }
 
   @impl true

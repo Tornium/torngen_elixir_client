@@ -28,10 +28,10 @@ defmodule Torngen.Client.Schema.UserCompetitionResponse do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             Torngen.Client.Schema.UserCompetitionElimination,
-             Torngen.Client.Schema.UserCompetitionRps,
-             Torngen.Client.Schema.UserCompetitionEasterEggs,
-             Torngen.Client.Schema.UserCompetitionHalloween
+             ref: Torngen.Client.Schema.UserCompetitionElimination,
+             ref: Torngen.Client.Schema.UserCompetitionRps,
+             ref: Torngen.Client.Schema.UserCompetitionEasterEggs,
+             ref: Torngen.Client.Schema.UserCompetitionHalloween
            ]}
         )
     }
@@ -53,10 +53,10 @@ defmodule Torngen.Client.Schema.UserCompetitionResponse do
       value,
       {:one_of,
        [
-         Torngen.Client.Schema.UserCompetitionElimination,
-         Torngen.Client.Schema.UserCompetitionRps,
-         Torngen.Client.Schema.UserCompetitionEasterEggs,
-         Torngen.Client.Schema.UserCompetitionHalloween
+         ref: Torngen.Client.Schema.UserCompetitionElimination,
+         ref: Torngen.Client.Schema.UserCompetitionRps,
+         ref: Torngen.Client.Schema.UserCompetitionEasterEggs,
+         ref: Torngen.Client.Schema.UserCompetitionHalloween
        ]}
     )
   end

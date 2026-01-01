@@ -26,12 +26,13 @@ defmodule Torngen.Client.Schema.AttackPlayer do
     %__MODULE__{
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       faction:
         data
         |> Map.get("faction")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.AttackPlayerFaction]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayerFaction]}
         )
     }
   end
@@ -56,13 +57,13 @@ defmodule Torngen.Client.Schema.AttackPlayer do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:faction, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.AttackPlayerFaction]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayerFaction]}
     )
   end
 

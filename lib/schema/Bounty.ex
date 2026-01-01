@@ -54,7 +54,9 @@ defmodule Torngen.Client.Schema.Bounty do
       target_level:
         data |> Map.get("target_level") |> Torngen.Client.Schema.parse({:static, :integer}),
       target_id:
-        data |> Map.get("target_id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.UserId),
+        data
+        |> Map.get("target_id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       reward: data |> Map.get("reward") |> Torngen.Client.Schema.parse({:static, :integer}),
       reason:
         data
@@ -69,7 +71,7 @@ defmodule Torngen.Client.Schema.Bounty do
         data
         |> Map.get("lister_id")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.UserId]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserId]}
         ),
       is_anonymous:
         data |> Map.get("is_anonymous") |> Torngen.Client.Schema.parse({:static, :boolean})
@@ -100,7 +102,7 @@ defmodule Torngen.Client.Schema.Bounty do
   end
 
   defp validate_key?(:target_id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.UserId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   defp validate_key?(:reward, value) do
@@ -122,7 +124,7 @@ defmodule Torngen.Client.Schema.Bounty do
   defp validate_key?(:lister_id, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.UserId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserId]}
     )
   end
 

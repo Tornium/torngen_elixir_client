@@ -21,7 +21,10 @@ defmodule Torngen.Client.Schema.UserMedal do
   def parse(%{} = data) do
     %__MODULE__{
       timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.MedalId)
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.MedalId})
     }
   end
 
@@ -41,7 +44,7 @@ defmodule Torngen.Client.Schema.UserMedal do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.MedalId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.MedalId})
   end
 
   @spec keys() :: list(atom())

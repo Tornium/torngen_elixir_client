@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionOngoingChainResponse do
       chain:
         data
         |> Map.get("chain")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionOngoingChain)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionOngoingChain})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionOngoingChainResponse do
   end
 
   defp validate_key?(:chain, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionOngoingChain)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionOngoingChain})
   end
 
   @spec keys() :: list(atom())

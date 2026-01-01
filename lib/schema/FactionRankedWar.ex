@@ -39,7 +39,7 @@ defmodule Torngen.Client.Schema.FactionRankedWar do
         data
         |> Map.get("factions")
         |> Torngen.Client.Schema.parse(
-          {:array, Torngen.Client.Schema.FactionRankedWarParticipant}
+          {:array, {:ref, Torngen.Client.Schema.FactionRankedWarParticipant}}
         ),
       end:
         data
@@ -78,7 +78,7 @@ defmodule Torngen.Client.Schema.FactionRankedWar do
   defp validate_key?(:factions, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionRankedWarParticipant}
+      {:array, {:ref, Torngen.Client.Schema.FactionRankedWarParticipant}}
     )
   end
 

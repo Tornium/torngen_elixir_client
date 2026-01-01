@@ -30,7 +30,10 @@ defmodule Torngen.Client.Schema.ReportHistoryCompany do
         |> Map.get("left")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]}),
       joined: data |> Map.get("joined") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.CompanyId)
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.CompanyId})
     }
   end
 
@@ -58,7 +61,7 @@ defmodule Torngen.Client.Schema.ReportHistoryCompany do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.CompanyId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.CompanyId})
   end
 
   @spec keys() :: list(atom())

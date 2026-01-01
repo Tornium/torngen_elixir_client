@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionTerritoriesResponse do
       territory:
         data
         |> Map.get("territory")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionTerritory})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionTerritory}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.FactionTerritoriesResponse do
   end
 
   defp validate_key?(:territory, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionTerritory})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritory}}
+    )
   end
 
   @spec keys() :: list(atom())

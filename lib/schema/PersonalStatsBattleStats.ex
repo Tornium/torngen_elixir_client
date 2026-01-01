@@ -13,11 +13,11 @@ defmodule Torngen.Client.Schema.PersonalStatsBattleStats do
 
   @type t :: %__MODULE__{
           battle_stats: %{
-            :total => integer(),
-            :strength => integer(),
-            :speed => integer(),
-            :dexterity => integer(),
-            :defense => integer()
+            total: integer(),
+            strength: integer(),
+            speed: integer(),
+            dexterity: integer(),
+            defense: integer()
           }
         }
 

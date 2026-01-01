@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionApplicationsResponse do
       applications:
         data
         |> Map.get("applications")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionApplication})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionApplication}})
     }
   end
 
@@ -37,7 +37,10 @@ defmodule Torngen.Client.Schema.FactionApplicationsResponse do
   end
 
   defp validate_key?(:applications, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionApplication})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.FactionApplication}}
+    )
   end
 
   @spec keys() :: list(atom())

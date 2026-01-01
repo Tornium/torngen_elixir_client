@@ -25,7 +25,7 @@ defmodule Torngen.Client.Schema.FactionRaidReportAttacker do
       user:
         data
         |> Map.get("user")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionRaidReportUser),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionRaidReportUser}),
       damage: data |> Map.get("damage") |> Torngen.Client.Schema.parse({:static, :number}),
       attacks: data |> Map.get("attacks") |> Torngen.Client.Schema.parse({:static, :integer})
     }
@@ -43,7 +43,7 @@ defmodule Torngen.Client.Schema.FactionRaidReportAttacker do
   end
 
   defp validate_key?(:user, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionRaidReportUser)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionRaidReportUser})
   end
 
   defp validate_key?(:damage, value) do

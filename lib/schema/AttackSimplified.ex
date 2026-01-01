@@ -48,24 +48,29 @@ defmodule Torngen.Client.Schema.AttackSimplified do
       result:
         data
         |> Map.get("result")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionAttackResult),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionAttackResult}),
       respect_loss:
         data |> Map.get("respect_loss") |> Torngen.Client.Schema.parse({:static, :number}),
       respect_gain:
         data |> Map.get("respect_gain") |> Torngen.Client.Schema.parse({:static, :number}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AttackId),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackId}),
       ended: data |> Map.get("ended") |> Torngen.Client.Schema.parse({:static, :integer}),
       defender:
         data
         |> Map.get("defender")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AttackPlayerSimplified),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackPlayerSimplified}),
       code:
-        data |> Map.get("code") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.AttackCode),
+        data
+        |> Map.get("code")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackCode}),
       attacker:
         data
         |> Map.get("attacker")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.AttackPlayerSimplified]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayerSimplified]}
         )
     }
   end
@@ -86,7 +91,7 @@ defmodule Torngen.Client.Schema.AttackSimplified do
   end
 
   defp validate_key?(:result, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionAttackResult)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionAttackResult})
   end
 
   defp validate_key?(:respect_loss, value) do
@@ -98,7 +103,7 @@ defmodule Torngen.Client.Schema.AttackSimplified do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AttackId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AttackId})
   end
 
   defp validate_key?(:ended, value) do
@@ -106,17 +111,17 @@ defmodule Torngen.Client.Schema.AttackSimplified do
   end
 
   defp validate_key?(:defender, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AttackPlayerSimplified)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AttackPlayerSimplified})
   end
 
   defp validate_key?(:code, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.AttackCode)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AttackCode})
   end
 
   defp validate_key?(:attacker, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.AttackPlayerSimplified]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayerSimplified]}
     )
   end
 

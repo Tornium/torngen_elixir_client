@@ -41,10 +41,10 @@ defmodule Torngen.Client.Schema.TornItem do
 
   @type t :: %__MODULE__{
           value: %{
-            :vendor => nil | %{:name => String.t(), :country => String.t()},
-            :sell_price => nil | integer(),
-            :market_price => integer(),
-            :buy_price => nil | integer()
+            vendor: nil | %{name: String.t(), country: String.t()},
+            sell_price: nil | integer(),
+            market_price: integer(),
+            buy_price: nil | integer()
           },
           type: Torngen.Client.Schema.TornItemTypeEnum.t(),
           sub_type: nil | Torngen.Client.Schema.TornItemWeaponTypeEnum.t(),
@@ -84,12 +84,12 @@ defmodule Torngen.Client.Schema.TornItem do
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemTypeEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemTypeEnum}),
       sub_type:
         data
         |> Map.get("sub_type")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.TornItemWeaponTypeEnum]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.TornItemWeaponTypeEnum]}
         ),
       requirement:
         data
@@ -102,7 +102,8 @@ defmodule Torngen.Client.Schema.TornItem do
       is_found_in_city:
         data |> Map.get("is_found_in_city") |> Torngen.Client.Schema.parse({:static, :boolean}),
       image: data |> Map.get("image") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId),
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId}),
       effect:
         data
         |> Map.get("effect")
@@ -113,9 +114,9 @@ defmodule Torngen.Client.Schema.TornItem do
         |> Torngen.Client.Schema.parse(
           {:one_of,
            [
-             {:static, :null},
-             Torngen.Client.Schema.TornItemArmorDetails,
-             Torngen.Client.Schema.TornItemWeaponDetails
+             static: :null,
+             ref: Torngen.Client.Schema.TornItemArmorDetails,
+             ref: Torngen.Client.Schema.TornItemWeaponDetails
            ]}
         ),
       description:
@@ -152,13 +153,13 @@ defmodule Torngen.Client.Schema.TornItem do
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemTypeEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemTypeEnum})
   end
 
   defp validate_key?(:sub_type, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.TornItemWeaponTypeEnum]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.TornItemWeaponTypeEnum]}
     )
   end
 
@@ -187,7 +188,7 @@ defmodule Torngen.Client.Schema.TornItem do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   defp validate_key?(:effect, value) do
@@ -199,9 +200,9 @@ defmodule Torngen.Client.Schema.TornItem do
       value,
       {:one_of,
        [
-         {:static, :null},
-         Torngen.Client.Schema.TornItemArmorDetails,
-         Torngen.Client.Schema.TornItemWeaponDetails
+         static: :null,
+         ref: Torngen.Client.Schema.TornItemArmorDetails,
+         ref: Torngen.Client.Schema.TornItemWeaponDetails
        ]}
     )
   end

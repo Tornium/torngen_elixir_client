@@ -13,14 +13,14 @@ defmodule Torngen.Client.Schema.PersonalStatsJobsExtended do
 
   @type t :: %__MODULE__{
           jobs: %{
-            :trains_received => integer(),
-            :stats => %{
-              :total => integer(),
-              :manual => integer(),
-              :intelligence => integer(),
-              :endurance => integer()
+            trains_received: integer(),
+            stats: %{
+              total: integer(),
+              manual: integer(),
+              intelligence: integer(),
+              endurance: integer()
             },
-            :job_points_used => integer()
+            job_points_used: integer()
           }
         }
 

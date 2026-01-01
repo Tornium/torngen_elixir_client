@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionHofResponse do
       hof:
         data
         |> Map.get("hof")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.FactionHofStats)
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionHofStats})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionHofResponse do
   end
 
   defp validate_key?(:hof, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.FactionHofStats)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionHofStats})
   end
 
   @spec keys() :: list(atom())

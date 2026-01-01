@@ -24,13 +24,17 @@ defmodule Torngen.Client.Schema.UserClothing do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      uid: data |> Map.get("uid") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemUid),
+      uid:
+        data
+        |> Map.get("uid")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemUid}),
       type:
         data
         |> Map.get("type")
-        |> Torngen.Client.Schema.parse(Torngen.Client.Schema.TornItemTypeEnum),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemTypeEnum}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse(Torngen.Client.Schema.ItemId)
+      id:
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemId})
     }
   end
 
@@ -46,11 +50,11 @@ defmodule Torngen.Client.Schema.UserClothing do
   end
 
   defp validate_key?(:uid, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemUid)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemUid})
   end
 
   defp validate_key?(:type, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.TornItemTypeEnum)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemTypeEnum})
   end
 
   defp validate_key?(:name, value) do
@@ -58,7 +62,7 @@ defmodule Torngen.Client.Schema.UserClothing do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, Torngen.Client.Schema.ItemId)
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ItemId})
   end
 
   @spec keys() :: list(atom())

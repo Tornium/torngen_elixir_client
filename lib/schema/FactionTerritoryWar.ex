@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWar do
   ]
 
   @type t :: %__MODULE__{
-          winner: nil | Torngen.Client.Schema.FactionId.t(),
+          winner: nil | nil | Torngen.Client.Schema.FactionId.t(),
           war_id: integer(),
           territory: String.t(),
           target: integer(),
@@ -34,7 +34,8 @@ defmodule Torngen.Client.Schema.FactionTerritoryWar do
         data
         |> Map.get("winner")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+          {:one_of,
+           [static: :null, one_of: [static: :null, ref: Torngen.Client.Schema.FactionId]]}
         ),
       war_id: data |> Map.get("war_id") |> Torngen.Client.Schema.parse({:static, :integer}),
       territory: data |> Map.get("territory") |> Torngen.Client.Schema.parse({:static, :string}),
@@ -44,7 +45,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWar do
         data
         |> Map.get("factions")
         |> Torngen.Client.Schema.parse(
-          {:array, Torngen.Client.Schema.FactionTerritoryWarParticipant}
+          {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarParticipant}}
         ),
       end:
         data
@@ -67,7 +68,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWar do
   defp validate_key?(:winner, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [{:static, :null}, Torngen.Client.Schema.FactionId]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
     )
   end
 
@@ -90,7 +91,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWar do
   defp validate_key?(:factions, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:array, Torngen.Client.Schema.FactionTerritoryWarParticipant}
+      {:array, {:ref, Torngen.Client.Schema.FactionTerritoryWarParticipant}}
     )
   end
 

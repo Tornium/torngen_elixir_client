@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionStatsResponse do
       stats:
         data
         |> Map.get("stats")
-        |> Torngen.Client.Schema.parse({:array, Torngen.Client.Schema.FactionStat})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionStat}})
     }
   end
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Schema.FactionStatsResponse do
   end
 
   defp validate_key?(:stats, value) do
-    Torngen.Client.Schema.validate?(value, {:array, Torngen.Client.Schema.FactionStat})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionStat}})
   end
 
   @spec keys() :: list(atom())
