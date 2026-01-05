@@ -47,7 +47,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              networth:
                {:object,
                 %{
@@ -66,6 +65,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
                 }},
              faction:
                {:object, %{respect: {:static, :integer}, ranked_war_hits: {:static, :integer}}},
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -114,7 +114,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
       value,
       {:object,
        %{
-         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          networth:
            {:object,
             %{
@@ -133,6 +132,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
             }},
          faction:
            {:object, %{respect: {:static, :integer}, ranked_war_hits: {:static, :integer}}},
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,

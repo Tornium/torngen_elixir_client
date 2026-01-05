@@ -35,8 +35,8 @@ defmodule Torngen.Client.Schema.FactionBalance do
            {:object,
             %{
               id: {:ref, Torngen.Client.Schema.UserId},
-              username: {:static, :string},
               points: {:static, :integer},
+              username: {:static, :string},
               money: {:static, :integer}
             }}}
         ),
@@ -68,8 +68,8 @@ defmodule Torngen.Client.Schema.FactionBalance do
        {:object,
         %{
           id: {:ref, Torngen.Client.Schema.UserId},
-          username: {:static, :string},
           points: {:static, :integer},
+          username: {:static, :string},
           money: {:static, :integer}
         }}}
     )

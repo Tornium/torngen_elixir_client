@@ -6,15 +6,17 @@ defmodule Torngen.Client.Schema.UserRaceDetails do
   defstruct [:values]
 
   @type t :: %__MODULE__{
-          values: [%{:skill_gain => term()} | Torngen.Client.Schema.RacingRaceDetails.t()]
+          values: [
+            %{skill_gain: integer() | float()} | Torngen.Client.Schema.RacingRaceDetails.t()
+          ]
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
       values: [
-        data |> Torngen.Client.Schema.parse({:object, %{skill_gain: :any}}),
-        data |> Torngen.Client.Schema.parse(Torngen.Client.Schema.RacingRaceDetails)
+        data |> Torngen.Client.Schema.parse({:object, %{skill_gain: {:static, :number}}}),
+        data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RacingRaceDetails})
       ]
     }
   end
