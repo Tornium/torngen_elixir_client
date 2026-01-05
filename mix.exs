@@ -25,7 +25,7 @@ defmodule TorngenElixirClient.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:torngen, "~> 0.1.5", runtime: false},
+      {:torngen, "~> 0.1", runtime: false},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false, optional: true},
       {:req, "~> 0.5", only: :test}
     ]
