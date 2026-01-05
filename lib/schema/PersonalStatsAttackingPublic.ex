@@ -61,9 +61,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             escapes:
-               {:one_of,
-                [static: :null, object: %{player: {:static, :integer}, foes: {:static, :integer}}]},
              networth:
                {:object,
                 %{
@@ -97,6 +94,9 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
                   ranked_war_hits: {:static, :integer},
                   raid_hits: {:static, :integer}
                 }},
+             escapes:
+               {:one_of,
+                [static: :null, object: %{player: {:static, :integer}, foes: {:static, :integer}}]},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -147,9 +147,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
       value,
       {:object,
        %{
-         escapes:
-           {:one_of,
-            [static: :null, object: %{player: {:static, :integer}, foes: {:static, :integer}}]},
          networth:
            {:object,
             %{
@@ -183,6 +180,9 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
               ranked_war_hits: {:static, :integer},
               raid_hits: {:static, :integer}
             }},
+         escapes:
+           {:one_of,
+            [static: :null, object: %{player: {:static, :integer}, foes: {:static, :integer}}]},
          elo: {:static, :integer},
          defends:
            {:object,

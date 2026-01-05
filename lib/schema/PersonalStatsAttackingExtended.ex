@@ -61,7 +61,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              networth:
                {:object,
                 %{
@@ -95,6 +94,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
                   ranked_war_hits: {:static, :integer},
                   raid_hits: {:static, :integer}
                 }},
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -145,7 +145,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
       value,
       {:object,
        %{
-         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          networth:
            {:object,
             %{
@@ -179,6 +178,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
               ranked_war_hits: {:static, :integer},
               raid_hits: {:static, :integer}
             }},
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,
