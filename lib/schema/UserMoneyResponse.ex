@@ -16,17 +16,19 @@ defmodule Torngen.Client.Schema.UserMoneyResponse do
             wallet: integer(),
             vault: integer(),
             points: integer(),
-            faction: %{points: integer(), money: integer()},
+            faction: nil | %{points: integer(), money: integer()},
             daily_networth: integer(),
             company: integer(),
-            city_bank: %{
-              until: integer(),
-              profit: integer(),
-              invested_at: integer(),
-              interest_rate: integer() | float(),
-              duration: integer(),
-              amount: integer()
-            },
+            city_bank:
+              nil
+              | %{
+                  until: integer(),
+                  profit: integer(),
+                  invested_at: integer(),
+                  interest_rate: integer() | float(),
+                  duration: integer(),
+                  amount: integer()
+                },
             cayman_bank: integer()
           }
         }
@@ -41,21 +43,29 @@ defmodule Torngen.Client.Schema.UserMoneyResponse do
           {:object,
            %{
              points: {:static, :integer},
-             faction: {:object, %{points: {:static, :integer}, money: {:static, :integer}}},
+             faction:
+               {:one_of,
+                [
+                  static: :null,
+                  object: %{points: {:static, :integer}, money: {:static, :integer}}
+                ]},
              wallet: {:static, :integer},
              company: {:static, :integer},
              vault: {:static, :integer},
              daily_networth: {:static, :integer},
              city_bank:
-               {:object,
-                %{
-                  until: {:static, :integer},
-                  duration: {:static, :integer},
-                  amount: {:static, :integer},
-                  profit: {:static, :integer},
-                  invested_at: {:static, :integer},
-                  interest_rate: {:static, :number}
-                }},
+               {:one_of,
+                [
+                  static: :null,
+                  object: %{
+                    until: {:static, :integer},
+                    duration: {:static, :integer},
+                    amount: {:static, :integer},
+                    profit: {:static, :integer},
+                    invested_at: {:static, :integer},
+                    interest_rate: {:static, :number}
+                  }
+                ]},
              cayman_bank: {:static, :integer}
            }}
         )
@@ -79,21 +89,26 @@ defmodule Torngen.Client.Schema.UserMoneyResponse do
       {:object,
        %{
          points: {:static, :integer},
-         faction: {:object, %{points: {:static, :integer}, money: {:static, :integer}}},
+         faction:
+           {:one_of,
+            [static: :null, object: %{points: {:static, :integer}, money: {:static, :integer}}]},
          wallet: {:static, :integer},
          company: {:static, :integer},
          vault: {:static, :integer},
          daily_networth: {:static, :integer},
          city_bank:
-           {:object,
-            %{
-              until: {:static, :integer},
-              duration: {:static, :integer},
-              amount: {:static, :integer},
-              profit: {:static, :integer},
-              invested_at: {:static, :integer},
-              interest_rate: {:static, :number}
-            }},
+           {:one_of,
+            [
+              static: :null,
+              object: %{
+                until: {:static, :integer},
+                duration: {:static, :integer},
+                amount: {:static, :integer},
+                profit: {:static, :integer},
+                invested_at: {:static, :integer},
+                interest_rate: {:static, :number}
+              }
+            ]},
          cayman_bank: {:static, :integer}
        }}
     )

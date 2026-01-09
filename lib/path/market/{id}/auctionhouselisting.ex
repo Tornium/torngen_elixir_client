@@ -1,26 +1,25 @@
-defmodule Torngen.Client.Path.Faction.Territoryownership do
+defmodule Torngen.Client.Path.Market.Id.Auctionhouselisting do
   @moduledoc """
-  Get a list territory ownership.
+  Get specific item auction house listings.
 
   Requires public access key.
 
   ## Parmeters
-  - offset: N/A
-  - limit: N/A
+  - id: Listing id
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionTerritoriesOwnershipResponse
+  - AuctionHouseListing
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "faction/territoryownership"
-  @response_modules [FactionTerritoriesOwnershipResponse]
+  @path "market/{id}/auctionhouselisting"
+  @response_modules [AuctionHouseListing]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -31,15 +30,9 @@ defmodule Torngen.Client.Path.Faction.Territoryownership do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
-  defparameter :offset, value do
-    # N/A
-    {:query, :offset, value}
-  end
-
-  @impl true
-  defparameter :limit, value do
-    # N/A
-    {:query, :limit, value}
+  defparameter :id, value do
+    # Listing id
+    {:path, :id, value}
   end
 
   @impl true
