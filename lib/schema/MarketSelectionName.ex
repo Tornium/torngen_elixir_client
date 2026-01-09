@@ -13,7 +13,9 @@ defmodule Torngen.Client.Schema.MarketSelectionName do
     "rentals",
     "lookup",
     "timestamp",
-    "pointsmarket"
+    "pointsmarket",
+    "auctionhouse",
+    "auctionhouselisting"
   ]
 
   @spec values() :: [t()]

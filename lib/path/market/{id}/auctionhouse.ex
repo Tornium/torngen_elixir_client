@@ -1,26 +1,29 @@
-defmodule Torngen.Client.Path.Faction.Territoryownership do
+defmodule Torngen.Client.Path.Market.Id.Auctionhouse do
   @moduledoc """
-  Get a list territory ownership.
+  Get specific item auction house listings.
 
   Requires public access key.
 
   ## Parmeters
-  - offset: N/A
+  - id: Item id
   - limit: N/A
+  - sort: Sorted by the greatest timestamps
+  - from: Timestamp that sets the lower limit for the data returned
+  - to: Timestamp that sets the upper limit for the data returned
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionTerritoriesOwnershipResponse
+  - AuctionHouseResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "faction/territoryownership"
-  @response_modules [FactionTerritoriesOwnershipResponse]
+  @path "market/{id}/auctionhouse"
+  @response_modules [AuctionHouseResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -31,15 +34,33 @@ defmodule Torngen.Client.Path.Faction.Territoryownership do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
-  defparameter :offset, value do
-    # N/A
-    {:query, :offset, value}
+  defparameter :id, value do
+    # Item id
+    {:path, :id, value}
   end
 
   @impl true
   defparameter :limit, value do
     # N/A
     {:query, :limit, value}
+  end
+
+  @impl true
+  defparameter :sort, value do
+    # Sorted by the greatest timestamps
+    {:query, :sort, value}
+  end
+
+  @impl true
+  defparameter :from, value do
+    # Timestamp that sets the lower limit for the data returned. Data returned will be after this time
+    {:query, :from, value}
+  end
+
+  @impl true
+  defparameter :to, value do
+    # Timestamp that sets the upper limit for the data returned. Data returned will be up to and including this time
+    {:query, :to, value}
   end
 
   @impl true
