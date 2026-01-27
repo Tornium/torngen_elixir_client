@@ -9,6 +9,7 @@ defmodule Torngen.Client.Path.Faction.Reports do
   - target: Get reports for a specific player by passing their player ID.
   - limit: N/A
   - offset: N/A
+  - sort: Sorted by the greatest timestamps
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Limited)
@@ -54,6 +55,12 @@ defmodule Torngen.Client.Path.Faction.Reports do
   defparameter :offset, value do
     # N/A
     {:query, :offset, value}
+  end
+
+  @impl true
+  defparameter :sort, value do
+    # Sorted by the greatest timestamps
+    {:query, :sort, value}
   end
 
   @impl true
