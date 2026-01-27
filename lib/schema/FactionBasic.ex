@@ -10,6 +10,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
     :tag,
     :respect,
     :rank,
+    :note,
     :name,
     :members,
     :leader_id,
@@ -26,6 +27,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
     :tag,
     :respect,
     :rank,
+    :note,
     :name,
     :members,
     :leader_id,
@@ -42,6 +44,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
           tag: String.t(),
           respect: integer(),
           rank: Torngen.Client.Schema.FactionRank.t(),
+          note: nil | String.t(),
           name: String.t(),
           members: integer(),
           leader_id: Torngen.Client.Schema.UserId.t(),
@@ -63,6 +66,7 @@ defmodule Torngen.Client.Schema.FactionBasic do
         data
         |> Map.get("rank")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionRank}),
+      note: data |> Map.get("note") |> Torngen.Client.Schema.parse({:one_of, [static: :string]}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       members: data |> Map.get("members") |> Torngen.Client.Schema.parse({:static, :integer}),
       leader_id:
@@ -113,6 +117,10 @@ defmodule Torngen.Client.Schema.FactionBasic do
 
   defp validate_key?(:rank, value) do
     Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionRank})
+  end
+
+  defp validate_key?(:note, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :string})
   end
 
   defp validate_key?(:name, value) do
