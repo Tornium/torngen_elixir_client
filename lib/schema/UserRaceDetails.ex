@@ -10,6 +10,10 @@ defmodule Torngen.Client.Schema.UserRaceDetails do
             %{skill_gain: integer() | float()} | Torngen.Client.Schema.RacingRaceDetails.t()
           ]
         }
+  @types [
+    {:object, %{skill_gain: {:static, :number}}},
+    {:ref, Torngen.Client.Schema.RacingRaceDetails}
+  ]
 
   @impl true
   def parse(%{} = data) do
@@ -25,8 +29,7 @@ defmodule Torngen.Client.Schema.UserRaceDetails do
   def parse(_data), do: nil
 
   @impl true
-  def validate?(%{} = _data), do: true
-
-  @impl true
-  def validate?(_data), do: false
+  def validate?(data) do
+    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  end
 end

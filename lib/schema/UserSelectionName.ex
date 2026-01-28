@@ -84,8 +84,10 @@ defmodule Torngen.Client.Schema.UserSelectionName do
         true
 
       @values
+      |> Enum.filter(&is_atom/1)
+      |> Enum.map(fn value -> Module.concat(Torngen.Client.Schema, value) end)
       |> Enum.filter(fn value ->
-        is_atom(value) and Code.ensure_loaded?(value) and function_exported?(value, :validate?, 1)
+        Code.ensure_loaded?(value) and function_exported?(value, :validate?, 1)
       end)
       |> Enum.find(false, fn mod -> mod.validate?(value) end) ->
         true
@@ -105,15 +107,18 @@ defmodule Torngen.Client.Schema.UserSelectionName do
         true
 
       @values
+      |> Enum.filter(&is_atom/1)
+      |> Enum.map(fn value -> Module.concat(Torngen.Client.Schema, value) end)
       |> Enum.filter(fn value ->
-        is_atom(value) and Code.ensure_loaded?(value) and function_exported?(value, :validate?, 1)
+        Code.ensure_loaded?(value) and function_exported?(value, :validate?, 1)
       end)
       |> Enum.find(fn mod -> mod.validate?(value) end)
       |> then(&(not is_nil(&1))) ->
         @values
+        |> Enum.filter(&is_atom/1)
+        |> Enum.map(fn value -> Module.concat(Torngen.Client.Schema, value) end)
         |> Enum.filter(fn value ->
-          is_atom(value) and Code.ensure_loaded?(value) and
-            function_exported?(value, :validate?, 1)
+          Code.ensure_loaded?(value) and function_exported?(value, :validate?, 1)
         end)
         |> Enum.find(fn mod -> mod.validate?(value) end)
         |> apply(:parse, [value])

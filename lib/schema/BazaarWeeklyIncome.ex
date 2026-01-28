@@ -6,6 +6,7 @@ defmodule Torngen.Client.Schema.BazaarWeeklyIncome do
   defstruct [:values]
 
   @type t :: %__MODULE__{values: [%{weekly_income: integer()} | Torngen.Client.Schema.Bazaar.t()]}
+  @types [{:object, %{weekly_income: {:static, :integer}}}, {:ref, Torngen.Client.Schema.Bazaar}]
 
   @impl true
   def parse(%{} = data) do
@@ -21,8 +22,7 @@ defmodule Torngen.Client.Schema.BazaarWeeklyIncome do
   def parse(_data), do: nil
 
   @impl true
-  def validate?(%{} = _data), do: true
-
-  @impl true
-  def validate?(_data), do: false
+  def validate?(data) do
+    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  end
 end

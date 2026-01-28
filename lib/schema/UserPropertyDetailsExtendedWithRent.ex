@@ -15,6 +15,15 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent do
             | Torngen.Client.Schema.UserPropertyBasicDetails.t()
           ]
         }
+  @types [
+    {:object,
+     %{
+       status: {:enum, :string, ["none", "in_use"]},
+       used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}},
+       rented_by: {:one_of, [static: :null, ref: Torngen.Client.Schema.BasicUser]}
+     }},
+    {:ref, Torngen.Client.Schema.UserPropertyBasicDetails}
+  ]
 
   @impl true
   def parse(%{} = data) do
@@ -39,8 +48,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent do
   def parse(_data), do: nil
 
   @impl true
-  def validate?(%{} = _data), do: true
-
-  @impl true
-  def validate?(_data), do: false
+  def validate?(data) do
+    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  end
 end

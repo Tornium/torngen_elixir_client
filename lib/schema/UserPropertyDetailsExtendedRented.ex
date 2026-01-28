@@ -20,6 +20,29 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedRented do
             | Torngen.Client.Schema.UserPropertyBasicDetails.t()
           ]
         }
+  @types [
+    {:object,
+     %{
+       status: {:enum, :string, ["rented"]},
+       rental_period: {:static, :integer},
+       cost_per_day: {:static, :integer},
+       cost: {:static, :integer},
+       used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}},
+       rented_by: {:ref, Torngen.Client.Schema.BasicUser},
+       rental_period_remaining: {:static, :integer},
+       lease_extension:
+         {:one_of,
+          [
+            static: :null,
+            object: %{
+              period: {:static, :integer},
+              cost: {:static, :integer},
+              created_at: {:static, :integer}
+            }
+          ]}
+     }},
+    {:ref, Torngen.Client.Schema.UserPropertyBasicDetails}
+  ]
 
   @impl true
   def parse(%{} = data) do
@@ -58,8 +81,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedRented do
   def parse(_data), do: nil
 
   @impl true
-  def validate?(%{} = _data), do: true
-
-  @impl true
-  def validate?(_data), do: false
+  def validate?(data) do
+    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  end
 end

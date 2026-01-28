@@ -15,6 +15,15 @@ defmodule Torngen.Client.Schema.ForumThreadExtended do
             | Torngen.Client.Schema.ForumThreadBase.t()
           ]
         }
+  @types [
+    {:object,
+     %{
+       content: {:static, :string},
+       poll: {:one_of, [static: :null, ref: Torngen.Client.Schema.ForumPoll]},
+       content_raw: {:static, :string}
+     }},
+    {:ref, Torngen.Client.Schema.ForumThreadBase}
+  ]
 
   @impl true
   def parse(%{} = data) do
@@ -38,8 +47,7 @@ defmodule Torngen.Client.Schema.ForumThreadExtended do
   def parse(_data), do: nil
 
   @impl true
-  def validate?(%{} = _data), do: true
-
-  @impl true
-  def validate?(_data), do: false
+  def validate?(data) do
+    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  end
 end

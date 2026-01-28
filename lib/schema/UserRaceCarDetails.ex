@@ -20,6 +20,20 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
             | Torngen.Client.Schema.RaceCar.t()
           ]
         }
+  @types [
+    {:object,
+     %{
+       id: {:ref, Torngen.Client.Schema.RaceCarId},
+       name: {:one_of, [static: :null, static: :string]},
+       parts: {:array, {:ref, Torngen.Client.Schema.RaceCarUpgradeId}},
+       worth: {:static, :integer},
+       races_won: {:static, :integer},
+       races_entered: {:static, :integer},
+       points_spent: {:static, :integer},
+       is_removed: {:static, :boolean}
+     }},
+    {:ref, Torngen.Client.Schema.RaceCar}
+  ]
 
   @impl true
   def parse(%{} = data) do
@@ -48,8 +62,7 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
   def parse(_data), do: nil
 
   @impl true
-  def validate?(%{} = _data), do: true
-
-  @impl true
-  def validate?(_data), do: false
+  def validate?(data) do
+    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  end
 end

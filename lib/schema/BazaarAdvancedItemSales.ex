@@ -8,6 +8,10 @@ defmodule Torngen.Client.Schema.BazaarAdvancedItemSales do
   @type t :: %__MODULE__{
           values: [%{advanced_item_sales: integer()} | Torngen.Client.Schema.Bazaar.t()]
         }
+  @types [
+    {:object, %{advanced_item_sales: {:static, :integer}}},
+    {:ref, Torngen.Client.Schema.Bazaar}
+  ]
 
   @impl true
   def parse(%{} = data) do
@@ -24,8 +28,7 @@ defmodule Torngen.Client.Schema.BazaarAdvancedItemSales do
   def parse(_data), do: nil
 
   @impl true
-  def validate?(%{} = _data), do: true
-
-  @impl true
-  def validate?(_data), do: false
+  def validate?(data) do
+    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  end
 end
