@@ -1,6 +1,6 @@
 defmodule Torngen.Client.Path.User.Virus do
   @moduledoc """
-  Get your virus information.
+  Get your virus coding information.
 
   Requires minimal access key.
 

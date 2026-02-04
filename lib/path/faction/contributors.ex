@@ -9,7 +9,7 @@ defmodule Torngen.Client.Path.Faction.Contributors do
   - cat: By default, this selection will return only current faction's member contributions, and the option 'all' will return all contributors.
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Public)
+  - key: API key (Limited)
 
   ## Response Module(s)
   - FactionContributorsResponse
@@ -56,7 +56,7 @@ defmodule Torngen.Client.Path.Faction.Contributors do
 
   @impl true
   defparameter :key, value do
-    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

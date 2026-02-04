@@ -2,12 +2,12 @@ defmodule Torngen.Client.Path.User.Education do
   @moduledoc """
   Get your education information.
 
-  The response contains a list of complete eduactions and of a current education (if any).
+  Requires minimal access key. The response contains a list of complete eduactions and of a current education (if any).
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Public)
+  - key: API key (Minimal)
 
   ## Response Module(s)
   - UserEducationResponse
@@ -42,7 +42,7 @@ defmodule Torngen.Client.Path.User.Education do
 
   @impl true
   defparameter :key, value do
-    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 
