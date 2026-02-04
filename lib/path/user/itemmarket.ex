@@ -1,6 +1,6 @@
 defmodule Torngen.Client.Path.User.Itemmarket do
   @moduledoc """
-  Get your item market listings for a specific item.
+  Get your item market listings.
 
   Requires limited access key.
 

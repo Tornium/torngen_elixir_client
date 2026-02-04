@@ -7,7 +7,7 @@ defmodule Torngen.Client.Path.User.Honors do
   ## Parmeters
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Public)
+  - key: API key (Minimal)
 
   ## Response Module(s)
   - UserHonorsResponse
@@ -42,7 +42,7 @@ defmodule Torngen.Client.Path.User.Honors do
 
   @impl true
   defparameter :key, value do
-    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

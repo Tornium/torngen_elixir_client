@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Log do
   @moduledoc """
   Get your logs.
 
-  Requires limited access key. It's possible to pass a list of log ids or a log category id.
+  Requires full access key. It's possible to pass a list of log ids or a log category id.
 
   ## Parmeters
   - log: Log ids, comma separated, e.g
