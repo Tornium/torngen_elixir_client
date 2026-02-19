@@ -1,13 +1,14 @@
 defmodule Torngen.Client.Schema.FactionCrimeSlot do
   @moduledoc false
 
-  use Torngen.Client.SchemaObjectAccess, deprecated: []
+  use Torngen.Client.SchemaObjectAccess, deprecated: [:position_number]
 
   @behaviour Torngen.Client.Schema
 
   @keys [
     :user,
     :position_number,
+    :position_info,
     :position_id,
     :position,
     :item_requirement,
@@ -17,6 +18,7 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
   defstruct [
     :user,
     :position_number,
+    :position_info,
     :position_id,
     :position,
     :item_requirement,
@@ -25,8 +27,9 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
 
   @type t :: %__MODULE__{
           user: nil | Torngen.Client.Schema.FactionCrimeUser.t(),
-          position_number: integer(),
-          position_id: Torngen.Client.Schema.TornOrganizedCrimePositionId.t(),
+          position_number: nil | integer(),
+          position_info: Torngen.Client.Schema.FactionSlotPositionInfo.t(),
+          position_id: nil | Torngen.Client.Schema.TornOrganizedCrimePositionIdDeprecated.t(),
           position: String.t(),
           item_requirement:
             nil
@@ -48,11 +51,20 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
           {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionCrimeUser]}
         ),
       position_number:
-        data |> Map.get("position_number") |> Torngen.Client.Schema.parse({:static, :integer}),
+        data
+        |> Map.get("position_number")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
+      position_info:
+        data
+        |> Map.get("position_info")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionSlotPositionInfo}),
       position_id:
         data
         |> Map.get("position_id")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId}),
+        |> Torngen.Client.Schema.parse(
+          {:one_of,
+           [static: :null, ref: Torngen.Client.Schema.TornOrganizedCrimePositionIdDeprecated]}
+        ),
       position: data |> Map.get("position") |> Torngen.Client.Schema.parse({:static, :string}),
       item_requirement:
         data
@@ -97,10 +109,14 @@ defmodule Torngen.Client.Schema.FactionCrimeSlot do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
+  defp validate_key?(:position_info, value) do
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionSlotPositionInfo})
+  end
+
   defp validate_key?(:position_id, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId}
+      {:ref, Torngen.Client.Schema.TornOrganizedCrimePositionIdDeprecated}
     )
   end
 

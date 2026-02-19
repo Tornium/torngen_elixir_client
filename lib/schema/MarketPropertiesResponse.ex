@@ -5,14 +5,16 @@ defmodule Torngen.Client.Schema.MarketPropertiesResponse do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:properties, :_metadata]
+  @keys [:properties_timestamp, :properties, :_metadata]
 
   defstruct [
+    :properties_timestamp,
     :properties,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
+          properties_timestamp: integer(),
           properties: Torngen.Client.Schema.MarketPropertyDetails.t(),
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
@@ -20,6 +22,10 @@ defmodule Torngen.Client.Schema.MarketPropertiesResponse do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
+      properties_timestamp:
+        data
+        |> Map.get("properties_timestamp")
+        |> Torngen.Client.Schema.parse({:static, :integer}),
       properties:
         data
         |> Map.get("properties")
@@ -40,6 +46,10 @@ defmodule Torngen.Client.Schema.MarketPropertiesResponse do
     |> Enum.map(fn key -> {key, Map.get(data, Atom.to_string(key))} end)
     |> Enum.map(fn {key, value} -> validate_key?(key, value) end)
     |> Enum.all?()
+  end
+
+  defp validate_key?(:properties_timestamp, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
   defp validate_key?(:properties, value) do
