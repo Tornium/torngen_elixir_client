@@ -1,33 +1,31 @@
-defmodule Torngen.Client.Schema.TornBountiesResponse do
+defmodule Torngen.Client.Schema.UserOrganizedCrimesResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:bounties_timestamp, :bounties, :_metadata]
+  @keys [:organizedcrimes, :_metadata]
 
   defstruct [
-    :bounties_timestamp,
-    :bounties,
+    :organizedcrimes,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
-          bounties_timestamp: integer(),
-          bounties: [Torngen.Client.Schema.Bounty.t()],
+          organizedcrimes: nil | [Torngen.Client.Schema.FactionCrime.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      bounties_timestamp:
-        data |> Map.get("bounties_timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
-      bounties:
+      organizedcrimes:
         data
-        |> Map.get("bounties")
-        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.Bounty}}),
+        |> Map.get("organizedcrimes")
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, array: {:ref, Torngen.Client.Schema.FactionCrime}]}
+        ),
       _metadata:
         data
         |> Map.get("_metadata")
@@ -46,12 +44,8 @@ defmodule Torngen.Client.Schema.TornBountiesResponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:bounties_timestamp, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
-  end
-
-  defp validate_key?(:bounties, value) do
-    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.Bounty}})
+  defp validate_key?(:organizedcrimes, value) do
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionCrime}})
   end
 
   defp validate_key?(:_metadata, value) do
