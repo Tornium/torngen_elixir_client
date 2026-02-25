@@ -13,7 +13,7 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimesResponse do
   ]
 
   @type t :: %__MODULE__{
-          organizedcrimes: nil | [Torngen.Client.Schema.FactionCrime.t()],
+          organizedcrimes: [Torngen.Client.Schema.FactionCrime.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
@@ -23,9 +23,7 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimesResponse do
       organizedcrimes:
         data
         |> Map.get("organizedcrimes")
-        |> Torngen.Client.Schema.parse(
-          {:one_of, [static: :null, array: {:ref, Torngen.Client.Schema.FactionCrime}]}
-        ),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionCrime}}),
       _metadata:
         data
         |> Map.get("_metadata")

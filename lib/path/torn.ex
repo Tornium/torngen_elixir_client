@@ -25,6 +25,8 @@ defmodule Torngen.Client.Path.Torn do
   - TornItemModsResponse
   - TornTerritoriesNoLinksResponse
   - TornTerritoriesResponse
+  - TornStocksResponse
+  - TornStockDetailedResponse
   - AttackLogResponse
   - TornFactionTreeResponse
   - TornProperties
@@ -59,6 +61,8 @@ defmodule Torngen.Client.Path.Torn do
     TornItemModsResponse,
     TornTerritoriesNoLinksResponse,
     TornTerritoriesResponse,
+    TornStocksResponse,
+    TornStockDetailedResponse,
     AttackLogResponse,
     TornFactionTreeResponse,
     TornProperties,

@@ -1,28 +1,30 @@
 defmodule Torngen.Client.Schema.TornOrganizedCrimePositionIdDeprecated do
   @moduledoc false
 
+  require Logger
+
   @behaviour Torngen.Client.Schema
 
-  defstruct [:values]
+  @type t :: String.t()
 
-  @type t :: %__MODULE__{values: [Torngen.Client.Schema.TornOrganizedCrimePositionId.t()]}
-  @types [{:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId}]
+  @values ["P1", "P2", "P3", "P4", "P5", "P6"]
 
-  @impl true
-  def parse(%{} = data) do
-    %__MODULE__{
-      values: [
-        data
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornOrganizedCrimePositionId})
-      ]
-    }
-  end
+  @spec values() :: [t()]
+  def values, do: @values
 
   @impl true
-  def parse(_data), do: nil
+  def validate?(value), do: Enum.member?(@values, value)
 
   @impl true
-  def validate?(data) do
-    Enum.all?(@types, fn type -> Torngen.Client.Schema.validate?(data, type) end)
+  def parse(data) do
+    if validate?(data) do
+      data
+    else
+      Logger.warning(
+        "Invalid enum value #{inspect(data)} of TornOrganizedCrimePositionIdDeprecated"
+      )
+
+      nil
+    end
   end
 end

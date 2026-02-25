@@ -50,10 +50,7 @@ defmodule Torngen.Client.Schema.FactionStatEnum do
     "attacksdamaging",
     "attacksrunaway",
     "highestterritories",
-    "territoryrespect",
-    "membersamount",
-    "factionage",
-    "upgradesamount"
+    "territoryrespect"
   ]
 
   @spec values() :: [t()]

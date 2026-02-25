@@ -59,6 +59,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "revives",
     "revivesfull",
     "skills",
+    "stocks",
     "timestamp",
     "travel",
     "weaponexp",
@@ -70,8 +71,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "gym",
     "inventory",
     "networth",
-    "perks",
-    "stocks"
+    "perks"
   ]
 
   @spec values() :: [t()]
