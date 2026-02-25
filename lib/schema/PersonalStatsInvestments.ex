@@ -38,14 +38,6 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             bank:
-               {:object,
-                %{
-                  total: {:static, :integer},
-                  current: {:static, :integer},
-                  profit: {:static, :integer},
-                  time_remaining: {:static, :integer}
-                }},
              stocks:
                {:object,
                 %{
@@ -54,6 +46,14 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
                   payouts: {:static, :integer},
                   profits: {:static, :integer},
                   net_profits: {:static, :integer}
+                }},
+             bank:
+               {:object,
+                %{
+                  total: {:static, :integer},
+                  current: {:static, :integer},
+                  profit: {:static, :integer},
+                  time_remaining: {:static, :integer}
                 }}
            }}
         )
@@ -76,14 +76,6 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
       value,
       {:object,
        %{
-         bank:
-           {:object,
-            %{
-              total: {:static, :integer},
-              current: {:static, :integer},
-              profit: {:static, :integer},
-              time_remaining: {:static, :integer}
-            }},
          stocks:
            {:object,
             %{
@@ -92,6 +84,14 @@ defmodule Torngen.Client.Schema.PersonalStatsInvestments do
               payouts: {:static, :integer},
               profits: {:static, :integer},
               net_profits: {:static, :integer}
+            }},
+         bank:
+           {:object,
+            %{
+              total: {:static, :integer},
+              current: {:static, :integer},
+              profit: {:static, :integer},
+              time_remaining: {:static, :integer}
             }}
        }}
     )

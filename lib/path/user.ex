@@ -62,6 +62,7 @@ defmodule Torngen.Client.Path.User do
   - UserPropertiesResponse
   - UserJobRanksResponse
   - UserBountiesResponse
+  - UserStocksResponse
   - UserEducationResponse
   - UserRacingRecordsResponse
   - UserCalendarResponse
@@ -127,6 +128,7 @@ defmodule Torngen.Client.Path.User do
     UserPropertiesResponse,
     UserJobRanksResponse,
     UserBountiesResponse,
+    UserStocksResponse,
     UserEducationResponse,
     UserRacingRecordsResponse,
     UserCalendarResponse,
