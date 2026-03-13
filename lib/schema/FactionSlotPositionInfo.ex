@@ -1,7 +1,7 @@
 defmodule Torngen.Client.Schema.FactionSlotPositionInfo do
   @moduledoc false
 
-  use Torngen.Client.SchemaObjectAccess, deprecated: []
+  use Torngen.Client.SchemaObjectAccess, deprecated: [:number]
 
   @behaviour Torngen.Client.Schema
 

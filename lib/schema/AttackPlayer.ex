@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.AttackPlayer do
           name: String.t(),
           level: integer(),
           id: Torngen.Client.Schema.UserId.t(),
-          faction: nil | Torngen.Client.Schema.AttackPlayerFaction.t()
+          faction: nil | Torngen.Client.Schema.UserFactionBasic.t()
         }
 
   @impl true
@@ -32,7 +32,7 @@ defmodule Torngen.Client.Schema.AttackPlayer do
         data
         |> Map.get("faction")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayerFaction]}
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFactionBasic]}
         )
     }
   end
@@ -63,7 +63,7 @@ defmodule Torngen.Client.Schema.AttackPlayer do
   defp validate_key?(:faction, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:one_of, [static: :null, ref: Torngen.Client.Schema.AttackPlayerFaction]}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFactionBasic]}
     )
   end
 

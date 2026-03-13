@@ -50,6 +50,7 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
                   customers: {:static, :integer},
                   profit: {:static, :integer}
                 }},
+             trades: {:static, :integer},
              item_market:
                {:one_of,
                 [
@@ -60,8 +61,7 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
                     revenue: {:static, :integer},
                     customers: {:static, :integer}
                   }
-                ]},
-             trades: {:static, :integer}
+                ]}
            }}
         )
     }
@@ -98,6 +98,7 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
               customers: {:static, :integer},
               profit: {:static, :integer}
             }},
+         trades: {:static, :integer},
          item_market:
            {:one_of,
             [
@@ -108,8 +109,7 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
                 revenue: {:static, :integer},
                 customers: {:static, :integer}
               }
-            ]},
-         trades: {:static, :integer}
+            ]}
        }}
     )
   end
