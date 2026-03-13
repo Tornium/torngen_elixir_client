@@ -1,79 +1,23 @@
-defmodule Torngen.Client.Schema.UserSelectionName do
+defmodule Torngen.Client.Schema.TradeItem do
   @moduledoc false
 
   @behaviour Torngen.Client.Schema
 
-  @type t :: String.t() | String.t()
+  @type t ::
+          Torngen.Client.Schema.TradeItemNap.t()
+          | Torngen.Client.Schema.TradeItemProperty.t()
+          | Torngen.Client.Schema.TradeItemCompany.t()
+          | Torngen.Client.Schema.TradeItemFaction.t()
+          | Torngen.Client.Schema.TradeItemItem.t()
+          | Torngen.Client.Schema.TradeItemMoney.t()
 
   @values [
-    :string,
-    "ammo",
-    "attacks",
-    "attacksfull",
-    "bars",
-    "basic",
-    "battlestats",
-    "bounties",
-    "calendar",
-    "competition",
-    "cooldowns",
-    "crimes",
-    "discord",
-    "enlistedcars",
-    "equipment",
-    "events",
-    "faction",
-    "factionbalance",
-    "forumfeed",
-    "forumfriends",
-    "forumposts",
-    "forumsubscribedthreads",
-    "forumthreads",
-    "hof",
-    "honors",
-    "icons",
-    "itemmarket",
-    "job",
-    "jobpoints",
-    "jobranks",
-    "list",
-    "log",
-    "lookup",
-    "medals",
-    "merits",
-    "messages",
-    "missions",
-    "money",
-    "newevents",
-    "newmessages",
-    "notifications",
-    "organizedcrime",
-    "personalstats",
-    "profile",
-    "properties",
-    "property",
-    "races",
-    "racingrecords",
-    "refills",
-    "reports",
-    "revives",
-    "revivesfull",
-    "skills",
-    "stocks",
-    "trades",
-    "trade",
-    "travel",
-    "timestamp",
-    "weaponexp",
-    "workstats",
-    "bazaar",
-    "criminalrecord",
-    "display",
-    "education",
-    "gym",
-    "inventory",
-    "networth",
-    "perks"
+    TradeItemNap,
+    TradeItemProperty,
+    TradeItemCompany,
+    TradeItemFaction,
+    TradeItemItem,
+    TradeItemMoney
   ]
 
   @spec values() :: [t()]

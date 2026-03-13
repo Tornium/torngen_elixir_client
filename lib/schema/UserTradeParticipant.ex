@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.AttackPlayerFaction do
+defmodule Torngen.Client.Schema.UserTradeParticipant do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.AttackPlayerFaction do
 
   @type t :: %__MODULE__{
           name: String.t(),
-          id: Torngen.Client.Schema.FactionId.t()
+          id: Torngen.Client.Schema.UserId.t()
         }
 
   @impl true
@@ -22,9 +22,7 @@ defmodule Torngen.Client.Schema.AttackPlayerFaction do
     %__MODULE__{
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
-        data
-        |> Map.get("id")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionId})
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId})
     }
   end
 
@@ -44,7 +42,7 @@ defmodule Torngen.Client.Schema.AttackPlayerFaction do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionId})
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserId})
   end
 
   @spec keys() :: list(atom())
