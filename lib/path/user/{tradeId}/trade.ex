@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.TradeId.Trade do
   Requires limited access key. Only possible to get trades you participated in.
 
   ## Parmeters
-  - id: Trade id
+  - tradeId: Trade id
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Limited)
@@ -30,9 +30,9 @@ defmodule Torngen.Client.Path.User.TradeId.Trade do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
-  defparameter :id, value do
+  defparameter :tradeId, value do
     # Trade id
-    {:path, :id, value}
+    {:path, :tradeId, value}
   end
 
   @impl true
