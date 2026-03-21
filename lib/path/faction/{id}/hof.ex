@@ -62,5 +62,8 @@ defmodule Torngen.Client.Path.Faction.Id.Hof do
   def parameters(), do: @parameter_keys
 
   @impl true
+  def response_modules(), do: @response_modules
+
+  @impl true
   def parse(response), do: Torngen.Client.Path.parse(@response_modules, response)
 end
