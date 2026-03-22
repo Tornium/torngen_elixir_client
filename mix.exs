@@ -59,15 +59,20 @@ defmodule TorngenElixirClient.MixProject do
 
       _ ->
         version =
-          case System.cmd("git", ~w[describe --tags --abbrev=0 --dirty=+dirty]) do
-            {version, 0} ->
-              version
-              |> String.trim()
-              |> String.slice(1..-1//1)
+          try do
+            case System.cmd("git", ~w[describe --tags --abbrev=0 --dirty=+dirty]) do
+              {version, 0} ->
+                version
+                |> String.trim()
+                |> String.slice(1..-1//1)
 
-            {_, code} ->
-              Mix.shell().error("Git exited with code #{code}, falling back to 0.0.0")
+              {_, code} ->
+                Mix.shell().error("Git exited with code #{code}, falling back to 0.0.0")
 
+                "0.0.0"
+            end
+          rescue
+            _ ->
               "0.0.0"
           end
 
