@@ -11,8 +11,7 @@ defmodule TorngenElixirClient.MixProject do
       package: package(),
       deps: deps(),
       source_url: "https://github.com/Tornium/torngen_elixir_client",
-      docs: docs(),
-      elixirc_options: elixirc_options()
+      docs: docs()
     ]
   end
 
@@ -92,11 +91,5 @@ defmodule TorngenElixirClient.MixProject do
             "0.0.0"
         end
     end
-  end
-
-  def elixirc_options() do
-    [
-      docs: true
-    ]
   end
 end

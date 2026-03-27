@@ -80,4 +80,7 @@ defmodule Torngen.Client.Path.Torn.Hof do
 
   @impl true
   def parse(response), do: Torngen.Client.Path.parse(@response_modules, response)
+
+  @impl true
+  def moduledoc(), do: @moduledoc
 end

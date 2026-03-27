@@ -127,4 +127,7 @@ defmodule Torngen.Client.Path.Forum do
 
   @impl true
   def parse(response), do: Torngen.Client.Path.parse(@response_modules, response)
+
+  @impl true
+  def moduledoc(), do: @moduledoc
 end
