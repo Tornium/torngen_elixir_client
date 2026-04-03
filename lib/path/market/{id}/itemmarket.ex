@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market.Id.Itemmarket do
   @moduledoc """
   Get item market listings.
 
-  Requires public access key.
+  <b>Globally cached selection.</b> Requires public access key.
 
   ## Parmeters
   - id: Item id

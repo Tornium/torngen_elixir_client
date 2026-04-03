@@ -5,12 +5,13 @@ defmodule Torngen.Client.Schema.ItemMarket do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:listings, :item, :cache_timestamp]
+  @keys [:listings, :item, :cache_timestamp, :cache_delay]
 
   defstruct [
     :listings,
     :item,
-    :cache_timestamp
+    :cache_timestamp,
+    :cache_delay
   ]
 
   @type t :: %__MODULE__{
@@ -19,7 +20,8 @@ defmodule Torngen.Client.Schema.ItemMarket do
             | Torngen.Client.Schema.ItemMarketListingNonstackable.t()
           ],
           item: Torngen.Client.Schema.ItemMarketItem.t(),
-          cache_timestamp: integer()
+          cache_timestamp: integer(),
+          cache_delay: nil | integer()
         }
 
   @impl true
@@ -41,7 +43,11 @@ defmodule Torngen.Client.Schema.ItemMarket do
         |> Map.get("item")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemMarketItem}),
       cache_timestamp:
-        data |> Map.get("cache_timestamp") |> Torngen.Client.Schema.parse({:static, :integer})
+        data |> Map.get("cache_timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
+      cache_delay:
+        data
+        |> Map.get("cache_delay")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]})
     }
   end
 
@@ -73,6 +79,10 @@ defmodule Torngen.Client.Schema.ItemMarket do
   end
 
   defp validate_key?(:cache_timestamp, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:cache_delay, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 

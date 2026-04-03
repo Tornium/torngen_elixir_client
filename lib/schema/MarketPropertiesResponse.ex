@@ -5,16 +5,18 @@ defmodule Torngen.Client.Schema.MarketPropertiesResponse do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:properties_timestamp, :properties, :_metadata]
+  @keys [:properties_timestamp, :properties_delay, :properties, :_metadata]
 
   defstruct [
     :properties_timestamp,
+    :properties_delay,
     :properties,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
           properties_timestamp: integer(),
+          properties_delay: nil | integer(),
           properties: Torngen.Client.Schema.MarketPropertyDetails.t(),
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
@@ -26,6 +28,10 @@ defmodule Torngen.Client.Schema.MarketPropertiesResponse do
         data
         |> Map.get("properties_timestamp")
         |> Torngen.Client.Schema.parse({:static, :integer}),
+      properties_delay:
+        data
+        |> Map.get("properties_delay")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
       properties:
         data
         |> Map.get("properties")
@@ -49,6 +55,10 @@ defmodule Torngen.Client.Schema.MarketPropertiesResponse do
   end
 
   defp validate_key?(:properties_timestamp, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:properties_delay, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 

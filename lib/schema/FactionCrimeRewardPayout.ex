@@ -16,7 +16,7 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardPayout do
 
   @type t :: %__MODULE__{
           type: Torngen.Client.Schema.FactionOrganizedCrimePayoutType.t(),
-          percentage: integer(),
+          percentage: integer() | float(),
           paid_by: Torngen.Client.Schema.UserId.t(),
           paid_at: integer()
         }
@@ -31,7 +31,7 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardPayout do
           {:ref, Torngen.Client.Schema.FactionOrganizedCrimePayoutType}
         ),
       percentage:
-        data |> Map.get("percentage") |> Torngen.Client.Schema.parse({:static, :integer}),
+        data |> Map.get("percentage") |> Torngen.Client.Schema.parse({:static, :number}),
       paid_by:
         data
         |> Map.get("paid_by")
@@ -59,7 +59,7 @@ defmodule Torngen.Client.Schema.FactionCrimeRewardPayout do
   end
 
   defp validate_key?(:percentage, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
+    Torngen.Client.Schema.validate?(value, {:static, :number})
   end
 
   defp validate_key?(:paid_by, value) do

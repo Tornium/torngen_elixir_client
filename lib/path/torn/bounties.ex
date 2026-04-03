@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Torn.Bounties do
   @moduledoc """
   Get bounties.
 
-  Requires public key.
+  <b>Globally cached selection.</b> Requires public key.
 
   ## Parmeters
   - limit: N/A
