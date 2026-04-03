@@ -5,16 +5,18 @@ defmodule Torngen.Client.Schema.TornBountiesResponse do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:bounties_timestamp, :bounties, :_metadata]
+  @keys [:bounties_timestamp, :bounties_delay, :bounties, :_metadata]
 
   defstruct [
     :bounties_timestamp,
+    :bounties_delay,
     :bounties,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
           bounties_timestamp: integer(),
+          bounties_delay: nil | integer(),
           bounties: [Torngen.Client.Schema.Bounty.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
@@ -24,6 +26,10 @@ defmodule Torngen.Client.Schema.TornBountiesResponse do
     %__MODULE__{
       bounties_timestamp:
         data |> Map.get("bounties_timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
+      bounties_delay:
+        data
+        |> Map.get("bounties_delay")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
       bounties:
         data
         |> Map.get("bounties")
@@ -47,6 +53,10 @@ defmodule Torngen.Client.Schema.TornBountiesResponse do
   end
 
   defp validate_key?(:bounties_timestamp, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:bounties_delay, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
