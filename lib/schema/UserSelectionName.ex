@@ -32,6 +32,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "hof",
     "honors",
     "icons",
+    "inventory",
     "itemmarket",
     "job",
     "jobpoints",
@@ -71,7 +72,6 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "display",
     "education",
     "gym",
-    "inventory",
     "networth",
     "perks"
   ]

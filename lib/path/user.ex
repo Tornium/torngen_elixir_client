@@ -23,6 +23,7 @@ defmodule Torngen.Client.Path.User do
 
   ## Response Module(s)
   - TimestampResponse
+  - UserInventoryResponse
   - UserLookupResponse
   - UserNewMessagesResponse
   - UserMessagesResponse
@@ -91,6 +92,7 @@ defmodule Torngen.Client.Path.User do
   @path "user"
   @response_modules [
     TimestampResponse,
+    UserInventoryResponse,
     UserLookupResponse,
     UserNewMessagesResponse,
     UserMessagesResponse,
