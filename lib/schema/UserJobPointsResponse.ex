@@ -38,10 +38,10 @@ defmodule Torngen.Client.Schema.UserJobPointsResponse do
                {:object,
                 %{
                   education: {:static, :integer},
+                  casino: {:static, :integer},
                   medical: {:static, :integer},
                   law: {:static, :integer},
                   grocer: {:static, :integer},
-                  casino: {:static, :integer},
                   army: {:static, :integer}
                 }},
              companies: {:array, {:ref, Torngen.Client.Schema.UserCompanyPoints}}
@@ -70,10 +70,10 @@ defmodule Torngen.Client.Schema.UserJobPointsResponse do
            {:object,
             %{
               education: {:static, :integer},
+              casino: {:static, :integer},
               medical: {:static, :integer},
               law: {:static, :integer},
               grocer: {:static, :integer},
-              casino: {:static, :integer},
               army: {:static, :integer}
             }},
          companies: {:array, {:ref, Torngen.Client.Schema.UserCompanyPoints}}

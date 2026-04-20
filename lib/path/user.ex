@@ -36,6 +36,7 @@ defmodule Torngen.Client.Path.User do
   - UserWorkStatsResponse
   - UserJobPointsResponse
   - UserMoneyResponse
+  - UserCasinoResponse
   - AttacksFullResponse
   - UserVirusResponse
   - UserTravelResponse
@@ -105,6 +106,7 @@ defmodule Torngen.Client.Path.User do
     UserWorkStatsResponse,
     UserJobPointsResponse,
     UserMoneyResponse,
+    UserCasinoResponse,
     AttacksFullResponse,
     UserVirusResponse,
     UserTravelResponse,
