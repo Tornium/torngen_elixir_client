@@ -15,6 +15,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "battlestats",
     "bounties",
     "calendar",
+    "casino",
     "competition",
     "cooldowns",
     "crimes",
