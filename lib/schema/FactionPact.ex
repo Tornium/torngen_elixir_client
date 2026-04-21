@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.FactionPact do
   ]
 
   @type t :: %__MODULE__{
-          until: String.t(),
+          until: integer(),
           faction_name: String.t(),
           faction_id: Torngen.Client.Schema.FactionId.t()
         }
@@ -22,7 +22,7 @@ defmodule Torngen.Client.Schema.FactionPact do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      until: data |> Map.get("until") |> Torngen.Client.Schema.parse({:static, :string}),
+      until: data |> Map.get("until") |> Torngen.Client.Schema.parse({:static, :integer}),
       faction_name:
         data |> Map.get("faction_name") |> Torngen.Client.Schema.parse({:static, :string}),
       faction_id:
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.FactionPact do
   end
 
   defp validate_key?(:until, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
   defp validate_key?(:faction_name, value) do
