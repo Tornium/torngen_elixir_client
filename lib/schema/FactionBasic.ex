@@ -19,7 +19,8 @@ defmodule Torngen.Client.Schema.FactionBasic do
     :days_old,
     :co_leader_id,
     :capacity,
-    :best_chain
+    :best_chain,
+    :banner_image
   ]
 
   defstruct [
@@ -36,7 +37,8 @@ defmodule Torngen.Client.Schema.FactionBasic do
     :days_old,
     :co_leader_id,
     :capacity,
-    :best_chain
+    :best_chain,
+    :banner_image
   ]
 
   @type t :: %__MODULE__{
@@ -53,7 +55,8 @@ defmodule Torngen.Client.Schema.FactionBasic do
           days_old: integer(),
           co_leader_id: Torngen.Client.Schema.UserId.t(),
           capacity: integer(),
-          best_chain: integer()
+          best_chain: integer(),
+          banner_image: String.t()
         }
 
   @impl true
@@ -88,7 +91,9 @@ defmodule Torngen.Client.Schema.FactionBasic do
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserId}),
       capacity: data |> Map.get("capacity") |> Torngen.Client.Schema.parse({:static, :integer}),
       best_chain:
-        data |> Map.get("best_chain") |> Torngen.Client.Schema.parse({:static, :integer})
+        data |> Map.get("best_chain") |> Torngen.Client.Schema.parse({:static, :integer}),
+      banner_image:
+        data |> Map.get("banner_image") |> Torngen.Client.Schema.parse({:static, :string})
     }
   end
 
@@ -157,6 +162,10 @@ defmodule Torngen.Client.Schema.FactionBasic do
 
   defp validate_key?(:best_chain, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:banner_image, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :string})
   end
 
   @spec keys() :: list(atom())
