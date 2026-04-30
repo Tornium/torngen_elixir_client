@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.FactionApplicationStatusEnum do
+defmodule Torngen.Client.Schema.ApplicationStatusEnum do
   @moduledoc false
 
   require Logger
@@ -20,7 +20,7 @@ defmodule Torngen.Client.Schema.FactionApplicationStatusEnum do
     if validate?(data) do
       data
     else
-      Logger.warning("Invalid enum value #{inspect(data)} of FactionApplicationStatusEnum")
+      Logger.warning("Invalid enum value #{inspect(data)} of ApplicationStatusEnum")
       nil
     end
   end

@@ -46,8 +46,8 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
              bazaar:
                {:object,
                 %{
-                  sales: {:static, :integer},
                   customers: {:static, :integer},
+                  sales: {:static, :integer},
                   profit: {:static, :integer}
                 }},
              trades: {:static, :integer},
@@ -57,9 +57,9 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
                   static: :null,
                   object: %{
                     fees: {:static, :integer},
+                    customers: {:static, :integer},
                     sales: {:static, :integer},
-                    revenue: {:static, :integer},
-                    customers: {:static, :integer}
+                    revenue: {:static, :integer}
                   }
                 ]}
            }}
@@ -94,8 +94,8 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
          bazaar:
            {:object,
             %{
-              sales: {:static, :integer},
               customers: {:static, :integer},
+              sales: {:static, :integer},
               profit: {:static, :integer}
             }},
          trades: {:static, :integer},
@@ -105,9 +105,9 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
               static: :null,
               object: %{
                 fees: {:static, :integer},
+                customers: {:static, :integer},
                 sales: {:static, :integer},
-                revenue: {:static, :integer},
-                customers: {:static, :integer}
+                revenue: {:static, :integer}
               }
             ]}
        }}

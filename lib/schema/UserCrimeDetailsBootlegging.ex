@@ -44,8 +44,8 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             sales: {:static, :integer},
              customers: {:static, :integer},
+             sales: {:static, :integer},
              visits: {:static, :integer},
              earnings: {:static, :integer}
            }}
@@ -91,8 +91,8 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
       value,
       {:object,
        %{
-         sales: {:static, :integer},
          customers: {:static, :integer},
+         sales: {:static, :integer},
          visits: {:static, :integer},
          earnings: {:static, :integer}
        }}
