@@ -69,8 +69,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                         ref: Torngen.Client.Schema.MissionRewardDetailsAmmo
                       ]},
                    cost: {:static, :integer},
-                   amount: {:static, :integer},
-                   expires_at: {:static, :integer}
+                   expires_at: {:static, :integer},
+                   amount: {:static, :integer}
                  }}},
              credits: {:static, :integer},
              givers:
@@ -132,8 +132,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                     ref: Torngen.Client.Schema.MissionRewardDetailsAmmo
                   ]},
                cost: {:static, :integer},
-               amount: {:static, :integer},
-               expires_at: {:static, :integer}
+               expires_at: {:static, :integer},
+               amount: {:static, :integer}
              }}},
          credits: {:static, :integer},
          givers:

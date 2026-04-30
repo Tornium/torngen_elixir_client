@@ -25,7 +25,7 @@ defmodule Torngen.Client.Schema.FactionApplication do
             level: integer(),
             id: Torngen.Client.Schema.UserId.t()
           },
-          status: Torngen.Client.Schema.FactionApplicationStatusEnum.t(),
+          status: Torngen.Client.Schema.ApplicationStatusEnum.t(),
           message: nil | String.t(),
           id: integer()
         }
@@ -60,7 +60,7 @@ defmodule Torngen.Client.Schema.FactionApplication do
       status:
         data
         |> Map.get("status")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionApplicationStatusEnum}),
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ApplicationStatusEnum}),
       message:
         data
         |> Map.get("message")
@@ -108,10 +108,7 @@ defmodule Torngen.Client.Schema.FactionApplication do
   end
 
   defp validate_key?(:status, value) do
-    Torngen.Client.Schema.validate?(
-      value,
-      {:ref, Torngen.Client.Schema.FactionApplicationStatusEnum}
-    )
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.ApplicationStatusEnum})
   end
 
   defp validate_key?(:message, value) do
