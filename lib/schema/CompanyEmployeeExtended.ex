@@ -8,10 +8,7 @@ defmodule Torngen.Client.Schema.CompanyEmployeeExtended do
   @type t :: %__MODULE__{
           values: [
             %{
-              wage: integer(),
-              value: nil | integer(),
               stats: Torngen.Client.Schema.CompanyEmployeeStats.t(),
-              joined_at: integer(),
               effectiveness: Torngen.Client.Schema.CompanyEmployeeEffectiveness.t()
             }
             | Torngen.Client.Schema.CompanyEmployee.t()
@@ -20,10 +17,7 @@ defmodule Torngen.Client.Schema.CompanyEmployeeExtended do
   @types [
     {:object,
      %{
-       value: {:one_of, [static: :null, static: :integer]},
        stats: {:ref, Torngen.Client.Schema.CompanyEmployeeStats},
-       wage: {:static, :integer},
-       joined_at: {:static, :integer},
        effectiveness: {:ref, Torngen.Client.Schema.CompanyEmployeeEffectiveness}
      }},
     {:ref, Torngen.Client.Schema.CompanyEmployee}
@@ -37,10 +31,7 @@ defmodule Torngen.Client.Schema.CompanyEmployeeExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             value: {:one_of, [static: :null, static: :integer]},
              stats: {:ref, Torngen.Client.Schema.CompanyEmployeeStats},
-             wage: {:static, :integer},
-             joined_at: {:static, :integer},
              effectiveness: {:ref, Torngen.Client.Schema.CompanyEmployeeEffectiveness}
            }}
         ),

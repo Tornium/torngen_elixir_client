@@ -35,6 +35,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "icons",
     "inventory",
     "itemmarket",
+    "itemmod",
     "job",
     "jobpoints",
     "jobranks",

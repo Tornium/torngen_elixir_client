@@ -5,11 +5,12 @@ defmodule Torngen.Client.Schema.TornItemMods do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:weapons, :name, :id, :dual_fit, :description]
+  @keys [:weapons, :name, :image, :id, :dual_fit, :description]
 
   defstruct [
     :weapons,
     :name,
+    :image,
     :id,
     :dual_fit,
     :description
@@ -18,6 +19,7 @@ defmodule Torngen.Client.Schema.TornItemMods do
   @type t :: %__MODULE__{
           weapons: [Torngen.Client.Schema.TornItemWeaponTypeEnum.t()],
           name: String.t(),
+          image: String.t(),
           id: Torngen.Client.Schema.ItemModId.t(),
           dual_fit: boolean(),
           description: String.t()
@@ -33,6 +35,7 @@ defmodule Torngen.Client.Schema.TornItemMods do
           {:array, {:ref, Torngen.Client.Schema.TornItemWeaponTypeEnum}}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
+      image: data |> Map.get("image") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
         data
         |> Map.get("id")
@@ -62,6 +65,10 @@ defmodule Torngen.Client.Schema.TornItemMods do
   end
 
   defp validate_key?(:name, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :string})
+  end
+
+  defp validate_key?(:image, value) do
     Torngen.Client.Schema.validate?(value, {:static, :string})
   end
 
