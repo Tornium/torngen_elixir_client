@@ -13,7 +13,8 @@ defmodule Torngen.Client.Schema.CompanyEmployeesResponse do
 
   @type t :: %__MODULE__{
           employees: [
-            Torngen.Client.Schema.CompanyEmployeeExtended.t()
+            Torngen.Client.Schema.CompanyEmployeeFull.t()
+            | Torngen.Client.Schema.CompanyEmployeeExtended.t()
             | Torngen.Client.Schema.CompanyEmployee.t()
           ]
         }
@@ -28,6 +29,7 @@ defmodule Torngen.Client.Schema.CompanyEmployeesResponse do
           {:array,
            {:one_of,
             [
+              ref: Torngen.Client.Schema.CompanyEmployeeFull,
               ref: Torngen.Client.Schema.CompanyEmployeeExtended,
               ref: Torngen.Client.Schema.CompanyEmployee
             ]}}
@@ -52,6 +54,7 @@ defmodule Torngen.Client.Schema.CompanyEmployeesResponse do
       {:array,
        {:one_of,
         [
+          ref: Torngen.Client.Schema.CompanyEmployeeFull,
           ref: Torngen.Client.Schema.CompanyEmployeeExtended,
           ref: Torngen.Client.Schema.CompanyEmployee
         ]}}

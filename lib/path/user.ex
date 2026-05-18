@@ -45,6 +45,7 @@ defmodule Torngen.Client.Path.User do
   - UserCooldownsResponse
   - UserBarsResponse
   - AttacksResponse
+  - UserItemModsResponse
   - UserOrganizedCrimeResponse
   - UserPersonalStatsResponse
   - UserMissionsResponse
@@ -115,6 +116,7 @@ defmodule Torngen.Client.Path.User do
     UserCooldownsResponse,
     UserBarsResponse,
     AttacksResponse,
+    UserItemModsResponse,
     UserOrganizedCrimeResponse,
     UserPersonalStatsResponse,
     UserMissionsResponse,

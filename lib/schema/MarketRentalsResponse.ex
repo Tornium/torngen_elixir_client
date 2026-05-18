@@ -18,7 +18,7 @@ defmodule Torngen.Client.Schema.MarketRentalsResponse do
           rentals_timestamp: integer(),
           rentals_delay: nil | integer(),
           rentals: Torngen.Client.Schema.MarketRentalDetails.t(),
-          _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
+          _metadata: Torngen.Client.Schema.RequestMetadataWithLinksAndTotal.t()
         }
 
   @impl true
@@ -37,7 +37,9 @@ defmodule Torngen.Client.Schema.MarketRentalsResponse do
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.RequestMetadataWithLinksAndTotal}
+        )
     }
   end
 
@@ -65,7 +67,10 @@ defmodule Torngen.Client.Schema.MarketRentalsResponse do
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.RequestMetadataWithLinksAndTotal}
+    )
   end
 
   @spec keys() :: list(atom())

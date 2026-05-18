@@ -1,25 +1,24 @@
-defmodule Torngen.Client.Path.Company.Employees do
+defmodule Torngen.Client.Path.User.Itemmods do
   @moduledoc """
-  Get my company's employees.
+  Get your information about available item mods.
 
-  Requires public access key. When using Limited, Custom or Full access API keys, the response will be: * for director: CompanyEmployeeFull * for employee: CompanyEmployeeExtended * anyone else: CompanyEmployee.
+  Requires minimal access key.
 
   ## Parmeters
-  - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - CompanyEmployeesResponse
+  - UserItemModsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "company/employees"
-  @response_modules [CompanyEmployeesResponse]
+  @path "user/itemmods"
+  @response_modules [UserItemModsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -28,12 +27,6 @@ defmodule Torngen.Client.Path.Company.Employees do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :striptags, value do
-    # Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
-    {:query, :striptags, value}
-  end
 
   @impl true
   defparameter :timestamp, value do
