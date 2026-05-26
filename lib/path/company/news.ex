@@ -1,8 +1,8 @@
-defmodule Torngen.Client.Path.Faction.News do
+defmodule Torngen.Client.Path.Company.News do
   @moduledoc """
-  Get your faction's news details.
+  Get your company's news details.
 
-  Requires minimal access key with faction API access permissions. It is possible to pass up to 10 categories at the time (comma separated). Categories 'attack', 'depositFunds' and 'giveFunds' are only available with 'Custom', 'Limited' or 'Full' access keys.
+  Requires minimal access key.
 
   ## Parmeters
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
@@ -23,7 +23,7 @@ defmodule Torngen.Client.Path.Faction.News do
 
   @behaviour Torngen.Client.Path
 
-  @path "faction/news"
+  @path "company/news"
   @response_modules [NewsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)

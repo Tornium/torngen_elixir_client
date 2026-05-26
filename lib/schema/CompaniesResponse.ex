@@ -1,37 +1,37 @@
-defmodule Torngen.Client.Schema.TornBountiesResponse do
+defmodule Torngen.Client.Schema.CompaniesResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:bounties_timestamp, :bounties_delay, :bounties, :_metadata]
+  @keys [:companies_timestamp, :companies_delay, :companies, :_metadata]
 
   defstruct [
-    :bounties_timestamp,
-    :bounties_delay,
-    :bounties,
+    :companies_timestamp,
+    :companies_delay,
+    :companies,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
-          bounties_timestamp: integer(),
-          bounties_delay: integer(),
-          bounties: [Torngen.Client.Schema.Bounty.t()],
+          companies_timestamp: integer(),
+          companies_delay: integer(),
+          companies: [Torngen.Client.Schema.CompanyProfile.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinksAndTotal.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      bounties_timestamp:
-        data |> Map.get("bounties_timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
-      bounties_delay:
-        data |> Map.get("bounties_delay") |> Torngen.Client.Schema.parse({:static, :integer}),
-      bounties:
+      companies_timestamp:
+        data |> Map.get("companies_timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
+      companies_delay:
+        data |> Map.get("companies_delay") |> Torngen.Client.Schema.parse({:static, :integer}),
+      companies:
         data
-        |> Map.get("bounties")
-        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.Bounty}}),
+        |> Map.get("companies")
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.CompanyProfile}}),
       _metadata:
         data
         |> Map.get("_metadata")
@@ -52,16 +52,16 @@ defmodule Torngen.Client.Schema.TornBountiesResponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:bounties_timestamp, value) do
+  defp validate_key?(:companies_timestamp, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
-  defp validate_key?(:bounties_delay, value) do
+  defp validate_key?(:companies_delay, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
-  defp validate_key?(:bounties, value) do
-    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.Bounty}})
+  defp validate_key?(:companies, value) do
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.CompanyProfile}})
   end
 
   defp validate_key?(:_metadata, value) do

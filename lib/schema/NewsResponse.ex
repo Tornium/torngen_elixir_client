@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.FactionNewsResponse do
+defmodule Torngen.Client.Schema.NewsResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
@@ -13,7 +13,7 @@ defmodule Torngen.Client.Schema.FactionNewsResponse do
   ]
 
   @type t :: %__MODULE__{
-          news: [Torngen.Client.Schema.FactionNews.t()],
+          news: [Torngen.Client.Schema.News.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
 
@@ -23,7 +23,7 @@ defmodule Torngen.Client.Schema.FactionNewsResponse do
       news:
         data
         |> Map.get("news")
-        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionNews}}),
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.News}}),
       _metadata:
         data
         |> Map.get("_metadata")
@@ -43,7 +43,7 @@ defmodule Torngen.Client.Schema.FactionNewsResponse do
   end
 
   defp validate_key?(:news, value) do
-    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionNews}})
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.News}})
   end
 
   defp validate_key?(:_metadata, value) do
