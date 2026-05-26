@@ -5,16 +5,18 @@ defmodule Torngen.Client.Schema.FactionTerritoryOwnership do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:owned_by, :id, :acquired_at]
+  @keys [:owned_by, :irradiated, :id, :acquired_at]
 
   defstruct [
     :owned_by,
+    :irradiated,
     :id,
     :acquired_at
   ]
 
   @type t :: %__MODULE__{
           owned_by: nil | Torngen.Client.Schema.FactionId.t(),
+          irradiated: boolean(),
           id: String.t(),
           acquired_at: nil | integer()
         }
@@ -28,6 +30,8 @@ defmodule Torngen.Client.Schema.FactionTerritoryOwnership do
         |> Torngen.Client.Schema.parse(
           {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
         ),
+      irradiated:
+        data |> Map.get("irradiated") |> Torngen.Client.Schema.parse({:static, :boolean}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :string}),
       acquired_at:
         data
@@ -52,6 +56,10 @@ defmodule Torngen.Client.Schema.FactionTerritoryOwnership do
       value,
       {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
     )
+  end
+
+  defp validate_key?(:irradiated, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :boolean})
   end
 
   defp validate_key?(:id, value) do

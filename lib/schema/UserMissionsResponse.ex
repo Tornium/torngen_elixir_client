@@ -84,8 +84,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                       {:object,
                        %{
                          status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
-                         started_at: {:one_of, [static: :null, static: :integer]},
                          title: {:static, :string},
+                         started_at: {:one_of, [static: :null, static: :integer]},
                          rewards:
                            {:one_of,
                             [
@@ -147,8 +147,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                   {:object,
                    %{
                      status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
-                     started_at: {:one_of, [static: :null, static: :integer]},
                      title: {:static, :string},
+                     started_at: {:one_of, [static: :null, static: :integer]},
                      rewards:
                        {:one_of,
                         [

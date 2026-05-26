@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.FactionNews do
+defmodule Torngen.Client.Schema.News do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []

@@ -1,49 +1,28 @@
-defmodule Torngen.Client.Path.Company do
+defmodule Torngen.Client.Path.Company.TypeId.Companies do
   @moduledoc """
-  Get any Company selection.
+  Get a list of companies for a specific company type.
 
-  Key access level depends on the required selections. Choose one or more selections (comma separated).
+  Requires public access key.
 
   ## Parmeters
-  - selections: Selection names
-  - id: selection id
-  - legacy: Legacy selection names for which you want or expect API v1 response
-  - cat: Selection category
+  - typeId: Company type id
   - limit: N/A
-  - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - offset: N/A
+  - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - TimestampResponse
-  - CompanyLookupResponse
-  - CompanyStockResponse
-  - NewsResponse
-  - CompanyProfileResponse
-  - CompanyProfileResponseMixed
-  - CompanyEmployeesResponseBasic
-  - CompanyEmployeesResponse
-  - CompanyApplicationsResponse
+  - CompaniesResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "company"
-  @response_modules [
-    TimestampResponse,
-    CompanyLookupResponse,
-    CompanyStockResponse,
-    NewsResponse,
-    CompanyProfileResponse,
-    CompanyProfileResponseMixed,
-    CompanyEmployeesResponseBasic,
-    CompanyEmployeesResponse,
-    CompanyApplicationsResponse
-  ]
+  @path "company/{typeId}/companies"
+  @response_modules [CompaniesResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -54,27 +33,9 @@ defmodule Torngen.Client.Path.Company do
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
 
   @impl true
-  defparameter :selections, value do
-    # Selection names
-    {:query, :selections, value}
-  end
-
-  @impl true
-  defparameter :id, value do
-    # selection id
-    {:query, :id, value}
-  end
-
-  @impl true
-  defparameter :legacy, value do
-    # Legacy selection names for which you want or expect API v1 response
-    {:query, :legacy, value}
-  end
-
-  @impl true
-  defparameter :cat, value do
-    # Selection category
-    {:query, :cat, value}
+  defparameter :typeId, value do
+    # Company type id
+    {:path, :typeId, value}
   end
 
   @impl true
@@ -84,15 +45,15 @@ defmodule Torngen.Client.Path.Company do
   end
 
   @impl true
-  defparameter :striptags, value do
-    # Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
-    {:query, :striptags, value}
-  end
-
-  @impl true
   defparameter :offset, value do
     # N/A
     {:query, :offset, value}
+  end
+
+  @impl true
+  defparameter :striptags, value do
+    # Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
+    {:query, :striptags, value}
   end
 
   @impl true
