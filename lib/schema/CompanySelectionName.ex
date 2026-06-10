@@ -8,14 +8,14 @@ defmodule Torngen.Client.Schema.CompanySelectionName do
   @values [
     :string,
     "applications",
+    "companies",
     "employees",
     "lookup",
     "news",
     "profile",
+    "snapshot",
     "stock",
-    "timestamp",
-    "companies",
-    "search"
+    "timestamp"
   ]
 
   @spec values() :: [t()]

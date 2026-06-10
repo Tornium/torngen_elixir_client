@@ -10,7 +10,7 @@ defmodule Torngen.Client.Path.Faction.Id.Raids do
   - to: Timestamp that sets the upper limit for the data returned
   - sort: Sorted by the greatest timestamps
   - limit: N/A
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -65,7 +65,7 @@ defmodule Torngen.Client.Path.Faction.Id.Raids do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

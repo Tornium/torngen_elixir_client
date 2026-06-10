@@ -10,6 +10,7 @@ defmodule Torngen.Client.Schema.FactionSearch do
     :tag,
     :respect,
     :name,
+    :members_max,
     :members,
     :leader,
     :is_recruiting,
@@ -24,6 +25,7 @@ defmodule Torngen.Client.Schema.FactionSearch do
     :tag,
     :respect,
     :name,
+    :members_max,
     :members,
     :leader,
     :is_recruiting,
@@ -38,6 +40,7 @@ defmodule Torngen.Client.Schema.FactionSearch do
           tag: nil | String.t(),
           respect: integer(),
           name: String.t(),
+          members_max: integer(),
           members: integer(),
           leader: Torngen.Client.Schema.FactionSearchLeader.t(),
           is_recruiting: boolean(),
@@ -60,6 +63,8 @@ defmodule Torngen.Client.Schema.FactionSearch do
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]}),
       respect: data |> Map.get("respect") |> Torngen.Client.Schema.parse({:static, :integer}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
+      members_max:
+        data |> Map.get("members_max") |> Torngen.Client.Schema.parse({:static, :integer}),
       members: data |> Map.get("members") |> Torngen.Client.Schema.parse({:static, :integer}),
       leader:
         data
@@ -111,6 +116,10 @@ defmodule Torngen.Client.Schema.FactionSearch do
 
   defp validate_key?(:name, value) do
     Torngen.Client.Schema.validate?(value, {:static, :string})
+  end
+
+  defp validate_key?(:members_max, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
   defp validate_key?(:members, value) do

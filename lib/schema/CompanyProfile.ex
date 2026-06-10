@@ -16,7 +16,8 @@ defmodule Torngen.Client.Schema.CompanyProfile do
     :director,
     :days_old,
     :customers,
-    :created_at
+    :created_at,
+    :applications_allowed
   ]
 
   defstruct [
@@ -30,7 +31,8 @@ defmodule Torngen.Client.Schema.CompanyProfile do
     :director,
     :days_old,
     :customers,
-    :created_at
+    :created_at,
+    :applications_allowed
   ]
 
   @type t :: %__MODULE__{
@@ -38,13 +40,14 @@ defmodule Torngen.Client.Schema.CompanyProfile do
           rating: integer(),
           name: String.t(),
           income: Torngen.Client.Schema.CompanyIncome.t(),
-          image: String.t(),
+          image: nil | String.t(),
           id: Torngen.Client.Schema.CompanyId.t(),
           employees: Torngen.Client.Schema.CompanyEmployees.t(),
           director: Torngen.Client.Schema.CompanyDirector.t(),
           days_old: integer(),
           customers: Torngen.Client.Schema.CompanyCustomers.t(),
-          created_at: integer()
+          created_at: integer(),
+          applications_allowed: boolean()
         }
 
   @impl true
@@ -60,7 +63,10 @@ defmodule Torngen.Client.Schema.CompanyProfile do
         data
         |> Map.get("income")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.CompanyIncome}),
-      image: data |> Map.get("image") |> Torngen.Client.Schema.parse({:static, :string}),
+      image:
+        data
+        |> Map.get("image")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]}),
       id:
         data
         |> Map.get("id")
@@ -79,7 +85,11 @@ defmodule Torngen.Client.Schema.CompanyProfile do
         |> Map.get("customers")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.CompanyCustomers}),
       created_at:
-        data |> Map.get("created_at") |> Torngen.Client.Schema.parse({:static, :integer})
+        data |> Map.get("created_at") |> Torngen.Client.Schema.parse({:static, :integer}),
+      applications_allowed:
+        data
+        |> Map.get("applications_allowed")
+        |> Torngen.Client.Schema.parse({:static, :boolean})
     }
   end
 
@@ -111,7 +121,7 @@ defmodule Torngen.Client.Schema.CompanyProfile do
   end
 
   defp validate_key?(:image, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :string]})
   end
 
   defp validate_key?(:id, value) do
@@ -136,6 +146,10 @@ defmodule Torngen.Client.Schema.CompanyProfile do
 
   defp validate_key?(:created_at, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:applications_allowed, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :boolean})
   end
 
   @spec keys() :: list(atom())

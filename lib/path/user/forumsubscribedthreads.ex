@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Forumsubscribedthreads do
   Requires minimal access key. This selection returns data visible in 'Subscribed Threads' section on forum page. Threads are sorted in the same way as on site.
 
   ## Parmeters
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Minimal)
 
@@ -30,7 +30,7 @@ defmodule Torngen.Client.Path.User.Forumsubscribedthreads do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Forumfeed do
   Requires minimal access key. This selection returns data visible in 'Feed' section on forum page. Feed is sorted by timestamp descending. Only a maximum of 100 rows are returned.
 
   ## Parmeters
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Minimal)
 
@@ -30,7 +30,7 @@ defmodule Torngen.Client.Path.User.Forumfeed do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

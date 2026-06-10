@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Log do
   @moduledoc """
   Get your logs.
 
-  Requires full access key. It's possible to pass a list of log ids or a log category id.
+  Requires full access key. It's possible to pass a list of log ids or a log category id. This selection is standalone and cannot be used together with other selections.
 
   ## Parmeters
   - log: Log ids, comma separated, e.g
@@ -11,7 +11,7 @@ defmodule Torngen.Client.Path.User.Log do
   - limit: N/A
   - to: Timestamp that sets the upper limit for the data returned
   - from: Timestamp that sets the lower limit for the data returned
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Full)
 
@@ -72,7 +72,7 @@ defmodule Torngen.Client.Path.User.Log do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 
