@@ -4,7 +4,8 @@ defmodule Torngen.Client.Schema.ApiError do
   @behaviour Torngen.Client.Schema
 
   @type t ::
-          Torngen.Client.Schema.ErrorCategorySelectionUnavailableForInteractionLogs.t()
+          Torngen.Client.Schema.ErrorFileDoesNotExist.t()
+          | Torngen.Client.Schema.ErrorCategorySelectionUnavailableForInteractionLogs.t()
           | Torngen.Client.Schema.ErrorIncorrectLogId.t()
           | Torngen.Client.Schema.ErrorMustMigrateToOrganizedCrimesV2.t()
           | Torngen.Client.Schema.ErrorOnlyCategoryOrStatsAllowed.t()
@@ -36,6 +37,7 @@ defmodule Torngen.Client.Schema.ApiError do
           | Torngen.Client.Schema.ErrorUnknown.t()
 
   @values [
+    ErrorFileDoesNotExist,
     ErrorCategorySelectionUnavailableForInteractionLogs,
     ErrorIncorrectLogId,
     ErrorMustMigrateToOrganizedCrimesV2,

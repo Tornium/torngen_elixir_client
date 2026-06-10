@@ -56,8 +56,8 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
                 [
                   static: :null,
                   object: %{
-                    fees: {:static, :integer},
                     customers: {:static, :integer},
+                    fees: {:static, :integer},
                     sales: {:static, :integer},
                     revenue: {:static, :integer}
                   }
@@ -104,8 +104,8 @@ defmodule Torngen.Client.Schema.PersonalStatsTrading do
             [
               static: :null,
               object: %{
-                fees: {:static, :integer},
                 customers: {:static, :integer},
+                fees: {:static, :integer},
                 sales: {:static, :integer},
                 revenue: {:static, :integer}
               }

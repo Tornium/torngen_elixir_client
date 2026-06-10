@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Icons do
   Requires public access key. When requesting data for yourself with 'Custom', 'Limited' or 'Full' access keys, the response will be of type UserIconPrivate, otherwise UserIconPublic.
 
   ## Parmeters
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -30,7 +30,7 @@ defmodule Torngen.Client.Path.User.Icons do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

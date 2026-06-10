@@ -9,7 +9,7 @@ defmodule Torngen.Client.Path.Faction.Search do
   - filters: A filtering query parameter allowing a comma-separated list of filters
   - limit: N/A
   - offset: N/A
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -40,7 +40,7 @@ defmodule Torngen.Client.Path.Faction.Search do
 
   @impl true
   defparameter :filters, value do
-    # A filtering query parameter allowing a comma-separated list of filters.    * Each filter can be one of the following:  * Fixed options: 'destroyed', 'notDestroyed', 'recruiting', 'notRecruiting'  * Dynamic options: `fieldName`+`condition`+`number`, where:  * * `fieldName` is one of: `id`, `respect`, `members`  * * `condition` is one of: `Equal`, `NotEqual`, `Less`, `LessOrEqual`, `GreaterOrEqual`, `Greater`  * * `number`: any integer value  * Examples: `filters=destroyed`, `filters=notDestroyed,recruiting`, `filters=respectLessOrEqual20000,idGreater100,notRecruiting`
+    # A filtering query parameter allowing a comma-separated list of filters.    * Each filter can be one of the following:  * Fixed options: `destroyed`, `notDestroyed`, `recruiting`, `notRecruiting`  * Dynamic options: `fieldName`+`condition`+`number`. Each dynamic filter is made out of 3 parts separated by colon `:`:  * * `fieldName` is one of: `id`, `respect`, `members`, `membersMax`  * * `condition` is one of: `=`, `!=`, `<`, `<=`, `>=`, `>`, `Equal`, `NotEqual`, `Less`, `LessOrEqual`, `GreaterOrEqual`, `Greater`  * * `number`: any integer value  * Examples: `filters=destroyed`, `filters=notDestroyed,recruiting`, `filters=respect:>=:20000,id:<:100,notRecruiting`
     {:query, :filters, value}
   end
 
@@ -58,7 +58,7 @@ defmodule Torngen.Client.Path.Faction.Search do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

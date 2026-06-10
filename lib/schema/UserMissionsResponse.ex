@@ -84,8 +84,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                       {:object,
                        %{
                          status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
-                         title: {:static, :string},
                          started_at: {:one_of, [static: :null, static: :integer]},
+                         title: {:static, :string},
                          rewards:
                            {:one_of,
                             [
@@ -93,8 +93,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                               object: %{credits: {:static, :integer}, money: {:static, :integer}}
                             ]},
                          expires_at: {:one_of, [static: :null, static: :integer]},
-                         difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                          created_at: {:static, :integer},
+                         difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                          completed_at: {:one_of, [static: :null, static: :integer]}
                        }}}
                  }}}
@@ -147,8 +147,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                   {:object,
                    %{
                      status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
-                     title: {:static, :string},
                      started_at: {:one_of, [static: :null, static: :integer]},
+                     title: {:static, :string},
                      rewards:
                        {:one_of,
                         [
@@ -156,8 +156,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                           object: %{credits: {:static, :integer}, money: {:static, :integer}}
                         ]},
                      expires_at: {:one_of, [static: :null, static: :integer]},
-                     difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                      created_at: {:static, :integer},
+                     difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                      completed_at: {:one_of, [static: :null, static: :integer]}
                    }}}
              }}}

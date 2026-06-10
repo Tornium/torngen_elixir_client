@@ -15,7 +15,6 @@ defmodule Torngen.Client.Schema.CompanyProfileExtended do
               funds: integer(),
               environment: integer(),
               efficiency: integer(),
-              applications_allowed: boolean(),
               advertisement_budget: integer()
             }
             | Torngen.Client.Schema.CompanyProfile.t()
@@ -31,7 +30,6 @@ defmodule Torngen.Client.Schema.CompanyProfileExtended do
        funds: {:static, :integer},
        environment: {:static, :integer},
        efficiency: {:static, :integer},
-       applications_allowed: {:static, :boolean},
        advertisement_budget: {:static, :integer}
      }},
     {:ref, Torngen.Client.Schema.CompanyProfile}
@@ -52,7 +50,6 @@ defmodule Torngen.Client.Schema.CompanyProfileExtended do
              funds: {:static, :integer},
              environment: {:static, :integer},
              efficiency: {:static, :integer},
-             applications_allowed: {:static, :boolean},
              advertisement_budget: {:static, :integer}
            }}
         ),

@@ -6,7 +6,7 @@ defmodule Torngen.Client.Path.Torn.Id.Itemdetails do
 
   ## Parmeters
   - id: Item uid
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Path.Torn.Id.Itemdetails do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

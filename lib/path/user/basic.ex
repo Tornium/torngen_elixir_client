@@ -6,7 +6,7 @@ defmodule Torngen.Client.Path.User.Basic do
 
   ## Parmeters
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Path.User.Basic do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

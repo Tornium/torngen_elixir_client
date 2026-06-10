@@ -5,20 +5,18 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:required_item, :position_info, :name, :id]
+  @keys [:required_item, :position_info, :name]
 
   defstruct [
     :required_item,
     :position_info,
-    :name,
-    :id
+    :name
   ]
 
   @type t :: %__MODULE__{
           required_item: nil | Torngen.Client.Schema.TornOrganizedCrimeRequiredItem.t(),
           position_info: Torngen.Client.Schema.FactionSlotPositionInfo.t(),
-          name: String.t(),
-          id: nil | Torngen.Client.Schema.TornOrganizedCrimePositionIdDeprecated.t()
+          name: String.t()
         }
 
   @impl true
@@ -34,14 +32,7 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
         data
         |> Map.get("position_info")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionSlotPositionInfo}),
-      name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
-      id:
-        data
-        |> Map.get("id")
-        |> Torngen.Client.Schema.parse(
-          {:one_of,
-           [static: :null, ref: Torngen.Client.Schema.TornOrganizedCrimePositionIdDeprecated]}
-        )
+      name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string})
     }
   end
 
@@ -69,13 +60,6 @@ defmodule Torngen.Client.Schema.TornOrganizedCrimeSlot do
 
   defp validate_key?(:name, value) do
     Torngen.Client.Schema.validate?(value, {:static, :string})
-  end
-
-  defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(
-      value,
-      {:ref, Torngen.Client.Schema.TornOrganizedCrimePositionIdDeprecated}
-    )
   end
 
   @spec keys() :: list(atom())

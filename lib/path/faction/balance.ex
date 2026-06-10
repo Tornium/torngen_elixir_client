@@ -6,7 +6,7 @@ defmodule Torngen.Client.Path.Faction.Balance do
 
   ## Parmeters
   - cat: By default, this selection will return only current faction's member balances, and the option 'all' will return all current members balances + additionally those of ex-members which do have money or points on their balance.
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Limited)
 
@@ -37,7 +37,7 @@ defmodule Torngen.Client.Path.Faction.Balance do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

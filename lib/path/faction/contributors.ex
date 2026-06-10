@@ -7,7 +7,7 @@ defmodule Torngen.Client.Path.Faction.Contributors do
   ## Parmeters
   - stat: Get contributors for this field.
   - cat: By default, this selection will return only current faction's member contributions, and the option 'all' will return all contributors.
-  - timestamp: Timestamp to bypass cache
+  - timestamp: Timestamp to bypass cache or get the data in specific point in time
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Limited)
 
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Path.Faction.Contributors do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache
+    # Timestamp to bypass cache or get the data in specific point in time
     {:query, :timestamp, value}
   end
 

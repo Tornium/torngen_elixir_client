@@ -7,11 +7,11 @@ defmodule Torngen.Client.Schema.UserRaceDetails do
 
   @type t :: %__MODULE__{
           values: [
-            %{skill_gain: integer() | float()} | Torngen.Client.Schema.RacingRaceDetails.t()
+            %{skill_gain: nil | integer() | float()} | Torngen.Client.Schema.RacingRaceDetails.t()
           ]
         }
   @types [
-    {:object, %{skill_gain: {:static, :number}}},
+    {:object, %{skill_gain: {:one_of, [static: :null, static: :number]}}},
     {:ref, Torngen.Client.Schema.RacingRaceDetails}
   ]
 
@@ -19,7 +19,10 @@ defmodule Torngen.Client.Schema.UserRaceDetails do
   def parse(%{} = data) do
     %__MODULE__{
       values: [
-        data |> Torngen.Client.Schema.parse({:object, %{skill_gain: {:static, :number}}}),
+        data
+        |> Torngen.Client.Schema.parse(
+          {:object, %{skill_gain: {:one_of, [static: :null, static: :number]}}}
+        ),
         data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RacingRaceDetails})
       ]
     }
