@@ -809,7 +809,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryEnum do
     "FAD",
     "FAE",
     "FAF",
-    "FAG",
+    "XAG",
     "FBA",
     "FBB",
     "FBC",

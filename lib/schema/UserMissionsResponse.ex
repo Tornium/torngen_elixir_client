@@ -68,8 +68,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                         ref: Torngen.Client.Schema.MissionRewardDetailsUpgrade,
                         ref: Torngen.Client.Schema.MissionRewardDetailsAmmo
                       ]},
-                   cost: {:static, :integer},
                    expires_at: {:static, :integer},
+                   cost: {:static, :integer},
                    amount: {:static, :integer}
                  }}},
              credits: {:static, :integer},
@@ -86,13 +86,13 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                          status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
                          started_at: {:one_of, [static: :null, static: :integer]},
                          title: {:static, :string},
+                         expires_at: {:one_of, [static: :null, static: :integer]},
                          rewards:
                            {:one_of,
                             [
                               static: :null,
                               object: %{credits: {:static, :integer}, money: {:static, :integer}}
                             ]},
-                         expires_at: {:one_of, [static: :null, static: :integer]},
                          created_at: {:static, :integer},
                          difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                          completed_at: {:one_of, [static: :null, static: :integer]}
@@ -131,8 +131,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                     ref: Torngen.Client.Schema.MissionRewardDetailsUpgrade,
                     ref: Torngen.Client.Schema.MissionRewardDetailsAmmo
                   ]},
-               cost: {:static, :integer},
                expires_at: {:static, :integer},
+               cost: {:static, :integer},
                amount: {:static, :integer}
              }}},
          credits: {:static, :integer},
@@ -149,13 +149,13 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                      status: {:ref, Torngen.Client.Schema.MissionStatusEnum},
                      started_at: {:one_of, [static: :null, static: :integer]},
                      title: {:static, :string},
+                     expires_at: {:one_of, [static: :null, static: :integer]},
                      rewards:
                        {:one_of,
                         [
                           static: :null,
                           object: %{credits: {:static, :integer}, money: {:static, :integer}}
                         ]},
-                     expires_at: {:one_of, [static: :null, static: :integer]},
                      created_at: {:static, :integer},
                      difficulty: {:ref, Torngen.Client.Schema.MissionDifficultyEnum},
                      completed_at: {:one_of, [static: :null, static: :integer]}
