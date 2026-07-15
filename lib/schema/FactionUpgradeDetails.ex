@@ -17,7 +17,7 @@ defmodule Torngen.Client.Schema.FactionUpgradeDetails do
   ]
 
   @type t :: %__MODULE__{
-          unlocked_at: nil | integer(),
+          unlocked_at: integer(),
           name: String.t(),
           level: integer(),
           id: Torngen.Client.Schema.FactionBranchId.t(),
@@ -29,9 +29,7 @@ defmodule Torngen.Client.Schema.FactionUpgradeDetails do
   def parse(%{} = data) do
     %__MODULE__{
       unlocked_at:
-        data
-        |> Map.get("unlocked_at")
-        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
+        data |> Map.get("unlocked_at") |> Torngen.Client.Schema.parse({:static, :integer}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       level: data |> Map.get("level") |> Torngen.Client.Schema.parse({:static, :integer}),
       id:

@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.FactionRaidWarReportResponse do
   ]
 
   @type t :: %__MODULE__{
-          raidreport: [Torngen.Client.Schema.FactionRaidReport.t()]
+          raidreport: Torngen.Client.Schema.FactionRaidReport.t()
         }
 
   @impl true
@@ -21,7 +21,7 @@ defmodule Torngen.Client.Schema.FactionRaidWarReportResponse do
       raidreport:
         data
         |> Map.get("raidreport")
-        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionRaidReport}})
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionRaidReport})
     }
   end
 
@@ -37,10 +37,7 @@ defmodule Torngen.Client.Schema.FactionRaidWarReportResponse do
   end
 
   defp validate_key?(:raidreport, value) do
-    Torngen.Client.Schema.validate?(
-      value,
-      {:array, {:ref, Torngen.Client.Schema.FactionRaidReport}}
-    )
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionRaidReport})
   end
 
   @spec keys() :: list(atom())

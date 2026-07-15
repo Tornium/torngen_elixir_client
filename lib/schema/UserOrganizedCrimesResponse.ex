@@ -5,16 +5,14 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimesResponse do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:organizedcrimes, :_metadata]
+  @keys [:organizedcrimes]
 
   defstruct [
-    :organizedcrimes,
-    :_metadata
+    :organizedcrimes
   ]
 
   @type t :: %__MODULE__{
-          organizedcrimes: [Torngen.Client.Schema.FactionCrime.t()],
-          _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
+          organizedcrimes: [Torngen.Client.Schema.FactionCrime.t()]
         }
 
   @impl true
@@ -23,11 +21,7 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimesResponse do
       organizedcrimes:
         data
         |> Map.get("organizedcrimes")
-        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionCrime}}),
-      _metadata:
-        data
-        |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.FactionCrime}})
     }
   end
 
@@ -44,10 +38,6 @@ defmodule Torngen.Client.Schema.UserOrganizedCrimesResponse do
 
   defp validate_key?(:organizedcrimes, value) do
     Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.FactionCrime}})
-  end
-
-  defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
   end
 
   @spec keys() :: list(atom())

@@ -12,7 +12,7 @@ defmodule Torngen.Client.Schema.UserForumSubscribedThreadsResponse do
   ]
 
   @type t :: %__MODULE__{
-          forumSubscribedThreads: nil | [Torngen.Client.Schema.ForumSubscribedThread.t()]
+          forumSubscribedThreads: [Torngen.Client.Schema.ForumSubscribedThread.t()]
         }
 
   @impl true
@@ -22,7 +22,7 @@ defmodule Torngen.Client.Schema.UserForumSubscribedThreadsResponse do
         data
         |> Map.get("forumSubscribedThreads")
         |> Torngen.Client.Schema.parse(
-          {:one_of, [static: :null, array: {:ref, Torngen.Client.Schema.ForumSubscribedThread}]}
+          {:array, {:ref, Torngen.Client.Schema.ForumSubscribedThread}}
         )
     }
   end

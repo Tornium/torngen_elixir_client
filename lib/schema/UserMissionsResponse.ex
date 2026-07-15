@@ -15,7 +15,7 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
           missions: %{
             rewards: [
               %{
-                type: Torngen.Client.Schema.MissionRewardUpgrade.t(),
+                type: String.t() | Torngen.Client.Schema.MissionRewardUpgrade.t(),
                 expires_at: integer(),
                 details:
                   Torngen.Client.Schema.MissionRewardDetailsItem.t()
@@ -60,7 +60,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
                {:array,
                 {:object,
                  %{
-                   type: {:ref, Torngen.Client.Schema.MissionRewardUpgrade},
+                   type:
+                     {:one_of, [static: :string, ref: Torngen.Client.Schema.MissionRewardUpgrade]},
                    details:
                      {:one_of,
                       [
@@ -123,7 +124,8 @@ defmodule Torngen.Client.Schema.UserMissionsResponse do
            {:array,
             {:object,
              %{
-               type: {:ref, Torngen.Client.Schema.MissionRewardUpgrade},
+               type:
+                 {:one_of, [static: :string, ref: Torngen.Client.Schema.MissionRewardUpgrade]},
                details:
                  {:one_of,
                   [

@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtended do
   @types [
     {:object,
      %{
-       status: {:enum, :string, ["none", "in_use"]},
+       status: {:enum, :string, ["none", "in_use", "for_sale", "rented", "for_rent"]},
        used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}}
      }},
     {:ref, Torngen.Client.Schema.UserPropertyBasicDetails}
@@ -28,7 +28,7 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             status: {:enum, :string, ["none", "in_use"]},
+             status: {:enum, :string, ["none", "in_use", "for_sale", "rented", "for_rent"]},
              used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}}
            }}
         ),

@@ -1,6 +1,6 @@
 defmodule Torngen.Client.Path.User.Organizedcrimes do
   @moduledoc """
-  Get available slots for organized crimes with status 'Recruiting'.
+  Get your available slots for organized crimes with status 'Recruiting'.
 
   Requires minimal access key. Unlike 'faction' -> 'crimes', this selection only shows empty slots, and only for crimes with the 'Recruiting' status.
 

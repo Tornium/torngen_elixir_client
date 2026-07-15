@@ -19,7 +19,7 @@ defmodule Torngen.Client.Schema.TornEducationRewards do
             intelligence: nil | integer(),
             endurance: nil | integer()
           },
-          honor: nil | String.t(),
+          honor: nil | integer(),
           effect: nil | String.t()
         }
 
@@ -40,7 +40,7 @@ defmodule Torngen.Client.Schema.TornEducationRewards do
       honor:
         data
         |> Map.get("honor")
-        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]}),
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
       effect:
         data
         |> Map.get("effect")
@@ -72,7 +72,7 @@ defmodule Torngen.Client.Schema.TornEducationRewards do
   end
 
   defp validate_key?(:honor, value) do
-    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :string]})
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :integer]})
   end
 
   defp validate_key?(:effect, value) do

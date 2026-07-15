@@ -1,27 +1,27 @@
-defmodule Torngen.Client.Schema.FactionTerritoryWarReportResponse do
+defmodule Torngen.Client.Schema.AuctionHouseListingResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:territorywarreport]
+  @keys [:auctionhouselisting]
 
   defstruct [
-    :territorywarreport
+    :auctionhouselisting
   ]
 
   @type t :: %__MODULE__{
-          territorywarreport: Torngen.Client.Schema.FactionTerritoryWarReport.t()
+          auctionhouselisting: Torngen.Client.Schema.AuctionHouseListing.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      territorywarreport:
+      auctionhouselisting:
         data
-        |> Map.get("territorywarreport")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionTerritoryWarReport})
+        |> Map.get("auctionhouselisting")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AuctionHouseListing})
     }
   end
 
@@ -36,11 +36,8 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarReportResponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:territorywarreport, value) do
-    Torngen.Client.Schema.validate?(
-      value,
-      {:ref, Torngen.Client.Schema.FactionTerritoryWarReport}
-    )
+  defp validate_key?(:auctionhouselisting, value) do
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AuctionHouseListing})
   end
 
   @spec keys() :: list(atom())
