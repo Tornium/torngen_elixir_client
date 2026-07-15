@@ -13,7 +13,7 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
               races_entered: integer(),
               points_spent: integer(),
               parts: [Torngen.Client.Schema.RaceCarUpgradeId.t()],
-              name: nil | String.t(),
+              name: nil | nil | String.t(),
               is_removed: boolean(),
               id: Torngen.Client.Schema.RaceCarId.t()
             }
@@ -24,7 +24,7 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
     {:object,
      %{
        id: {:ref, Torngen.Client.Schema.RaceCarId},
-       name: {:one_of, [static: :null, static: :string]},
+       name: {:one_of, [static: :null, one_of: [static: :null, static: :string]]},
        parts: {:array, {:ref, Torngen.Client.Schema.RaceCarUpgradeId}},
        worth: {:static, :integer},
        races_won: {:static, :integer},
@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.UserRaceCarDetails do
           {:object,
            %{
              id: {:ref, Torngen.Client.Schema.RaceCarId},
-             name: {:one_of, [static: :null, static: :string]},
+             name: {:one_of, [static: :null, one_of: [static: :null, static: :string]]},
              parts: {:array, {:ref, Torngen.Client.Schema.RaceCarUpgradeId}},
              worth: {:static, :integer},
              races_won: {:static, :integer},

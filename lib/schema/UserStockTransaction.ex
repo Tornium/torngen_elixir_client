@@ -17,7 +17,7 @@ defmodule Torngen.Client.Schema.UserStockTransaction do
   @type t :: %__MODULE__{
           timestamp: integer(),
           shares: integer(),
-          price: integer(),
+          price: integer() | float(),
           id: integer()
         }
 
@@ -26,7 +26,7 @@ defmodule Torngen.Client.Schema.UserStockTransaction do
     %__MODULE__{
       timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
       shares: data |> Map.get("shares") |> Torngen.Client.Schema.parse({:static, :integer}),
-      price: data |> Map.get("price") |> Torngen.Client.Schema.parse({:static, :integer}),
+      price: data |> Map.get("price") |> Torngen.Client.Schema.parse({:static, :number}),
       id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -51,7 +51,7 @@ defmodule Torngen.Client.Schema.UserStockTransaction do
   end
 
   defp validate_key?(:price, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
+    Torngen.Client.Schema.validate?(value, {:static, :number})
   end
 
   defp validate_key?(:id, value) do

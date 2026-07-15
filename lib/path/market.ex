@@ -21,7 +21,7 @@ defmodule Torngen.Client.Path.Market do
   - TimestampResponse
   - MarketLookupResponse
   - MarketPropertiesResponse
-  - AuctionHouseListing
+  - AuctionHouseListingResponse
   - AuctionHouseResponse
   - MarketRentalsResponse
   - MarketItemMarketResponse
@@ -38,7 +38,7 @@ defmodule Torngen.Client.Path.Market do
     TimestampResponse,
     MarketLookupResponse,
     MarketPropertiesResponse,
-    AuctionHouseListing,
+    AuctionHouseListingResponse,
     AuctionHouseResponse,
     MarketRentalsResponse,
     MarketItemMarketResponse,

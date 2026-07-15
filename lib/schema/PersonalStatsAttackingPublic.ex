@@ -30,7 +30,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
               ranked_war_hits: integer(),
               raid_hits: integer()
             },
-            escapes: nil | %{player: integer(), foes: integer()},
+            escapes: %{player: integer(), foes: integer()},
             elo: integer(),
             defends: %{won: integer(), total: integer(), stalemate: integer(), lost: integer()},
             damage: %{total: integer(), best: integer()},
@@ -73,8 +73,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
              hits:
                {:object,
                 %{
-                  critical: {:static, :integer},
                   success: {:static, :integer},
+                  critical: {:static, :integer},
                   one_hit_kills: {:static, :integer},
                   miss: {:static, :integer}
                 }},
@@ -94,9 +94,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
                   ranked_war_hits: {:static, :integer},
                   raid_hits: {:static, :integer}
                 }},
-             escapes:
-               {:one_of,
-                [static: :null, object: %{player: {:static, :integer}, foes: {:static, :integer}}]},
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -159,8 +157,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
          hits:
            {:object,
             %{
-              critical: {:static, :integer},
               success: {:static, :integer},
+              critical: {:static, :integer},
               one_hit_kills: {:static, :integer},
               miss: {:static, :integer}
             }},
@@ -180,9 +178,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
               ranked_war_hits: {:static, :integer},
               raid_hits: {:static, :integer}
             }},
-         escapes:
-           {:one_of,
-            [static: :null, object: %{player: {:static, :integer}, foes: {:static, :integer}}]},
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,

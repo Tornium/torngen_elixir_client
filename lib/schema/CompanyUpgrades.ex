@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.CompanyUpgrades do
   ]
 
   @type t :: %__MODULE__{
-          storage_capacity: Torngen.Client.Schema.CompanyStorageSizeEnum.t(),
+          storage_capacity: integer(),
           storage: String.t(),
           staff_room: Torngen.Client.Schema.CompanyStaffRoomSizeEnum.t()
         }
@@ -23,9 +23,7 @@ defmodule Torngen.Client.Schema.CompanyUpgrades do
   def parse(%{} = data) do
     %__MODULE__{
       storage_capacity:
-        data
-        |> Map.get("storage_capacity")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.CompanyStorageSizeEnum}),
+        data |> Map.get("storage_capacity") |> Torngen.Client.Schema.parse({:static, :integer}),
       storage: data |> Map.get("storage") |> Torngen.Client.Schema.parse({:static, :string}),
       staff_room:
         data
@@ -46,7 +44,7 @@ defmodule Torngen.Client.Schema.CompanyUpgrades do
   end
 
   defp validate_key?(:storage_capacity, value) do
-    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.CompanyStorageSizeEnum})
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
   defp validate_key?(:storage, value) do

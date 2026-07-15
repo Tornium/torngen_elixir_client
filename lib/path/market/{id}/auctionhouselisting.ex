@@ -11,7 +11,7 @@ defmodule Torngen.Client.Path.Market.Id.Auctionhouselisting do
   - key: API key (Public)
 
   ## Response Module(s)
-  - AuctionHouseListing
+  - AuctionHouseListingResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
@@ -19,7 +19,7 @@ defmodule Torngen.Client.Path.Market.Id.Auctionhouselisting do
   @behaviour Torngen.Client.Path
 
   @path "market/{id}/auctionhouselisting"
-  @response_modules [AuctionHouseListing]
+  @response_modules [AuctionHouseListingResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 

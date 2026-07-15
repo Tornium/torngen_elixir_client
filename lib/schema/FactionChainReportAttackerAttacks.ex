@@ -44,7 +44,7 @@ defmodule Torngen.Client.Schema.FactionChainReportAttackerAttacks do
           losses: integer(),
           leave: integer(),
           hospitalize: integer(),
-          escapes: nil | integer(),
+          escapes: integer(),
           draws: integer(),
           bonuses: integer(),
           assists: integer()
@@ -63,8 +63,7 @@ defmodule Torngen.Client.Schema.FactionChainReportAttackerAttacks do
       leave: data |> Map.get("leave") |> Torngen.Client.Schema.parse({:static, :integer}),
       hospitalize:
         data |> Map.get("hospitalize") |> Torngen.Client.Schema.parse({:static, :integer}),
-      escapes:
-        data |> Map.get("escapes") |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
+      escapes: data |> Map.get("escapes") |> Torngen.Client.Schema.parse({:static, :integer}),
       draws: data |> Map.get("draws") |> Torngen.Client.Schema.parse({:static, :integer}),
       bonuses: data |> Map.get("bonuses") |> Torngen.Client.Schema.parse({:static, :integer}),
       assists: data |> Map.get("assists") |> Torngen.Client.Schema.parse({:static, :integer})

@@ -16,7 +16,7 @@ defmodule Torngen.Client.Schema.UserIconPublic do
   @type t :: %__MODULE__{
           title: String.t(),
           id: Torngen.Client.Schema.UserIconId.t(),
-          description: String.t()
+          description: nil | String.t()
         }
 
   @impl true
@@ -28,7 +28,9 @@ defmodule Torngen.Client.Schema.UserIconPublic do
         |> Map.get("id")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserIconId}),
       description:
-        data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string})
+        data
+        |> Map.get("description")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :string]})
     }
   end
 
@@ -52,7 +54,7 @@ defmodule Torngen.Client.Schema.UserIconPublic do
   end
 
   defp validate_key?(:description, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :string]})
   end
 
   @spec keys() :: list(atom())
