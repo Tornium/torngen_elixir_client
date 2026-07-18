@@ -7,7 +7,7 @@ defmodule Torngen.Client.Schema.FactionCrimeItemOutcomeEnum do
 
   @type t :: String.t()
 
-  @values ["lost", "used"]
+  @values ["lost", "used", "unused"]
 
   @spec values() :: [t()]
   def values, do: @values
