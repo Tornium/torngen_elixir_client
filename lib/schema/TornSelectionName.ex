@@ -26,6 +26,7 @@ defmodule Torngen.Client.Schema.TornSelectionName do
     "lookup",
     "medals",
     "merits",
+    "museum",
     "organizedcrimes",
     "properties",
     "stocks",
