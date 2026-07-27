@@ -62,6 +62,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "revives",
     "revivesfull",
     "skills",
+    "snapshot",
     "stocks",
     "trades",
     "trade",

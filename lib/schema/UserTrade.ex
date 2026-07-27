@@ -1,24 +1,30 @@
 defmodule Torngen.Client.Schema.UserTrade do
   @moduledoc false
 
-  use Torngen.Client.SchemaObjectAccess, deprecated: []
+  use Torngen.Client.SchemaObjectAccess, deprecated: [:timestamp]
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:user, :trader, :timestamp, :id]
+  @keys [:user, :trader, :timestamp, :modified_at, :id, :expires_at, :completed_at]
 
   defstruct [
     :user,
     :trader,
     :timestamp,
-    :id
+    :modified_at,
+    :id,
+    :expires_at,
+    :completed_at
   ]
 
   @type t :: %__MODULE__{
           user: Torngen.Client.Schema.UserTradeParticipant.t(),
           trader: Torngen.Client.Schema.UserTradeParticipant.t(),
-          timestamp: integer(),
-          id: Torngen.Client.Schema.TradeId.t()
+          timestamp: nil | integer(),
+          modified_at: nil | integer(),
+          id: Torngen.Client.Schema.TradeId.t(),
+          expires_at: nil | integer(),
+          completed_at: nil | integer()
         }
 
   @impl true
@@ -32,11 +38,24 @@ defmodule Torngen.Client.Schema.UserTrade do
         data
         |> Map.get("trader")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserTradeParticipant}),
-      timestamp: data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:static, :integer}),
+      timestamp:
+        data |> Map.get("timestamp") |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
+      modified_at:
+        data
+        |> Map.get("modified_at")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
       id:
         data
         |> Map.get("id")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TradeId})
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TradeId}),
+      expires_at:
+        data
+        |> Map.get("expires_at")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
+      completed_at:
+        data
+        |> Map.get("completed_at")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]})
     }
   end
 
@@ -63,8 +82,20 @@ defmodule Torngen.Client.Schema.UserTrade do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
+  defp validate_key?(:modified_at, value) do
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :integer]})
+  end
+
   defp validate_key?(:id, value) do
     Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TradeId})
+  end
+
+  defp validate_key?(:expires_at, value) do
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :integer]})
+  end
+
+  defp validate_key?(:completed_at, value) do
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :integer]})
   end
 
   @spec keys() :: list(atom())
