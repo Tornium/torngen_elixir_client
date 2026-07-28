@@ -6,11 +6,13 @@ defmodule Torngen.Client.Schema.Attack do
   @behaviour Torngen.Client.Schema
 
   @keys [
+    :territory_war_id,
     :started,
     :result,
     :respect_loss,
     :respect_gain,
     :modifiers,
+    :is_territory_war,
     :is_stealthed,
     :is_ranked_war,
     :is_raid,
@@ -25,11 +27,13 @@ defmodule Torngen.Client.Schema.Attack do
   ]
 
   defstruct [
+    :territory_war_id,
     :started,
     :result,
     :respect_loss,
     :respect_gain,
     :modifiers,
+    :is_territory_war,
     :is_stealthed,
     :is_ranked_war,
     :is_raid,
@@ -44,6 +48,7 @@ defmodule Torngen.Client.Schema.Attack do
   ]
 
   @type t :: %__MODULE__{
+          territory_war_id: nil | Torngen.Client.Schema.TerritoryWarId.t(),
           started: integer(),
           result: Torngen.Client.Schema.FactionAttackResult.t(),
           respect_loss: integer() | float(),
@@ -57,6 +62,7 @@ defmodule Torngen.Client.Schema.Attack do
             fair_fight: integer() | float(),
             chain: integer() | float()
           },
+          is_territory_war: boolean(),
           is_stealthed: boolean(),
           is_ranked_war: boolean(),
           is_raid: boolean(),
@@ -73,6 +79,12 @@ defmodule Torngen.Client.Schema.Attack do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
+      territory_war_id:
+        data
+        |> Map.get("territory_war_id")
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.TerritoryWarId]}
+        ),
       started: data |> Map.get("started") |> Torngen.Client.Schema.parse({:static, :integer}),
       result:
         data
@@ -97,6 +109,8 @@ defmodule Torngen.Client.Schema.Attack do
              fair_fight: {:static, :number}
            }}
         ),
+      is_territory_war:
+        data |> Map.get("is_territory_war") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_stealthed:
         data |> Map.get("is_stealthed") |> Torngen.Client.Schema.parse({:static, :boolean}),
       is_ranked_war:
@@ -144,6 +158,13 @@ defmodule Torngen.Client.Schema.Attack do
     |> Enum.all?()
   end
 
+  defp validate_key?(:territory_war_id, value) do
+    Torngen.Client.Schema.validate?(
+      value,
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.TerritoryWarId]}
+    )
+  end
+
   defp validate_key?(:started, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
@@ -174,6 +195,10 @@ defmodule Torngen.Client.Schema.Attack do
          fair_fight: {:static, :number}
        }}
     )
+  end
+
+  defp validate_key?(:is_territory_war, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :boolean})
   end
 
   defp validate_key?(:is_stealthed, value) do
