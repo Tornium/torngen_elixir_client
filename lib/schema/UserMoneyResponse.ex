@@ -52,7 +52,6 @@ defmodule Torngen.Client.Schema.UserMoneyResponse do
              wallet: {:static, :integer},
              company: {:static, :integer},
              vault: {:static, :integer},
-             daily_networth: {:static, :integer},
              city_bank:
                {:one_of,
                 [
@@ -66,7 +65,8 @@ defmodule Torngen.Client.Schema.UserMoneyResponse do
                     interest_rate: {:static, :number}
                   }
                 ]},
-             cayman_bank: {:static, :integer}
+             cayman_bank: {:static, :integer},
+             daily_networth: {:static, :integer}
            }}
         )
     }
@@ -95,7 +95,6 @@ defmodule Torngen.Client.Schema.UserMoneyResponse do
          wallet: {:static, :integer},
          company: {:static, :integer},
          vault: {:static, :integer},
-         daily_networth: {:static, :integer},
          city_bank:
            {:one_of,
             [
@@ -109,7 +108,8 @@ defmodule Torngen.Client.Schema.UserMoneyResponse do
                 interest_rate: {:static, :number}
               }
             ]},
-         cayman_bank: {:static, :integer}
+         cayman_bank: {:static, :integer},
+         daily_networth: {:static, :integer}
        }}
     )
   end

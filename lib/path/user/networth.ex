@@ -1,8 +1,8 @@
-defmodule Torngen.Client.Path.User.Newmessages do
+defmodule Torngen.Client.Path.User.Networth do
   @moduledoc """
-  Get your unseen messages.
+  Get your networth.
 
-  Requires limited access key. This selection is cached for 1 hour.
+  Requires limited access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache or get the data in specific point in time
@@ -10,15 +10,15 @@ defmodule Torngen.Client.Path.User.Newmessages do
   - key: API key (Limited)
 
   ## Response Module(s)
-  - UserNewMessagesResponse
+  - UserNetworthResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/newmessages"
-  @response_modules [UserNewMessagesResponse]
+  @path "user/networth"
+  @response_modules [UserNetworthResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
