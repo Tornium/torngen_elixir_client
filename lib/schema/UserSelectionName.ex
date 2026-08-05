@@ -47,6 +47,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "messages",
     "missions",
     "money",
+    "networth",
     "newevents",
     "newmessages",
     "notifications",
@@ -75,7 +76,6 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "display",
     "education",
     "gym",
-    "networth",
     "perks"
   ]
 
