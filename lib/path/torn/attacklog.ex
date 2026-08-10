@@ -9,7 +9,7 @@ defmodule Torngen.Client.Path.Torn.Attacklog do
   - offset: N/A
   - sort: Sorted by the greatest timestamps
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
-  - timestamp: Timestamp to bypass cache or get the data in specific point in time
+  - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -58,7 +58,7 @@ defmodule Torngen.Client.Path.Torn.Attacklog do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache or get the data in specific point in time
+    # Timestamp to bypass cache
     {:query, :timestamp, value}
   end
 

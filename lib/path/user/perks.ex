@@ -1,8 +1,8 @@
-defmodule Torngen.Client.Path.User.Discord do
+defmodule Torngen.Client.Path.User.Perks do
   @moduledoc """
-  Get your discord information.
+  Get your current perks.
 
-  Requires public key.
+  Requires minimal access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
@@ -10,15 +10,15 @@ defmodule Torngen.Client.Path.User.Discord do
   - key: API key (Public)
 
   ## Response Module(s)
-  - UserDiscordResponse
+  - UserPerksResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/discord"
-  @response_modules [UserDiscordResponse]
+  @path "user/perks"
+  @response_modules [UserPerksResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 

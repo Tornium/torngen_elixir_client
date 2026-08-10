@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.Faction.Applications do
   Requires minimal access key with faction API access permissions.
 
   ## Parmeters
-  - timestamp: Timestamp to bypass cache or get the data in specific point in time
+  - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Minimal)
 
@@ -30,7 +30,7 @@ defmodule Torngen.Client.Path.Faction.Applications do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache or get the data in specific point in time
+    # Timestamp to bypass cache
     {:query, :timestamp, value}
   end
 

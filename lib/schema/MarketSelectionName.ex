@@ -7,15 +7,15 @@ defmodule Torngen.Client.Schema.MarketSelectionName do
 
   @values [
     :string,
+    "auctionhouse",
+    "auctionhouselisting",
     "bazaar",
     "itemmarket",
+    "pointsmarket",
     "properties",
     "rentals",
     "lookup",
-    "timestamp",
-    "pointsmarket",
-    "auctionhouse",
-    "auctionhouselisting"
+    "timestamp"
   ]
 
   @spec values() :: [t()]
