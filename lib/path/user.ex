@@ -17,7 +17,7 @@ defmodule Torngen.Client.Path.User do
   - filters: It's possible to use this query parameter to only get incoming or outgoing attacks / revives
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - offset: N/A
-  - timestamp: Timestamp to bypass cache or get the data in specific point in time
+  - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -42,6 +42,7 @@ defmodule Torngen.Client.Path.User do
   - UserVirusResponse
   - UserTravelResponse
   - UserRefillsResponse
+  - UserPerksResponse
   - UserNotificationsResponse
   - UserCooldownsResponse
   - UserBarsResponse
@@ -114,6 +115,7 @@ defmodule Torngen.Client.Path.User do
     UserVirusResponse,
     UserTravelResponse,
     UserRefillsResponse,
+    UserPerksResponse,
     UserNotificationsResponse,
     UserCooldownsResponse,
     UserBarsResponse,
@@ -242,7 +244,7 @@ defmodule Torngen.Client.Path.User do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache or get the data in specific point in time
+    # Timestamp to bypass cache
     {:query, :timestamp, value}
   end
 

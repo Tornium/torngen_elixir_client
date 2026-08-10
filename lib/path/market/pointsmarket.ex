@@ -1,8 +1,8 @@
-defmodule Torngen.Client.Path.User.Discord do
+defmodule Torngen.Client.Path.Market.Pointsmarket do
   @moduledoc """
-  Get your discord information.
+  Get points market listings.
 
-  Requires public key.
+  Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
@@ -10,15 +10,15 @@ defmodule Torngen.Client.Path.User.Discord do
   - key: API key (Public)
 
   ## Response Module(s)
-  - UserDiscordResponse
+  - PointsMarketResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "user/discord"
-  @response_modules [UserDiscordResponse]
+  @path "market/pointsmarket"
+  @response_modules [PointsMarketResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 

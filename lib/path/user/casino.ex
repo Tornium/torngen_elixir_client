@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.User.Casino do
   Requires limited access key. Only available to yourself.
 
   ## Parmeters
-  - timestamp: Timestamp to bypass cache or get the data in specific point in time
+  - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Limited)
 
@@ -30,7 +30,7 @@ defmodule Torngen.Client.Path.User.Casino do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache or get the data in specific point in time
+    # Timestamp to bypass cache
     {:query, :timestamp, value}
   end
 

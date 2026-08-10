@@ -11,7 +11,7 @@ defmodule Torngen.Client.Path.Forum.ThreadId.Posts do
   - from: Timestamp that sets the lower limit for the data returned
   - to: Timestamp that sets the upper limit for the data returned
   - threadId: Thread id
-  - timestamp: Timestamp to bypass cache or get the data in specific point in time
+  - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
@@ -72,7 +72,7 @@ defmodule Torngen.Client.Path.Forum.ThreadId.Posts do
 
   @impl true
   defparameter :timestamp, value do
-    # Timestamp to bypass cache or get the data in specific point in time
+    # Timestamp to bypass cache
     {:query, :timestamp, value}
   end
 
