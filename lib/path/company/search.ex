@@ -5,7 +5,7 @@ defmodule Torngen.Client.Path.Company.Search do
   Requires public access key. This selection is standalone and cannot be used together with other selections.
 
   ## Parmeters
-  - name: Name  to search for.
+  - name: Name to search for.
   - filters: A filtering query parameter allowing a comma-separated list of filters
   - limit: N/A
   - offset: N/A
@@ -34,13 +34,13 @@ defmodule Torngen.Client.Path.Company.Search do
 
   @impl true
   defparameter :name, value do
-    # Name  to search for.
+    # Name to search for.
     {:query, :name, value}
   end
 
   @impl true
   defparameter :filters, value do
-    # A filtering query parameter allowing a comma-separated list of filters.    *  Each filter can be one of the following:  *  Fixed options: `recruiting`, `notRecruiting`  *  Dynamic options: `fieldName`+`condition`+`number`. Each dynamic filter is made out of 3 parts separated by colon `:`:  *  * `fieldName` is one of: `id`, `type`, `daysOld`, `rating`, `dailyIncome`, `weeklyIncome`, `dailyCustomers`, `weeklyCustomers`  *  * `condition` is one of: `=`, `!=`, `<`, `<=`, `>=`, `>`, `Equal`, `NotEqual`, `Less`, `LessOrEqual`, `GreaterOrEqual`, `Greater`  *  * `number`: any integer value  *  Examples: `filters=recruiting`, `filters=weeklyIncome:>=:20000,id:<:1000,notRecruiting`, `filters=type:Equal:10,rating:=:10,dailyIncome:<=:6666666`
+    # A filtering query parameter allowing a comma-separated list of filters.    *  Each filter can be one of the following:  *  Fixed options: `recruiting`, `notRecruiting`  *  Dynamic options: `fieldName`+`condition`+`number`. Each dynamic filter is made out of 3 parts separated by colon `:`:  *  * `fieldName` is one of: `id`, `type`, `daysOld`, `rating`, `dailyIncome`, `weeklyIncome`, `dailyCustomers`, `weeklyCustomers`  *  * `condition` is one of: `=`, `!=`, `<`, `<=`, `>=`, `>`, `Equal`, `NotEqual`, `Less`, `LessOrEqual`, `GreaterOrEqual`, `Greater`  *  * `number`: any integer value  *  Examples:  * `filters=recruiting`,  * `filters=weeklyIncome:>=:20000,id:<:1000,notRecruiting`,  * `filters=type:Equal:10,rating:=:10,dailyIncome:<=:6666666`
     {:query, :filters, value}
   end
 
