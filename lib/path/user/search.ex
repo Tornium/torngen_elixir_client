@@ -1,28 +1,27 @@
-defmodule Torngen.Client.Path.Faction.Search do
+defmodule Torngen.Client.Path.User.Search do
   @moduledoc """
-  Search factions by name or other criteria.
+  Search users by name or other criteria.
 
-  Requires public access key. This selection is standalone and cannot be used together with other selections.
+  Requires public access key. This selection is standalone and cannot be used together with other selections. It's always limited to return just 25 records.
 
   ## Parmeters
   - name: Name to search for.
   - filters: A filtering query parameter allowing a comma-separated list of filters
-  - limit: N/A
   - offset: N/A
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionSearchResponse
+  - UserSearchResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "faction/search"
-  @response_modules [FactionSearchResponse]
+  @path "user/search"
+  @response_modules [UserSearchResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -40,14 +39,8 @@ defmodule Torngen.Client.Path.Faction.Search do
 
   @impl true
   defparameter :filters, value do
-    # A filtering query parameter allowing a comma-separated list of filters.    * Each filter can be one of the following:  * Fixed options: `destroyed`, `notDestroyed`, `recruiting`, `notRecruiting`  * Dynamic options: `fieldName`+`condition`+`number`. Each dynamic filter is made out of 3 parts separated by colon `:`:  * * `fieldName` is one of: `id`, `respect`, `members`, `membersMax`  * * `condition` is one of: `=`, `!=`, `<`, `<=`, `>=`, `>`, `Equal`, `NotEqual`, `Less`, `LessOrEqual`, `GreaterOrEqual`, `Greater`  * * `number`: any integer value  * Examples:  * `filters=destroyed`,  * `filters=notDestroyed,recruiting`,  * `filters=respect:>=:20000,id:<:100,notRecruiting`
+    # A filtering query parameter allowing a comma-separated list of filters.    *  Filters in this selection reflect on-site filters, and they can be:  *  One of: `married`, `notMarried`, `traveling`, `notTraveling`, `inFaction`, `notInFaction`, `inCompany`, `notInCompany`, `inHospital`, `notInHospital`, `inJail`, `notInJail`, `inFederalJail`, `notInFederalJail`  *  Additionally, one of last action: `lastActionNow`, `lastActionRecent`, `lastActionHourAgo`, `lastActionDayAgo`, `lastActionWeekAgo`, `lastActionMonthAgo`, `lastActionYearAgo`  *  Additionally, one of gender: `male`, `female`, `enby`  *  Any dynamic option: `fieldName`+`condition`+`number`. Each dynamic filter is made out of 3 parts separated by colon `:`:  *  * `fieldName` is one of: `level`, `daysOld`, `offences`  *  * `condition` is one of: `=`, `!=`, `<`, `<=`, `>=`, `>`, `Equal`, `NotEqual`, `Less`, `LessOrEqual`, `GreaterOrEqual`, `Greater`  *  * `number`: any integer value  *  Additionally, a dynamic list of faction ids (negates `inFaction` and `notInFaction` filters): `factions`+`:`+`list of ids separated by semicolon ;`  *  Examples:  * `filters=married`,  * `filters=daysOld:>=:5000,offences:>:100000,notInFaction`,  * `filters=factions:1;2;3`,  * `filters=level:=:100,lastActionYearAgo,male,inFaction,offences:>=:1000,offences:<=:1000000,daysOld:>:500,daysOld:<:7000`
     {:query, :filters, value}
-  end
-
-  @impl true
-  defparameter :limit, value do
-    # N/A
-    {:query, :limit, value}
   end
 
   @impl true
