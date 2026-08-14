@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Inventory do
   @moduledoc """
   Get your inventory.
 
-  <b>Cached selection (1 hour per category).</b> Requires limited access key.
+  <b>Cached selection (1 hour per category).</b> Requires minimal access key.
 
   ## Parmeters
   - cat: Items category
@@ -10,7 +10,7 @@ defmodule Torngen.Client.Path.User.Inventory do
   - limit: N/A
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Limited)
+  - key: API key (Minimal)
 
   ## Response Module(s)
   - UserInventoryResponse
@@ -63,7 +63,7 @@ defmodule Torngen.Client.Path.User.Inventory do
 
   @impl true
   defparameter :key, value do
-    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

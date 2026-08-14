@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Company.News do
   @moduledoc """
   Get your company's news details.
 
-  Requires minimal access key.
+  Requires limited access key.
 
   ## Parmeters
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
@@ -13,7 +13,7 @@ defmodule Torngen.Client.Path.Company.News do
   - cat: News category type
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Minimal)
+  - key: API key (Limited)
 
   ## Response Module(s)
   - NewsResponse
@@ -84,7 +84,7 @@ defmodule Torngen.Client.Path.Company.News do
 
   @impl true
   defparameter :key, value do
-    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 
