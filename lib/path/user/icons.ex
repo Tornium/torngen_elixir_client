@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Icons do
   @moduledoc """
   Get your icons information.
 
-  Requires public access key. When requesting data for yourself with 'Custom', 'Limited' or 'Full' access keys, the response will be of type UserIconPrivate, otherwise UserIconPublic.
+  Requires public access key. When requesting data for yourself with 'Limited' or 'Full' access keys, the response will be of type UserIconPrivate, otherwise UserIconPublic.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

@@ -1,10 +1,11 @@
-defmodule Torngen.Client.Path.User.Medals do
+defmodule Torngen.Client.Path.User.Id.Medals do
   @moduledoc """
-  Get all your achieved medals.
+  Get medals achieved by a specific player.
 
-  Requires public access key.
+  Requires public access key. Returns only highest medal in each category (just like profiles on site).
 
   ## Parmeters
+  - id: User id or user discord id
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
@@ -17,7 +18,7 @@ defmodule Torngen.Client.Path.User.Medals do
 
   @behaviour Torngen.Client.Path
 
-  @path "user/medals"
+  @path "user/{id}/medals"
   @response_modules [UserMedalsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
@@ -27,6 +28,12 @@ defmodule Torngen.Client.Path.User.Medals do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :id, value do
+    # User id or user discord id
+    {:path, :id, value}
+  end
 
   @impl true
   defparameter :timestamp, value do
