@@ -14,7 +14,7 @@ defmodule Torngen.Client.Schema.UserLogsResponse do
 
   @type t :: %__MODULE__{
           log: [Torngen.Client.Schema.UserLog.t()],
-          _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
+          _metadata: Torngen.Client.Schema.RequestMetadataWithLinksAndNanostamp.t()
         }
 
   @impl true
@@ -27,7 +27,9 @@ defmodule Torngen.Client.Schema.UserLogsResponse do
       _metadata:
         data
         |> Map.get("_metadata")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
+        |> Torngen.Client.Schema.parse(
+          {:ref, Torngen.Client.Schema.RequestMetadataWithLinksAndNanostamp}
+        )
     }
   end
 
@@ -47,7 +49,10 @@ defmodule Torngen.Client.Schema.UserLogsResponse do
   end
 
   defp validate_key?(:_metadata, value) do
-    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.RequestMetadataWithLinks})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:ref, Torngen.Client.Schema.RequestMetadataWithLinksAndNanostamp}
+    )
   end
 
   @spec keys() :: list(atom())

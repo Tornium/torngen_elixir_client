@@ -1,30 +1,31 @@
-defmodule Torngen.Client.Schema.TornSubcrime do
+defmodule Torngen.Client.Schema.TornShoplifting do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:nerve_cost, :name, :id]
+  @keys [:status, :id]
 
   defstruct [
-    :nerve_cost,
-    :name,
+    :status,
     :id
   ]
 
   @type t :: %__MODULE__{
-          nerve_cost: integer(),
-          name: String.t(),
+          status: [Torngen.Client.Schema.TornShopliftingSecurityStatus.t()],
           id: Torngen.Client.Schema.TornSubCrimeId.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      nerve_cost:
-        data |> Map.get("nerve_cost") |> Torngen.Client.Schema.parse({:static, :integer}),
-      name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
+      status:
+        data
+        |> Map.get("status")
+        |> Torngen.Client.Schema.parse(
+          {:array, {:ref, Torngen.Client.Schema.TornShopliftingSecurityStatus}}
+        ),
       id:
         data
         |> Map.get("id")
@@ -43,12 +44,11 @@ defmodule Torngen.Client.Schema.TornSubcrime do
     |> Enum.all?()
   end
 
-  defp validate_key?(:nerve_cost, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
-  end
-
-  defp validate_key?(:name, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :string})
+  defp validate_key?(:status, value) do
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.TornShopliftingSecurityStatus}}
+    )
   end
 
   defp validate_key?(:id, value) do

@@ -31,6 +31,7 @@ defmodule Torngen.Client.Path.User do
   - UserNewEventsResponse
   - UserTradesResponse
   - UserTradeResponse
+  - UserGymResponse
   - UserBattleStatsResponse
   - UserSkillsResponse
   - UserWorkStatsResponse
@@ -104,6 +105,7 @@ defmodule Torngen.Client.Path.User do
     UserNewEventsResponse,
     UserTradesResponse,
     UserTradeResponse,
+    UserGymResponse,
     UserBattleStatsResponse,
     UserSkillsResponse,
     UserWorkStatsResponse,

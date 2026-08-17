@@ -16,6 +16,7 @@ defmodule Torngen.Client.Schema.TornSelectionName do
     "eliminationteam",
     "factionhof",
     "factiontree",
+    "gyms",
     "hof",
     "honors",
     "itemammo",
@@ -29,6 +30,8 @@ defmodule Torngen.Client.Schema.TornSelectionName do
     "museum",
     "organizedcrimes",
     "properties",
+    "searchforcash",
+    "shoplifting",
     "stocks",
     "subcrimes",
     "territory",
@@ -45,8 +48,6 @@ defmodule Torngen.Client.Schema.TornSelectionName do
     "pawnshop",
     "pokertables",
     "rockpaperscissors",
-    "searchforcash",
-    "shoplifting",
     "stats"
   ]
 

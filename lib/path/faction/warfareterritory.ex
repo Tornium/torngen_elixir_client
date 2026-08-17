@@ -1,11 +1,10 @@
-defmodule Torngen.Client.Path.Faction.Warfare do
+defmodule Torngen.Client.Path.Faction.Warfareterritory do
   @moduledoc """
-  Get faction warfare.
+  Get all territory wars.
 
-  This selection is replaced by other warfare selections and 'faction' -> 'dirtybombs'. This will be removed on 1st January 2027<b></b>. Requires public access key. The response depends on the selected category.
+  Requires public access key.
 
   ## Parmeters
-  - cat: N/A
   - limit: N/A
   - sort: Sorted by the greatest timestamps
   - from: Timestamp that sets the lower limit for the data returned
@@ -15,15 +14,15 @@ defmodule Torngen.Client.Path.Faction.Warfare do
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionWarfareResponse
+  - FactionWarfareTerritoryWarsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "faction/warfare"
-  @response_modules [FactionWarfareResponse]
+  @path "faction/warfareterritory"
+  @response_modules [FactionWarfareTerritoryWarsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -32,12 +31,6 @@ defmodule Torngen.Client.Path.Faction.Warfare do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :cat, value do
-    # N/A
-    {:query, :cat, value}
-  end
 
   @impl true
   defparameter :limit, value do

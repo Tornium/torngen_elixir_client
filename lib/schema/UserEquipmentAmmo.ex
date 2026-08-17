@@ -1,34 +1,37 @@
-defmodule Torngen.Client.Schema.TornSubcrime do
+defmodule Torngen.Client.Schema.UserEquipmentAmmo do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:nerve_cost, :name, :id]
+  @keys [:type, :quantity, :name, :id]
 
   defstruct [
-    :nerve_cost,
+    :type,
+    :quantity,
     :name,
     :id
   ]
 
   @type t :: %__MODULE__{
-          nerve_cost: integer(),
+          type: Torngen.Client.Schema.TornItemAmmoTypeEnum.t(),
+          quantity: integer(),
           name: String.t(),
-          id: Torngen.Client.Schema.TornSubCrimeId.t()
+          id: Torngen.Client.Schema.AmmoId.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      nerve_cost:
-        data |> Map.get("nerve_cost") |> Torngen.Client.Schema.parse({:static, :integer}),
+      type:
+        data
+        |> Map.get("type")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemAmmoTypeEnum}),
+      quantity: data |> Map.get("quantity") |> Torngen.Client.Schema.parse({:static, :integer}),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       id:
-        data
-        |> Map.get("id")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornSubCrimeId})
+        data |> Map.get("id") |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AmmoId})
     }
   end
 
@@ -43,7 +46,11 @@ defmodule Torngen.Client.Schema.TornSubcrime do
     |> Enum.all?()
   end
 
-  defp validate_key?(:nerve_cost, value) do
+  defp validate_key?(:type, value) do
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemAmmoTypeEnum})
+  end
+
+  defp validate_key?(:quantity, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
@@ -52,7 +59,7 @@ defmodule Torngen.Client.Schema.TornSubcrime do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornSubCrimeId})
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.AmmoId})
   end
 
   @spec keys() :: list(atom())

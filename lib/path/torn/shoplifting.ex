@@ -1,29 +1,24 @@
-defmodule Torngen.Client.Path.Faction.Warfare do
+defmodule Torngen.Client.Path.Torn.Shoplifting do
   @moduledoc """
-  Get faction warfare.
+  Get shoplifting crime statuses.
 
-  This selection is replaced by other warfare selections and 'faction' -> 'dirtybombs'. This will be removed on 1st January 2027<b></b>. Requires public access key. The response depends on the selected category.
+  Requires public access key.
 
   ## Parmeters
-  - cat: N/A
-  - limit: N/A
-  - sort: Sorted by the greatest timestamps
-  - from: Timestamp that sets the lower limit for the data returned
-  - to: Timestamp that sets the upper limit for the data returned
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionWarfareResponse
+  - TornShopliftingResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "faction/warfare"
-  @response_modules [FactionWarfareResponse]
+  @path "torn/shoplifting"
+  @response_modules [TornShopliftingResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -32,36 +27,6 @@ defmodule Torngen.Client.Path.Faction.Warfare do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :cat, value do
-    # N/A
-    {:query, :cat, value}
-  end
-
-  @impl true
-  defparameter :limit, value do
-    # N/A
-    {:query, :limit, value}
-  end
-
-  @impl true
-  defparameter :sort, value do
-    # Sorted by the greatest timestamps
-    {:query, :sort, value}
-  end
-
-  @impl true
-  defparameter :from, value do
-    # Timestamp that sets the lower limit for the data returned. Data returned will be after this time
-    {:query, :from, value}
-  end
-
-  @impl true
-  defparameter :to, value do
-    # Timestamp that sets the upper limit for the data returned. Data returned will be up to and including this time
-    {:query, :to, value}
-  end
 
   @impl true
   defparameter :timestamp, value do

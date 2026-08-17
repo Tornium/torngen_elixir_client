@@ -10,12 +10,7 @@ defmodule Torngen.Client.Schema.UserEquipment do
             %{
               slot: integer(),
               mods: [Torngen.Client.Schema.UserEquipmentItemMod.t()],
-              ammo: %{
-                type: Torngen.Client.Schema.TornItemAmmoTypeEnum.t(),
-                quantity: integer(),
-                name: String.t(),
-                id: Torngen.Client.Schema.AmmoId.t()
-              }
+              ammo: nil | Torngen.Client.Schema.UserEquipmentAmmo.t()
             }
             | Torngen.Client.Schema.TornItemDetails.t()
           ]
@@ -25,14 +20,7 @@ defmodule Torngen.Client.Schema.UserEquipment do
      %{
        slot: {:static, :integer},
        mods: {:array, {:ref, Torngen.Client.Schema.UserEquipmentItemMod}},
-       ammo:
-         {:object,
-          %{
-            id: {:ref, Torngen.Client.Schema.AmmoId},
-            name: {:static, :string},
-            type: {:ref, Torngen.Client.Schema.TornItemAmmoTypeEnum},
-            quantity: {:static, :integer}
-          }}
+       ammo: {:one_of, [static: :null, ref: Torngen.Client.Schema.UserEquipmentAmmo]}
      }},
     {:ref, Torngen.Client.Schema.TornItemDetails}
   ]
@@ -47,14 +35,7 @@ defmodule Torngen.Client.Schema.UserEquipment do
            %{
              slot: {:static, :integer},
              mods: {:array, {:ref, Torngen.Client.Schema.UserEquipmentItemMod}},
-             ammo:
-               {:object,
-                %{
-                  id: {:ref, Torngen.Client.Schema.AmmoId},
-                  name: {:static, :string},
-                  type: {:ref, Torngen.Client.Schema.TornItemAmmoTypeEnum},
-                  quantity: {:static, :integer}
-                }}
+             ammo: {:one_of, [static: :null, ref: Torngen.Client.Schema.UserEquipmentAmmo]}
            }}
         ),
         data |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemDetails})
