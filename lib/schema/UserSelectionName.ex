@@ -30,6 +30,7 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "forumposts",
     "forumsubscribedthreads",
     "forumthreads",
+    "gym",
     "hof",
     "honors",
     "icons",
@@ -75,7 +76,6 @@ defmodule Torngen.Client.Schema.UserSelectionName do
     "criminalrecord",
     "display",
     "education",
-    "gym",
     "perks"
   ]
 

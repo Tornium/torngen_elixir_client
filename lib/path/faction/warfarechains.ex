@@ -1,8 +1,8 @@
-defmodule Torngen.Client.Path.Faction.Warfare do
+defmodule Torngen.Client.Path.Faction.Warfarechains do
   @moduledoc """
-  Get faction warfare.
+  Get all chains.
 
-  This selection is replaced by other warfare selections and 'faction' -> 'dirtybombs'. This will be removed on 1st January 2027<b></b>. Requires public access key. The response depends on the selected category.
+  Requires public access key. By default, active chains are returned.
 
   ## Parmeters
   - cat: N/A
@@ -15,15 +15,15 @@ defmodule Torngen.Client.Path.Faction.Warfare do
   - key: API key (Public)
 
   ## Response Module(s)
-  - FactionWarfareResponse
+  - FactionWarfareChainsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "faction/warfare"
-  @response_modules [FactionWarfareResponse]
+  @path "faction/warfarechains"
+  @response_modules [FactionWarfareChainsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 

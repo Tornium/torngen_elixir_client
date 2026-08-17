@@ -17,7 +17,7 @@ defmodule Torngen.Client.Schema.UserSubcrime do
   @type t :: %__MODULE__{
           total: integer(),
           success: integer(),
-          id: integer(),
+          id: Torngen.Client.Schema.TornSubCrimeId.t(),
           fail: integer()
         }
 
@@ -26,7 +26,10 @@ defmodule Torngen.Client.Schema.UserSubcrime do
     %__MODULE__{
       total: data |> Map.get("total") |> Torngen.Client.Schema.parse({:static, :integer}),
       success: data |> Map.get("success") |> Torngen.Client.Schema.parse({:static, :integer}),
-      id: data |> Map.get("id") |> Torngen.Client.Schema.parse({:static, :integer}),
+      id:
+        data
+        |> Map.get("id")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornSubCrimeId}),
       fail: data |> Map.get("fail") |> Torngen.Client.Schema.parse({:static, :integer})
     }
   end
@@ -51,7 +54,7 @@ defmodule Torngen.Client.Schema.UserSubcrime do
   end
 
   defp validate_key?(:id, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornSubCrimeId})
   end
 
   defp validate_key?(:fail, value) do

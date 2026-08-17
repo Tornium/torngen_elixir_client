@@ -23,6 +23,11 @@ defmodule Torngen.Client.Path.Faction do
 
   ## Response Module(s)
   - TimestampResponse
+  - FactionWarfareRankedResponse
+  - FactionWarfareRaidsResponse
+  - FactionWarfareTerritoryWarsResponse
+  - FactionWarfareChainsResponse
+  - FactionWarfareDirtyBombsResponse
   - FactionLookupResponse
   - FactionRankedWarResponse
   - FactionRacketsResponse
@@ -63,6 +68,11 @@ defmodule Torngen.Client.Path.Faction do
   @path "faction"
   @response_modules [
     TimestampResponse,
+    FactionWarfareRankedResponse,
+    FactionWarfareRaidsResponse,
+    FactionWarfareTerritoryWarsResponse,
+    FactionWarfareChainsResponse,
+    FactionWarfareDirtyBombsResponse,
     FactionLookupResponse,
     FactionRankedWarResponse,
     FactionRacketsResponse,
