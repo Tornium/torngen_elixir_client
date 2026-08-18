@@ -32,10 +32,13 @@ defmodule Torngen.Client.Path.Torn do
   - TornFactionTreeResponse
   - TornProperties
   - TornItemAmmoResponse
+  - TornPokerTablesResponse
   - TornGymsResponse
   - TornBountiesResponse
+  - TornBankResponse
   - TornMedalsResponse
   - TornEliminationTeamPlayersResponse
+  - TornCityShopsResponse
   - TornEliminationTeamsResponse
   - TornItemDetailsResponse
   - TornHonorsResponse
@@ -44,6 +47,7 @@ defmodule Torngen.Client.Path.Torn do
   - TornEducationResponse
   - TornLogCategoriesResponse
   - TornItemsResponse
+  - TornCardsResponse
   - TornLogTypesResponse
   - TornFactionHofResponse
   - TornHofResponse
@@ -70,10 +74,13 @@ defmodule Torngen.Client.Path.Torn do
     TornFactionTreeResponse,
     TornProperties,
     TornItemAmmoResponse,
+    TornPokerTablesResponse,
     TornGymsResponse,
     TornBountiesResponse,
+    TornBankResponse,
     TornMedalsResponse,
     TornEliminationTeamPlayersResponse,
+    TornCityShopsResponse,
     TornEliminationTeamsResponse,
     TornItemDetailsResponse,
     TornHonorsResponse,
@@ -82,6 +89,7 @@ defmodule Torngen.Client.Path.Torn do
     TornEducationResponse,
     TornLogCategoriesResponse,
     TornItemsResponse,
+    TornCardsResponse,
     TornLogTypesResponse,
     TornFactionHofResponse,
     TornHofResponse,
