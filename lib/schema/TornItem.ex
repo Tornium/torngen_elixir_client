@@ -41,10 +41,11 @@ defmodule Torngen.Client.Schema.TornItem do
 
   @type t :: %__MODULE__{
           value: %{
-            vendor: nil | %{name: String.t(), country: String.t()},
-            sell_price: nil | integer(),
+            vendor: nil | nil | %{name: String.t(), country: String.t()},
+            shops: [Torngen.Client.Schema.TornItemShop.t()],
+            sell_price: nil | nil | integer(),
             market_price: integer(),
-            buy_price: nil | integer()
+            buy_price: nil | nil | integer()
           },
           type: Torngen.Client.Schema.TornItemTypeEnum.t(),
           sub_type: nil | Torngen.Client.Schema.TornItemWeaponTypeEnum.t(),
@@ -74,11 +75,18 @@ defmodule Torngen.Client.Schema.TornItem do
           {:object,
            %{
              market_price: {:static, :integer},
+             sell_price: {:one_of, [static: :null, one_of: [static: :null, static: :integer]]},
+             buy_price: {:one_of, [static: :null, one_of: [static: :null, static: :integer]]},
+             shops: {:array, {:ref, Torngen.Client.Schema.TornItemShop}},
              vendor:
                {:one_of,
-                [static: :null, object: %{name: {:static, :string}, country: {:static, :string}}]},
-             sell_price: {:one_of, [static: :null, static: :integer]},
-             buy_price: {:one_of, [static: :null, static: :integer]}
+                [
+                  static: :null,
+                  one_of: [
+                    static: :null,
+                    object: %{name: {:static, :string}, country: {:static, :string}}
+                  ]
+                ]}
            }}
         ),
       type:
@@ -143,11 +151,18 @@ defmodule Torngen.Client.Schema.TornItem do
       {:object,
        %{
          market_price: {:static, :integer},
+         sell_price: {:one_of, [static: :null, one_of: [static: :null, static: :integer]]},
+         buy_price: {:one_of, [static: :null, one_of: [static: :null, static: :integer]]},
+         shops: {:array, {:ref, Torngen.Client.Schema.TornItemShop}},
          vendor:
            {:one_of,
-            [static: :null, object: %{name: {:static, :string}, country: {:static, :string}}]},
-         sell_price: {:one_of, [static: :null, static: :integer]},
-         buy_price: {:one_of, [static: :null, static: :integer]}
+            [
+              static: :null,
+              one_of: [
+                static: :null,
+                object: %{name: {:static, :string}, country: {:static, :string}}
+              ]
+            ]}
        }}
     )
   end

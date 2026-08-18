@@ -12,7 +12,7 @@ defmodule Torngen.Client.Path.User.Log do
   - to: Timestamp that sets the upper limit for the data returned
   - from: Timestamp that sets the lower limit for the data returned
   - timestamp: Timestamp to bypass cache
-  - nanostamp: Timestamp in nanoseconds to bypass system limitation when using regular timestamps
+  - nanostamp: Timestamp in nanoseconds to bypass system limitation when more than 100 logs were returned in the same second.
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Full)
 
@@ -79,7 +79,7 @@ defmodule Torngen.Client.Path.User.Log do
 
   @impl true
   defparameter :nanostamp, value do
-    # Timestamp in nanoseconds to bypass system limitation when using regular timestamps
+    # Timestamp in nanoseconds to bypass system limitation when more than 100 logs were returned in the same second.
     {:query, :nanostamp, value}
   end
 
