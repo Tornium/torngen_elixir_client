@@ -18,6 +18,7 @@ defmodule Torngen.Client.Schema.FactionSelectionName do
     "contributors",
     "crime",
     "crimes",
+    "crimeexp",
     "dirtbombs",
     "hof",
     "lookup",
@@ -44,17 +45,7 @@ defmodule Torngen.Client.Schema.FactionSelectionName do
     "warfareraids",
     "warfareranked",
     "warfareterritory",
-    "wars",
-    "armor",
-    "boosters",
-    "caches",
-    "cesium",
-    "crimeexp",
-    "drugs",
-    "medical",
-    "utilities",
-    "temporary",
-    "weapons"
+    "wars"
   ]
 
   @spec values() :: [t()]

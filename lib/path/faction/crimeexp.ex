@@ -1,25 +1,24 @@
-defmodule Torngen.Client.Path.Torn.Id.Itemdetails do
+defmodule Torngen.Client.Path.Faction.Crimeexp do
   @moduledoc """
-  Get information about a specific item.
+  Get your faction members crime experience.
 
-  Requires public key.
+  Requires minimal access key. Members are ordered descending, from highest crime experience to lowest.
 
   ## Parmeters
-  - id: Item uid
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Public)
+  - key: API key (Minimal)
 
   ## Response Module(s)
-  - TornItemDetailsResponse
+  - FactionCrimeExpResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "torn/{id}/itemdetails"
-  @response_modules [TornItemDetailsResponse]
+  @path "faction/crimeexp"
+  @response_modules [FactionCrimeExpResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -28,12 +27,6 @@ defmodule Torngen.Client.Path.Torn.Id.Itemdetails do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :id, value do
-    # Item uid
-    {:path, :id, value}
-  end
 
   @impl true
   defparameter :timestamp, value do
@@ -49,7 +42,7 @@ defmodule Torngen.Client.Path.Torn.Id.Itemdetails do
 
   @impl true
   defparameter :key, value do
-    # API key (Public). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

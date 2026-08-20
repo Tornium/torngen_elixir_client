@@ -12,7 +12,9 @@ defmodule Torngen.Client.Schema.TornItemDetailsResponse do
   ]
 
   @type t :: %__MODULE__{
-          itemdetails: Torngen.Client.Schema.TornItemDetails.t()
+          itemdetails:
+            Torngen.Client.Schema.TornItemDetailsDeprecated.t()
+            | [Torngen.Client.Schema.TornItemDetails.t()]
         }
 
   @impl true
@@ -21,7 +23,13 @@ defmodule Torngen.Client.Schema.TornItemDetailsResponse do
       itemdetails:
         data
         |> Map.get("itemdetails")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.TornItemDetails})
+        |> Torngen.Client.Schema.parse(
+          {:one_of,
+           [
+             ref: Torngen.Client.Schema.TornItemDetailsDeprecated,
+             array: {:ref, Torngen.Client.Schema.TornItemDetails}
+           ]}
+        )
     }
   end
 
@@ -37,7 +45,14 @@ defmodule Torngen.Client.Schema.TornItemDetailsResponse do
   end
 
   defp validate_key?(:itemdetails, value) do
-    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.TornItemDetails})
+    Torngen.Client.Schema.validate?(
+      value,
+      {:one_of,
+       [
+         ref: Torngen.Client.Schema.TornItemDetailsDeprecated,
+         array: {:ref, Torngen.Client.Schema.TornItemDetails}
+       ]}
+    )
   end
 
   @spec keys() :: list(atom())
