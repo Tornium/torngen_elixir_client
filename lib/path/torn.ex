@@ -42,10 +42,13 @@ defmodule Torngen.Client.Path.Torn do
   - TornEliminationTeamsResponse
   - TornItemDetailsResponse
   - TornHonorsResponse
+  - TornItemStatsResponse
   - TornOrganizedCrimeResponse
   - TornMeritsResponse
   - TornEducationResponse
   - TornLogCategoriesResponse
+  - TornCityStatsResponse
+  - TornRockPaperScissorsResponse
   - TornItemsResponse
   - TornCardsResponse
   - TornLogTypesResponse
@@ -84,10 +87,13 @@ defmodule Torngen.Client.Path.Torn do
     TornEliminationTeamsResponse,
     TornItemDetailsResponse,
     TornHonorsResponse,
+    TornItemStatsResponse,
     TornOrganizedCrimeResponse,
     TornMeritsResponse,
     TornEducationResponse,
     TornLogCategoriesResponse,
+    TornCityStatsResponse,
+    TornRockPaperScissorsResponse,
     TornItemsResponse,
     TornCardsResponse,
     TornLogTypesResponse,

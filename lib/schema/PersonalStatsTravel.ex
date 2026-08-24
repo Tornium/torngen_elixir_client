@@ -50,15 +50,15 @@ defmodule Torngen.Client.Schema.PersonalStatsTravel do
              south_africa: {:static, :integer},
              mexico: {:static, :integer},
              japan: {:static, :integer},
-             items_bought: {:static, :integer},
-             hunting: {:object, %{skill: {:static, :integer}}},
              hawaii: {:static, :integer},
-             defends_lost: {:static, :integer},
              china: {:static, :integer},
              cayman_islands: {:static, :integer},
-             canada: {:static, :integer},
+             argentina: {:static, :integer},
              attacks_won: {:static, :integer},
-             argentina: {:static, :integer}
+             items_bought: {:static, :integer},
+             hunting: {:object, %{skill: {:static, :integer}}},
+             defends_lost: {:static, :integer},
+             canada: {:static, :integer}
            }}
         )
     }
@@ -88,15 +88,15 @@ defmodule Torngen.Client.Schema.PersonalStatsTravel do
          south_africa: {:static, :integer},
          mexico: {:static, :integer},
          japan: {:static, :integer},
-         items_bought: {:static, :integer},
-         hunting: {:object, %{skill: {:static, :integer}}},
          hawaii: {:static, :integer},
-         defends_lost: {:static, :integer},
          china: {:static, :integer},
          cayman_islands: {:static, :integer},
-         canada: {:static, :integer},
+         argentina: {:static, :integer},
          attacks_won: {:static, :integer},
-         argentina: {:static, :integer}
+         items_bought: {:static, :integer},
+         hunting: {:object, %{skill: {:static, :integer}}},
+         defends_lost: {:static, :integer},
+         canada: {:static, :integer}
        }}
     )
   end

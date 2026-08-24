@@ -1,6 +1,6 @@
-defmodule Torngen.Client.Path.Torn.Ids.Itemdetails do
+defmodule Torngen.Client.Path.Torn.Ids.Itemstats do
   @moduledoc """
-  Get details for specific item(s).
+  Get specific item(s) stats.
 
   Requires public key.
 
@@ -11,15 +11,15 @@ defmodule Torngen.Client.Path.Torn.Ids.Itemdetails do
   - key: API key (Public)
 
   ## Response Module(s)
-  - TornItemDetailsResponse
+  - TornItemStatsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "torn/{ids}/itemdetails"
-  @response_modules [TornItemDetailsResponse]
+  @path "torn/{ids}/itemstats"
+  @response_modules [TornItemStatsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 

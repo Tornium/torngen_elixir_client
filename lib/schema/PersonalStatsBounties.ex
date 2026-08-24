@@ -28,8 +28,8 @@ defmodule Torngen.Client.Schema.PersonalStatsBounties do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             received: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
              placed: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
+             received: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
              collected: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}}
            }}
         )
@@ -52,8 +52,8 @@ defmodule Torngen.Client.Schema.PersonalStatsBounties do
       value,
       {:object,
        %{
-         received: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
          placed: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
+         received: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}},
          collected: {:object, %{value: {:static, :integer}, amount: {:static, :integer}}}
        }}
     )
