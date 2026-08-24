@@ -43,15 +43,14 @@ defmodule Torngen.Client.Schema.PersonalStatsDrugs do
              xanax: {:static, :integer},
              vicodin: {:static, :integer},
              shrooms: {:static, :integer},
-             rehabilitations:
-               {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}},
              pcp: {:static, :integer},
              overdoses: {:static, :integer},
              opium: {:static, :integer},
              lsd: {:static, :integer},
              ketamine: {:static, :integer},
              ecstasy: {:static, :integer},
-             cannabis: {:static, :integer}
+             cannabis: {:static, :integer},
+             rehabilitations: {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}}
            }}
         )
     }
@@ -78,14 +77,14 @@ defmodule Torngen.Client.Schema.PersonalStatsDrugs do
          xanax: {:static, :integer},
          vicodin: {:static, :integer},
          shrooms: {:static, :integer},
-         rehabilitations: {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}},
          pcp: {:static, :integer},
          overdoses: {:static, :integer},
          opium: {:static, :integer},
          lsd: {:static, :integer},
          ketamine: {:static, :integer},
          ecstasy: {:static, :integer},
-         cannabis: {:static, :integer}
+         cannabis: {:static, :integer},
+         rehabilitations: {:object, %{amount: {:static, :integer}, fees: {:static, :integer}}}
        }}
     )
   end

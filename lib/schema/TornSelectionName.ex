@@ -26,6 +26,7 @@ defmodule Torngen.Client.Schema.TornSelectionName do
     "itemammo",
     "itemdetails",
     "itemmods",
+    "itemstats",
     "items",
     "logcategories",
     "logtypes",
@@ -36,17 +37,16 @@ defmodule Torngen.Client.Schema.TornSelectionName do
     "organizedcrimes",
     "pokertables",
     "properties",
+    "rockpaperscissors",
     "searchforcash",
     "shoplifting",
+    "stats",
     "stocks",
     "subcrimes",
     "territory",
     "timestamp",
     "competition",
-    "itemstats",
-    "organisedcrimes",
-    "rockpaperscissors",
-    "stats"
+    "organisedcrimes"
   ]
 
   @spec values() :: [t()]

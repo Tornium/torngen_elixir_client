@@ -72,7 +72,7 @@ defmodule Torngen.Client.Schema.Attack do
           ended: integer(),
           defender: Torngen.Client.Schema.AttackPlayer.t(),
           code: Torngen.Client.Schema.AttackCode.t(),
-          chain: integer(),
+          chain: nil | integer(),
           attacker: nil | Torngen.Client.Schema.AttackPlayer.t()
         }
 
@@ -137,7 +137,10 @@ defmodule Torngen.Client.Schema.Attack do
         data
         |> Map.get("code")
         |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.AttackCode}),
-      chain: data |> Map.get("chain") |> Torngen.Client.Schema.parse({:static, :integer}),
+      chain:
+        data
+        |> Map.get("chain")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
       attacker:
         data
         |> Map.get("attacker")
@@ -241,7 +244,7 @@ defmodule Torngen.Client.Schema.Attack do
   end
 
   defp validate_key?(:chain, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
+    Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :integer]})
   end
 
   defp validate_key?(:attacker, value) do

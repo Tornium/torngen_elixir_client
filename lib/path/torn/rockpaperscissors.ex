@@ -1,25 +1,24 @@
-defmodule Torngen.Client.Path.Torn.Ids.Itemdetails do
+defmodule Torngen.Client.Path.Torn.Rockpaperscissors do
   @moduledoc """
-  Get details for specific item(s).
+  Get rock paper scissors competition stats.
 
   Requires public key.
 
   ## Parmeters
-  - ids: Item uid or a list of item uids (comma separated), 25 uids maximum
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
-  - TornItemDetailsResponse
+  - TornRockPaperScissorsResponse
   """
 
   import Torngen.Client.Path, only: [defparameter: 3]
 
   @behaviour Torngen.Client.Path
 
-  @path "torn/{ids}/itemdetails"
-  @response_modules [TornItemDetailsResponse]
+  @path "torn/rockpaperscissors"
+  @response_modules [TornRockPaperScissorsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -28,12 +27,6 @@ defmodule Torngen.Client.Path.Torn.Ids.Itemdetails do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
-
-  @impl true
-  defparameter :ids, value do
-    # Item uid or a list of item uids (comma separated), 25 uids maximum
-    {:path, :ids, value}
-  end
 
   @impl true
   defparameter :timestamp, value do
