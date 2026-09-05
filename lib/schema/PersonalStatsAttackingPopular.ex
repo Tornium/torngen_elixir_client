@@ -47,6 +47,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              networth:
                {:object,
                 %{
@@ -58,14 +59,13 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
              hits:
                {:object,
                 %{
-                  success: {:static, :integer},
                   critical: {:static, :integer},
+                  success: {:static, :integer},
                   one_hit_kills: {:static, :integer},
                   miss: {:static, :integer}
                 }},
              faction:
                {:object, %{respect: {:static, :integer}, ranked_war_hits: {:static, :integer}}},
-             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -114,6 +114,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
       value,
       {:object,
        %{
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          networth:
            {:object,
             %{
@@ -125,14 +126,13 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPopular do
          hits:
            {:object,
             %{
-              success: {:static, :integer},
               critical: {:static, :integer},
+              success: {:static, :integer},
               one_hit_kills: {:static, :integer},
               miss: {:static, :integer}
             }},
          faction:
            {:object, %{respect: {:static, :integer}, ranked_war_hits: {:static, :integer}}},
-         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,

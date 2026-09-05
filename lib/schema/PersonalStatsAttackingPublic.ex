@@ -61,6 +61,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              networth:
                {:object,
                 %{
@@ -73,8 +74,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
              hits:
                {:object,
                 %{
-                  success: {:static, :integer},
                   critical: {:static, :integer},
+                  success: {:static, :integer},
                   one_hit_kills: {:static, :integer},
                   miss: {:static, :integer}
                 }},
@@ -94,7 +95,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
                   ranked_war_hits: {:static, :integer},
                   raid_hits: {:static, :integer}
                 }},
-             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -145,6 +145,7 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
       value,
       {:object,
        %{
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          networth:
            {:object,
             %{
@@ -157,8 +158,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
          hits:
            {:object,
             %{
-              success: {:static, :integer},
               critical: {:static, :integer},
+              success: {:static, :integer},
               one_hit_kills: {:static, :integer},
               miss: {:static, :integer}
             }},
@@ -178,7 +179,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingPublic do
               ranked_war_hits: {:static, :integer},
               raid_hits: {:static, :integer}
             }},
-         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,
