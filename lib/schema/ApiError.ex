@@ -4,7 +4,8 @@ defmodule Torngen.Client.Schema.ApiError do
   @behaviour Torngen.Client.Schema
 
   @type t ::
-          Torngen.Client.Schema.ErrorCityStatsCronFailed.t()
+          Torngen.Client.Schema.ErrorEndpointClosedUntilAttackingPeriod.t()
+          | Torngen.Client.Schema.ErrorCityStatsCronFailed.t()
           | Torngen.Client.Schema.ErrorFileDoesNotExist.t()
           | Torngen.Client.Schema.ErrorCategorySelectionUnavailableForInteractionLogs.t()
           | Torngen.Client.Schema.ErrorIncorrectLogId.t()
@@ -38,6 +39,7 @@ defmodule Torngen.Client.Schema.ApiError do
           | Torngen.Client.Schema.ErrorUnknown.t()
 
   @values [
+    ErrorEndpointClosedUntilAttackingPeriod,
     ErrorCityStatsCronFailed,
     ErrorFileDoesNotExist,
     ErrorCategorySelectionUnavailableForInteractionLogs,
