@@ -5,9 +5,10 @@ defmodule Torngen.Client.Schema.UserCompetitionElimination do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:team, :score, :name, :attacks]
+  @keys [:team_id, :team, :score, :name, :attacks]
 
   defstruct [
+    :team_id,
     :team,
     :score,
     :name,
@@ -15,6 +16,7 @@ defmodule Torngen.Client.Schema.UserCompetitionElimination do
   ]
 
   @type t :: %__MODULE__{
+          team_id: nil | Torngen.Client.Schema.EliminationTeamId.t(),
           team: String.t(),
           score: integer(),
           name: String.t(),
@@ -24,6 +26,12 @@ defmodule Torngen.Client.Schema.UserCompetitionElimination do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
+      team_id:
+        data
+        |> Map.get("team_id")
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.EliminationTeamId]}
+        ),
       team: data |> Map.get("team") |> Torngen.Client.Schema.parse({:static, :string}),
       score: data |> Map.get("score") |> Torngen.Client.Schema.parse({:static, :integer}),
       name:
@@ -41,6 +49,13 @@ defmodule Torngen.Client.Schema.UserCompetitionElimination do
     |> Enum.map(fn key -> {key, Map.get(data, Atom.to_string(key))} end)
     |> Enum.map(fn {key, value} -> validate_key?(key, value) end)
     |> Enum.all?()
+  end
+
+  defp validate_key?(:team_id, value) do
+    Torngen.Client.Schema.validate?(
+      value,
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.EliminationTeamId]}
+    )
   end
 
   defp validate_key?(:team, value) do

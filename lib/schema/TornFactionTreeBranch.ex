@@ -45,8 +45,6 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
             %{
               name: {:static, :string},
               level: {:static, :integer},
-              cost: {:static, :integer},
-              ability: {:static, :string},
               challenge:
                 {:one_of,
                  [
@@ -56,7 +54,9 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
                      stat: {:ref, Torngen.Client.Schema.FactionStatEnum},
                      amount_required: {:static, :integer}
                    }
-                 ]}
+                 ]},
+              cost: {:static, :integer},
+              ability: {:static, :string}
             }}}
         ),
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
@@ -86,8 +86,6 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
         %{
           name: {:static, :string},
           level: {:static, :integer},
-          cost: {:static, :integer},
-          ability: {:static, :string},
           challenge:
             {:one_of,
              [
@@ -97,7 +95,9 @@ defmodule Torngen.Client.Schema.TornFactionTreeBranch do
                  stat: {:ref, Torngen.Client.Schema.FactionStatEnum},
                  amount_required: {:static, :integer}
                }
-             ]}
+             ]},
+          cost: {:static, :integer},
+          ability: {:static, :string}
         }}}
     )
   end
