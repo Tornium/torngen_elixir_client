@@ -5,7 +5,7 @@ defmodule Torngen.Client.Schema.UserTrade do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:user, :trader, :timestamp, :modified_at, :id, :expires_at, :completed_at]
+  @keys [:user, :trader, :timestamp, :modified_at, :id, :expires_at, :description, :completed_at]
 
   defstruct [
     :user,
@@ -14,6 +14,7 @@ defmodule Torngen.Client.Schema.UserTrade do
     :modified_at,
     :id,
     :expires_at,
+    :description,
     :completed_at
   ]
 
@@ -24,6 +25,7 @@ defmodule Torngen.Client.Schema.UserTrade do
           modified_at: nil | integer(),
           id: Torngen.Client.Schema.TradeId.t(),
           expires_at: nil | integer(),
+          description: String.t(),
           completed_at: nil | integer()
         }
 
@@ -52,6 +54,8 @@ defmodule Torngen.Client.Schema.UserTrade do
         data
         |> Map.get("expires_at")
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
+      description:
+        data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string}),
       completed_at:
         data
         |> Map.get("completed_at")
@@ -92,6 +96,10 @@ defmodule Torngen.Client.Schema.UserTrade do
 
   defp validate_key?(:expires_at, value) do
     Torngen.Client.Schema.validate?(value, {:one_of, [static: :null, static: :integer]})
+  end
+
+  defp validate_key?(:description, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :string})
   end
 
   defp validate_key?(:completed_at, value) do
