@@ -61,6 +61,16 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
+             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
+             attacks:
+               {:object,
+                %{
+                  won: {:static, :integer},
+                  stalemate: {:static, :integer},
+                  lost: {:static, :integer},
+                  stealth: {:static, :integer},
+                  assist: {:static, :integer}
+                }},
              networth:
                {:object,
                 %{
@@ -73,8 +83,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
              hits:
                {:object,
                 %{
-                  success: {:static, :integer},
                   critical: {:static, :integer},
+                  success: {:static, :integer},
                   one_hit_kills: {:static, :integer},
                   miss: {:static, :integer}
                 }},
@@ -94,7 +104,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
                   ranked_war_hits: {:static, :integer},
                   raid_hits: {:static, :integer}
                 }},
-             escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
              elo: {:static, :integer},
              defends:
                {:object,
@@ -105,15 +114,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
                   lost: {:static, :integer}
                 }},
              damage: {:object, %{total: {:static, :integer}, best: {:static, :integer}}},
-             attacks:
-               {:object,
-                %{
-                  won: {:static, :integer},
-                  stalemate: {:static, :integer},
-                  lost: {:static, :integer},
-                  stealth: {:static, :integer},
-                  assist: {:static, :integer}
-                }},
              ammunition:
                {:object,
                 %{
@@ -145,6 +145,16 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
       value,
       {:object,
        %{
+         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
+         attacks:
+           {:object,
+            %{
+              won: {:static, :integer},
+              stalemate: {:static, :integer},
+              lost: {:static, :integer},
+              stealth: {:static, :integer},
+              assist: {:static, :integer}
+            }},
          networth:
            {:object,
             %{
@@ -157,8 +167,8 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
          hits:
            {:object,
             %{
-              success: {:static, :integer},
               critical: {:static, :integer},
+              success: {:static, :integer},
               one_hit_kills: {:static, :integer},
               miss: {:static, :integer}
             }},
@@ -178,7 +188,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
               ranked_war_hits: {:static, :integer},
               raid_hits: {:static, :integer}
             }},
-         escapes: {:object, %{player: {:static, :integer}, foes: {:static, :integer}}},
          elo: {:static, :integer},
          defends:
            {:object,
@@ -189,15 +198,6 @@ defmodule Torngen.Client.Schema.PersonalStatsAttackingExtended do
               lost: {:static, :integer}
             }},
          damage: {:object, %{total: {:static, :integer}, best: {:static, :integer}}},
-         attacks:
-           {:object,
-            %{
-              won: {:static, :integer},
-              stalemate: {:static, :integer},
-              lost: {:static, :integer},
-              stealth: {:static, :integer},
-              assist: {:static, :integer}
-            }},
          ammunition:
            {:object,
             %{

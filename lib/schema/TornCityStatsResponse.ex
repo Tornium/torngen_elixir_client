@@ -179,9 +179,9 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
              attacking:
                {:object,
                 %{
+                  escapes: {:static, :integer},
                   money_mugged: {:static, :integer},
                   hits: {:static, :integer},
-                  escapes: {:static, :integer},
                   rounds_fired: {:static, :integer},
                   respect_gained: {:static, :integer},
                   misses: {:static, :integer},
@@ -339,9 +339,9 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
          attacking:
            {:object,
             %{
+              escapes: {:static, :integer},
               money_mugged: {:static, :integer},
               hits: {:static, :integer},
-              escapes: {:static, :integer},
               rounds_fired: {:static, :integer},
               respect_gained: {:static, :integer},
               misses: {:static, :integer},

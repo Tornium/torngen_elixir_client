@@ -8,6 +8,8 @@ defmodule Torngen.Client.Path.User.Search do
   - name: Name to search for.
   - filters: A filtering query parameter allowing a comma-separated list of filters
   - offset: N/A
+  - sort: Sorted by the greatest timestamps
+  - cursor: Opaque cursor from pagination links for searches without a name, in either sort direction
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
@@ -47,6 +49,18 @@ defmodule Torngen.Client.Path.User.Search do
   defparameter :offset, value do
     # N/A
     {:query, :offset, value}
+  end
+
+  @impl true
+  defparameter :sort, value do
+    # Sorted by the greatest timestamps
+    {:query, :sort, value}
+  end
+
+  @impl true
+  defparameter :cursor, value do
+    # Opaque cursor from pagination links for searches without a name, in either sort direction. Offset is ignored for these searches.
+    {:query, :cursor, value}
   end
 
   @impl true

@@ -16,7 +16,7 @@ defmodule Torngen.Client.Schema.ItemMarketListingItemDetails do
 
   @type t :: %__MODULE__{
           uid: Torngen.Client.Schema.ItemUid.t(),
-          stats: Torngen.Client.Schema.ItemMarketListingItemStats.t(),
+          stats: nil | Torngen.Client.Schema.ItemMarketListingItemStats.t(),
           rarity: nil | String.t(),
           bonuses: [Torngen.Client.Schema.ItemMarketListingItemBonus.t()]
         }
@@ -31,7 +31,9 @@ defmodule Torngen.Client.Schema.ItemMarketListingItemDetails do
       stats:
         data
         |> Map.get("stats")
-        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.ItemMarketListingItemStats}),
+        |> Torngen.Client.Schema.parse(
+          {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemMarketListingItemStats]}
+        ),
       rarity:
         data
         |> Map.get("rarity")
@@ -65,7 +67,7 @@ defmodule Torngen.Client.Schema.ItemMarketListingItemDetails do
   defp validate_key?(:stats, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:ref, Torngen.Client.Schema.ItemMarketListingItemStats}
+      {:one_of, [static: :null, ref: Torngen.Client.Schema.ItemMarketListingItemStats]}
     )
   end
 
