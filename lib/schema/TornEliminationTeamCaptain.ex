@@ -1,4 +1,4 @@
-defmodule Torngen.Client.Schema.TornEliminationTeamLeader do
+defmodule Torngen.Client.Schema.TornEliminationTeamCaptain do
   @moduledoc false
 
   @behaviour Torngen.Client.Schema
