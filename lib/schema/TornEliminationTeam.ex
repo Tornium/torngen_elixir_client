@@ -14,10 +14,10 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
     :name,
     :losses,
     :lives,
-    :leaders,
     :id,
     :eliminated_timestamp,
     :eliminated,
+    :captains,
     :attacking_summary
   ]
 
@@ -30,10 +30,10 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
     :name,
     :losses,
     :lives,
-    :leaders,
     :id,
     :eliminated_timestamp,
     :eliminated,
+    :captains,
     :attacking_summary
   ]
 
@@ -46,13 +46,13 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
           name: String.t(),
           losses: integer(),
           lives: integer(),
-          leaders: %{
-            vice_captains: [Torngen.Client.Schema.TornEliminationTeamLeader.t()],
-            captain: nil | Torngen.Client.Schema.TornEliminationTeamLeader.t()
-          },
           id: Torngen.Client.Schema.EliminationTeamId.t(),
           eliminated_timestamp: nil | integer(),
           eliminated: boolean(),
+          captains: %{
+            vice_captains: [Torngen.Client.Schema.TornEliminationTeamCaptain.t()],
+            captain: nil | Torngen.Client.Schema.TornEliminationTeamCaptain.t()
+          },
           attacking_summary: [Torngen.Client.Schema.TornEliminationTeamAttacksSummary.t()]
         }
 
@@ -69,17 +69,6 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
       name: data |> Map.get("name") |> Torngen.Client.Schema.parse({:static, :string}),
       losses: data |> Map.get("losses") |> Torngen.Client.Schema.parse({:static, :integer}),
       lives: data |> Map.get("lives") |> Torngen.Client.Schema.parse({:static, :integer}),
-      leaders:
-        data
-        |> Map.get("leaders")
-        |> Torngen.Client.Schema.parse(
-          {:object,
-           %{
-             vice_captains: {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamLeader}},
-             captain:
-               {:one_of, [static: :null, ref: Torngen.Client.Schema.TornEliminationTeamLeader]}
-           }}
-        ),
       id:
         data
         |> Map.get("id")
@@ -90,6 +79,17 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
         |> Torngen.Client.Schema.parse({:one_of, [static: :null, static: :integer]}),
       eliminated:
         data |> Map.get("eliminated") |> Torngen.Client.Schema.parse({:static, :boolean}),
+      captains:
+        data
+        |> Map.get("captains")
+        |> Torngen.Client.Schema.parse(
+          {:object,
+           %{
+             vice_captains: {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamCaptain}},
+             captain:
+               {:one_of, [static: :null, ref: Torngen.Client.Schema.TornEliminationTeamCaptain]}
+           }}
+        ),
       attacking_summary:
         data
         |> Map.get("attacking_summary")
@@ -142,17 +142,6 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
-  defp validate_key?(:leaders, value) do
-    Torngen.Client.Schema.validate?(
-      value,
-      {:object,
-       %{
-         vice_captains: {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamLeader}},
-         captain: {:one_of, [static: :null, ref: Torngen.Client.Schema.TornEliminationTeamLeader]}
-       }}
-    )
-  end
-
   defp validate_key?(:id, value) do
     Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.EliminationTeamId})
   end
@@ -163,6 +152,18 @@ defmodule Torngen.Client.Schema.TornEliminationTeam do
 
   defp validate_key?(:eliminated, value) do
     Torngen.Client.Schema.validate?(value, {:static, :boolean})
+  end
+
+  defp validate_key?(:captains, value) do
+    Torngen.Client.Schema.validate?(
+      value,
+      {:object,
+       %{
+         vice_captains: {:array, {:ref, Torngen.Client.Schema.TornEliminationTeamCaptain}},
+         captain:
+           {:one_of, [static: :null, ref: Torngen.Client.Schema.TornEliminationTeamCaptain]}
+       }}
+    )
   end
 
   defp validate_key?(:attacking_summary, value) do
