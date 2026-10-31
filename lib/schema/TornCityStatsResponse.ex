@@ -32,6 +32,7 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
               hawaii: integer(),
               china: integer(),
               cayman_islands: integer(),
+              canada: integer(),
               argentina: integer()
             },
             trading: %{
@@ -45,9 +46,11 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
             },
             other: %{
               years_played: integer(),
+              users_daily: integer(),
               stat_enhancers_used: integer(),
               merits_bought: integer(),
               logins: integer(),
+              gym_trains: integer(),
               energy_refills: integer(),
               company_trains: integer()
             },
@@ -95,21 +98,42 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
               points_players: integer(),
               points_market: integer(),
               points_factions: integer(),
+              points_bought: integer(),
+              points_average_cost: integer(),
               money_on_hand_average: integer(),
               money_on_hand: integer(),
               money_in_bank: integer()
             },
-            crimes: %{total: integer(), jail_sentences: integer()},
+            crimes: %{total: integer(), today: integer(), jail_sentences: integer()},
             communication: %{
               total_messages: integer(),
-              spouses: integer(),
+              total_events: integer(),
+              spouses: nil | integer(),
               personals_placed: integer(),
-              friends: integer(),
-              coworkers: integer(),
-              classified_ads_placed: integer()
+              messages: integer(),
+              mails_total: integer(),
+              mails_spouses: integer(),
+              mails_friends: integer(),
+              mails_faction: integer(),
+              mails_coworkers: integer(),
+              friends: nil | integer(),
+              forum_threads: integer(),
+              forum_posts: integer(),
+              forum_likes: integer(),
+              forum_dislikes: integer(),
+              events: integer(),
+              coworkers: nil | integer(),
+              classified_ads_placed: integer(),
+              chats: integer(),
+              articles: integer(),
+              article_views: integer(),
+              article_reads: integer()
             },
             bounties: %{placed: integer(), money_spent: integer()},
             attacking: %{
+              wars_territory: integer(),
+              wars_ranked: integer(),
+              wars_raid: integer(),
               rounds_fired: integer(),
               respect_gained: integer(),
               money_mugged: integer(),
@@ -139,8 +163,10 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
                 %{
                   merits_bought: {:static, :integer},
                   years_played: {:static, :integer},
+                  users_daily: {:static, :integer},
                   stat_enhancers_used: {:static, :integer},
                   logins: {:static, :integer},
+                  gym_trains: {:static, :integer},
                   energy_refills: {:static, :integer},
                   company_trains: {:static, :integer}
                 }},
@@ -160,6 +186,8 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
                   points_players: {:static, :integer},
                   points_market: {:static, :integer},
                   points_factions: {:static, :integer},
+                  points_bought: {:static, :integer},
+                  points_average_cost: {:static, :integer},
                   money_on_hand_average: {:static, :integer},
                   money_on_hand: {:static, :integer},
                   money_in_bank: {:static, :integer}
@@ -182,6 +210,9 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
                   escapes: {:static, :integer},
                   money_mugged: {:static, :integer},
                   hits: {:static, :integer},
+                  wars_territory: {:static, :integer},
+                  wars_ranked: {:static, :integer},
+                  wars_raid: {:static, :integer},
                   rounds_fired: {:static, :integer},
                   respect_gained: {:static, :integer},
                   misses: {:static, :integer},
@@ -192,7 +223,12 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
                   attacks_lost: {:static, :integer}
                 }},
              crimes:
-               {:object, %{total: {:static, :integer}, jail_sentences: {:static, :integer}}},
+               {:object,
+                %{
+                  total: {:static, :integer},
+                  today: {:static, :integer},
+                  jail_sentences: {:static, :integer}
+                }},
              hospital:
                {:object,
                 %{
@@ -203,12 +239,28 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
              communication:
                {:object,
                 %{
-                  friends: {:static, :integer},
+                  messages: {:static, :integer},
+                  events: {:static, :integer},
+                  friends: {:one_of, [static: :integer]},
                   total_messages: {:static, :integer},
-                  spouses: {:static, :integer},
+                  total_events: {:static, :integer},
+                  spouses: {:one_of, [static: :integer]},
                   personals_placed: {:static, :integer},
-                  coworkers: {:static, :integer},
-                  classified_ads_placed: {:static, :integer}
+                  mails_total: {:static, :integer},
+                  mails_spouses: {:static, :integer},
+                  mails_friends: {:static, :integer},
+                  mails_faction: {:static, :integer},
+                  mails_coworkers: {:static, :integer},
+                  forum_threads: {:static, :integer},
+                  forum_posts: {:static, :integer},
+                  forum_likes: {:static, :integer},
+                  forum_dislikes: {:static, :integer},
+                  coworkers: {:one_of, [static: :integer]},
+                  classified_ads_placed: {:static, :integer},
+                  chats: {:static, :integer},
+                  articles: {:static, :integer},
+                  article_views: {:static, :integer},
+                  article_reads: {:static, :integer}
                 }},
              jail:
                {:object,
@@ -255,6 +307,7 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
                   hawaii: {:static, :integer},
                   china: {:static, :integer},
                   cayman_islands: {:static, :integer},
+                  canada: {:static, :integer},
                   argentina: {:static, :integer}
                 }},
              drugs:
@@ -299,8 +352,10 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
             %{
               merits_bought: {:static, :integer},
               years_played: {:static, :integer},
+              users_daily: {:static, :integer},
               stat_enhancers_used: {:static, :integer},
               logins: {:static, :integer},
+              gym_trains: {:static, :integer},
               energy_refills: {:static, :integer},
               company_trains: {:static, :integer}
             }},
@@ -320,6 +375,8 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
               points_players: {:static, :integer},
               points_market: {:static, :integer},
               points_factions: {:static, :integer},
+              points_bought: {:static, :integer},
+              points_average_cost: {:static, :integer},
               money_on_hand_average: {:static, :integer},
               money_on_hand: {:static, :integer},
               money_in_bank: {:static, :integer}
@@ -342,6 +399,9 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
               escapes: {:static, :integer},
               money_mugged: {:static, :integer},
               hits: {:static, :integer},
+              wars_territory: {:static, :integer},
+              wars_ranked: {:static, :integer},
+              wars_raid: {:static, :integer},
               rounds_fired: {:static, :integer},
               respect_gained: {:static, :integer},
               misses: {:static, :integer},
@@ -351,7 +411,13 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
               attacks_stalemated: {:static, :integer},
               attacks_lost: {:static, :integer}
             }},
-         crimes: {:object, %{total: {:static, :integer}, jail_sentences: {:static, :integer}}},
+         crimes:
+           {:object,
+            %{
+              total: {:static, :integer},
+              today: {:static, :integer},
+              jail_sentences: {:static, :integer}
+            }},
          hospital:
            {:object,
             %{
@@ -362,12 +428,28 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
          communication:
            {:object,
             %{
-              friends: {:static, :integer},
+              messages: {:static, :integer},
+              events: {:static, :integer},
+              friends: {:one_of, [static: :integer]},
               total_messages: {:static, :integer},
-              spouses: {:static, :integer},
+              total_events: {:static, :integer},
+              spouses: {:one_of, [static: :integer]},
               personals_placed: {:static, :integer},
-              coworkers: {:static, :integer},
-              classified_ads_placed: {:static, :integer}
+              mails_total: {:static, :integer},
+              mails_spouses: {:static, :integer},
+              mails_friends: {:static, :integer},
+              mails_faction: {:static, :integer},
+              mails_coworkers: {:static, :integer},
+              forum_threads: {:static, :integer},
+              forum_posts: {:static, :integer},
+              forum_likes: {:static, :integer},
+              forum_dislikes: {:static, :integer},
+              coworkers: {:one_of, [static: :integer]},
+              classified_ads_placed: {:static, :integer},
+              chats: {:static, :integer},
+              articles: {:static, :integer},
+              article_views: {:static, :integer},
+              article_reads: {:static, :integer}
             }},
          jail:
            {:object,
@@ -413,6 +495,7 @@ defmodule Torngen.Client.Schema.TornCityStatsResponse do
               hawaii: {:static, :integer},
               china: {:static, :integer},
               cayman_islands: {:static, :integer},
+              canada: {:static, :integer},
               argentina: {:static, :integer}
             }},
          drugs:

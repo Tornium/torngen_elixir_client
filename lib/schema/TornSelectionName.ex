@@ -21,6 +21,7 @@ defmodule Torngen.Client.Schema.TornSelectionName do
     "factionhof",
     "factiontree",
     "gyms",
+    "halloween",
     "hof",
     "honors",
     "itemammo",
