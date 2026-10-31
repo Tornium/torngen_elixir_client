@@ -13,7 +13,8 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarResultEnum do
     "end_with_nap",
     "end_with_destroy_attack",
     "end_with_destroy_defense",
-    "end_with_peace_treaty"
+    "end_with_peace_treaty",
+    "end_with_dirty_bomb"
   ]
 
   @spec values() :: [t()]

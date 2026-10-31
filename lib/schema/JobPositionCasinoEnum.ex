@@ -12,7 +12,8 @@ defmodule Torngen.Client.Schema.JobPositionCasinoEnum do
     "Marketing Manager",
     "Revenue Manager",
     "Casino Manager",
-    "Casino President"
+    "Casino President",
+    "Dealer"
   ]
 
   @spec values() :: [t()]
