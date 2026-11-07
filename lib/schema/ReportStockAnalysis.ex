@@ -15,8 +15,10 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
           items: [
             %{
               trip_duration: integer(),
+              restock_timestamp: nil | integer(),
               item: %{
                 value: integer(),
+                stock: integer(),
                 price: integer(),
                 name: String.t(),
                 id: Torngen.Client.Schema.ItemId.t(),
@@ -45,10 +47,12 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
                    name: {:static, :string},
                    value: {:static, :integer},
                    price: {:static, :integer},
+                   stock: {:static, :integer},
                    due: {:one_of, [static: :null, static: :integer]}
                  }},
               country: {:ref, Torngen.Client.Schema.CountryEnum},
               trip_duration: {:static, :integer},
+              restock_timestamp: {:one_of, [static: :null, static: :integer]},
               hourly_profit: {:static, :integer}
             }}}
         )
@@ -79,10 +83,12 @@ defmodule Torngen.Client.Schema.ReportStockAnalysis do
                name: {:static, :string},
                value: {:static, :integer},
                price: {:static, :integer},
+               stock: {:static, :integer},
                due: {:one_of, [static: :null, static: :integer]}
              }},
           country: {:ref, Torngen.Client.Schema.CountryEnum},
           trip_duration: {:static, :integer},
+          restock_timestamp: {:one_of, [static: :null, static: :integer]},
           hourly_profit: {:static, :integer}
         }}}
     )

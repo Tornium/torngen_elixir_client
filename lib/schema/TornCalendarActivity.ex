@@ -5,21 +5,25 @@ defmodule Torngen.Client.Schema.TornCalendarActivity do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:title, :start, :fixed_start_time, :end, :description]
+  @keys [:title, :start, :latest_end, :fixed_start_time, :end, :earliest_start, :description]
 
   defstruct [
     :title,
     :start,
+    :latest_end,
     :fixed_start_time,
     :end,
+    :earliest_start,
     :description
   ]
 
   @type t :: %__MODULE__{
           title: String.t(),
           start: integer(),
-          fixed_start_time: nil | boolean(),
+          latest_end: integer(),
+          fixed_start_time: boolean(),
           end: integer(),
+          earliest_start: integer(),
           description: String.t()
         }
 
@@ -28,11 +32,13 @@ defmodule Torngen.Client.Schema.TornCalendarActivity do
     %__MODULE__{
       title: data |> Map.get("title") |> Torngen.Client.Schema.parse({:static, :string}),
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
+      latest_end:
+        data |> Map.get("latest_end") |> Torngen.Client.Schema.parse({:static, :integer}),
       fixed_start_time:
-        data
-        |> Map.get("fixed_start_time")
-        |> Torngen.Client.Schema.parse({:one_of, [static: :boolean]}),
+        data |> Map.get("fixed_start_time") |> Torngen.Client.Schema.parse({:static, :boolean}),
       end: data |> Map.get("end") |> Torngen.Client.Schema.parse({:static, :integer}),
+      earliest_start:
+        data |> Map.get("earliest_start") |> Torngen.Client.Schema.parse({:static, :integer}),
       description:
         data |> Map.get("description") |> Torngen.Client.Schema.parse({:static, :string})
     }
@@ -57,11 +63,19 @@ defmodule Torngen.Client.Schema.TornCalendarActivity do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
+  defp validate_key?(:latest_end, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
   defp validate_key?(:fixed_start_time, value) do
     Torngen.Client.Schema.validate?(value, {:static, :boolean})
   end
 
   defp validate_key?(:end, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:earliest_start, value) do
     Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
