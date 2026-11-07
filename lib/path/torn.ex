@@ -35,6 +35,7 @@ defmodule Torngen.Client.Path.Torn do
   - TornPokerTablesResponse
   - TornGymsResponse
   - TornBountiesResponse
+  - TornHalloweenResponse
   - TornBankResponse
   - TornMedalsResponse
   - TornEliminationTeamPlayersResponse
@@ -80,6 +81,7 @@ defmodule Torngen.Client.Path.Torn do
     TornPokerTablesResponse,
     TornGymsResponse,
     TornBountiesResponse,
+    TornHalloweenResponse,
     TornBankResponse,
     TornMedalsResponse,
     TornEliminationTeamPlayersResponse,
