@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Properties do
   @moduledoc """
   Get your own properties.
 
-  Requires public access key. Extended responses are available when requesting the data with Limited or higher access keys.
+  Requires public access key. Extended responses are available when requesting the data with Limited or higher access keys. Responses are cached for an hour unless requesting your own or your spouse's properties with a Limited or higher access key.
 
   ## Parmeters
   - filters: It's possible to use this query parameter to filter properties by the key owner or their spouse.

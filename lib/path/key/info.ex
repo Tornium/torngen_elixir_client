@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Key.Info do
   @moduledoc """
   Get current key info.
 
-  Available for any key.
+  Available for any key. 'sensitive_data' is true when the key returns the same data as a Limited Access key (e.g. battle stats, revive setting, property and company finances): Limited Access, Full Access and custom keys created with 'Include sensitive data' enabled. Custom keys created before this option existed keep the permissions they had, report false and have 'legacy_permissions' set to true.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
