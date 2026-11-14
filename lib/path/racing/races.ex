@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Racing.Races do
   @moduledoc """
   Get races.
 
-  Requires public access key. Returns a list of races, ordered by race start timestamp.
+  Requires public access key. Returns a list of races, ordered by race start timestamp. The 'available' category returns races which have not started yet and can still be joined; 'from' and 'to' are ignored for this category.
 
   ## Parmeters
   - limit: N/A

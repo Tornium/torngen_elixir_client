@@ -53,12 +53,12 @@ defmodule Torngen.Client.Schema.PersonalStatsTravel do
              hawaii: {:static, :integer},
              china: {:static, :integer},
              cayman_islands: {:static, :integer},
+             canada: {:static, :integer},
              argentina: {:static, :integer},
              attacks_won: {:static, :integer},
              items_bought: {:static, :integer},
              hunting: {:object, %{skill: {:static, :integer}}},
-             defends_lost: {:static, :integer},
-             canada: {:static, :integer}
+             defends_lost: {:static, :integer}
            }}
         )
     }
@@ -91,12 +91,12 @@ defmodule Torngen.Client.Schema.PersonalStatsTravel do
          hawaii: {:static, :integer},
          china: {:static, :integer},
          cayman_islands: {:static, :integer},
+         canada: {:static, :integer},
          argentina: {:static, :integer},
          attacks_won: {:static, :integer},
          items_bought: {:static, :integer},
          hunting: {:object, %{skill: {:static, :integer}}},
-         defends_lost: {:static, :integer},
-         canada: {:static, :integer}
+         defends_lost: {:static, :integer}
        }}
     )
   end

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Id.Properties do
   @moduledoc """
   Get specific user's properties.
 
-  Requires public access key. Extended responses are available when requesting the data with Limited or higher access keys for yourself or your spouse.
+  Requires public access key. Extended responses are available when requesting the data with Limited or higher access keys for yourself or your spouse. Responses are cached for an hour unless requesting your own or your spouse's properties with a Limited or higher access key.
 
   ## Parmeters
   - id: User id or user discord id

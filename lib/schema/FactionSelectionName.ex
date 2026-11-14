@@ -20,6 +20,7 @@ defmodule Torngen.Client.Schema.FactionSelectionName do
     "crimes",
     "crimeexp",
     "dirtbombs",
+    "headlines",
     "hof",
     "lookup",
     "members",

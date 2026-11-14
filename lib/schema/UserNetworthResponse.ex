@@ -55,8 +55,8 @@ defmodule Torngen.Client.Schema.UserNetworthResponse do
                {:object,
                 %{
                   bazaar: {:static, :integer},
-                  trades: {:static, :integer},
                   inventory: {:static, :integer},
+                  trades: {:static, :integer},
                   item_market: {:static, :integer},
                   enlisted_cars: {:static, :integer},
                   display_case: {:static, :integer},
@@ -110,8 +110,8 @@ defmodule Torngen.Client.Schema.UserNetworthResponse do
            {:object,
             %{
               bazaar: {:static, :integer},
-              trades: {:static, :integer},
               inventory: {:static, :integer},
+              trades: {:static, :integer},
               item_market: {:static, :integer},
               enlisted_cars: {:static, :integer},
               display_case: {:static, :integer},
