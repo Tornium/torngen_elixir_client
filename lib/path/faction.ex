@@ -56,6 +56,7 @@ defmodule Torngen.Client.Path.Faction do
   - AttacksResponse
   - FactionTerritoryWarsHistoryResponse
   - RevivesResponse
+  - FactionHeadlinesResponse
   - NewsResponse
   - FactionWarsResponse
   - FactionBasicResponse
@@ -103,6 +104,7 @@ defmodule Torngen.Client.Path.Faction do
     AttacksResponse,
     FactionTerritoryWarsHistoryResponse,
     RevivesResponse,
+    FactionHeadlinesResponse,
     NewsResponse,
     FactionWarsResponse,
     FactionBasicResponse,

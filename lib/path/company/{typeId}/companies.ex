@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Company.TypeId.Companies do
   @moduledoc """
   Get a list of companies for a specific company type.
 
-  Requires public access key.
+  <b>Globally cached selection (1 hour).</b> Requires public access key.
 
   ## Parmeters
   - typeId: Company type id
