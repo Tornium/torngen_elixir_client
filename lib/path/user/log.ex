@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Log do
   @moduledoc """
   Get your logs.
 
-  Requires full access key. It's possible to pass a list of log ids or a log category id. This selection is standalone and cannot be used together with other selections.
+  Requires full access key. It's possible to pass a list of log ids or a log category id. This selection is standalone and cannot be used together with other selections. Pagination: `from` and `to` are inclusive bounds at one-second resolution. Log timestamps are nanosecond-precise, so to page without gaps or repeats use the `nanostamp` cursor (returned as `_metadata.nanostamp`, sent without `to`); the `prev` link does this automatically.
 
   ## Parmeters
   - log: Log ids, comma separated, e.g
@@ -12,7 +12,7 @@ defmodule Torngen.Client.Path.User.Log do
   - to: Timestamp that sets the upper limit for the data returned
   - from: Timestamp that sets the lower limit for the data returned
   - timestamp: Timestamp to bypass cache
-  - nanostamp: Timestamp in nanoseconds to bypass system limitation when more than 100 logs were returned in the same second.
+  - nanostamp: Nanosecond cursor for user/log pagination, returned as `_metadata.nanostamp`
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Full)
 
@@ -67,7 +67,7 @@ defmodule Torngen.Client.Path.User.Log do
 
   @impl true
   defparameter :from, value do
-    # Timestamp that sets the lower limit for the data returned. Data returned will be after this time
+    # Timestamp that sets the lower limit for the data returned. Data returned will be from and including this time
     {:query, :from, value}
   end
 
@@ -79,7 +79,7 @@ defmodule Torngen.Client.Path.User.Log do
 
   @impl true
   defparameter :nanostamp, value do
-    # Timestamp in nanoseconds to bypass system limitation when more than 100 logs were returned in the same second.
+    # Nanosecond cursor for user/log pagination, returned as `_metadata.nanostamp`. Pass it back (without `to`) to continue from the exact position with no skipped or repeated logs; it also bypasses the limitation when more than 100 logs share the same second.
     {:query, :nanostamp, value}
   end
 

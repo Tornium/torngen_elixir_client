@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Id.Bounties do
   @moduledoc """
   Get bounties placed on a specific user.
 
-  Requires public access key.
+  <b>Globally cached selection (5 minutes).</b> Requires public access key.
 
   ## Parmeters
   - id: User id or user discord id

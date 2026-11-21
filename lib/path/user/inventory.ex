@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Inventory do
   @moduledoc """
   Get your inventory.
 
-  <b>Cached selection (1 hour per category).</b> Requires minimal access key.
+  <b>Cached selection (15 minutes per category).</b> Requires minimal access key.
 
   ## Parmeters
   - cat: Items category

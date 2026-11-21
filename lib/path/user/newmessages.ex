@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Newmessages do
   @moduledoc """
   Get your unseen messages.
 
-  Requires limited access key. This selection is cached for 1 hour.
+  Requires limited access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache

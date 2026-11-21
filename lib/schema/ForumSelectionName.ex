@@ -5,7 +5,7 @@ defmodule Torngen.Client.Schema.ForumSelectionName do
 
   @type t :: String.t() | String.t()
 
-  @values [:string, "categories", "lookup", "posts", "thread", "threads", "timestamp"]
+  @values [:string, "categories", "posts", "thread", "threads", "lookup", "timestamp"]
 
   @spec values() :: [t()]
   def values, do: @values

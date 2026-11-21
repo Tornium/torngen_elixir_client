@@ -12,7 +12,11 @@ defmodule Torngen.Client.Schema.UserGymResponse do
   ]
 
   @type t :: %__MODULE__{
-          gym: %{name: String.t(), id: Torngen.Client.Schema.GymId.t()}
+          gym: %{
+            unlocked_gyms: [Torngen.Client.Schema.UserUnlockedGym.t()],
+            name: String.t(),
+            id: Torngen.Client.Schema.GymId.t()
+          }
         }
 
   @impl true
@@ -22,7 +26,12 @@ defmodule Torngen.Client.Schema.UserGymResponse do
         data
         |> Map.get("gym")
         |> Torngen.Client.Schema.parse(
-          {:object, %{id: {:ref, Torngen.Client.Schema.GymId}, name: {:static, :string}}}
+          {:object,
+           %{
+             id: {:ref, Torngen.Client.Schema.GymId},
+             name: {:static, :string},
+             unlocked_gyms: {:array, {:ref, Torngen.Client.Schema.UserUnlockedGym}}
+           }}
         )
     }
   end
@@ -41,7 +50,12 @@ defmodule Torngen.Client.Schema.UserGymResponse do
   defp validate_key?(:gym, value) do
     Torngen.Client.Schema.validate?(
       value,
-      {:object, %{id: {:ref, Torngen.Client.Schema.GymId}, name: {:static, :string}}}
+      {:object,
+       %{
+         id: {:ref, Torngen.Client.Schema.GymId},
+         name: {:static, :string},
+         unlocked_gyms: {:array, {:ref, Torngen.Client.Schema.UserUnlockedGym}}
+       }}
     )
   end
 

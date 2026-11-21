@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market.Id.Auctionhouselisting do
   @moduledoc """
   Get specific item auction house listings.
 
-  Requires public access key.
+  <b>Globally cached selection (15 minutes, ongoing listings only).</b> Requires public access key. Ongoing listings are returned from the cached and delayed ongoing listings.
 
   ## Parmeters
   - id: Listing id

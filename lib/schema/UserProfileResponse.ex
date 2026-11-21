@@ -70,11 +70,11 @@ defmodule Torngen.Client.Schema.UserProfileResponse do
              friends: {:static, :integer},
              revive_setting: {:ref, Torngen.Client.Schema.ReviveSetting},
              enemies: {:static, :integer},
+             forum_posts: {:static, :integer},
              revivable: {:static, :boolean},
              karma: {:static, :integer},
              honor_id: {:ref, Torngen.Client.Schema.HonorId},
              gender: {:ref, Torngen.Client.Schema.UserGenderEnum},
-             forum_posts: {:static, :integer},
              donator_status:
                {:one_of, [static: :null, ref: Torngen.Client.Schema.UserDonatorStatusEnum]},
              age: {:static, :integer}
@@ -118,11 +118,11 @@ defmodule Torngen.Client.Schema.UserProfileResponse do
          friends: {:static, :integer},
          revive_setting: {:ref, Torngen.Client.Schema.ReviveSetting},
          enemies: {:static, :integer},
+         forum_posts: {:static, :integer},
          revivable: {:static, :boolean},
          karma: {:static, :integer},
          honor_id: {:ref, Torngen.Client.Schema.HonorId},
          gender: {:ref, Torngen.Client.Schema.UserGenderEnum},
-         forum_posts: {:static, :integer},
          donator_status:
            {:one_of, [static: :null, ref: Torngen.Client.Schema.UserDonatorStatusEnum]},
          age: {:static, :integer}

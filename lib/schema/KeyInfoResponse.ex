@@ -31,11 +31,13 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
             },
             access: %{
               type: Torngen.Client.Schema.ApiKeyAccessTypeEnum.t(),
+              sensitive_data: boolean(),
               log: %{
                 custom_permissions: boolean(),
                 available: [Torngen.Client.Schema.KeyInfoAvailableLog.t()]
               },
               level: integer(),
+              legacy_permissions: boolean(),
               faction: boolean(),
               company: boolean()
             }
@@ -63,7 +65,9 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
                      }},
                   level: {:static, :integer},
                   faction: {:static, :boolean},
-                  company: {:static, :boolean}
+                  company: {:static, :boolean},
+                  sensitive_data: {:static, :boolean},
+                  legacy_permissions: {:static, :boolean}
                 }},
              user:
                {:object,
@@ -118,7 +122,9 @@ defmodule Torngen.Client.Schema.KeyInfoResponse do
                  }},
               level: {:static, :integer},
               faction: {:static, :boolean},
-              company: {:static, :boolean}
+              company: {:static, :boolean},
+              sensitive_data: {:static, :boolean},
+              legacy_permissions: {:static, :boolean}
             }},
          user:
            {:object,

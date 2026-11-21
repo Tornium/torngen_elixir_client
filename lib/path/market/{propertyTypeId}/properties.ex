@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Market.PropertyTypeId.Properties do
   @moduledoc """
   Get properties market listings.
 
-  <b>Globally cached selection.</b> Requires public access key.
+  <b>Globally cached selection (1 hour).</b> Requires public access key.
 
   ## Parmeters
   - propertyTypeId: Property type id

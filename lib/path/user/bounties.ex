@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Bounties do
   @moduledoc """
   Get bounties placed on you.
 
-  <b>Globally cached selection.</b> Requires public access key.
+  <b>Globally cached selection (5 minutes).</b> Requires public access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
