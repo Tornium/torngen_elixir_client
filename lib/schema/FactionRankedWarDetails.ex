@@ -5,10 +5,11 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:winner, :target, :start, :id, :factions, :end]
+  @keys [:winner, :template, :target, :start, :id, :factions, :end]
 
   defstruct [
     :winner,
+    :template,
     :target,
     :start,
     :id,
@@ -18,6 +19,7 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
 
   @type t :: %__MODULE__{
           winner: nil | Torngen.Client.Schema.FactionId.t(),
+          template: Torngen.Client.Schema.FactionRankedWarTemplate.t(),
           target: integer(),
           start: integer(),
           id: Torngen.Client.Schema.RankedWarId.t(),
@@ -41,6 +43,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
         |> Torngen.Client.Schema.parse(
           {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
         ),
+      template:
+        data
+        |> Map.get("template")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.FactionRankedWarTemplate}),
       target: data |> Map.get("target") |> Torngen.Client.Schema.parse({:static, :integer}),
       start: data |> Map.get("start") |> Torngen.Client.Schema.parse({:static, :integer}),
       id:
@@ -80,6 +86,10 @@ defmodule Torngen.Client.Schema.FactionRankedWarDetails do
       value,
       {:one_of, [static: :null, ref: Torngen.Client.Schema.FactionId]}
     )
+  end
+
+  defp validate_key?(:template, value) do
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.FactionRankedWarTemplate})
   end
 
   defp validate_key?(:target, value) do

@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Revives do
   @moduledoc """
   Get your detailed revives.
 
-  Requires limited access key.
+  Requires minimal access key.
 
   ## Parmeters
   - filters: It's possible to use this query parameter to only get incoming or outgoing attacks / revives
@@ -13,7 +13,7 @@ defmodule Torngen.Client.Path.User.Revives do
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Limited)
+  - key: API key (Minimal)
 
   ## Response Module(s)
   - RevivesResponse
@@ -84,7 +84,7 @@ defmodule Torngen.Client.Path.User.Revives do
 
   @impl true
   defparameter :key, value do
-    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

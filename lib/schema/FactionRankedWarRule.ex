@@ -1,11 +1,11 @@
-defmodule Torngen.Client.Schema.Parameters do
+defmodule Torngen.Client.Schema.FactionRankedWarRule do
   @moduledoc false
 
   @behaviour Torngen.Client.Schema
 
   @type t :: String.t() | String.t()
 
-  @values [:string, "destroyed", "notDestroyed", "recruiting", "notRecruiting"]
+  @values [:string, "Day War", "50% Reduced score requirement", "Frying Pans"]
 
   @spec values() :: [t()]
   def values, do: @values

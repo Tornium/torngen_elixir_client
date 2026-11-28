@@ -1,29 +1,27 @@
-defmodule Torngen.Client.Schema.UserFactionBalanceResponse do
+defmodule Torngen.Client.Schema.UserTravelInventoryResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:factionBalance]
+  @keys [:travelinventory]
 
   defstruct [
-    :factionBalance
+    :travelinventory
   ]
 
   @type t :: %__MODULE__{
-          factionBalance: nil | Torngen.Client.Schema.UserFactionBalance.t()
+          travelinventory: Torngen.Client.Schema.UserTravelInventory.t()
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      factionBalance:
+      travelinventory:
         data
-        |> Map.get("factionBalance")
-        |> Torngen.Client.Schema.parse(
-          {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFactionBalance]}
-        )
+        |> Map.get("travelinventory")
+        |> Torngen.Client.Schema.parse({:ref, Torngen.Client.Schema.UserTravelInventory})
     }
   end
 
@@ -38,11 +36,8 @@ defmodule Torngen.Client.Schema.UserFactionBalanceResponse do
     |> Enum.all?()
   end
 
-  defp validate_key?(:factionBalance, value) do
-    Torngen.Client.Schema.validate?(
-      value,
-      {:one_of, [static: :null, ref: Torngen.Client.Schema.UserFactionBalance]}
-    )
+  defp validate_key?(:travelinventory, value) do
+    Torngen.Client.Schema.validate?(value, {:ref, Torngen.Client.Schema.UserTravelInventory})
   end
 
   @spec keys() :: list(atom())

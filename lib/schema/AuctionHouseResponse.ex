@@ -5,14 +5,18 @@ defmodule Torngen.Client.Schema.AuctionHouseResponse do
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:auctionhouse, :_metadata]
+  @keys [:auctionhouse_timestamp, :auctionhouse_delay, :auctionhouse, :_metadata]
 
   defstruct [
+    :auctionhouse_timestamp,
+    :auctionhouse_delay,
     :auctionhouse,
     :_metadata
   ]
 
   @type t :: %__MODULE__{
+          auctionhouse_timestamp: nil | integer(),
+          auctionhouse_delay: nil | integer(),
           auctionhouse: [Torngen.Client.Schema.AuctionHouseListing.t()],
           _metadata: Torngen.Client.Schema.RequestMetadataWithLinks.t()
         }
@@ -20,6 +24,14 @@ defmodule Torngen.Client.Schema.AuctionHouseResponse do
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
+      auctionhouse_timestamp:
+        data
+        |> Map.get("auctionhouse_timestamp")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
+      auctionhouse_delay:
+        data
+        |> Map.get("auctionhouse_delay")
+        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
       auctionhouse:
         data
         |> Map.get("auctionhouse")
@@ -42,6 +54,14 @@ defmodule Torngen.Client.Schema.AuctionHouseResponse do
     |> Enum.map(fn key -> {key, Map.get(data, Atom.to_string(key))} end)
     |> Enum.map(fn {key, value} -> validate_key?(key, value) end)
     |> Enum.all?()
+  end
+
+  defp validate_key?(:auctionhouse_timestamp, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  end
+
+  defp validate_key?(:auctionhouse_delay, value) do
+    Torngen.Client.Schema.validate?(value, {:static, :integer})
   end
 
   defp validate_key?(:auctionhouse, value) do

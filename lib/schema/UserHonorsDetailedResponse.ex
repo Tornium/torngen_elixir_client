@@ -1,0 +1,48 @@
+defmodule Torngen.Client.Schema.UserHonorsDetailedResponse do
+  @moduledoc false
+
+  use Torngen.Client.SchemaObjectAccess, deprecated: []
+
+  @behaviour Torngen.Client.Schema
+
+  @keys [:honors]
+
+  defstruct [
+    :honors
+  ]
+
+  @type t :: %__MODULE__{
+          honors: [Torngen.Client.Schema.UserHonorDetailed.t()]
+        }
+
+  @impl true
+  def parse(%{} = data) do
+    %__MODULE__{
+      honors:
+        data
+        |> Map.get("honors")
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.UserHonorDetailed}})
+    }
+  end
+
+  @impl true
+  def parse(_data), do: nil
+
+  @impl true
+  def validate?(%{} = data) do
+    @keys
+    |> Enum.map(fn key -> {key, Map.get(data, Atom.to_string(key))} end)
+    |> Enum.map(fn {key, value} -> validate_key?(key, value) end)
+    |> Enum.all?()
+  end
+
+  defp validate_key?(:honors, value) do
+    Torngen.Client.Schema.validate?(
+      value,
+      {:array, {:ref, Torngen.Client.Schema.UserHonorDetailed}}
+    )
+  end
+
+  @spec keys() :: list(atom())
+  def keys(), do: @keys
+end

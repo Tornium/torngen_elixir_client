@@ -7,7 +7,7 @@ defmodule Torngen.Client.Schema.FactionTerritoryWarsCategoryEnum do
 
   @type t :: String.t()
 
-  @values ["finsihed", "ongoing"]
+  @values ["finished", "ongoing"]
 
   @spec values() :: [t()]
   def values, do: @values

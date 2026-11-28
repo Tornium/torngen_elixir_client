@@ -1,15 +1,17 @@
 defmodule Torngen.Client.Path.User.Medals do
   @moduledoc """
-  Get all your achieved medals.
+  Get your medals.
 
-  Requires public access key.
+  Requires public access key. By default (category 'all'), only your achieved medals are returned as 'UserMedalsResponse'. When a specific category is requested, all medals of that category are returned as 'UserMedalsDetailedResponse', including the ones you have not achieved yet, with your progress towards them. This requires a minimal access key. The 'latest' category returns your 30 most recently achieved medals.
 
   ## Parmeters
+  - cat: Medals category, defaults to all
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
   - key: API key (Public)
 
   ## Response Module(s)
+  - UserMedalsDetailedResponse
   - UserMedalsResponse
   """
 
@@ -18,7 +20,7 @@ defmodule Torngen.Client.Path.User.Medals do
   @behaviour Torngen.Client.Path
 
   @path "user/medals"
-  @response_modules [UserMedalsResponse]
+  @response_modules [UserMedalsDetailedResponse, UserMedalsResponse]
 
   Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
 
@@ -27,6 +29,12 @@ defmodule Torngen.Client.Path.User.Medals do
 
   @impl true
   def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :cat, value do
+    # Medals category, defaults to all
+    {:query, :cat, value}
+  end
 
   @impl true
   defparameter :timestamp, value do

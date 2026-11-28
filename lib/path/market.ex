@@ -25,6 +25,8 @@ defmodule Torngen.Client.Path.Market do
   - AuctionHouseListingResponse
   - AuctionHouseResponse
   - MarketRentalsResponse
+  - MarketPointsHistoryResponse
+  - MarketItemHistoryResponse
   - MarketItemMarketResponse
   - BazaarResponseSpecialized
   - BazaarResponse
@@ -43,6 +45,8 @@ defmodule Torngen.Client.Path.Market do
     AuctionHouseListingResponse,
     AuctionHouseResponse,
     MarketRentalsResponse,
+    MarketPointsHistoryResponse,
+    MarketItemHistoryResponse,
     MarketItemMarketResponse,
     BazaarResponseSpecialized,
     BazaarResponse

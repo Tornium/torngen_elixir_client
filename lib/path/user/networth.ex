@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.User.Networth do
   @moduledoc """
   Get your networth.
 
-  Requires limited access key.
+  <b>Cached selection (15 minutes).</b> Requires limited access key.
 
   ## Parmeters
   - timestamp: Timestamp to bypass cache
