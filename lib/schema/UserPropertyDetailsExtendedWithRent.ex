@@ -9,7 +9,6 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent do
           values: [
             %{
               used_by: [Torngen.Client.Schema.BasicUser.t()],
-              status: String.t(),
               rented_by: nil | Torngen.Client.Schema.BasicUser.t()
             }
             | Torngen.Client.Schema.UserPropertyBasicDetails.t()
@@ -18,7 +17,6 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent do
   @types [
     {:object,
      %{
-       status: {:enum, :string, ["none", "in_use"]},
        used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}},
        rented_by: {:one_of, [static: :null, ref: Torngen.Client.Schema.BasicUser]}
      }},
@@ -33,7 +31,6 @@ defmodule Torngen.Client.Schema.UserPropertyDetailsExtendedWithRent do
         |> Torngen.Client.Schema.parse(
           {:object,
            %{
-             status: {:enum, :string, ["none", "in_use"]},
              used_by: {:array, {:ref, Torngen.Client.Schema.BasicUser}},
              rented_by: {:one_of, [static: :null, ref: Torngen.Client.Schema.BasicUser]}
            }}

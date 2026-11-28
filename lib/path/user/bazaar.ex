@@ -1,0 +1,93 @@
+defmodule Torngen.Client.Path.User.Bazaar do
+  @moduledoc """
+  Get your bazaar.
+
+  Requires Limited, Full or Custom key with sensitive data enabled. Item details are included only for the Primary, Secondary, Melee and Defensive categories. The All category returns every item unless a limit is given. Identical items are grouped into one row with their uids listed; limit and offset count individual items.
+
+  ## Parmeters
+  - cat: Items category, defaults to All
+  - offset: N/A
+  - limit: N/A
+  - sort: Sort by item name
+  - timestamp: Timestamp to bypass cache
+  - comment: Comment for your tool/service/bot/website to be visible in the logs.
+  - key: API key (Limited)
+
+  ## Response Module(s)
+  - UserBazaarResponse
+  """
+
+  import Torngen.Client.Path, only: [defparameter: 3]
+
+  @behaviour Torngen.Client.Path
+
+  @path "user/bazaar"
+  @response_modules [UserBazaarResponse]
+
+  Module.register_attribute(__MODULE__, :parameter_keys, accumulate: true)
+
+  @impl true
+  def path(), do: @path
+
+  @impl true
+  def path_selection(), do: Torngen.Client.Path.path_selection(@path)
+
+  @impl true
+  defparameter :cat, value do
+    # Items category, defaults to All
+    {:query, :cat, value}
+  end
+
+  @impl true
+  defparameter :offset, value do
+    # N/A
+    {:query, :offset, value}
+  end
+
+  @impl true
+  defparameter :limit, value do
+    # N/A
+    {:query, :limit, value}
+  end
+
+  @impl true
+  defparameter :sort, value do
+    # Sort by item name
+    {:query, :sort, value}
+  end
+
+  @impl true
+  defparameter :timestamp, value do
+    # Timestamp to bypass cache
+    {:query, :timestamp, value}
+  end
+
+  @impl true
+  defparameter :comment, value do
+    # Comment for your tool/service/bot/website to be visible in the logs.
+    {:query, :comment, value}
+  end
+
+  @impl true
+  defparameter :key, value do
+    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
+    {:query, :key, value}
+  end
+
+  @impl true
+  def parameter(parameter_name, _value) when is_atom(parameter_name) do
+    :error
+  end
+
+  @impl true
+  def parameters(), do: @parameter_keys
+
+  @impl true
+  def response_modules(), do: @response_modules
+
+  @impl true
+  def parse(response), do: Torngen.Client.Path.parse(@response_modules, response)
+
+  @impl true
+  def moduledoc(), do: @moduledoc
+end

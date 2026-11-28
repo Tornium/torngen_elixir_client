@@ -14,6 +14,7 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
   @type t :: %__MODULE__{
           rankedwarreport: %{
             winner: Torngen.Client.Schema.FactionId.t(),
+            template: Torngen.Client.Schema.FactionRankedWarTemplate.t(),
             start: integer(),
             id: Torngen.Client.Schema.RankedWarId.t(),
             forfeit: boolean(),
@@ -58,6 +59,7 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
              id: {:ref, Torngen.Client.Schema.RankedWarId},
              start: {:static, :integer},
              end: {:static, :integer},
+             template: {:ref, Torngen.Client.Schema.FactionRankedWarTemplate},
              factions:
                {:array,
                 {:object,
@@ -118,6 +120,7 @@ defmodule Torngen.Client.Schema.FactionRankedWarReportResponse do
          id: {:ref, Torngen.Client.Schema.RankedWarId},
          start: {:static, :integer},
          end: {:static, :integer},
+         template: {:ref, Torngen.Client.Schema.FactionRankedWarTemplate},
          factions:
            {:array,
             {:object,

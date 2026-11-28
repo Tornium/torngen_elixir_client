@@ -23,8 +23,12 @@ defmodule Torngen.Client.Path.User do
 
   ## Response Module(s)
   - TimestampResponse
-  - UserInventoryResponse
   - UserLookupResponse
+  - UserCriminalRecordResponse
+  - UserAuctionHouseResponse
+  - UserDisplayResponse
+  - UserBazaarResponse
+  - UserInventoryResponse
   - UserNewMessagesResponse
   - UserMessagesResponse
   - UserEventsResponse
@@ -38,9 +42,11 @@ defmodule Torngen.Client.Path.User do
   - UserJobPointsResponse
   - UserMoneyResponse
   - UserNetworthResponse
+  - UserHalloweenResponse
   - UserCasinoResponse
   - AttacksFullResponse
   - UserVirusResponse
+  - UserTravelInventoryResponse
   - UserTravelResponse
   - UserRefillsResponse
   - UserPerksResponse
@@ -62,11 +68,12 @@ defmodule Torngen.Client.Path.User do
   - UserProfileResponse
   - RevivesFullResponse
   - UserMeritsResponse
+  - UserMedalsDetailedResponse
   - UserMedalsResponse
+  - UserHonorsDetailedResponse
   - UserHonorsResponse
   - RevivesResponse
   - UserBasicResponse
-  - UserFactionBalanceResponse
   - UserPropertiesResponse
   - UserJobRanksResponse
   - UserBountiesResponse
@@ -97,8 +104,12 @@ defmodule Torngen.Client.Path.User do
   @path "user"
   @response_modules [
     TimestampResponse,
-    UserInventoryResponse,
     UserLookupResponse,
+    UserCriminalRecordResponse,
+    UserAuctionHouseResponse,
+    UserDisplayResponse,
+    UserBazaarResponse,
+    UserInventoryResponse,
     UserNewMessagesResponse,
     UserMessagesResponse,
     UserEventsResponse,
@@ -112,9 +123,11 @@ defmodule Torngen.Client.Path.User do
     UserJobPointsResponse,
     UserMoneyResponse,
     UserNetworthResponse,
+    UserHalloweenResponse,
     UserCasinoResponse,
     AttacksFullResponse,
     UserVirusResponse,
+    UserTravelInventoryResponse,
     UserTravelResponse,
     UserRefillsResponse,
     UserPerksResponse,
@@ -136,11 +149,12 @@ defmodule Torngen.Client.Path.User do
     UserProfileResponse,
     RevivesFullResponse,
     UserMeritsResponse,
+    UserMedalsDetailedResponse,
     UserMedalsResponse,
+    UserHonorsDetailedResponse,
     UserHonorsResponse,
     RevivesResponse,
     UserBasicResponse,
-    UserFactionBalanceResponse,
     UserPropertiesResponse,
     UserJobRanksResponse,
     UserBountiesResponse,

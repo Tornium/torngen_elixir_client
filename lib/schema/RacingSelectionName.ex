@@ -9,12 +9,12 @@ defmodule Torngen.Client.Schema.RacingSelectionName do
     :string,
     "cars",
     "carupgrades",
-    "lookup",
     "race",
     "races",
     "records",
-    "timestamp",
-    "tracks"
+    "tracks",
+    "lookup",
+    "timestamp"
   ]
 
   @spec values() :: [t()]

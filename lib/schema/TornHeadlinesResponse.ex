@@ -1,27 +1,27 @@
-defmodule Torngen.Client.Schema.UserFactionBalance do
+defmodule Torngen.Client.Schema.TornHeadlinesResponse do
   @moduledoc false
 
   use Torngen.Client.SchemaObjectAccess, deprecated: []
 
   @behaviour Torngen.Client.Schema
 
-  @keys [:points, :money]
+  @keys [:headlines]
 
   defstruct [
-    :points,
-    :money
+    :headlines
   ]
 
   @type t :: %__MODULE__{
-          points: integer(),
-          money: integer()
+          headlines: [Torngen.Client.Schema.TornHeadline.t()]
         }
 
   @impl true
   def parse(%{} = data) do
     %__MODULE__{
-      points: data |> Map.get("points") |> Torngen.Client.Schema.parse({:static, :integer}),
-      money: data |> Map.get("money") |> Torngen.Client.Schema.parse({:static, :integer})
+      headlines:
+        data
+        |> Map.get("headlines")
+        |> Torngen.Client.Schema.parse({:array, {:ref, Torngen.Client.Schema.TornHeadline}})
     }
   end
 
@@ -36,12 +36,8 @@ defmodule Torngen.Client.Schema.UserFactionBalance do
     |> Enum.all?()
   end
 
-  defp validate_key?(:points, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
-  end
-
-  defp validate_key?(:money, value) do
-    Torngen.Client.Schema.validate?(value, {:static, :integer})
+  defp validate_key?(:headlines, value) do
+    Torngen.Client.Schema.validate?(value, {:array, {:ref, Torngen.Client.Schema.TornHeadline}})
   end
 
   @spec keys() :: list(atom())

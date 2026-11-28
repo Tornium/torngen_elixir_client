@@ -2,7 +2,7 @@ defmodule Torngen.Client.Path.Faction.RevivesFull do
   @moduledoc """
   Get your faction's simplified revives.
 
-  Requires limited access key with faction API access permissions.
+  Requires minimal access key with faction API access permissions.
 
   ## Parmeters
   - filters: It's possible to use this query parameter to only get incoming or outgoing attacks / revives
@@ -13,7 +13,7 @@ defmodule Torngen.Client.Path.Faction.RevivesFull do
   - striptags: Determines if fields include HTML or not ('Hospitalized by <a href=...>user</a>' vs 'Hospitalized by user').
   - timestamp: Timestamp to bypass cache
   - comment: Comment for your tool/service/bot/website to be visible in the logs.
-  - key: API key (Limited)
+  - key: API key (Minimal)
 
   ## Response Module(s)
   - RevivesFullResponse
@@ -84,7 +84,7 @@ defmodule Torngen.Client.Path.Faction.RevivesFull do
 
   @impl true
   defparameter :key, value do
-    # API key (Limited). It's not required to use this parameter when passing the API key via the Authorization header.
+    # API key (Minimal). It's not required to use this parameter when passing the API key via the Authorization header.
     {:query, :key, value}
   end
 

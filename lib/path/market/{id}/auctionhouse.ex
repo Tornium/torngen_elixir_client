@@ -2,10 +2,11 @@ defmodule Torngen.Client.Path.Market.Id.Auctionhouse do
   @moduledoc """
   Get specific item auction house listings.
 
-  Requires public access key.
+  <b>Globally cached selection (15 minutes, ongoing listings only).</b> Requires public access key. Ongoing listings are cached and delayed; auctionhouse_timestamp and auctionhouse_delay are returned only for the ongoing category. Listings are sorted by their end time: complete listings descending by default, ongoing listings ascending by default.
 
   ## Parmeters
   - id: Item id
+  - cat: Listings category, defaults to complete
   - limit: N/A
   - sort: Sorted by the greatest timestamps
   - from: Timestamp that sets the lower limit for the data returned
@@ -37,6 +38,12 @@ defmodule Torngen.Client.Path.Market.Id.Auctionhouse do
   defparameter :id, value do
     # Item id
     {:path, :id, value}
+  end
+
+  @impl true
+  defparameter :cat, value do
+    # Listings category, defaults to complete
+    {:query, :cat, value}
   end
 
   @impl true

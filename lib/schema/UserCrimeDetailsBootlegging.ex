@@ -20,7 +20,7 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
             earnings: integer(),
             customers: integer()
           },
-          dvds_copied: nil | integer(),
+          dvds_copied: integer(),
           dvd_sales: %{
             total: integer(),
             thriller: integer(),
@@ -51,9 +51,7 @@ defmodule Torngen.Client.Schema.UserCrimeDetailsBootlegging do
            }}
         ),
       dvds_copied:
-        data
-        |> Map.get("dvds_copied")
-        |> Torngen.Client.Schema.parse({:one_of, [static: :integer]}),
+        data |> Map.get("dvds_copied") |> Torngen.Client.Schema.parse({:static, :integer}),
       dvd_sales:
         data
         |> Map.get("dvd_sales")

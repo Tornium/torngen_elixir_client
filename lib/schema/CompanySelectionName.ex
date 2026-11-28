@@ -10,11 +10,10 @@ defmodule Torngen.Client.Schema.CompanySelectionName do
     "applications",
     "companies",
     "employees",
-    "lookup",
     "news",
     "profile",
-    "snapshot",
     "stock",
+    "lookup",
     "timestamp"
   ]
 

@@ -76,15 +76,15 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
           {:object,
            %{
              total: {:static, :integer},
-             theft: {:static, :integer},
-             organized_crimes: {:static, :integer},
-             fraud: {:static, :integer},
              vandalism: {:static, :integer},
+             theft: {:static, :integer},
              illicit_services: {:static, :integer},
              illegal_production: {:static, :integer},
+             fraud: {:static, :integer},
              extortion: {:static, :integer},
              cybercrime: {:static, :integer},
-             counterfeiting: {:static, :integer}
+             counterfeiting: {:static, :integer},
+             organized_crimes: {:static, :integer}
            }}
         )
     }
@@ -133,15 +133,15 @@ defmodule Torngen.Client.Schema.PersonalStatsCrimesV2 do
       {:object,
        %{
          total: {:static, :integer},
-         theft: {:static, :integer},
-         organized_crimes: {:static, :integer},
-         fraud: {:static, :integer},
          vandalism: {:static, :integer},
+         theft: {:static, :integer},
          illicit_services: {:static, :integer},
          illegal_production: {:static, :integer},
+         fraud: {:static, :integer},
          extortion: {:static, :integer},
          cybercrime: {:static, :integer},
-         counterfeiting: {:static, :integer}
+         counterfeiting: {:static, :integer},
+         organized_crimes: {:static, :integer}
        }}
     )
   end
